@@ -18,6 +18,11 @@ Magic, hacker, and bird-themed gameplay experiments.
 
 ---
 
+## 🌐 Find Me Online
+🎮 itch.io: [https://YOURNAME.itch.io](https://george-carter.itch.io/)
+
+---
+
 ## 📌 Goals
 - Share my progress publicly
 - Build cool things step by step 🚀
