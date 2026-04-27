@@ -19,7 +19,6 @@ Magic, hacker, and bird-themed gameplay experiments.
 ---
 
 ## 📌 Goals
-- Learn how real projects are built
 - Share my progress publicly
 - Build cool things step by step 🚀
 
