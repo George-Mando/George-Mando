@@ -1,16 +1,22 @@
-## Hi there 👋
+# 👋 Hi, I'm George
 
-<!--
-**George-Mando/George-Mando** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+🌱 Beginner Developer  
+🎮 Interested in games, tools, and learning programming
 
-Here are some ideas to get you started:
+---
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## 🔧 What I'm Learning
+- Programming fundamentals
+- Git & GitHub
+- Game development concepts
+
+---
+
+## 📌 Goals
+- Learn how real projects are built
+- Share my progress publicly
+- Build cool things step by step 🚀
+
+---
+
+Thanks for visiting my profile!
