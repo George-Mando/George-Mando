@@ -1,7 +1,7 @@
 
 # 👋 Hi, I'm George!
 
-🚀 Game Developer | 🎮 Unreal Engine / C++ | 🧠 Systems Thinker
+🚀 Game Developer | 🎮 Unity / Unreal Engine / C++ | 🧠 Systems Thinker
 
 I build tools, plugins, and games with a focus on **clean systems**, **automation**, and **fun gameplay loops**.
 
