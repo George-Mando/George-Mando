@@ -27,7 +27,7 @@ inside the Unreal Editor.
 - Unreal Engine  
 - Blueprint System  
 
-🔗 Repository: *(add repo link here when public)*
+🔗 Repository:
 
 ---
 
