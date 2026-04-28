@@ -1,3 +1,5 @@
+![George Carter – Game Developer](https://raw.githubusercontent.com/George-Mando/George-Mando/main/banner.png)
+
 🌐 **Portfolio Domain:** https://github.com/George-Mando
 
 # 👋 Hi, I'm George!
