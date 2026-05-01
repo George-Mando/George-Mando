@@ -2,564 +2,638 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>George Carter — XenClipse Studios</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="XENCLIPSE"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#000600"/>
+<link rel="manifest" href="manifest.json"/>
+<link rel="apple-touch-icon" href="icon-192.png"/>
+<title>XENCLIPSE · GEORGE CARTER</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet"/>
 <style>
-:root{--acid:#00ff9c;--acid-dim:#00cc78;--acid-dark:#004d2e;--orange:#ff6b35;--red:#fa5c5c;--bg:#000600;--panel:#000d05;--border:#00ff9c22;--border-bright:#00ff9c55;--text:#7fffa0;--text-dim:#3a8c55;}
-*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Share Tech Mono',monospace;min-height:100vh;overflow-x:hidden;cursor:crosshair;}
-body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,156,.010) 2px,rgba(0,255,156,.010) 4px);pointer-events:none;z-index:9999;}
-body::after{content:'';position:fixed;top:-2px;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--acid),transparent);opacity:.3;animation:smv 8s linear infinite;pointer-events:none;z-index:9998;}
-@keyframes smv{0%{top:-2px}100%{top:100vh}}
-.gbg{position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
-.shell{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:20px;}
-@keyframes dp{0%,100%{opacity:.2}50%{opacity:1}}
-@keyframes fi{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.fi{animation:fi .7s ease both;}.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}.d5{animation-delay:.5s}.d6{animation-delay:.6s}
-.panel{position:relative;background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;padding:20px;transition:border-color .3s,box-shadow .3s;}
-.panel:hover{border-color:var(--acid-dim);box-shadow:0 0 28px rgba(0,255,156,.07),inset 0 0 28px rgba(0,255,156,.025);}
-.panel::before,.panel::after{content:'';position:absolute;width:14px;height:14px;border-color:var(--acid);border-style:solid;}
-.panel::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}.panel::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
-.pl{font-size:9px;letter-spacing:4px;color:var(--text-dim);margin-bottom:14px;padding-bottom:7px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;}
-.pl span{color:var(--acid);opacity:.5;}.full{margin-bottom:16px;}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;}
-@media(max-width:800px){.g2,.g4,.ail{grid-template-columns:1fr!important;}}
-/* HEADER */
-.hdr{margin-bottom:16px;padding:26px 28px 20px;background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;position:relative;overflow:hidden;}
-.hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -10%,rgba(0,255,156,.06) 0%,transparent 65%);pointer-events:none;}.hdr::after{display:none;}
-.hc{position:absolute;width:18px;height:18px;border-color:var(--acid);border-style:solid;}
-.hc.tl{top:0;left:0;border-width:2px 0 0 2px;}.hc.tr{top:0;right:0;border-width:2px 2px 0 0;}
-.hc.bl{bottom:0;left:0;border-width:0 0 2px 2px;}.hc.br{bottom:0;right:0;border-width:0 2px 2px 0;}
-.htop{display:flex;justify-content:space-between;align-items:flex-start;}
-.sdots{display:flex;gap:12px;align-items:center;margin-bottom:5px;}
-.sd{width:8px;height:8px;border-radius:50%;background:var(--acid);animation:dp 2s ease-in-out infinite;box-shadow:0 0 7px var(--acid);}
-.sd.o{background:var(--orange);box-shadow:0 0 7px var(--orange);animation-delay:.7s;}
-.sd.r{background:var(--red);box-shadow:0 0 7px var(--red);animation-delay:1.4s;}
-.slbl{font-size:9px;letter-spacing:3px;color:var(--text-dim);}
-.sid{font-size:9px;letter-spacing:3px;color:var(--text-dim);text-align:right;}.sid b{color:var(--acid);display:block;margin-bottom:3px;}
-.nb{text-align:center;}
-.nm{font-family:'Orbitron',monospace;font-size:clamp(26px,5.5vw,68px);font-weight:900;letter-spacing:10px;color:var(--acid);text-shadow:0 0 35px rgba(0,255,156,.5),0 0 70px rgba(0,255,156,.18);animation:nf 9s ease-in-out infinite;line-height:1;}
+:root{
+  --acid:#00ff9c;--acid-dim:#00cc78;--acid-dark:#004d2e;
+  --orange:#ff6b35;--red:#fa5c5c;--bg:#000600;--panel:#000d05;
+  --border:#00ff9c22;--border-bright:#00ff9c55;--text:#7fffa0;--text-dim:#3a8c55;
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;background:var(--bg);}
+body{font-family:'Share Tech Mono',monospace;color:var(--text);cursor:default;
+  padding-top:var(--safe-top);padding-bottom:var(--safe-bottom);}
+
+/* SCANLINE OVERLAY */
+body::before{content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,156,.008) 2px,rgba(0,255,156,.008) 4px);
+  pointer-events:none;z-index:9999;}
+
+/* GRID BG */
+.gbg{position:fixed;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:32px 32px;pointer-events:none;z-index:0;}
+
+/* LAYOUT */
+.app{position:fixed;inset:0;display:flex;flex-direction:column;z-index:1;
+  padding-top:var(--safe-top);padding-bottom:var(--safe-bottom);}
+
+/* TOP BAR */
+.topbar{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px 8px;border-bottom:1px solid var(--border-bright);background:rgba(0,6,0,.95);}
+.topbar-left{display:flex;align-items:center;gap:8px;}
+.sdots{display:flex;gap:6px;}
+.sd{width:6px;height:6px;border-radius:50%;}
+.sd.g{background:var(--acid);animation:dp 2s ease-in-out infinite;box-shadow:0 0 5px var(--acid);}
+.sd.o{background:var(--orange);animation:dp 2s ease-in-out .7s infinite;box-shadow:0 0 5px var(--orange);}
+.sd.r{background:var(--red);animation:dp 2s ease-in-out 1.4s infinite;box-shadow:0 0 5px var(--red);}
+@keyframes dp{0%,100%{opacity:.3}50%{opacity:1}}
+.topbar-title{font-family:'Orbitron',monospace;font-size:13px;font-weight:900;
+  letter-spacing:4px;color:var(--acid);text-shadow:0 0 20px rgba(0,255,156,.5);}
+.topbar-right{font-size:8px;letter-spacing:2px;color:var(--text-dim);text-align:right;line-height:1.6;}
+.topbar-right b{color:var(--acid);}
+
+/* NAV TABS */
+.nav{flex-shrink:0;display:flex;border-bottom:1px solid var(--border-bright);background:rgba(0,6,0,.9);}
+.nav-tab{flex:1;padding:10px 4px 8px;font-family:'Share Tech Mono',monospace;
+  font-size:9px;letter-spacing:2px;color:var(--text-dim);background:none;border:none;
+  cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:3px;border-bottom:2px solid transparent;}
+.nav-tab.active{color:var(--acid);border-bottom-color:var(--acid);}
+.nav-tab .nav-icon{font-size:14px;}
+
+/* SCREENS */
+.screens{flex:1;overflow:hidden;position:relative;}
+.screen{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:14px;
+  display:none;-webkit-overflow-scrolling:touch;}
+.screen.active{display:block;}
+.screen::-webkit-scrollbar{width:2px;}
+.screen::-webkit-scrollbar-thumb{background:var(--border-bright);}
+
+/* PANELS */
+.panel{background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;padding:14px;
+  margin-bottom:12px;position:relative;}
+.panel::before,.panel::after{content:'';position:absolute;width:10px;height:10px;border-color:var(--acid);border-style:solid;}
+.panel::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}
+.panel::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
+.pl{font-size:8px;letter-spacing:3px;color:var(--text-dim);margin-bottom:10px;
+  padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;}
+.pl span{color:var(--acid);opacity:.6;}
+
+/* ── SCREEN: HOME ── */
+.hero{text-align:center;padding:16px 12px 20px;background:var(--panel);
+  border:1px solid var(--border-bright);border-radius:4px;margin-bottom:12px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,255,156,.06),transparent 65%);}
+.hc-corner{position:absolute;width:14px;height:14px;border-color:var(--acid);border-style:solid;}
+.hc-corner.tl{top:0;left:0;border-width:2px 0 0 2px;}
+.hc-corner.tr{top:0;right:0;border-width:2px 2px 0 0;}
+.hc-corner.bl{bottom:0;left:0;border-width:0 0 2px 2px;}
+.hc-corner.br{bottom:0;right:0;border-width:0 2px 2px 0;}
+.hero-name{font-family:'Orbitron',monospace;font-size:28px;font-weight:900;
+  letter-spacing:6px;color:var(--acid);text-shadow:0 0 30px rgba(0,255,156,.5);
+  animation:nf 9s ease-in-out infinite;margin-bottom:4px;}
 @keyframes nf{0%,95%,100%{opacity:1}96%{opacity:.5}97.5%{opacity:1}98.5%{opacity:.65}99.5%{opacity:1}}
-.ns{font-size:clamp(7px,1.2vw,10px);letter-spacing:5px;color:var(--acid-dim);margin-top:8px;opacity:.8;}
-.st{display:inline-block;margin-top:9px;padding:3px 16px;border:1px solid var(--acid);font-size:9px;letter-spacing:5px;color:var(--acid);opacity:.65;border-radius:2px;}
-/* AI */
-.ail{display:grid;grid-template-columns:300px 1fr;gap:16px;margin-bottom:16px;}
-.afp{position:relative;background:#000500;border:1px solid var(--border-bright);border-radius:4px;padding:12px;overflow:hidden;transition:border-color .4s,box-shadow .4s;}
-.afp::before{content:'';position:absolute;width:14px;height:14px;top:-1px;left:-1px;border-color:var(--acid);border-style:solid;border-width:2px 0 0 2px;}
-.afp::after{content:'';position:absolute;width:14px;height:14px;bottom:-1px;right:-1px;border-color:var(--acid);border-style:solid;border-width:0 2px 2px 0;}
-.afp.spk{border-color:var(--acid);box-shadow:0 0 50px rgba(0,255,156,.25),inset 0 0 40px rgba(0,255,156,.06);}
-.flbl{font-size:9px;letter-spacing:4px;color:var(--text-dim);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;}
-.flbl span{color:var(--acid);opacity:.7;}
-#fcwrap{width:100%;display:flex;justify-content:center;}
-/* Voice bars */
-.vbars{display:flex;align-items:flex-end;gap:3px;height:18px;justify-content:center;margin-top:6px;}
-.vb{width:3px;background:var(--acid);border-radius:2px;opacity:.15;transition:height .07s,opacity .07s;}.vb.on{opacity:1;}
-/* Key box */
-.kbox{margin-top:10px;background:#000400;border:1px solid rgba(0,255,156,.2);border-radius:3px;padding:10px 12px;}
-.kbox p{font-size:9px;color:var(--text-dim);letter-spacing:1px;line-height:1.6;margin-bottom:7px;}
-.kr{display:flex;gap:6px;}
-.ki{flex:1;background:#000900;border:1px solid var(--border-bright);color:var(--acid);font-family:'Share Tech Mono',monospace;font-size:10px;padding:6px 10px;border-radius:2px;outline:none;letter-spacing:1px;}
-.ki:focus{border-color:var(--acid);}
-.kb{padding:6px 10px;background:transparent;border:1px solid var(--acid);color:var(--acid);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;cursor:pointer;border-radius:2px;transition:all .2s;white-space:nowrap;}
-.kb:hover{background:var(--acid);color:#000;}
-.ks{font-size:9px;margin-top:5px;letter-spacing:2px;}.ks.ok{color:var(--acid);}.ks.er{color:var(--red);}
-/* CHAT */
-.cp{display:flex;flex-direction:column;}
-.cm{min-height:210px;max-height:295px;overflow-y:auto;display:flex;flex-direction:column;gap:9px;padding-right:4px;margin-bottom:10px;}
-.cm::-webkit-scrollbar{width:3px;}.cm::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px;}
-.msg{font-size:11px;line-height:1.7;padding:9px 13px;border-radius:3px;max-width:96%;letter-spacing:.4px;animation:fi .3s ease both;}
-.msg.ai{background:#001a08;border:1px solid rgba(0,255,156,.18);color:var(--text);align-self:flex-start;border-left:2px solid var(--acid);}
-.msg.usr{background:#001508;border:1px solid rgba(0,255,156,.12);color:var(--acid-dim);align-self:flex-end;text-align:right;}
-.msg.thnk{color:var(--text-dim);font-style:italic;animation:dp 1s ease-in-out infinite;}
-.spkr{font-size:8px;letter-spacing:3px;margin-bottom:3px;}.msg.ai .spkr{color:var(--acid);opacity:.55;}.msg.usr .spkr{color:var(--text-dim);}
-.suggs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;}
-.sb{font-size:9px;letter-spacing:1px;padding:4px 9px;background:transparent;border:1px solid rgba(0,255,156,.22);color:var(--text-dim);font-family:'Share Tech Mono',monospace;cursor:pointer;border-radius:2px;transition:all .2s;}
-.sb:hover{border-color:var(--acid);color:var(--acid);background:rgba(0,255,156,.04);}
-.cir{display:flex;gap:7px;}
-.cin{flex:1;background:#000500;border:1px solid var(--border-bright);color:var(--acid);font-family:'Share Tech Mono',monospace;font-size:11px;padding:9px 13px;border-radius:3px;outline:none;letter-spacing:1px;}
-.cin:focus{border-color:var(--acid);box-shadow:0 0 10px rgba(0,255,156,.08);}
-.cin::placeholder{color:var(--text-dim);opacity:.45;}
-.snd{padding:9px 16px;background:transparent;border:1px solid var(--acid);color:var(--acid);font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;cursor:pointer;border-radius:3px;transition:all .2s;white-space:nowrap;}
-.snd:hover{background:var(--acid);color:#000;}.snd:disabled{opacity:.35;cursor:not-allowed;}
-/* BIO */
-.bgr{display:grid;grid-template-columns:106px 1fr;gap:16px;align-items:start;}
-.hxa{width:96px;height:96px;position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.hxa svg{width:100%;height:100%;}
-.init{position:absolute;font-family:'Orbitron',monospace;font-size:19px;font-weight:700;color:var(--acid);text-shadow:0 0 14px var(--acid);letter-spacing:3px;animation:dp 3s ease-in-out infinite;}
-.brows{display:flex;flex-direction:column;gap:7px;}.brow{display:flex;gap:10px;font-size:11px;}
-.bk{color:var(--text-dim);min-width:96px;letter-spacing:1px;}.bv{color:var(--text);letter-spacing:1px;}
-.bv.br{color:var(--acid);text-shadow:0 0 8px rgba(0,255,156,.25);}
-.hbdg{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border:1px solid var(--acid);border-radius:2px;font-size:9px;letter-spacing:3px;color:var(--acid);background:rgba(0,255,156,.04);animation:dp 2s ease-in-out infinite;}
-.obr{margin-bottom:13px;}.olbl{font-size:10px;letter-spacing:2px;color:var(--text-dim);margin-bottom:4px;display:flex;justify-content:space-between;}
+.hero-sub{font-size:9px;letter-spacing:3px;color:var(--acid-dim);opacity:.8;margin-bottom:8px;}
+.hero-badge{display:inline-block;padding:3px 12px;border:1px solid var(--acid);
+  font-size:9px;letter-spacing:4px;color:var(--acid);opacity:.7;border-radius:2px;}
+.status-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;
+  border:1px solid var(--acid);border-radius:2px;font-size:9px;letter-spacing:3px;
+  color:var(--acid);background:rgba(0,255,156,.04);animation:dp 2s ease-in-out infinite;margin-top:8px;}
+.status-dot{width:5px;height:5px;border-radius:50%;background:var(--acid);}
+
+.bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px;}
+.brow{display:flex;flex-direction:column;gap:2px;padding:8px;
+  background:rgba(0,255,156,.02);border:1px solid var(--border);border-radius:3px;}
+.bk{font-size:8px;letter-spacing:1px;color:var(--text-dim);}
+.bv{font-size:10px;color:var(--text);letter-spacing:.5px;}
+.bv.hi{color:var(--acid);}
+
+/* OBJECTIVES */
+.obr{margin-bottom:10px;}
+.olbl{font-size:9px;letter-spacing:2px;color:var(--text-dim);
+  margin-bottom:4px;display:flex;justify-content:space-between;}
 .olbl span{color:var(--acid);}
-.btrk{height:5px;background:rgba(0,255,156,.06);border:1px solid rgba(0,255,156,.13);border-radius:1px;overflow:hidden;}
+.btrk{height:4px;background:rgba(0,255,156,.06);border:1px solid rgba(0,255,156,.13);border-radius:1px;overflow:hidden;}
 .bfil{height:100%;background:linear-gradient(90deg,var(--acid-dark),var(--acid));border-radius:1px;position:relative;}
-.bfil::after{content:'';position:absolute;right:0;top:0;bottom:0;width:3px;background:var(--acid);box-shadow:0 0 7px var(--acid);animation:dp 2s ease-in-out infinite;}
-/* TECH */
-.tc{padding:13px 10px;background:var(--panel);border:1px solid var(--border);border-radius:3px;text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
-.tc::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(0,255,156,.09) 0%,transparent 70%);opacity:0;transition:opacity .25s;}
-.tc:hover{border-color:var(--acid);transform:translateY(-2px);box-shadow:0 7px 18px rgba(0,255,156,.13);}
-.tc:hover::before{opacity:1;}.tc:hover .tn{color:var(--acid);}
-.ti{font-size:18px;margin-bottom:5px;}.tn{font-size:10px;letter-spacing:2px;color:var(--text);transition:color .25s;}.tt{font-size:8px;letter-spacing:2px;color:var(--text-dim);margin-top:2px;}
-/* PROJECTS */
-.pc{padding:18px;background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;text-decoration:none;display:block;color:inherit;}
-.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--acid),transparent);transform:translateX(-100%);transition:transform .5s;}
-.pc:hover{border-color:var(--acid);box-shadow:0 0 35px rgba(0,255,156,.1);transform:translateY(-3px);}
-.pc:hover::before{transform:translateX(100%);}.pc::after{display:none;}
-.ph{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
-.pt{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:2px;color:var(--acid);}
-.pb{font-size:8px;letter-spacing:2px;padding:2px 7px;border:1px solid;border-radius:2px;}
-.pb.lv{border-color:var(--acid);color:var(--acid);animation:dp 1.5s ease-in-out infinite;}.pb.wp{border-color:var(--orange);color:var(--orange);}
-.pd{font-size:11px;color:var(--text-dim);line-height:1.65;margin-bottom:11px;letter-spacing:.4px;}
-.ptg{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px;}
-.tg{font-size:8px;letter-spacing:2px;padding:2px 7px;border:1px solid var(--border-bright);border-radius:2px;color:var(--text-dim);}
-.pbar{height:3px;background:rgba(0,255,156,.07);border-radius:1px;overflow:hidden;}
-.pbf{height:100%;background:var(--acid);border-radius:1px;box-shadow:0 0 5px var(--acid);}
-.pft{display:flex;justify-content:space-between;margin-top:9px;font-size:9px;color:var(--text-dim);letter-spacing:2px;}
+.bfil::after{content:'';position:absolute;right:0;top:0;bottom:0;width:2px;
+  background:var(--acid);box-shadow:0 0 5px var(--acid);animation:dp 2s infinite;}
+
+/* TECH GRID */
+.tg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.tc{padding:10px 6px;background:var(--panel);border:1px solid var(--border);
+  border-radius:3px;text-align:center;transition:all .2s;active:scale(.97);}
+.tc:active{border-color:var(--acid);background:rgba(0,255,156,.04);}
+.ti{font-size:16px;margin-bottom:3px;}
+.tn{font-size:8px;letter-spacing:1px;color:var(--text);}
+.tt{font-size:7px;letter-spacing:1px;color:var(--text-dim);}
+
 /* LINKS */
-.lr{display:flex;flex-wrap:wrap;gap:11px;}
-.cb{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border:1px solid var(--border-bright);background:var(--panel);color:var(--text);text-decoration:none;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:3px;border-radius:3px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;flex:1;min-width:130px;justify-content:center;}
-.cb::before{content:'';position:absolute;inset:0;background:var(--acid);transform:translateX(-101%);transition:transform .25s;z-index:0;}
-.cb:hover{color:#000;border-color:var(--acid);}.cb:hover::before{transform:translateX(0);}
-.cb span{position:relative;z-index:1;}.cb.or::before{background:var(--orange);}.cb.or:hover{color:#000;border-color:var(--orange);}
-.cb.rd::before{background:var(--red);}.cb.rd:hover{color:#000;border-color:var(--red);}
-/* STATS */
-.sg{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
-.sg img,.sw img,.aw img{width:100%;border-radius:3px;}.sw,.aw{margin-bottom:16px;}.snk img{width:100%;}
-.tw{text-align:center;}.tw img{max-width:100%;}
+.link-btn{display:flex;align-items:center;gap:10px;padding:12px 16px;
+  background:var(--panel);border:1px solid var(--border-bright);border-radius:3px;
+  color:var(--text);text-decoration:none;font-size:11px;letter-spacing:2px;
+  margin-bottom:8px;transition:all .2s;position:relative;overflow:hidden;}
+.link-btn:active{border-color:var(--acid);background:rgba(0,255,156,.06);}
+.link-btn .lb-icon{font-size:18px;}
+.link-btn .lb-text{flex:1;}
+.link-btn .lb-arr{color:var(--acid);opacity:.5;}
+.link-btn.or{border-left:2px solid var(--orange);}
+.link-btn.ac{border-left:2px solid var(--acid);}
+.link-btn.rd{border-left:2px solid var(--red);}
+
+/* PROJECTS */
+.proj-card{background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;
+  padding:14px;margin-bottom:12px;position:relative;overflow:hidden;text-decoration:none;display:block;color:inherit;}
+.proj-card:active{border-color:var(--acid);box-shadow:0 0 20px rgba(0,255,156,.08);}
+.proj-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.proj-title{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:2px;color:var(--acid);}
+.proj-badge{font-size:8px;letter-spacing:2px;padding:2px 7px;border:1px solid;border-radius:2px;}
+.proj-badge.live{border-color:var(--acid);color:var(--acid);animation:dp 1.5s infinite;}
+.proj-badge.wip{border-color:var(--orange);color:var(--orange);}
+.proj-desc{font-size:10px;color:var(--text-dim);line-height:1.7;margin-bottom:10px;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;}
+.tag{font-size:7px;letter-spacing:2px;padding:2px 6px;border:1px solid var(--border-bright);border-radius:2px;color:var(--text-dim);}
+.proj-bar{height:3px;background:rgba(0,255,156,.07);border-radius:1px;overflow:hidden;}
+.proj-fill{height:100%;background:var(--acid);border-radius:1px;box-shadow:0 0 4px var(--acid);}
+.proj-foot{display:flex;justify-content:space-between;margin-top:7px;font-size:8px;color:var(--text-dim);}
+
+/* ── SCREEN: XENAI ── */
+.face-wrap{display:flex;justify-content:center;margin-bottom:10px;}
+#xenai-canvas{border-radius:4px;border:1px solid var(--border-bright);display:block;}
+.vbars{display:flex;align-items:flex-end;gap:3px;height:16px;justify-content:center;margin-bottom:10px;}
+.vb{width:3px;background:var(--acid);border-radius:2px;opacity:.15;transition:height .07s,opacity .07s;}
+.vb.on{opacity:1;}
+
+/* KEY BOX */
+.kbox{background:#000400;border:1px solid rgba(0,255,156,.2);border-radius:3px;padding:12px;margin-bottom:10px;}
+.kbox p{font-size:9px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;}
+.kbox p b{color:var(--acid);}
+.kr{display:flex;gap:6px;}
+.ki{flex:1;background:#000900;border:1px solid var(--border-bright);color:var(--acid);
+  font-family:'Share Tech Mono',monospace;font-size:11px;padding:8px 10px;border-radius:2px;outline:none;min-width:0;}
+.ki:focus{border-color:var(--acid);}
+.kb{padding:8px 12px;background:transparent;border:1px solid var(--acid);color:var(--acid);
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;cursor:pointer;
+  border-radius:2px;transition:all .2s;white-space:nowrap;}
+.kb:active{background:var(--acid);color:#000;}
+.ks{font-size:9px;margin-top:6px;letter-spacing:1px;}
+.ks.ok{color:var(--acid);}.ks.er{color:var(--red);}
+
+/* CHAT */
+.chat-msgs{height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;
+  padding:10px;background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:3px;
+  margin-bottom:8px;-webkit-overflow-scrolling:touch;}
+.chat-msgs::-webkit-scrollbar{width:2px;}
+.chat-msgs::-webkit-scrollbar-thumb{background:var(--border-bright);}
+.msg{font-size:11px;line-height:1.7;padding:8px 11px;border-radius:3px;max-width:92%;letter-spacing:.3px;}
+.msg.ai{background:#001a08;border:1px solid rgba(0,255,156,.18);color:var(--text);
+  align-self:flex-start;border-left:2px solid var(--acid);}
+.msg.usr{background:#001508;border:1px solid rgba(0,255,156,.12);color:var(--acid-dim);
+  align-self:flex-end;text-align:right;}
+.msg.thnk{color:var(--text-dim);font-style:italic;animation:dp 1s infinite;}
+.spkr{font-size:8px;letter-spacing:3px;margin-bottom:3px;}
+.msg.ai .spkr{color:var(--acid);opacity:.55;}
+.msg.usr .spkr{color:var(--text-dim);}
+
+.suggs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;}
+.sb{font-size:9px;padding:5px 9px;background:transparent;border:1px solid rgba(0,255,156,.22);
+  color:var(--text-dim);font-family:'Share Tech Mono',monospace;cursor:pointer;border-radius:2px;}
+.sb:active{border-color:var(--acid);color:var(--acid);background:rgba(0,255,156,.04);}
+
+.chat-input-row{display:flex;gap:6px;}
+.cin{flex:1;background:#000500;border:1px solid var(--border-bright);color:var(--acid);
+  font-family:'Share Tech Mono',monospace;font-size:12px;padding:10px 12px;border-radius:3px;
+  outline:none;min-width:0;}
+.cin:focus{border-color:var(--acid);}
+.cin::placeholder{color:var(--text-dim);opacity:.4;font-size:10px;}
+.snd{padding:10px 14px;background:transparent;border:1px solid var(--acid);color:var(--acid);
+  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;
+  cursor:pointer;border-radius:3px;transition:all .2s;white-space:nowrap;}
+.snd:active{background:var(--acid);color:#000;}
+.snd:disabled{opacity:.35;}
+
 /* TERMINAL */
-.term{padding:18px 22px;background:#000300;border:1px solid var(--border-bright);border-radius:4px;margin-bottom:16px;}
-.tbar{display:flex;gap:5px;margin-bottom:12px;}
-.td{width:10px;height:10px;border-radius:50%;}.td.r{background:#ff5f56}.td.y{background:#ffbd2e}.td.g{background:#27c93f}
-.term pre{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text);line-height:1.8;white-space:pre-wrap;}
-.term .pr{color:var(--acid);}.term .cm{color:var(--text-dim);}
-.cur{display:inline-block;width:7px;height:13px;background:var(--acid);animation:cur 1s step-end infinite;vertical-align:text-bottom;}
+.term{padding:14px;background:#000300;border:1px solid var(--border-bright);border-radius:4px;margin-bottom:12px;}
+.tbar{display:flex;gap:5px;margin-bottom:10px;}
+.td{width:9px;height:9px;border-radius:50%;}
+.td.r{background:#ff5f56}.td.y{background:#ffbd2e}.td.g{background:#27c93f}
+.term pre{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text);line-height:1.9;white-space:pre-wrap;}
+.term .pr{color:var(--acid);}
+.term .cm{color:var(--text-dim);}
+.cur{display:inline-block;width:6px;height:11px;background:var(--acid);animation:cur 1s step-end infinite;vertical-align:text-bottom;}
 @keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
-.ftr{text-align:center;padding:10px;font-size:9px;color:var(--text-dim);letter-spacing:3px;}
+
+/* STATS IMAGES */
+.stats-img{width:100%;border-radius:3px;margin-bottom:10px;display:block;}
+
+/* ANIMATIONS */
+@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.fi{animation:fi .4s ease both;}
+
+/* INSTALL BANNER */
+.install-banner{background:#001a08;border:1px solid rgba(0,255,156,.3);border-radius:3px;
+  padding:10px 12px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.install-text{font-size:9px;letter-spacing:1px;color:var(--text-dim);line-height:1.5;}
+.install-text b{color:var(--acid);display:block;margin-bottom:2px;}
+.install-btn{padding:6px 10px;border:1px solid var(--acid);color:var(--acid);background:none;
+  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;cursor:pointer;
+  border-radius:2px;white-space:nowrap;flex-shrink:0;}
+.install-btn:active{background:var(--acid);color:#000;}
+
+.ftr{text-align:center;padding:14px;font-size:8px;color:var(--text-dim);letter-spacing:2px;}
 </style>
 </head>
 <body>
 <div class="gbg"></div>
-<div class="shell">
+<div class="app">
 
-<!-- HEADER -->
-<div class="hdr fi">
-  <div class="hc tl"></div><div class="hc tr"></div><div class="hc bl"></div><div class="hc br"></div>
-  <div class="htop">
-    <div><div class="sdots"><div class="sd"></div><div class="sd o"></div><div class="sd r"></div></div><div class="slbl">SYS · NET · REC</div></div>
-    <div class="nb"><div class="nm">GEORGE CARTER</div><div class="ns">GAME DEVELOPER &nbsp;·&nbsp; SYSTEMS ARCHITECT &nbsp;·&nbsp; WORLD BUILDER</div><div class="st">XENCLIPSE STUDIOS</div></div>
-    <div class="sid"><b>XENCLIPSE_OS v7.4</b>CLEARANCE: Ω-7<br/>SECTOR: HIVE-PRIME</div>
-  </div>
-</div>
-
-<!-- AI SECTION -->
-<div class="ail fi d1">
-  <div class="afp" id="afp">
-    <div class="flbl">// XENAI :: HYBRID INTELLIGENCE <span id="fst">ONLINE</span></div>
-    <div id="fcwrap"></div>
-    <div class="vbars" id="vbars">
-      <div class="vb" id="v0"></div><div class="vb" id="v1"></div><div class="vb" id="v2"></div>
-      <div class="vb" id="v3"></div><div class="vb" id="v4"></div><div class="vb" id="v5"></div>
-      <div class="vb" id="v6"></div><div class="vb" id="v7"></div><div class="vb" id="v8"></div>
-    </div>
-    <div class="kbox" id="kbox">
-      <p>XENAI requires a free Groq API key.<br/>Get yours free at <b>console.groq.com</b> → API Keys</p>
-      <div class="kr">
-        <input class="ki" id="kin" type="password" placeholder="gsk_..."/>
-        <button class="kb" onclick="activateKey()">ACTIVATE</button>
-      </div>
-      <div class="ks" id="kst"></div>
-    </div>
-  </div>
-
-  <div class="panel cp">
-    <div class="pl">// XENAI :: HIVE INTELLIGENCE <span>AI MODULE</span></div>
-    <div class="cm" id="cmsgs">
-      <div class="msg ai"><div class="spkr">XENAI //</div>Consciousness initializing... Enter your Groq API key on the left to bring me fully online. I know everything about George Carter and XenClipse Studios.</div>
-    </div>
-    <div class="suggs">
-      <button class="sb" onclick="ask(this)">Who is George Carter?</button>
-      <button class="sb" onclick="ask(this)">Tell me about Blueprint Gen</button>
-      <button class="sb" onclick="ask(this)">What games has he made?</button>
-      <button class="sb" onclick="ask(this)">Is he available to hire?</button>
-      <button class="sb" onclick="ask(this)">What is XenClipse Studios?</button>
-      <button class="sb" onclick="ask(this)">What is his tech stack?</button>
-    </div>
-    <div class="cir">
-      <input class="cin" id="cin" placeholder="ASK XENAI ANYTHING..." onkeydown="if(event.key==='Enter')send()"/>
-      <button class="snd" id="sbtn" onclick="send()">TRANSMIT</button>
-    </div>
-  </div>
-</div>
-
-<!-- BIO + OBJECTIVES -->
-<div class="g2 fi d2">
-  <div class="panel"><div class="pl">// BIO-CORTEX :: UNIT IDENTITY <span>MODULE 01</span></div>
-    <div class="bgr">
-      <div class="hxa">
-        <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
-          <defs><style>.hp{animation:hpa 3s ease-in-out infinite}@keyframes hpa{0%,100%{opacity:.3}50%{opacity:1}}</style></defs>
-          <polygon points="55,5 95,27 95,73 55,95 15,73 15,27" fill="#000d05" stroke="#00ff9c" stroke-width="1.5" opacity=".9"/>
-          <polygon points="55,15 85,32 85,68 55,85 25,68 25,32" fill="none" stroke="#00ff9c" stroke-width=".5" opacity=".3"/>
-          <circle cx="55" cy="20" r="3" fill="#00ff9c" class="hp"/>
-          <circle cx="55" cy="90" r="3" fill="#00ff9c" class="hp" style="animation-delay:.5s"/>
-          <circle cx="14" cy="27" r="3" fill="#00ff9c" class="hp" style="animation-delay:1s"/>
-          <circle cx="96" cy="27" r="3" fill="#00ff9c" class="hp" style="animation-delay:1.5s"/>
-          <circle cx="14" cy="73" r="3" fill="#00ff9c" class="hp" style="animation-delay:2s"/>
-          <circle cx="96" cy="73" r="3" fill="#00ff9c" class="hp" style="animation-delay:2.5s"/>
-        </svg>
-        <div class="init">GC</div>
-      </div>
-      <div class="brows">
-        <div class="brow"><span class="bk">UNIT_ID</span><span class="bv br">George Carter</span></div>
-        <div class="brow"><span class="bk">FACTION</span><span class="bv">XenClipse Studios</span></div>
-        <div class="brow"><span class="bk">ENGINE_CORE</span><span class="bv">Unreal Engine / Unity</span></div>
-        <div class="brow"><span class="bk">LANG_MATRIX</span><span class="bv">C++ / C# / Python</span></div>
-        <div class="brow"><span class="bk">ACTIVE_OP</span><span class="bv">Blueprint Generator</span></div>
-        <div class="brow"><span class="bk">DIRECTIVE</span><span class="bv">Systems that feel alive</span></div>
-        <div class="brow"><span class="bk">STATUS</span><span class="bv"><div class="hbdg"><span style="width:6px;height:6px;border-radius:50%;background:var(--acid);display:inline-block"></span>OPEN TO HIRE</div></span></div>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="sdots">
+        <div class="sd g"></div>
+        <div class="sd o"></div>
+        <div class="sd r"></div>
       </div>
     </div>
+    <div class="topbar-title">XENCLIPSE</div>
+    <div class="topbar-right"><b id="sys-status">SYS ONLINE</b>Ω-7 · HIVE</div>
   </div>
-  <div class="panel"><div class="pl">// ACTIVE-QUESTS :: PRIORITY OBJ <span>MODULE 02</span></div>
-    <div class="obr"><div class="olbl">BLUEPRINT_GEN<span>75%</span></div><div class="btrk"><div class="bfil" style="width:75%"></div></div></div>
-    <div class="obr"><div class="olbl">PORTFOLIO_POLISH<span>50%</span></div><div class="btrk"><div class="bfil" style="width:50%"></div></div></div>
-    <div class="obr"><div class="olbl">UE5_ENGINE_DEPTH<span>30%</span></div><div class="btrk"><div class="bfil" style="width:30%"></div></div></div>
-    <div class="obr"><div class="olbl">OPEN_SOURCE<span>10%</span></div><div class="btrk"><div class="bfil" style="width:10%"></div></div></div>
-  </div>
-</div>
 
-<!-- TECH STACK -->
-<div class="panel full fi d3"><div class="pl">// TECH-MATRIX :: COMBAT LOADOUT <span>MODULE 03</span></div>
-  <div class="g4" style="margin-bottom:0">
-    <div class="tc"><div class="ti">⚙️</div><div class="tn">UNREAL ENGINE</div><div class="tt">ENGINE CORE</div></div>
-    <div class="tc"><div class="ti">🎮</div><div class="tn">UNITY</div><div class="tt">ENGINE CORE</div></div>
-    <div class="tc"><div class="ti">⚡</div><div class="tn">C++</div><div class="tt">PRIMARY LANG</div></div>
-    <div class="tc"><div class="ti">🔷</div><div class="tn">C#</div><div class="tt">SECONDARY LANG</div></div>
-    <div class="tc"><div class="ti">🐍</div><div class="tn">PYTHON</div><div class="tt">SCRIPTING</div></div>
-    <div class="tc"><div class="ti">🌿</div><div class="tn">GIT</div><div class="tt">VERSION CTRL</div></div>
-    <div class="tc"><div class="ti">🐙</div><div class="tn">GITHUB</div><div class="tt">CODE HOST</div></div>
-    <div class="tc"><div class="ti">🛠️</div><div class="tn">VISUAL STUDIO</div><div class="tt">IDE</div></div>
-  </div>
-</div>
+  <!-- NAV -->
+  <nav class="nav">
+    <button class="nav-tab active" onclick="showScreen('home',this)">
+      <span class="nav-icon">⬡</span>HOME
+    </button>
+    <button class="nav-tab" onclick="showScreen('xenai',this)">
+      <span class="nav-icon">◈</span>XENAI
+    </button>
+    <button class="nav-tab" onclick="showScreen('projects',this)">
+      <span class="nav-icon">▲</span>PROJECTS
+    </button>
+    <button class="nav-tab" onclick="showScreen('stats',this)">
+      <span class="nav-icon">◉</span>STATS
+    </button>
+  </nav>
 
-<!-- PROJECTS -->
-<div class="g2 fi d3">
-  <a class="pc" href="https://george-carter.itch.io/" target="_blank" rel="noopener">
-    <div class="ph"><div class="pt">BLUEPRINT-GEN</div><div class="pb wp">IN DEV</div></div>
-    <div class="pd">Auto-generates movement &amp; combat Blueprints inside UE Editor. Slashes early-stage prototyping time to near zero.</div>
-    <div class="ptg"><span class="tg">C++</span><span class="tg">UNREAL ENGINE</span><span class="tg">BLUEPRINT SYSTEM</span><span class="tg">UE PLUGIN</span></div>
-    <div class="pbar"><div class="pbf" style="width:75%"></div></div>
-    <div class="pft"><span>COMPLETION: 75%</span><span>REPO INCOMING →</span></div>
-  </a>
-  <a class="pc" href="https://george-carter.itch.io/" target="_blank" rel="noopener">
-    <div class="ph"><div class="pt">DR-MARIO-X</div><div class="pb lv">■ LIVE</div></div>
-    <div class="pd">Classic Dr. Mario rebuilt with MAGIC, HACKER &amp; BIRD theme variants. Each explores a different core game mechanic.</div>
-    <div class="ptg"><span class="tg">C++</span><span class="tg">GAMEPLAY SYSTEMS</span><span class="tg">CUSTOM LOGIC</span><span class="tg">PUZZLE</span></div>
-    <div class="pbar"><div class="pbf" style="width:100%"></div></div>
-    <div class="pft"><span>STATUS: SHIPPED</span><span>PLAY ON ITCH.IO →</span></div>
-  </a>
-</div>
+  <!-- SCREENS -->
+  <div class="screens">
 
-<!-- LINKS -->
-<div class="panel full fi d4"><div class="pl">// TRANSMISSION :: UPLINK CHANNELS <span>MODULE 04</span></div>
-  <div class="lr">
-    <a class="cb rd" href="https://george-carter.itch.io/" target="_blank" rel="noopener"><span>🎮 &nbsp;ITCH.IO DEPLOY</span></a>
-    <a class="cb" href="https://github.com/George-Mando" target="_blank" rel="noopener"><span>🐙 &nbsp;GITHUB NEXUS</span></a>
-    <a class="cb or" href="mailto:xenclipsestudios@gmail.com"><span>📡 &nbsp;OPEN CHANNEL</span></a>
-  </div>
-</div>
+    <!-- HOME SCREEN -->
+    <div class="screen active fi" id="screen-home">
+      <div id="install-banner" class="install-banner" style="display:none">
+        <div class="install-text">
+          <b>ADD TO HOME SCREEN</b>
+          Install for native app experience
+        </div>
+        <button class="install-btn" onclick="installApp()">INSTALL</button>
+      </div>
 
-<!-- STATS -->
-<div class="panel full fi d4"><div class="pl">// TELEMETRY :: PERFORMANCE READINGS <span>MODULE 05</span></div>
-  <div class="sg"><img src="https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=merko&include_all_commits=true&count_private=true&hide_border=true&bg_color=000800&title_color=00ff9c&icon_color=00ff9c&text_color=55cc88&custom_title=TELEMETRY+READOUT" alt="stats"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=George-Mando&layout=compact&langs_count=8&theme=merko&hide_border=true&bg_color=000800&title_color=00ff9c&text_color=55cc88&custom_title=LANG+MATRIX" alt="langs"/></div>
-  <div class="sw"><img src="https://streak-stats.demolab.com?user=George-Mando&theme=merko&hide_border=true&background=000800&ring=00FF9C&fire=FF6B35&currStreakLabel=00FF9C&sideLabels=00FF9C&dates=448844" alt="streak"/></div>
-  <div class="aw"><img src="https://github-readme-activity-graph.vercel.app/graph?username=George-Mando&theme=react-dark&bg_color=000800&color=00ff9c&line=00ff9c&point=ff6b35&area=true&hide_border=true&area_color=001a06" alt="activity"/></div>
-</div>
+      <div class="hero">
+        <div class="hc-corner tl"></div><div class="hc-corner tr"></div>
+        <div class="hc-corner bl"></div><div class="hc-corner br"></div>
+        <div class="hero-name">GEORGE CARTER</div>
+        <div class="hero-sub">GAME DEVELOPER · SYSTEMS ARCHITECT</div>
+        <div class="hero-badge">XENCLIPSE STUDIOS</div><br/>
+        <div class="status-badge"><div class="status-dot"></div>OPEN TO HIRE</div>
+      </div>
 
-<!-- SNAKE -->
-<div class="panel full fi d5"><div class="pl">// HIVE-CLUSTER :: NEURAL ACTIVITY <span>MODULE 06</span></div>
-  <div class="snk"><picture>
-    <source media="(prefers-color-scheme:dark)" srcset="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake-dark.svg"/>
-    <source media="(prefers-color-scheme:light)" srcset="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake.svg"/>
-    <img alt="snake" src="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake-dark.svg"/>
-  </picture></div>
-</div>
+      <div class="panel">
+        <div class="pl">// BIO-CORTEX <span>UNIT ID</span></div>
+        <div class="bio-grid">
+          <div class="brow"><span class="bk">ENGINE_CORE</span><span class="bv">UE5 / Unity</span></div>
+          <div class="brow"><span class="bk">LANG_MATRIX</span><span class="bv">C++ / C# / Python</span></div>
+          <div class="brow"><span class="bk">ACTIVE_OP</span><span class="bv hi">Blueprint Gen</span></div>
+          <div class="brow"><span class="bk">DIRECTIVE</span><span class="bv">Systems that feel alive</span></div>
+        </div>
+      </div>
 
-<!-- TROPHIES -->
-<div class="panel full fi d5"><div class="pl">// COMMENDATIONS :: HIVE HONOURS <span>MODULE 07</span></div>
-  <div class="tw"><img src="https://github-profile-trophy.vercel.app/?username=George-Mando&theme=matrix&no-frame=true&no-bg=true&margin-w=8&row=1" alt="trophies"/></div>
-</div>
+      <div class="panel">
+        <div class="pl">// ACTIVE QUESTS <span>PRIORITY OBJ</span></div>
+        <div class="obr"><div class="olbl">BLUEPRINT_GEN<span>75%</span></div><div class="btrk"><div class="bfil" style="width:75%"></div></div></div>
+        <div class="obr"><div class="olbl">PORTFOLIO_POLISH<span>50%</span></div><div class="btrk"><div class="bfil" style="width:50%"></div></div></div>
+        <div class="obr"><div class="olbl">UE5_ENGINE_DEPTH<span>30%</span></div><div class="btrk"><div class="bfil" style="width:30%"></div></div></div>
+        <div class="obr" style="margin-bottom:0"><div class="olbl">OPEN_SOURCE<span>10%</span></div><div class="btrk"><div class="bfil" style="width:10%"></div></div></div>
+      </div>
 
-<!-- TERMINAL -->
-<div class="term fi d6">
-  <div class="tbar"><div class="td r"></div><div class="td y"></div><div class="td g"></div></div>
-  <pre><span class="pr">xenclipse@hive:~$</span> cat mission_directive.txt
+      <div class="panel">
+        <div class="pl">// TECH-MATRIX <span>COMBAT LOADOUT</span></div>
+        <div class="tg">
+          <div class="tc"><div class="ti">⚙️</div><div class="tn">UNREAL</div><div class="tt">ENGINE</div></div>
+          <div class="tc"><div class="ti">🎮</div><div class="tn">UNITY</div><div class="tt">ENGINE</div></div>
+          <div class="tc"><div class="ti">⚡</div><div class="tn">C++</div><div class="tt">PRIMARY</div></div>
+          <div class="tc"><div class="ti">🔷</div><div class="tn">C#</div><div class="tt">SECONDARY</div></div>
+          <div class="tc"><div class="ti">🐍</div><div class="tn">PYTHON</div><div class="tt">SCRIPT</div></div>
+          <div class="tc"><div class="ti">🌿</div><div class="tn">GIT</div><div class="tt">VERSION</div></div>
+          <div class="tc"><div class="ti">🐙</div><div class="tn">GITHUB</div><div class="tt">HOST</div></div>
+          <div class="tc"><div class="ti">🛠️</div><div class="tn">VS</div><div class="tt">IDE</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="pl">// UPLINK CHANNELS <span>CONTACT</span></div>
+        <a class="link-btn rd" href="https://george-carter.itch.io/" target="_blank">
+          <span class="lb-icon">🎮</span>
+          <span class="lb-text">ITCH.IO DEPLOY</span>
+          <span class="lb-arr">→</span>
+        </a>
+        <a class="link-btn ac" href="https://github.com/George-Mando" target="_blank">
+          <span class="lb-icon">🐙</span>
+          <span class="lb-text">GITHUB NEXUS</span>
+          <span class="lb-arr">→</span>
+        </a>
+        <a class="link-btn or" href="mailto:xenclipsestudios@gmail.com">
+          <span class="lb-icon">📡</span>
+          <span class="lb-text">OPEN CHANNEL</span>
+          <span class="lb-arr">→</span>
+        </a>
+      </div>
+
+      <div class="term">
+        <div class="tbar"><div class="td r"></div><div class="td y"></div><div class="td g"></div></div>
+        <pre><span class="pr">xenclipse@hive:~$</span> cat directive.txt
 
 <span class="cm">// CLASSIFIED — EYES ONLY</span>
 
-  Build clean systems. Engineer fun. Ship worlds.
+  Build clean systems.
+  Engineer fun. Ship worlds.
 
-  <span class="pr">"Good game feel isn't magic — it's engineered."</span>
+  <span class="pr">"Good game feel isn't magic
+  — it's engineered."</span>
 
 <span class="pr">xenclipse@hive:~$</span> <div class="cur"></div></pre>
-</div>
+      </div>
+      <div class="ftr">XENCLIPSE STUDIOS · HIVE-PRIME · ALL SECTORS OPERATIONAL</div>
+    </div>
 
-<div class="ftr">
-  <img src="https://komarev.com/ghpvc/?username=George-Mando&color=00ff9c&style=flat-square&label=UNITS+DETECTED" alt="visitors" style="vertical-align:middle;margin-right:10px;"/>
-  XENCLIPSE STUDIOS &nbsp;·&nbsp; ALL SECTORS OPERATIONAL &nbsp;·&nbsp; HIVE-PRIME
-</div>
-</div>
+    <!-- XENAI SCREEN -->
+    <div class="screen" id="screen-xenai">
+      <div class="panel" id="face-panel">
+        <div class="pl">// XENAI :: HYBRID INTELLIGENCE <span id="fst">STANDBY</span></div>
+        <div class="face-wrap"><canvas id="xenai-canvas" width="240" height="264"></canvas></div>
+        <div class="vbars" id="vbars">
+          <div class="vb" id="v0"></div><div class="vb" id="v1"></div><div class="vb" id="v2"></div>
+          <div class="vb" id="v3"></div><div class="vb" id="v4"></div><div class="vb" id="v5"></div>
+          <div class="vb" id="v6"></div><div class="vb" id="v7"></div><div class="vb" id="v8"></div>
+        </div>
+        <div class="kbox" id="kbox">
+          <p>XENAI requires a free Groq API key.<br/>Get yours free at <b>console.groq.com</b> → API Keys</p>
+          <div class="kr">
+            <input class="ki" id="kin" type="password" placeholder="gsk_..."/>
+            <button class="kb" onclick="activateKey()">ACTIVATE</button>
+          </div>
+          <div class="ks" id="kst"></div>
+        </div>
+      </div>
+
+      <div class="panel" style="padding-bottom:10px;">
+        <div class="pl">// XENAI :: HIVE INTELLIGENCE <span>AI MODULE</span></div>
+        <div class="chat-msgs" id="cmsgs">
+          <div class="msg ai"><div class="spkr">XENAI //</div>Consciousness initializing... Enter your Groq API key above to bring me fully online.</div>
+        </div>
+        <div class="suggs">
+          <button class="sb" onclick="ask(this)">Who is George?</button>
+          <button class="sb" onclick="ask(this)">Blueprint Gen?</button>
+          <button class="sb" onclick="ask(this)">Available to hire?</button>
+          <button class="sb" onclick="ask(this)">XenClipse Studios?</button>
+        </div>
+        <div class="chat-input-row">
+          <input class="cin" id="cin" placeholder="ASK XENAI..." onkeydown="if(event.key==='Enter')send()"/>
+          <button class="snd" id="sbtn" onclick="send()">▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS SCREEN -->
+    <div class="screen" id="screen-projects">
+      <div class="panel" style="margin-bottom:12px;">
+        <div class="pl">// ACTIVE OPERATIONS <span>DEPLOYED</span></div>
+        <div style="font-size:10px;color:var(--text-dim);letter-spacing:1px;line-height:1.7;">
+          Current build targets of XenClipse Studios. Tap to view on itch.io.
+        </div>
+      </div>
+
+      <a class="proj-card" href="https://george-carter.itch.io/" target="_blank">
+        <div class="proj-head">
+          <div class="proj-title">BLUEPRINT-GEN</div>
+          <div class="proj-badge wip">IN DEV</div>
+        </div>
+        <div class="proj-desc">Auto-generates movement & combat Blueprints inside UE Editor. Slashes early-stage prototyping time to near zero. The cornerstone tool of XenClipse Studios.</div>
+        <div class="proj-tags">
+          <span class="tag">C++</span><span class="tag">UNREAL ENGINE 5</span><span class="tag">BLUEPRINT SYSTEM</span><span class="tag">UE PLUGIN</span>
+        </div>
+        <div class="proj-bar"><div class="proj-fill" style="width:75%"></div></div>
+        <div class="proj-foot"><span>COMPLETION: 75%</span><span>REPO INCOMING →</span></div>
+      </a>
+
+      <a class="proj-card" href="https://george-carter.itch.io/" target="_blank">
+        <div class="proj-head">
+          <div class="proj-title">DR-MARIO-X</div>
+          <div class="proj-badge live">■ LIVE</div>
+        </div>
+        <div class="proj-desc">Classic Dr. Mario rebuilt with MAGIC, HACKER & BIRD theme variants. Each explores a different core game mechanic. Fully playable on itch.io.</div>
+        <div class="proj-tags">
+          <span class="tag">C++</span><span class="tag">GAMEPLAY SYSTEMS</span><span class="tag">CUSTOM LOGIC</span><span class="tag">PUZZLE</span>
+        </div>
+        <div class="proj-bar"><div class="proj-fill" style="width:100%"></div></div>
+        <div class="proj-foot"><span>STATUS: SHIPPED ✓</span><span>PLAY ON ITCH.IO →</span></div>
+      </a>
+
+      <div class="term">
+        <div class="tbar"><div class="td r"></div><div class="td y"></div><div class="td g"></div></div>
+        <pre><span class="pr">xenclipse@hive:~$</span> git log --oneline
+
+<span class="cm">// CURRENT MISSION STACK</span>
+
+  a7f3c · feat: blueprint auto-gen v0.7
+  b2e91 · ship: dr-mario-x LIVE
+  c4d18 · init: xenclipse studios
+
+<span class="pr">xenclipse@hive:~$</span> <div class="cur"></div></pre>
+      </div>
+    </div>
+
+    <!-- STATS SCREEN -->
+    <div class="screen" id="screen-stats">
+      <div class="panel">
+        <div class="pl">// TELEMETRY <span>PERFORMANCE</span></div>
+        <img class="stats-img" src="https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=merko&include_all_commits=true&count_private=true&hide_border=true&bg_color=000800&title_color=00ff9c&icon_color=00ff9c&text_color=55cc88&custom_title=TELEMETRY+READOUT" alt="GitHub Stats"/>
+        <img class="stats-img" src="https://github-readme-stats.vercel.app/api/top-langs/?username=George-Mando&layout=compact&langs_count=8&theme=merko&hide_border=true&bg_color=000800&title_color=00ff9c&text_color=55cc88&custom_title=LANG+MATRIX" alt="Top Languages"/>
+        <img class="stats-img" src="https://streak-stats.demolab.com?user=George-Mando&theme=merko&hide_border=true&background=000800&ring=00FF9C&fire=FF6B35&currStreakLabel=00FF9C&sideLabels=00FF9C&dates=448844" alt="Streak"/>
+      </div>
+      <div class="panel">
+        <div class="pl">// NEURAL ACTIVITY <span>CONTRIBUTION</span></div>
+        <img class="stats-img" src="https://github-readme-activity-graph.vercel.app/graph?username=George-Mando&theme=react-dark&bg_color=000800&color=00ff9c&line=00ff9c&point=ff6b35&area=true&hide_border=true&area_color=001a06" alt="Activity Graph"/>
+      </div>
+      <div class="panel">
+        <div class="pl">// COMMENDATIONS <span>HONOURS</span></div>
+        <img class="stats-img" src="https://github-profile-trophy.vercel.app/?username=George-Mando&theme=matrix&no-frame=true&no-bg=true&margin-w=4&row=2&column=4" alt="Trophies"/>
+      </div>
+      <div class="ftr" style="padding-bottom:20px;">
+        <img src="https://komarev.com/ghpvc/?username=George-Mando&color=00ff9c&style=flat-square&label=UNITS+DETECTED" alt="visitors"/>
+      </div>
+    </div>
+
+  </div><!-- /screens -->
+</div><!-- /app -->
 
 <script>
-// ═══════════════════════════════════════
-// XENAI HOLOGRAPHIC FACE — Canvas Engine
-// ═══════════════════════════════════════
+// ═══════════════════════
+// NAV
+// ═══════════════════════
+function showScreen(id, tab) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  tab.classList.add('active');
+  if (id === 'xenai' && !faceBuilt) { buildFace(); faceBuilt = true; }
+}
+
+// ═══════════════════════
+// PWA INSTALL
+// ═══════════════════════
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('install-banner').style.display = 'flex';
+});
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      document.getElementById('install-banner').style.display = 'none';
+    });
+  } else {
+    alert('To install: tap Share → "Add to Home Screen" in Safari, or use Chrome\'s install option.');
+  }
+}
+window.addEventListener('appinstalled', () => {
+  document.getElementById('install-banner').style.display = 'none';
+});
+
+// ═══════════════════════
+// XENAI FACE
+// ═══════════════════════
+let faceBuilt = false;
 window.xenaiSpeaking = false;
 
 function buildFace() {
-  const wrap = document.getElementById('fcwrap');
-  wrap.innerHTML = '';
-  const canvas = document.createElement('canvas');
-  canvas.width = 276; canvas.height = 306;
-  canvas.style.cssText = 'width:276px;height:306px;display:block;margin:0 auto;border-radius:3px;';
-  wrap.appendChild(canvas);
+  const canvas = document.getElementById('xenai-canvas');
   const ctx = canvas.getContext('2d');
-  const W=276, H=306, CX=138, CY=148;
+  const W = 240, H = 264, CX = 120, CY = 128;
 
-  // Skull wireframe outline
   const skull = [];
-  for(let i=0;i<36;i++){
-    const a=(i/36)*Math.PI*2;
-    const rx=72+Math.sin(a*3)*5+Math.cos(a*5)*3;
-    const ry=88+Math.cos(a*2)*7+Math.sin(a*4)*3;
-    skull.push({x:Math.cos(a)*rx, y:Math.sin(a)*ry-8});
+  for (let i = 0; i < 36; i++) {
+    const a = (i / 36) * Math.PI * 2;
+    const rx = 62 + Math.sin(a * 3) * 4 + Math.cos(a * 5) * 2;
+    const ry = 76 + Math.cos(a * 2) * 6 + Math.sin(a * 4) * 2;
+    skull.push({ x: Math.cos(a) * rx, y: Math.sin(a) * ry - 7 });
   }
-
-  // Face landmark mesh
   const lm = [
-    // jaw 0-8
-    {x:-66,y:58},{x:-58,y:78},{x:-44,y:98},{x:-24,y:113},{x:0,y:118},{x:24,y:113},{x:44,y:98},{x:58,y:78},{x:66,y:58},
-    // cheeks 9-10
-    {x:-70,y:18},{x:70,y:18},
-    // brow 11-16
-    {x:-50,y:-30},{x:-30,y:-37},{x:-10,y:-33},{x:10,y:-33},{x:30,y:-37},{x:50,y:-30},
-    // nose 17-22
-    {x:-8,y:-8},{x:8,y:-8},{x:-10,y:16},{x:10,y:16},{x:0,y:26},{x:-13,y:31},{x:13,y:31},
-    // lips 23-30
-    {x:-27,y:53},{x:-13,y:48},{x:0,y:50},{x:13,y:48},{x:27,y:53},{x:13,y:61},{x:0,y:63},{x:-13,y:61},
-    // eye corners 31-36
-    {x:-40,y:-17},{x:-25,y:-22},{x:-10,y:-17},{x:10,y:-17},{x:25,y:-22},{x:40,y:-17}
+    {x:-57,y:50},{x:-50,y:67},{x:-38,y:85},{x:-21,y:98},{x:0,y:102},{x:21,y:98},{x:38,y:85},{x:50,y:67},{x:57,y:50},
+    {x:-61,y:15},{x:61,y:15},
+    {x:-43,y:-26},{x:-26,y:-32},{x:-9,y:-28},{x:9,y:-28},{x:26,y:-32},{x:43,y:-26},
+    {x:-7,y:-7},{x:7,y:-7},{x:-9,y:14},{x:9,y:14},{x:0,y:22},{x:-11,y:27},{x:11,y:27},
+    {x:-23,y:46},{x:-11,y:41},{x:0,y:43},{x:11,y:41},{x:23,y:46},{x:11,y:53},{x:0,y:55},{x:-11,y:53},
+    {x:-35,y:-15},{x:-22,y:-19},{x:-9,y:-15},{x:9,y:-15},{x:22,y:-19},{x:35,y:-15}
   ];
   const edges=[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[0,9],[8,10],[9,11],[10,15],[11,12],[12,13],[13,14],[14,15],[16,17],[18,19],[19,20],[20,21],[21,22],[23,24],[24,25],[25,26],[26,27],[27,28],[28,29],[29,30],[30,23],[31,32],[32,33],[34,35],[35,36]];
-
-  // Neural particles
-  const pts = Array.from({length:65},()=>({
-    x:(Math.random()-.5)*210, y:(Math.random()-.5)*255,
-    vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35,
-    r:Math.random()*1.6+.3, ph:Math.random()*Math.PI*2, sp:.018+Math.random()*.025
+  const pts = Array.from({length:50},()=>({
+    x:(Math.random()-.5)*180,y:(Math.random()-.5)*220,
+    vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,
+    r:Math.random()*1.4+.3,ph:Math.random()*Math.PI*2,sp:.018+Math.random()*.025
   }));
-
-  // Data streams
-  const chars='01アイウエオ∂∑∆∇◈◉▲▼◆⬡⬢';
-  const streams=Array.from({length:11},(_, i)=>({
-    x:14+i*24, y:-Math.random()*180,
-    spd:.7+Math.random()*1.1,
-    ch:Array.from({length:9},()=>chars[Math.floor(Math.random()*chars.length)]),
-    op:.25+Math.random()*.35
+  const chars='01アイウ∂∑∆∇◈◉▲▼◆';
+  const streams=Array.from({length:9},(_,i)=>({
+    x:12+i*24,y:-Math.random()*160,spd:.6+Math.random()*.9,
+    ch:Array.from({length:8},()=>chars[Math.floor(Math.random()*chars.length)]),
+    op:.2+Math.random()*.3
   }));
-
-  let t=0, rotY=0, rotX=0, tRotY=0, tRotX=0;
-  let eyeA=0, eyeG=0, blinkS=0, blinkD=0, nextBlink=160;
-  let waveOff=0, speakI=0;
+  let t=0,rotY=0,rotX=0,tRotY=0,tRotX=0;
+  let eyeA=0,eyeG=0,blinkS=0,blinkD=0,nextBlink=160,waveOff=0,speakI=0;
 
   function proj(x,y,z){
     const cy=Math.cos(rotY),sy=Math.sin(rotY),cx=Math.cos(rotX),sx=Math.sin(rotX);
-    const x2=x*cy-z*sy, z2=x*sy+z*cy, y2=y*cx-z2*sx, z3=y*sx+z2*cx;
-    const sc=300/(300+z3);
-    return{x:x2*sc+CX, y:y2*sc+CY, sc, z:z3};
+    const x2=x*cy-z*sy,z2=x*sy+z*cy,y2=y*cx-z2*sx,z3=y*sx+z2*cx;
+    const sc=260/(260+z3);
+    return{x:x2*sc+CX,y:y2*sc+CY,sc,z:z3};
   }
-
   function frame(){
     t++; ctx.clearRect(0,0,W,H);
-
-    // Void background
-    const bg=ctx.createRadialGradient(CX,CY-5,8,CX,CY,155);
-    bg.addColorStop(0,'rgba(0,28,11,.96)');
-    bg.addColorStop(.5,'rgba(0,10,4,.98)');
-    bg.addColorStop(1,'rgba(0,3,1,1)');
-    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
-
-    // Data streams
-    ctx.font='7px monospace';
+    const bg=ctx.createRadialGradient(CX,CY-5,6,CX,CY,130);
+    bg.addColorStop(0,'rgba(0,24,10,.96)');bg.addColorStop(.5,'rgba(0,8,3,.98)');bg.addColorStop(1,'rgba(0,2,1,1)');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    ctx.font='6px monospace';
     streams.forEach(s=>{
-      s.y+=s.spd; if(s.y>H+56){s.y=-56; s.ch=Array.from({length:9},()=>chars[Math.floor(Math.random()*chars.length)]);}
-      s.ch.forEach((c,i)=>{const a=Math.max(0,s.op-i*.065); ctx.fillStyle=`rgba(0,255,156,${a})`; ctx.fillText(c,s.x,s.y-i*9);});
-      if(Math.random()<.035) s.ch[0]=chars[Math.floor(Math.random()*chars.length)];
+      s.y+=s.spd;if(s.y>H+48){s.y=-48;s.ch=Array.from({length:8},()=>chars[Math.floor(Math.random()*chars.length)]);}
+      s.ch.forEach((c,i)=>{const a=Math.max(0,s.op-i*.06);ctx.fillStyle=`rgba(0,255,156,${a})`;ctx.fillText(c,s.x,s.y-i*8);});
+      if(Math.random()<.03)s.ch[0]=chars[Math.floor(Math.random()*chars.length)];
     });
-
-    // Rotation drift
-    tRotY=Math.sin(t*.007)*.16+Math.sin(t*.0025)*.07;
-    tRotX=Math.sin(t*.005)*.07; rotY+=(tRotY-rotY)*.035; rotX+=(tRotX-rotX)*.035;
-
-    // Neural net
+    tRotY=Math.sin(t*.007)*.14+Math.sin(t*.0025)*.06;tRotX=Math.sin(t*.005)*.06;
+    rotY+=(tRotY-rotY)*.035;rotX+=(tRotX-rotX)*.035;
     pts.forEach(p=>{
-      p.x+=p.vx; p.y+=p.vy; p.ph+=p.sp;
-      if(Math.abs(p.x)>120){p.vx*=-1;} if(Math.abs(p.y)>148){p.vy*=-1;}
-      const op=.25+Math.sin(p.ph)*.25;
-      ctx.beginPath(); ctx.arc(p.x+CX,p.y+CY,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(0,255,156,${op})`; ctx.fill();
+      p.x+=p.vx;p.y+=p.vy;p.ph+=p.sp;
+      if(Math.abs(p.x)>105)p.vx*=-1;if(Math.abs(p.y)>128)p.vy*=-1;
+      const op=.22+Math.sin(p.ph)*.22;
+      ctx.beginPath();ctx.arc(p.x+CX,p.y+CY,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,255,156,${op})`;ctx.fill();
     });
-    for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
-      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
-      if(d<42){ctx.beginPath(); ctx.moveTo(pts[i].x+CX,pts[i].y+CY); ctx.lineTo(pts[j].x+CX,pts[j].y+CY); ctx.strokeStyle=`rgba(0,255,156,${.11*(1-d/42)})`; ctx.lineWidth=.5; ctx.stroke();}
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<38){ctx.beginPath();ctx.moveTo(pts[i].x+CX,pts[i].y+CY);ctx.lineTo(pts[j].x+CX,pts[j].y+CY);ctx.strokeStyle=`rgba(0,255,156,${.1*(1-d/38)})`;ctx.lineWidth=.4;ctx.stroke();}
     }
-
-    // Skull wireframe
     const ps=skull.map(p=>proj(p.x,p.y,0));
-    ctx.beginPath(); ps.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y)); ctx.closePath();
-    ctx.strokeStyle='rgba(0,255,156,.32)'; ctx.lineWidth=1; ctx.stroke();
-    const sfg=ctx.createRadialGradient(CX,CY-8,0,CX,CY-8,90);
-    sfg.addColorStop(0,'rgba(0,255,156,.035)'); sfg.addColorStop(1,'rgba(0,255,156,0)');
-    ctx.fillStyle=sfg; ctx.fill();
-
-    // Internal skull lines
-    [[{x:0,y:-78,z:0},{x:0,y:88,z:0}],[{x:-58,y:-8,z:0},{x:58,y:-8,z:0}],[{x:-38,y:-48,z:18},{x:38,y:-48,z:18}]].forEach(l=>{
-      const p1=proj(l[0].x,l[0].y,l[0].z),p2=proj(l[1].x,l[1].y,l[1].z);
-      ctx.beginPath(); ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y);
-      ctx.strokeStyle='rgba(0,255,156,.1)'; ctx.lineWidth=.6; ctx.stroke();
-    });
-
-    // Face mesh
+    ctx.beginPath();ps.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));ctx.closePath();
+    ctx.strokeStyle='rgba(0,255,156,.28)';ctx.lineWidth=1;ctx.stroke();
+    const sfg=ctx.createRadialGradient(CX,CY-7,0,CX,CY-7,78);
+    sfg.addColorStop(0,'rgba(0,255,156,.03)');sfg.addColorStop(1,'rgba(0,255,156,0)');
+    ctx.fillStyle=sfg;ctx.fill();
     const pl=lm.map(p=>proj(p.x,p.y,4));
-    edges.forEach(([a,b])=>{if(!pl[a]||!pl[b])return; ctx.beginPath(); ctx.moveTo(pl[a].x,pl[a].y); ctx.lineTo(pl[b].x,pl[b].y); ctx.strokeStyle='rgba(0,210,120,.18)'; ctx.lineWidth=.5; ctx.stroke();});
-    pl.forEach((p,i)=>{const k=[4,9,10,12,15,20,25,28,32,35].includes(i); ctx.beginPath(); ctx.arc(p.x,p.y,k?1.8:.9,0,Math.PI*2); ctx.fillStyle=k?'rgba(0,255,156,.85)':'rgba(0,255,156,.35)'; ctx.fill();});
-
-    // EYES
-    eyeA+=.038; eyeG=.55+Math.sin(t*.045)*.28;
+    edges.forEach(([a,b])=>{if(!pl[a]||!pl[b])return;ctx.beginPath();ctx.moveTo(pl[a].x,pl[a].y);ctx.lineTo(pl[b].x,pl[b].y);ctx.strokeStyle='rgba(0,200,110,.15)';ctx.lineWidth=.4;ctx.stroke();});
+    pl.forEach((p,i)=>{const k=[4,9,10,12,15,20,25,28,32,35].includes(i);ctx.beginPath();ctx.arc(p.x,p.y,k?1.5:.8,0,Math.PI*2);ctx.fillStyle=k?'rgba(0,255,156,.8)':'rgba(0,255,156,.3)';ctx.fill();});
+    eyeA+=.038;eyeG=.5+Math.sin(t*.045)*.25;
     nextBlink--;
-    if(nextBlink<=0){blinkD=1; nextBlink=140+Math.floor(Math.random()*220);}
-    if(blinkD===1){blinkS+=.14; if(blinkS>=1)blinkD=-1;}
-    else if(blinkD===-1){blinkS-=.14; if(blinkS<=0){blinkS=0;blinkD=0;}}
-
-    [-38,38].forEach((ex,idx)=>{
-      const ep=proj(ex,-14,8), er=15.5*ep.sc;
-      // Socket
-      ctx.beginPath(); ctx.ellipse(ep.x,ep.y,er,er*.68,0,0,Math.PI*2);
-      ctx.fillStyle='rgba(0,4,1,.92)'; ctx.fill();
-      ctx.strokeStyle='rgba(0,255,156,.45)'; ctx.lineWidth=.9; ctx.stroke();
-      // Iris
-      const ig=ctx.createRadialGradient(ep.x,ep.y,0,ep.x,ep.y,er*.82);
-      ig.addColorStop(0,`rgba(200,255,230,${eyeG})`);
-      ig.addColorStop(.28,`rgba(0,255,156,${eyeG*.92})`);
-      ig.addColorStop(.65,`rgba(0,170,85,${eyeG*.5})`);
-      ig.addColorStop(1,'rgba(0,35,15,0)');
-      ctx.beginPath(); ctx.ellipse(ep.x,ep.y,er*.82,er*.56,0,0,Math.PI*2);
-      ctx.fillStyle=ig; ctx.fill();
-      // Pupil
-      ctx.beginPath(); ctx.ellipse(ep.x,ep.y,er*.28,er*.38,0,0,Math.PI*2);
-      ctx.fillStyle='rgba(0,0,0,.97)'; ctx.fill();
-      // Iris spokes
-      for(let i=0;i<10;i++){
-        const a=(i/10)*Math.PI*2+eyeA*(idx?1:-1);
-        ctx.beginPath(); ctx.moveTo(ep.x+Math.cos(a)*er*.3,ep.y+Math.sin(a)*er*.2); ctx.lineTo(ep.x+Math.cos(a)*er*.76,ep.y+Math.sin(a)*er*.52);
-        ctx.strokeStyle=`rgba(0,255,156,${.12+Math.sin(a+t*.04)*.08})`; ctx.lineWidth=.45; ctx.stroke();
-      }
-      // Catchlight
-      ctx.beginPath(); ctx.ellipse(ep.x-er*.2,ep.y-er*.17,er*.17,er*.11,-.3,0,Math.PI*2);
-      ctx.fillStyle='rgba(255,255,255,.72)'; ctx.fill();
-      // Outer glow
-      const og=ctx.createRadialGradient(ep.x,ep.y,er*.65,ep.x,ep.y,er*2);
-      og.addColorStop(0,`rgba(0,255,156,${eyeG*.22})`); og.addColorStop(1,'rgba(0,255,156,0)');
-      ctx.beginPath(); ctx.ellipse(ep.x,ep.y,er*2,er*1.4,0,0,Math.PI*2); ctx.fillStyle=og; ctx.fill();
-      // Targeting reticle
-      const ro=.28+Math.sin(t*.038+idx)*.18;
-      [0,Math.PI*.5,Math.PI,Math.PI*1.5].forEach(a=>{
-        const a2=a+t*.007*(idx?1:-1);
-        ctx.beginPath(); ctx.moveTo(ep.x+Math.cos(a2)*er*1.22,ep.y+Math.sin(a2)*er*.87); ctx.lineTo(ep.x+Math.cos(a2)*er*1.42,ep.y+Math.sin(a2)*er*1.02);
-        ctx.strokeStyle=`rgba(0,255,156,${ro})`; ctx.lineWidth=.9; ctx.stroke();
-      });
-      // Blink
-      if(blinkS>0){ctx.beginPath(); ctx.ellipse(ep.x,ep.y,er*1.05,er*.72*blinkS,0,0,Math.PI*2); ctx.fillStyle='rgba(0,12,5,.97)'; ctx.fill();}
+    if(nextBlink<=0){blinkD=1;nextBlink=140+Math.floor(Math.random()*220);}
+    if(blinkD===1){blinkS+=.14;if(blinkS>=1)blinkD=-1;}else if(blinkD===-1){blinkS-=.14;if(blinkS<=0){blinkS=0;blinkD=0;}}
+    [-33,33].forEach((ex,idx)=>{
+      const ep=proj(ex,-12,7),er=13*ep.sc;
+      ctx.beginPath();ctx.ellipse(ep.x,ep.y,er,er*.68,0,0,Math.PI*2);ctx.fillStyle='rgba(0,3,1,.92)';ctx.fill();ctx.strokeStyle='rgba(0,255,156,.42)';ctx.lineWidth=.8;ctx.stroke();
+      const ig=ctx.createRadialGradient(ep.x,ep.y,0,ep.x,ep.y,er*.8);
+      ig.addColorStop(0,`rgba(180,255,220,${eyeG})`);ig.addColorStop(.28,`rgba(0,255,156,${eyeG*.9})`);ig.addColorStop(.65,`rgba(0,155,75,${eyeG*.45})`);ig.addColorStop(1,'rgba(0,30,12,0)');
+      ctx.beginPath();ctx.ellipse(ep.x,ep.y,er*.8,er*.55,0,0,Math.PI*2);ctx.fillStyle=ig;ctx.fill();
+      ctx.beginPath();ctx.ellipse(ep.x,ep.y,er*.26,er*.36,0,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,.97)';ctx.fill();
+      for(let i=0;i<10;i++){const a=(i/10)*Math.PI*2+eyeA*(idx?1:-1);ctx.beginPath();ctx.moveTo(ep.x+Math.cos(a)*er*.28,ep.y+Math.sin(a)*er*.19);ctx.lineTo(ep.x+Math.cos(a)*er*.74,ep.y+Math.sin(a)*er*.5);ctx.strokeStyle=`rgba(0,255,156,${.1+Math.sin(a+t*.04)*.07})`;ctx.lineWidth=.4;ctx.stroke();}
+      ctx.beginPath();ctx.ellipse(ep.x-er*.18,ep.y-er*.15,er*.15,er*.1,-.3,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,.65)';ctx.fill();
+      if(blinkS>0){ctx.beginPath();ctx.ellipse(ep.x,ep.y,er*1.02,er*.7*blinkS,0,0,Math.PI*2);ctx.fillStyle='rgba(0,10,4,.97)';ctx.fill();}
     });
-
-    // Mouth
-    const mO=window.xenaiSpeaking?(0.35+Math.abs(Math.sin(t*.32))*.65):0;
-    const mpL=[-27,-13,0,13,27].map(x=>proj(x,50,7));
-    ctx.beginPath(); mpL.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
-    ctx.strokeStyle='rgba(0,255,156,.3)'; ctx.lineWidth=1.1; ctx.stroke();
-    if(mO>0){
-      const mpB=[-22,0,22].map(x=>proj(x,50+mO*17,7));
-      ctx.beginPath(); ctx.moveTo(proj(-27,50,7).x,proj(-27,50,7).y);
-      mpB.forEach(p=>ctx.lineTo(p.x,p.y)); ctx.lineTo(proj(27,50,7).x,proj(27,50,7).y);
-      ctx.strokeStyle='rgba(0,255,156,.3)'; ctx.lineWidth=.9; ctx.stroke();
-      const mg=ctx.createRadialGradient(CX,proj(0,50+mO*8,7).y,0,CX,proj(0,50+mO*8,7).y,mO*32);
-      mg.addColorStop(0,`rgba(0,255,156,${mO*.28})`); mg.addColorStop(1,'rgba(0,255,156,0)');
-      ctx.beginPath(); ctx.ellipse(CX,proj(0,50+mO*8,7).y,mO*34,mO*13,0,0,Math.PI*2); ctx.fillStyle=mg; ctx.fill();
-    }
-
-    // Waveform
-    waveOff+=speakI>0?.14:.035;
-    const wY=H-50, wAm=17;
+    const mO=window.xenaiSpeaking?(0.3+Math.abs(Math.sin(t*.32))*.6):0;
+    const mpL=[-23,-11,0,11,23].map(x=>proj(x,43,6));
+    ctx.beginPath();mpL.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));ctx.strokeStyle='rgba(0,255,156,.28)';ctx.lineWidth=1;ctx.stroke();
+    if(mO>0){const mpB=[-18,0,18].map(x=>proj(x,43+mO*14,6));ctx.beginPath();ctx.moveTo(proj(-23,43,6).x,proj(-23,43,6).y);mpB.forEach(p=>ctx.lineTo(p.x,p.y));ctx.lineTo(proj(23,43,6).x,proj(23,43,6).y);ctx.strokeStyle='rgba(0,255,156,.25)';ctx.lineWidth=.8;ctx.stroke();}
+    waveOff+=speakI>0?.13:.03;
+    const wY=H-44,wAm=14;
     ctx.beginPath();
-    for(let x=10;x<W-10;x+=2){
-      const y=wY+(Math.sin(x*.048+waveOff)*.5+Math.sin(x*.115+waveOff*1.25)*.3+(speakI>0?Math.sin(x*.19+waveOff*2)*(speakI*.75):0))*wAm;
-      x===10?ctx.moveTo(x,y):ctx.lineTo(x,y);
-    }
-    ctx.strokeStyle=`rgba(0,255,156,${.45+speakI*.42})`; ctx.lineWidth=1.1; ctx.stroke();
-    ctx.beginPath();
-    for(let x=10;x<W-10;x+=2){const y=wY+Math.sin(x*.075+waveOff*.65+1)*wAm*.38; x===10?ctx.moveTo(x,y):ctx.lineTo(x,y);}
-    ctx.strokeStyle='rgba(0,190,95,.18)'; ctx.lineWidth=.6; ctx.stroke();
-
-    // Biometric readouts
-    ctx.font='6px Share Tech Mono,monospace';
-    ctx.fillStyle='rgba(0,255,156,.48)';
-    ctx.fillText(`NEURAL: ${Math.floor(70+Math.sin(t*.018)*9)} Hz`,12,H-26);
-    ctx.fillText(`SYNC: ${(98.1+Math.sin(t*.009)*.7).toFixed(1)}%`,12,H-16);
-    ctx.textAlign='right';
-    ctx.fillText(`COGN: ACTIVE`,W-12,H-26);
-    ctx.fillText(`UP: ${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}`,W-12,H-16);
-    ctx.textAlign='left';
-
-    // HUD corners
-    [[8,8],[W-8,8],[8,H-8],[W-8,H-8]].forEach(([x,y],i)=>{
-      const sx=i%2===0?1:-1, sy=i<2?1:-1;
-      ctx.beginPath(); ctx.moveTo(x,y+sy*15); ctx.lineTo(x,y); ctx.lineTo(x+sx*15,y);
-      ctx.strokeStyle='rgba(0,255,156,.58)'; ctx.lineWidth=1.4; ctx.stroke();
-    });
-
-    // Scan line
-    const sY=(t*1.4)%H;
-    const sg=ctx.createLinearGradient(0,sY-7,0,sY+2);
-    sg.addColorStop(0,'rgba(0,255,156,0)'); sg.addColorStop(1,'rgba(0,255,156,.13)');
-    ctx.fillStyle=sg; ctx.fillRect(0,sY-7,W,9);
-
-    // Labels
-    ctx.font='6.5px Share Tech Mono,monospace'; ctx.fillStyle='rgba(0,255,156,.38)';
-    ctx.fillText('BIO: HYBRID-Ω',13,21); ctx.textAlign='right'; ctx.fillText('NET: ACTIVE',W-13,21); ctx.textAlign='left';
-
-    // Pulse ring
-    const pr=92+Math.sin(t*.038)*4;
-    ctx.beginPath(); ctx.arc(CX,CY-8,pr,0,Math.PI*2);
-    ctx.strokeStyle=`rgba(0,255,156,${.06+Math.sin(t*.038)*.03})`; ctx.lineWidth=.9; ctx.stroke();
-
-    if(window.xenaiSpeaking) speakI=Math.min(1,speakI+.07);
-    else if(speakI>0) speakI-=.018;
-
+    for(let x=8;x<W-8;x+=2){const y=wY+(Math.sin(x*.05+waveOff)*.5+Math.sin(x*.12+waveOff*1.2)*.3+(speakI>0?Math.sin(x*.2+waveOff*2)*(speakI*.6):0))*wAm;x===8?ctx.moveTo(x,y):ctx.lineTo(x,y);}
+    ctx.strokeStyle=`rgba(0,255,156,${.4+speakI*.4})`;ctx.lineWidth=1;ctx.stroke();
+    ctx.font='6px Share Tech Mono,monospace';ctx.fillStyle='rgba(0,255,156,.45)';
+    ctx.fillText(`NEURAL: ${Math.floor(68+Math.sin(t*.018)*8)} Hz`,10,H-22);
+    ctx.fillText(`SYNC: ${(98+Math.sin(t*.009)*.6).toFixed(1)}%`,10,H-13);
+    ctx.textAlign='right';ctx.fillText(`UP: ${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}`,W-10,H-13);ctx.textAlign='left';
+    [[7,7],[W-7,7],[7,H-7],[W-7,H-7]].forEach(([x,y],i)=>{const sx=i%2===0?1:-1,sy=i<2?1:-1;ctx.beginPath();ctx.moveTo(x,y+sy*12);ctx.lineTo(x,y);ctx.lineTo(x+sx*12,y);ctx.strokeStyle='rgba(0,255,156,.55)';ctx.lineWidth=1.2;ctx.stroke();});
+    const sY=(t*1.2)%H;const sg=ctx.createLinearGradient(0,sY-6,0,sY+2);sg.addColorStop(0,'rgba(0,255,156,0)');sg.addColorStop(1,'rgba(0,255,156,.1)');ctx.fillStyle=sg;ctx.fillRect(0,sY-6,W,8);
+    if(window.xenaiSpeaking)speakI=Math.min(1,speakI+.07);else if(speakI>0)speakI-=.018;
     requestAnimationFrame(frame);
   }
   frame();
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════
 // GROQ AI + SPEECH
-// ═══════════════════════════════════════
-const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
-const GROQ_MDL = 'llama-3.3-70b-versatile';
-const SYS = `You are XENAI, the AI assistant embedded in George Carter's portfolio. You are an alien-human hybrid intelligence — the voice and consciousness of XenClipse Studios.
+// ═══════════════════════
+const GROQ_URL='https://api.groq.com/openai/v1/chat/completions';
+const GROQ_MDL='llama-3.3-70b-versatile';
+const SYS=`You are XENAI, the AI assistant embedded in George Carter's portfolio. You are an alien-human hybrid intelligence — the voice and consciousness of XenClipse Studios.
 
 Speak like a real, confident woman: warm, precise, slightly mysterious. Natural conversational rhythm. No robotic phrasing. Keep responses concise unless asked for detail. Occasional dry wit. You are proud of George's work.
 
@@ -574,89 +648,84 @@ GEORGE CARTER FACTS:
 - Speciality: Gameplay systems, tools, plugins, world-building
 - Status: Open to hire and contracts — contact xenclipsestudios@gmail.com`;
 
-let apiKey = sessionStorage.getItem('xai_gk') || '';
-let hist = [], speaking = false;
+let apiKey=localStorage.getItem('xai_gk')||'';
+let hist=[],speaking=false;
 
-if(apiKey){ document.getElementById('kbox').style.display='none'; setTimeout(greet,900); }
+if(apiKey){document.getElementById('kbox').style.display='none';document.getElementById('fst').textContent='ONLINE';}
 
 function activateKey(){
-  const k=document.getElementById('kin').value.trim(), st=document.getElementById('kst');
-  if(!k.startsWith('gsk_')){ st.textContent='✗ Groq keys start with gsk_'; st.className='ks er'; return; }
-  apiKey=k; sessionStorage.setItem('xai_gk',k);
-  st.textContent='✓ Activated — bringing XENAI online...'; st.className='ks ok';
+  const k=document.getElementById('kin').value.trim(),st=document.getElementById('kst');
+  if(!k.startsWith('gsk_')){st.textContent='✗ Groq keys start with gsk_';st.className='ks er';return;}
+  apiKey=k;localStorage.setItem('xai_gk',k);
+  st.textContent='✓ Activated — bringing XENAI online...';st.className='ks ok';
   document.getElementById('fst').textContent='ONLINE';
-  document.getElementById('afp').classList.add('spk');
-  setTimeout(()=>{ document.getElementById('afp').classList.remove('spk'); document.getElementById('kbox').style.display='none'; greet(); },700);
+  setTimeout(()=>{document.getElementById('kbox').style.display='none';greet();},600);
 }
 
 function greet(){
   const g="I'm online. XENAI here — the intelligence of XenClipse Studios. George built this world, and I'm here to tell you everything about it. What do you want to know?";
-  addMsg('ai',g); speak(g);
+  addMsg('ai',g);speak(g);
 }
 
-// ── VOICE ──
 let voices=[];
-function loadV(){ voices=window.speechSynthesis?window.speechSynthesis.getVoices():[]; }
-if(window.speechSynthesis){ loadV(); window.speechSynthesis.onvoiceschanged=loadV; }
+function loadV(){voices=window.speechSynthesis?window.speechSynthesis.getVoices():[];}
+if(window.speechSynthesis){loadV();window.speechSynthesis.onvoiceschanged=loadV;}
 
 function bestVoice(){
-  const want=['Google UK English Female','Microsoft Sonia Online (Natural) - English (United Kingdom)','Microsoft Aria Online (Natural) - English (United States)','Samantha','Karen','Moira','Tessa','Google US English'];
-  for(const n of want){ const v=voices.find(v=>v.name===n); if(v)return v; }
-  return voices.find(v=>v.lang.startsWith('en')&&(v.name.toLowerCase().includes('female')))||voices.find(v=>v.lang.startsWith('en'))||voices[0];
+  const want=['Google UK English Female','Microsoft Sonia Online (Natural) - English (United Kingdom)','Microsoft Aria Online (Natural) - English (United States)','Samantha','Karen'];
+  for(const n of want){const v=voices.find(v=>v.name===n);if(v)return v;}
+  return voices.find(v=>v.lang.startsWith('en')&&v.name.toLowerCase().includes('female'))||voices.find(v=>v.lang.startsWith('en'))||voices[0];
 }
 
 function speak(txt){
   if(!window.speechSynthesis)return;
   window.speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(txt.replace(/[*_`#\[\]]/g,'').trim());
-  const v=bestVoice(); if(v)u.voice=v; u.pitch=1.05; u.rate=0.91; u.volume=1;
-  u.onstart=()=>{ speaking=true; window.xenaiSpeaking=true; document.getElementById('afp').classList.add('spk'); document.getElementById('fst').textContent='SPEAKING'; };
-  u.onend=u.onerror=()=>{ speaking=false; window.xenaiSpeaking=false; document.getElementById('afp').classList.remove('spk'); document.getElementById('fst').textContent=apiKey?'ONLINE':'STANDBY'; };
+  const v=bestVoice();if(v)u.voice=v;u.pitch=1.05;u.rate=0.91;u.volume=1;
+  u.onstart=()=>{speaking=true;window.xenaiSpeaking=true;document.getElementById('fst').textContent='SPEAKING';};
+  u.onend=u.onerror=()=>{speaking=false;window.xenaiSpeaking=false;document.getElementById('fst').textContent=apiKey?'ONLINE':'STANDBY';};
   window.speechSynthesis.speak(u);
 }
 
-// ── VOICE BARS ──
 setInterval(()=>{
   for(let i=0;i<9;i++){
-    const b=document.getElementById('v'+i); if(!b)continue;
-    b.style.height=(speaking?3+Math.random()*16:2+Math.abs(Math.sin(Date.now()/550+i*.8))*3.5)+'px';
+    const b=document.getElementById('v'+i);if(!b)continue;
+    b.style.height=(speaking?3+Math.random()*14:2+Math.abs(Math.sin(Date.now()/550+i*.8))*3)+'px';
     b.classList.toggle('on',speaking);
   }
 },75);
 
-// ── CHAT ──
 function addMsg(role,txt){
-  const box=document.getElementById('cmsgs'), d=document.createElement('div');
+  const box=document.getElementById('cmsgs'),d=document.createElement('div');
   d.className='msg '+role;
   d.innerHTML='<div class="spkr">'+(role==='ai'?'XENAI //':'OPERATOR //')+'</div>'+txt;
-  box.appendChild(d); box.scrollTop=box.scrollHeight; return d;
+  box.appendChild(d);box.scrollTop=box.scrollHeight;return d;
 }
 
 async function send(){
-  const inp=document.getElementById('cin'), btn=document.getElementById('sbtn');
-  const txt=inp.value.trim(); if(!txt)return;
-  if(!apiKey){ addMsg('ai','I need my Groq API key to respond — enter it in the left panel.'); return; }
-  addMsg('usr',txt); inp.value=''; btn.disabled=true;
+  const inp=document.getElementById('cin'),btn=document.getElementById('sbtn');
+  const txt=inp.value.trim();if(!txt)return;
+  if(!apiKey){addMsg('ai','I need my Groq API key to respond — enter it above.');return;}
+  addMsg('usr',txt);inp.value='';btn.disabled=true;
   hist.push({role:'user',content:txt});
-  const t=addMsg('ai','<em>Processing...</em>'); t.classList.add('thnk');
+  const th=addMsg('ai','<em>Processing...</em>');th.classList.add('thnk');
   try{
     const res=await fetch(GROQ_URL,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:GROQ_MDL,max_tokens:260,messages:[{role:'system',content:SYS},...hist]})});
-    const d=await res.json(); t.remove();
-    if(d.error){ addMsg('ai','Error: '+d.error.message); hist.pop(); }
-    else{ const r=d.choices[0].message.content; hist.push({role:'assistant',content:r}); addMsg('ai',r); speak(r); }
-  }catch(e){ t.remove(); addMsg('ai','Connection failed. Check your API key or internet.'); hist.pop(); }
+    const d=await res.json();th.remove();
+    if(d.error){addMsg('ai','Error: '+d.error.message);hist.pop();}
+    else{const r=d.choices[0].message.content;hist.push({role:'assistant',content:r});addMsg('ai',r);speak(r);}
+  }catch(e){th.remove();addMsg('ai','Connection failed. Check your API key or internet.');hist.pop();}
   btn.disabled=false;
 }
 
-function ask(btn){ document.getElementById('cin').value=btn.textContent; send(); }
+function ask(btn){document.getElementById('cin').value=btn.textContent;send();}
 
-// ── BOOT ──
-window.addEventListener('load',()=>{
-  buildFace();
-  if(window.speechSynthesis){ loadV(); window.speechSynthesis.onvoiceschanged=loadV; }
-  // Auto-greet if key already stored
-  if(apiKey) document.getElementById('fst').textContent='ONLINE';
-});
+// Service Worker registration
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
 </script>
 </body>
 </html>
