@@ -1,88 +1,150 @@
-🌐 **Portfolio Domain:** https://github.com/George-Mando
+<!-- HEADER -->
+<div align="center">
 
-# 👋 Hi, I'm George!
+```
+ ██████╗ ███████╗ ██████╗ ██████╗  ██████╗ ███████╗
+██╔════╝ ██╔════╝██╔═══██╗██╔══██╗██╔════╝ ██╔════╝
+██║  ███╗█████╗  ██║   ██║██████╔╝██║  ███╗█████╗  
+██║   ██║██╔══╝  ██║   ██║██╔══██╗██║   ██║██╔══╝  
+╚██████╔╝███████╗╚██████╔╝██║  ██║╚██████╔╝███████╗
+ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝
+```
 
-🚀 Game Developer | 🎮 Unity & Unreal Engine | 💻 C++ | 🧠 Systems Thinker
+### `> Hello, World. I'm George Mando.`
 
-I build tools, plugins, and games with a focus on **clean systems**, **automation**, and **fun gameplay loops**.
+**Game Developer · Systems Thinker · Builder of Worlds**
 
----
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&pause=1000&color=00FF9C&center=true&vCenter=true&width=600&lines=C%2B%2B+%7C+Unreal+Engine+%7C+Unity;Building+tools+%26+gameplay+systems;Making+games+that+feel+good+to+play;Always+shipping%2C+always+learning)](https://git.io/typing-svg)
 
-## 🎯 Portfolio Purpose
-
-This portfolio exists to showcase my programming and game development work for 
-**potential employers, internships, and collaborators**. It highlights my experience
-with C++, Unreal Engine, Unity, and systems-focused gameplay and tool development.
-
----
-
-## 🧩 Featured Projects
-
-### 🛠️ Procedural Blueprint Generator (Unreal Engine Plugin)
-Auto-generates movement and combat blueprints to speed up early-stage prototyping
-inside the Unreal Editor.
-
-**Technologies Used:**  
-- C++  
-- Unreal Engine  
-- Blueprint System  
-
-🔗 Repository:
+</div>
 
 ---
 
-### 🎮 Dr. Mario Reimagined (Multiple Themes)
-A collection of gameplay experiments inspired by *Dr. Mario*, reimagined with
-magic, hacker, and bird-themed mechanics focusing on core gameplay systems.
+<!-- ABOUT -->
 
-**Technologies Used:**  
-- C++  
-- Gameplay System Design  
-- Custom Game Logic  
+## ⚡ `WHOAMI`
 
-🔗 Playable Builds: https://george-carter.itch.io/
+```cpp
+class GeorgeMando : public GameDeveloper {
+public:
+    std::string focus    = "Gameplay Systems + Tools";
+    std::string engines  = "Unreal Engine, Unity";
+    std::string language = "C++, C#, Python";
+    bool        shipping = true;
 
----
+    std::string mission() {
+        return "Build clean systems. Make fun loops. Ship cool stuff.";
+    }
+};
+```
 
-## 🧠 Skills & Experience
-
-- **Programming Languages:** C++, C#, Python  
-- **Game Engines:** Unreal Engine, Unity  
-- **Focus Areas:**  
-  - Gameplay systems  
-  - Tools & plugin development  
-  - Engine-level workflows  
-- **Experience:** Academic and personal game development projects
+I design and build **gameplay systems**, **engine-level tools**, and **plugins** — the kind of code that makes the magic *actually work* under the hood. My goal is always the same: clean architecture, fast iteration, and games that feel great to play.
 
 ---
 
-## 🌐 Find Me Online
+<!-- PROJECTS -->
 
-🎮 itch.io: https://george-carter.itch.io/  
-💻 GitHub: https://github.com/George-Mando  
+## 🛠️ `FEATURED_PROJECTS`
+
+<table>
+<tr>
+<td width="50%">
+
+### 🔧 Procedural Blueprint Generator
+> *Unreal Engine Plugin*
+
+Auto-generates movement and combat Blueprints inside the UE editor — cuts early-stage prototyping time dramatically.
+
+**Stack:**
+![C++](https://img.shields.io/badge/-C++-00599C?style=flat-square&logo=cplusplus&logoColor=white)
+![Unreal](https://img.shields.io/badge/-Unreal_Engine-0E1128?style=flat-square&logo=unrealengine&logoColor=white)
+
+🔗 *Repository coming soon*
+
+</td>
+<td width="50%">
+
+### 💊 Dr. Mario Reimagined
+> *Multi-Theme Gameplay Experiments*
+
+Classic puzzle mechanics rebuilt with magic, hacker, and bird-themed rulesets — each variant probing a different core mechanic.
+
+**Stack:**
+![C++](https://img.shields.io/badge/-C++-00599C?style=flat-square&logo=cplusplus&logoColor=white)
+![Game Design](https://img.shields.io/badge/-Gameplay_Systems-FF6B6B?style=flat-square)
+
+🎮 [**Play on itch.io →**](https://george-carter.itch.io/)
+
+</td>
+</tr>
+</table>
 
 ---
 
-## 📬 Contact
+<!-- SKILLS -->
 
-📧 Email: xenclipsestudios@gmail.com  
+## 🧠 `SKILL_TREE`
 
----
+<div align="center">
 
-## 📌 Goals
+| Category | Technologies |
+|----------|-------------|
+| **Languages** | ![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white) ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) |
+| **Engines** | ![Unreal](https://img.shields.io/badge/Unreal_Engine-0E1128?style=for-the-badge&logo=unrealengine&logoColor=white) ![Unity](https://img.shields.io/badge/Unity-000000?style=for-the-badge&logo=unity&logoColor=white) |
+| **Focus** | Gameplay Systems · Plugin/Tool Dev · Engine Workflows · Prototyping |
+| **Background** | Academic + Personal Projects · Always building |
 
-- Share my progress publicly  
-- Build cool things step by step 🚀  
-
----
-
-✅ This portfolio is **publicly accessible** and has been **tested on desktop and mobile browsers**.
-
-Thanks for visiting my profile!
+</div>
 
 ---
 
-## 📊 GitHub Stats
+<!-- STATS -->
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=github_dark)
-``
+## 📊 `STATS`
+
+<div align="center">
+
+<img height="160" src="https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=merko&hide_border=true&bg_color=0d1117&title_color=00ff9c&icon_color=00ff9c&text_color=c9d1d9" />
+<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=George-Mando&layout=compact&theme=merko&hide_border=true&bg_color=0d1117&title_color=00ff9c&text_color=c9d1d9" />
+
+</div>
+
+<div align="center">
+
+![GitHub Streak](https://streak-stats.demolab.com?user=George-Mando&theme=merko&hide_border=true&background=0D1117&ring=00FF9C&fire=00FF9C&currStreakLabel=00FF9C)
+
+</div>
+
+---
+
+<!-- CONTACT -->
+
+## 🌐 `FIND_ME`
+
+<div align="center">
+
+[![itch.io](https://img.shields.io/badge/itch.io-Projects-%23FA5C5C?style=for-the-badge&logo=itch.io&logoColor=white)](https://george-carter.itch.io/)
+[![GitHub](https://img.shields.io/badge/GitHub-@George--Mando-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/George-Mando)
+[![Email](https://img.shields.io/badge/Email-xenclipsestudios@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:xenclipsestudios@gmail.com)
+
+</div>
+
+---
+
+## 🎯 `CURRENT_OBJECTIVES`
+
+```
+[■■■■■■■■░░]  Building in public — step by step
+[■■■■■░░░░░]  Portfolio polish + employer-ready projects  
+[■■■░░░░░░░]  Deeper engine systems + tooling
+```
+
+---
+
+<div align="center">
+
+*"Good game feel isn't magic — it's engineered."*
+
+![Visitor Count](https://komarev.com/ghpvc/?username=George-Mando&color=00ff9c&style=flat-square&label=PROFILE+VIEWS)
+
+</div>
