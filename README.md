@@ -1,17 +1,5 @@
 <div align="center">
 
-<meta http-equiv="refresh" content="0; url=https://george-mando.github.io/George-Mando/"/>
-
-**Loading XenClipse Control Panel...**
-
-[Click here if you are not redirected automatically](https://george-mando.github.io/George-Mando/)
-
-[![ENTER HIVE INTERFACE](https://img.shields.io/badge/▶_ENTER_HIVE_CONTROL_PANEL-00ff9c?style=for-the-badge&logoColor=black&labelColor=000000)](https://george-mando.github.io/George-Mando/)
-
-</div>
-
-<div align="center">
-
 <!-- ANIMATED WAVE HEADER -->
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0d0d,50:00ff9c,100:0d0d0d&height=200&section=header&text=GEORGE%20CARTER&fontSize=60&fontColor=00ff9c&fontAlignY=38&desc=Game%20Developer%20%7C%20Systems%20Architect%20%7C%20World%20Builder&descAlignY=58&descSize=16&animation=fadeIn" />
 
