@@ -6,47 +6,29 @@
 <title>George Carter — XenClipse Studios</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet"/>
 <style>
-:root{
-  --acid:#00ff9c;--acid-dim:#00cc78;--acid-dark:#004d2e;
-  --orange:#ff6b35;--red:#fa5c5c;--amber:#ffb347;
-  --bg:#000600;--panel:#000d05;--panel2:#001008;
-  --border:#00ff9c22;--border-bright:#00ff9c55;
-  --text:#7fffa0;--text-dim:#3a8c55;
-  --skin1:#3d1f0a;--skin2:#7a3d1a;--skin3:#c47a3a;
-  --skin4:#b86e2e;--skin-hi:#e8965a;
-  --eye1:#00ff9c;--eye2:#00cc78;--eye3:#004422;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+:root{--acid:#00ff9c;--acid-dim:#00cc78;--acid-dark:#004d2e;--orange:#ff6b35;--red:#fa5c5c;--bg:#000600;--panel:#000d05;--border:#00ff9c22;--border-bright:#00ff9c55;--text:#7fffa0;--text-dim:#3a8c55;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Share Tech Mono',monospace;min-height:100vh;overflow-x:hidden;cursor:crosshair;}
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,156,.010) 2px,rgba(0,255,156,.010) 4px);pointer-events:none;z-index:9999;}
-body::after{content:'';position:fixed;top:-3px;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--acid),transparent);opacity:.3;animation:scanmove 8s linear infinite;pointer-events:none;z-index:9998;}
-@keyframes scanmove{0%{top:-2px}100%{top:100vh}}
-.grid-bg{position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+body::after{content:'';position:fixed;top:-2px;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--acid),transparent);opacity:.3;animation:smv 8s linear infinite;pointer-events:none;z-index:9998;}
+@keyframes smv{0%{top:-2px}100%{top:100vh}}
+.gbg{position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
 .shell{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:20px;}
 @keyframes dp{0%,100%{opacity:.2}50%{opacity:1}}
 @keyframes fi{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.fi{animation:fi .7s ease both;}
-.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}
-.d4{animation-delay:.4s}.d5{animation-delay:.5s}.d6{animation-delay:.6s}
-
-/* PANELS */
+.fi{animation:fi .7s ease both;}.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}.d5{animation-delay:.5s}.d6{animation-delay:.6s}
 .panel{position:relative;background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;padding:20px;transition:border-color .3s,box-shadow .3s;}
 .panel:hover{border-color:var(--acid-dim);box-shadow:0 0 28px rgba(0,255,156,.07),inset 0 0 28px rgba(0,255,156,.025);}
 .panel::before,.panel::after{content:'';position:absolute;width:14px;height:14px;border-color:var(--acid);border-style:solid;}
-.panel::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}
-.panel::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
-.plabel{font-size:9px;letter-spacing:4px;color:var(--text-dim);margin-bottom:14px;padding-bottom:7px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;}
-.plabel span{color:var(--acid);opacity:.5;}
-.full{margin-bottom:16px;}
+.panel::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}.panel::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
+.pl{font-size:9px;letter-spacing:4px;color:var(--text-dim);margin-bottom:14px;padding-bottom:7px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;}
+.pl span{color:var(--acid);opacity:.5;}.full{margin-bottom:16px;}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;}
 @media(max-width:800px){.g2,.g4,.ail{grid-template-columns:1fr!important;}}
-
 /* HEADER */
 .hdr{margin-bottom:16px;padding:26px 28px 20px;background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;position:relative;overflow:hidden;}
-.hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -10%,rgba(0,255,156,.06) 0%,transparent 65%);pointer-events:none;}
-.hdr::after{display:none;}
+.hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -10%,rgba(0,255,156,.06) 0%,transparent 65%);pointer-events:none;}.hdr::after{display:none;}
 .hc{position:absolute;width:18px;height:18px;border-color:var(--acid);border-style:solid;}
 .hc.tl{top:0;left:0;border-width:2px 0 0 2px;}.hc.tr{top:0;right:0;border-width:2px 2px 0 0;}
 .hc.bl{bottom:0;left:0;border-width:0 0 2px 2px;}.hc.br{bottom:0;right:0;border-width:0 2px 2px 0;}
@@ -56,87 +38,71 @@ body::after{content:'';position:fixed;top:-3px;left:0;right:0;height:2px;backgro
 .sd.o{background:var(--orange);box-shadow:0 0 7px var(--orange);animation-delay:.7s;}
 .sd.r{background:var(--red);box-shadow:0 0 7px var(--red);animation-delay:1.4s;}
 .slbl{font-size:9px;letter-spacing:3px;color:var(--text-dim);}
-.sysid{font-size:9px;letter-spacing:3px;color:var(--text-dim);text-align:right;}
-.sysid b{color:var(--acid);display:block;margin-bottom:3px;}
-.nblock{text-align:center;}
-.nmain{font-family:'Orbitron',monospace;font-size:clamp(26px,5.5vw,68px);font-weight:900;letter-spacing:10px;color:var(--acid);text-shadow:0 0 35px rgba(0,255,156,.5),0 0 70px rgba(0,255,156,.18);animation:nf 9s ease-in-out infinite;line-height:1;}
+.sid{font-size:9px;letter-spacing:3px;color:var(--text-dim);text-align:right;}.sid b{color:var(--acid);display:block;margin-bottom:3px;}
+.nb{text-align:center;}
+.nm{font-family:'Orbitron',monospace;font-size:clamp(26px,5.5vw,68px);font-weight:900;letter-spacing:10px;color:var(--acid);text-shadow:0 0 35px rgba(0,255,156,.5),0 0 70px rgba(0,255,156,.18);animation:nf 9s ease-in-out infinite;line-height:1;}
 @keyframes nf{0%,95%,100%{opacity:1}96%{opacity:.5}97.5%{opacity:1}98.5%{opacity:.65}99.5%{opacity:1}}
-.nsub{font-size:clamp(7px,1.2vw,10px);letter-spacing:5px;color:var(--acid-dim);margin-top:8px;opacity:.8;}
-.stag{display:inline-block;margin-top:9px;padding:3px 16px;border:1px solid var(--acid);font-size:9px;letter-spacing:5px;color:var(--acid);opacity:.65;border-radius:2px;}
-
-/* AI LAYOUT */
+.ns{font-size:clamp(7px,1.2vw,10px);letter-spacing:5px;color:var(--acid-dim);margin-top:8px;opacity:.8;}
+.st{display:inline-block;margin-top:9px;padding:3px 16px;border:1px solid var(--acid);font-size:9px;letter-spacing:5px;color:var(--acid);opacity:.65;border-radius:2px;}
+/* AI */
 .ail{display:grid;grid-template-columns:300px 1fr;gap:16px;margin-bottom:16px;}
-.afp{position:relative;background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;padding:14px;overflow:hidden;transition:border-color .4s,box-shadow .4s;}
+.afp{position:relative;background:#000500;border:1px solid var(--border-bright);border-radius:4px;padding:12px;overflow:hidden;transition:border-color .4s,box-shadow .4s;}
 .afp::before{content:'';position:absolute;width:14px;height:14px;top:-1px;left:-1px;border-color:var(--acid);border-style:solid;border-width:2px 0 0 2px;}
 .afp::after{content:'';position:absolute;width:14px;height:14px;bottom:-1px;right:-1px;border-color:var(--acid);border-style:solid;border-width:0 2px 2px 0;}
-.afp.spk{border-color:var(--acid);box-shadow:0 0 45px rgba(0,255,156,.22),inset 0 0 35px rgba(0,255,156,.05);}
+.afp.spk{border-color:var(--acid);box-shadow:0 0 50px rgba(0,255,156,.25),inset 0 0 40px rgba(0,255,156,.06);}
 .flbl{font-size:9px;letter-spacing:4px;color:var(--text-dim);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;}
 .flbl span{color:var(--acid);opacity:.7;}
-#fsvg{width:100%;display:flex;justify-content:center;}
-#fsvg svg{width:256px;height:310px;display:block;margin:0 auto;}
-
-/* KEY INPUT */
-.keybox{margin-top:10px;background:#000400;border:1px solid rgba(0,255,156,.2);border-radius:3px;padding:10px 12px;}
-.keybox p{font-size:9px;color:var(--text-dim);letter-spacing:1px;line-height:1.6;margin-bottom:7px;}
-.keyrow{display:flex;gap:6px;}
-.kinput{flex:1;background:#000900;border:1px solid var(--border-bright);color:var(--acid);font-family:'Share Tech Mono',monospace;font-size:10px;padding:6px 10px;border-radius:2px;outline:none;letter-spacing:1px;}
-.kinput:focus{border-color:var(--acid);}
-.kbtn{padding:6px 10px;background:transparent;border:1px solid var(--acid);color:var(--acid);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;cursor:pointer;border-radius:2px;transition:all .2s;white-space:nowrap;}
-.kbtn:hover{background:var(--acid);color:#000;}
-.kstat{font-size:9px;margin-top:5px;letter-spacing:2px;}
-.kstat.ok{color:var(--acid);}.kstat.er{color:var(--red);}
-
-/* VOICE BARS */
-.vbars{display:flex;align-items:flex-end;gap:3px;height:20px;justify-content:center;margin-top:7px;}
-.vb{width:3px;background:var(--acid);border-radius:2px;opacity:.15;transition:height .07s,opacity .07s;}
-.vb.on{opacity:1;}
-
+#fcwrap{width:100%;display:flex;justify-content:center;}
+/* Voice bars */
+.vbars{display:flex;align-items:flex-end;gap:3px;height:18px;justify-content:center;margin-top:6px;}
+.vb{width:3px;background:var(--acid);border-radius:2px;opacity:.15;transition:height .07s,opacity .07s;}.vb.on{opacity:1;}
+/* Key box */
+.kbox{margin-top:10px;background:#000400;border:1px solid rgba(0,255,156,.2);border-radius:3px;padding:10px 12px;}
+.kbox p{font-size:9px;color:var(--text-dim);letter-spacing:1px;line-height:1.6;margin-bottom:7px;}
+.kr{display:flex;gap:6px;}
+.ki{flex:1;background:#000900;border:1px solid var(--border-bright);color:var(--acid);font-family:'Share Tech Mono',monospace;font-size:10px;padding:6px 10px;border-radius:2px;outline:none;letter-spacing:1px;}
+.ki:focus{border-color:var(--acid);}
+.kb{padding:6px 10px;background:transparent;border:1px solid var(--acid);color:var(--acid);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;cursor:pointer;border-radius:2px;transition:all .2s;white-space:nowrap;}
+.kb:hover{background:var(--acid);color:#000;}
+.ks{font-size:9px;margin-top:5px;letter-spacing:2px;}.ks.ok{color:var(--acid);}.ks.er{color:var(--red);}
 /* CHAT */
-.cpanel{display:flex;flex-direction:column;}
-.cmsgs{min-height:220px;max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:9px;padding-right:4px;margin-bottom:10px;}
-.cmsgs::-webkit-scrollbar{width:3px;}
-.cmsgs::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px;}
+.cp{display:flex;flex-direction:column;}
+.cm{min-height:210px;max-height:295px;overflow-y:auto;display:flex;flex-direction:column;gap:9px;padding-right:4px;margin-bottom:10px;}
+.cm::-webkit-scrollbar{width:3px;}.cm::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px;}
 .msg{font-size:11px;line-height:1.7;padding:9px 13px;border-radius:3px;max-width:96%;letter-spacing:.4px;animation:fi .3s ease both;}
 .msg.ai{background:#001a08;border:1px solid rgba(0,255,156,.18);color:var(--text);align-self:flex-start;border-left:2px solid var(--acid);}
 .msg.usr{background:#001508;border:1px solid rgba(0,255,156,.12);color:var(--acid-dim);align-self:flex-end;text-align:right;}
 .msg.thnk{color:var(--text-dim);font-style:italic;animation:dp 1s ease-in-out infinite;}
-.spkr{font-size:8px;letter-spacing:3px;margin-bottom:3px;}
-.msg.ai .spkr{color:var(--acid);opacity:.55;}.msg.usr .spkr{color:var(--text-dim);}
+.spkr{font-size:8px;letter-spacing:3px;margin-bottom:3px;}.msg.ai .spkr{color:var(--acid);opacity:.55;}.msg.usr .spkr{color:var(--text-dim);}
 .suggs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;}
 .sb{font-size:9px;letter-spacing:1px;padding:4px 9px;background:transparent;border:1px solid rgba(0,255,156,.22);color:var(--text-dim);font-family:'Share Tech Mono',monospace;cursor:pointer;border-radius:2px;transition:all .2s;}
 .sb:hover{border-color:var(--acid);color:var(--acid);background:rgba(0,255,156,.04);}
-.cinrow{display:flex;gap:7px;}
+.cir{display:flex;gap:7px;}
 .cin{flex:1;background:#000500;border:1px solid var(--border-bright);color:var(--acid);font-family:'Share Tech Mono',monospace;font-size:11px;padding:9px 13px;border-radius:3px;outline:none;letter-spacing:1px;}
 .cin:focus{border-color:var(--acid);box-shadow:0 0 10px rgba(0,255,156,.08);}
 .cin::placeholder{color:var(--text-dim);opacity:.45;}
-.sbtn{padding:9px 16px;background:transparent;border:1px solid var(--acid);color:var(--acid);font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;cursor:pointer;border-radius:3px;transition:all .2s;white-space:nowrap;}
-.sbtn:hover{background:var(--acid);color:#000;}.sbtn:disabled{opacity:.35;cursor:not-allowed;}
-
+.snd{padding:9px 16px;background:transparent;border:1px solid var(--acid);color:var(--acid);font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;cursor:pointer;border-radius:3px;transition:all .2s;white-space:nowrap;}
+.snd:hover{background:var(--acid);color:#000;}.snd:disabled{opacity:.35;cursor:not-allowed;}
 /* BIO */
-.bgrid{display:grid;grid-template-columns:106px 1fr;gap:16px;align-items:start;}
+.bgr{display:grid;grid-template-columns:106px 1fr;gap:16px;align-items:start;}
 .hxa{width:96px;height:96px;position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .hxa svg{width:100%;height:100%;}
 .init{position:absolute;font-family:'Orbitron',monospace;font-size:19px;font-weight:700;color:var(--acid);text-shadow:0 0 14px var(--acid);letter-spacing:3px;animation:dp 3s ease-in-out infinite;}
-.brows{display:flex;flex-direction:column;gap:7px;}
-.brow{display:flex;gap:10px;font-size:11px;}
+.brows{display:flex;flex-direction:column;gap:7px;}.brow{display:flex;gap:10px;font-size:11px;}
 .bk{color:var(--text-dim);min-width:96px;letter-spacing:1px;}.bv{color:var(--text);letter-spacing:1px;}
 .bv.br{color:var(--acid);text-shadow:0 0 8px rgba(0,255,156,.25);}
 .hbdg{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border:1px solid var(--acid);border-radius:2px;font-size:9px;letter-spacing:3px;color:var(--acid);background:rgba(0,255,156,.04);animation:dp 2s ease-in-out infinite;}
-.obr{margin-bottom:13px;}
-.olbl{font-size:10px;letter-spacing:2px;color:var(--text-dim);margin-bottom:4px;display:flex;justify-content:space-between;}
+.obr{margin-bottom:13px;}.olbl{font-size:10px;letter-spacing:2px;color:var(--text-dim);margin-bottom:4px;display:flex;justify-content:space-between;}
 .olbl span{color:var(--acid);}
 .btrk{height:5px;background:rgba(0,255,156,.06);border:1px solid rgba(0,255,156,.13);border-radius:1px;overflow:hidden;}
 .bfil{height:100%;background:linear-gradient(90deg,var(--acid-dark),var(--acid));border-radius:1px;position:relative;}
 .bfil::after{content:'';position:absolute;right:0;top:0;bottom:0;width:3px;background:var(--acid);box-shadow:0 0 7px var(--acid);animation:dp 2s ease-in-out infinite;}
-
 /* TECH */
 .tc{padding:13px 10px;background:var(--panel);border:1px solid var(--border);border-radius:3px;text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
 .tc::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(0,255,156,.09) 0%,transparent 70%);opacity:0;transition:opacity .25s;}
 .tc:hover{border-color:var(--acid);transform:translateY(-2px);box-shadow:0 7px 18px rgba(0,255,156,.13);}
 .tc:hover::before{opacity:1;}.tc:hover .tn{color:var(--acid);}
-.ti{font-size:18px;margin-bottom:5px;}.tn{font-size:10px;letter-spacing:2px;color:var(--text);transition:color .25s;}
-.tt{font-size:8px;letter-spacing:2px;color:var(--text-dim);margin-top:2px;}
-
+.ti{font-size:18px;margin-bottom:5px;}.tn{font-size:10px;letter-spacing:2px;color:var(--text);transition:color .25s;}.tt{font-size:8px;letter-spacing:2px;color:var(--text-dim);margin-top:2px;}
 /* PROJECTS */
 .pc{padding:18px;background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;text-decoration:none;display:block;color:inherit;}
 .pc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--acid),transparent);transform:translateX(-100%);transition:transform .5s;}
@@ -145,35 +111,28 @@ body::after{content:'';position:fixed;top:-3px;left:0;right:0;height:2px;backgro
 .ph{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
 .pt{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:2px;color:var(--acid);}
 .pb{font-size:8px;letter-spacing:2px;padding:2px 7px;border:1px solid;border-radius:2px;}
-.pb.lv{border-color:var(--acid);color:var(--acid);animation:dp 1.5s ease-in-out infinite;}
-.pb.wp{border-color:var(--orange);color:var(--orange);}
+.pb.lv{border-color:var(--acid);color:var(--acid);animation:dp 1.5s ease-in-out infinite;}.pb.wp{border-color:var(--orange);color:var(--orange);}
 .pd{font-size:11px;color:var(--text-dim);line-height:1.65;margin-bottom:11px;letter-spacing:.4px;}
-.ptags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px;}
+.ptg{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px;}
 .tg{font-size:8px;letter-spacing:2px;padding:2px 7px;border:1px solid var(--border-bright);border-radius:2px;color:var(--text-dim);}
 .pbar{height:3px;background:rgba(0,255,156,.07);border-radius:1px;overflow:hidden;}
-.pbfil{height:100%;background:var(--acid);border-radius:1px;box-shadow:0 0 5px var(--acid);}
+.pbf{height:100%;background:var(--acid);border-radius:1px;box-shadow:0 0 5px var(--acid);}
 .pft{display:flex;justify-content:space-between;margin-top:9px;font-size:9px;color:var(--text-dim);letter-spacing:2px;}
-
 /* LINKS */
-.lrow{display:flex;flex-wrap:wrap;gap:11px;}
+.lr{display:flex;flex-wrap:wrap;gap:11px;}
 .cb{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border:1px solid var(--border-bright);background:var(--panel);color:var(--text);text-decoration:none;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:3px;border-radius:3px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;flex:1;min-width:130px;justify-content:center;}
 .cb::before{content:'';position:absolute;inset:0;background:var(--acid);transform:translateX(-101%);transition:transform .25s;z-index:0;}
 .cb:hover{color:#000;border-color:var(--acid);}.cb:hover::before{transform:translateX(0);}
-.cb span{position:relative;z-index:1;}
-.cb.or::before{background:var(--orange);}.cb.or:hover{color:#000;border-color:var(--orange);}
+.cb span{position:relative;z-index:1;}.cb.or::before{background:var(--orange);}.cb.or:hover{color:#000;border-color:var(--orange);}
 .cb.rd::before{background:var(--red);}.cb.rd:hover{color:#000;border-color:var(--red);}
-
 /* STATS */
 .sg{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
-.sg img,.sw img,.aw img{width:100%;border-radius:3px;}
-.sw,.aw{margin-bottom:16px;}.snk img{width:100%;}
+.sg img,.sw img,.aw img{width:100%;border-radius:3px;}.sw,.aw{margin-bottom:16px;}.snk img{width:100%;}
 .tw{text-align:center;}.tw img{max-width:100%;}
-
 /* TERMINAL */
 .term{padding:18px 22px;background:#000300;border:1px solid var(--border-bright);border-radius:4px;margin-bottom:16px;}
 .tbar{display:flex;gap:5px;margin-bottom:12px;}
-.td{width:10px;height:10px;border-radius:50%;}
-.td.r{background:#ff5f56}.td.y{background:#ffbd2e}.td.g{background:#27c93f}
+.td{width:10px;height:10px;border-radius:50%;}.td.r{background:#ff5f56}.td.y{background:#ffbd2e}.td.g{background:#27c93f}
 .term pre{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text);line-height:1.8;white-space:pre-wrap;}
 .term .pr{color:var(--acid);}.term .cm{color:var(--text-dim);}
 .cur{display:inline-block;width:7px;height:13px;background:var(--acid);animation:cur 1s step-end infinite;vertical-align:text-bottom;}
@@ -182,7 +141,7 @@ body::after{content:'';position:fixed;top:-3px;left:0;right:0;height:2px;backgro
 </style>
 </head>
 <body>
-<div class="grid-bg"></div>
+<div class="gbg"></div>
 <div class="shell">
 
 <!-- HEADER -->
@@ -190,308 +149,35 @@ body::after{content:'';position:fixed;top:-3px;left:0;right:0;height:2px;backgro
   <div class="hc tl"></div><div class="hc tr"></div><div class="hc bl"></div><div class="hc br"></div>
   <div class="htop">
     <div><div class="sdots"><div class="sd"></div><div class="sd o"></div><div class="sd r"></div></div><div class="slbl">SYS · NET · REC</div></div>
-    <div class="nblock">
-      <div class="nmain">GEORGE CARTER</div>
-      <div class="nsub">GAME DEVELOPER &nbsp;·&nbsp; SYSTEMS ARCHITECT &nbsp;·&nbsp; WORLD BUILDER</div>
-      <div class="stag">XENCLIPSE STUDIOS</div>
-    </div>
-    <div class="sysid"><b>XENCLIPSE_OS v7.4</b>CLEARANCE: Ω-7<br/>SECTOR: HIVE-PRIME</div>
+    <div class="nb"><div class="nm">GEORGE CARTER</div><div class="ns">GAME DEVELOPER &nbsp;·&nbsp; SYSTEMS ARCHITECT &nbsp;·&nbsp; WORLD BUILDER</div><div class="st">XENCLIPSE STUDIOS</div></div>
+    <div class="sid"><b>XENCLIPSE_OS v7.4</b>CLEARANCE: Ω-7<br/>SECTOR: HIVE-PRIME</div>
   </div>
 </div>
 
 <!-- AI SECTION -->
 <div class="ail fi d1">
-
-  <!-- FACE PANEL -->
   <div class="afp" id="afp">
-    <div class="flbl">// XENAI :: HYBRID INTELLIGENCE <span id="fst">STANDBY</span></div>
-    <div id="fsvg">
-      <svg viewBox="0 0 256 310" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <!-- Skin gradient — rich deep brown tones -->
-          <radialGradient id="sk1" cx="50%" cy="40%" r="58%">
-            <stop offset="0%" stop-color="#c47a3a"/>
-            <stop offset="30%" stop-color="#9a5c22"/>
-            <stop offset="65%" stop-color="#6b3810"/>
-            <stop offset="100%" stop-color="#3a1a06"/>
-          </radialGradient>
-          <!-- Forehead/side shadow -->
-          <radialGradient id="sk2" cx="50%" cy="30%" r="55%">
-            <stop offset="0%" stop-color="#b8722e" stop-opacity=".0"/>
-            <stop offset="70%" stop-color="#2a1005" stop-opacity=".7"/>
-            <stop offset="100%" stop-color="#100500" stop-opacity=".9"/>
-          </radialGradient>
-          <!-- Cheek highlight -->
-          <radialGradient id="skhi" cx="35%" cy="55%" r="30%">
-            <stop offset="0%" stop-color="#e8965a" stop-opacity=".35"/>
-            <stop offset="100%" stop-color="#c47a3a" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="skhiR" cx="65%" cy="55%" r="30%">
-            <stop offset="0%" stop-color="#e8965a" stop-opacity=".35"/>
-            <stop offset="100%" stop-color="#c47a3a" stop-opacity="0"/>
-          </radialGradient>
-          <!-- Eye iris green -->
-          <radialGradient id="iris" cx="38%" cy="35%" r="60%">
-            <stop offset="0%" stop-color="#afffdc"/>
-            <stop offset="25%" stop-color="#00ff9c"/>
-            <stop offset="55%" stop-color="#00b86b"/>
-            <stop offset="100%" stop-color="#002a12"/>
-          </radialGradient>
-          <!-- Pupil depth -->
-          <radialGradient id="pup" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#000100"/>
-            <stop offset="100%" stop-color="#001a08"/>
-          </radialGradient>
-          <!-- Lip color -->
-          <linearGradient id="lip" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#8b3a1a"/>
-            <stop offset="50%" stop-color="#6b2a12"/>
-            <stop offset="100%" stop-color="#4a1a08"/>
-          </linearGradient>
-          <!-- Holographic overlay -->
-          <linearGradient id="holo" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#00ff9c" stop-opacity=".08"/>
-            <stop offset="50%" stop-color="#00ff9c" stop-opacity=".03"/>
-            <stop offset="100%" stop-color="#00ff9c" stop-opacity=".08"/>
-          </linearGradient>
-          <!-- Bioluminescent vein pattern -->
-          <filter id="eg" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="3.5" result="b"/>
-            <feComposite in="SourceGraphic" in2="b" operator="over"/>
-          </filter>
-          <filter id="eg2" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="6" result="b"/>
-            <feComposite in="SourceGraphic" in2="b" operator="over"/>
-          </filter>
-          <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
-            <feGaussianBlur stdDeviation="1.5" result="b"/>
-            <feComposite in="SourceGraphic" in2="b" operator="over"/>
-          </filter>
-          <filter id="blur1">
-            <feGaussianBlur stdDeviation="1"/>
-          </filter>
-          <clipPath id="faceClip">
-            <ellipse cx="128" cy="145" rx="88" ry="112"/>
-          </clipPath>
-        </defs>
-
-        <!-- === NECK === -->
-        <path d="M 98 248 Q 96 268 94 285 L 162 285 Q 160 268 158 248 Z" fill="url(#sk1)" opacity=".9"/>
-        <!-- Neck shadow sides -->
-        <path d="M 98 248 Q 90 265 88 285 L 100 285 Q 98 265 103 250 Z" fill="#1a0800" opacity=".5"/>
-        <path d="M 158 248 Q 162 265 168 285 L 156 285 Q 158 265 153 250 Z" fill="#1a0800" opacity=".5"/>
-        <!-- Collarbone suggestion -->
-        <path d="M 75 285 Q 100 278 128 276 Q 156 278 181 285" fill="none" stroke="#7a3d1a" stroke-width="1.5" opacity=".4"/>
-
-        <!-- === MAIN FACE SHAPE === -->
-        <!-- Base face — slightly elongated oval, human proportions -->
-        <ellipse cx="128" cy="145" rx="88" ry="112" fill="url(#sk1)"/>
-        <!-- Side shadow depth -->
-        <ellipse cx="128" cy="145" rx="88" ry="112" fill="url(#sk2)"/>
-        <!-- Cheek highlights -->
-        <ellipse cx="128" cy="145" rx="88" ry="112" fill="url(#skhi)"/>
-        <ellipse cx="128" cy="145" rx="88" ry="112" fill="url(#skhiR)"/>
-
-        <!-- Forehead narrowing — human skull shape -->
-        <ellipse cx="128" cy="62" rx="70" ry="52" fill="url(#sk1)"/>
-        <ellipse cx="128" cy="62" rx="70" ry="52" fill="url(#sk2)"/>
-
-        <!-- === BIOLUMINESCENT CIRCUIT VEINS === -->
-        <!-- Temple left -->
-        <g opacity=".28" stroke="#00ff9c" stroke-width=".7" fill="none" id="veinsL">
-          <path d="M 62 95 Q 52 108 50 125 Q 48 142 55 158"/>
-          <path d="M 65 100 Q 57 112 56 128 Q 55 144 60 158"/>
-          <circle cx="50" cy="125" r="1.5" fill="#00ff9c"/>
-          <circle cx="55" cy="158" r="1" fill="#00ff9c"/>
-        </g>
-        <!-- Temple right -->
-        <g opacity=".28" stroke="#00ff9c" stroke-width=".7" fill="none" id="veinsR">
-          <path d="M 194 95 Q 204 108 206 125 Q 208 142 201 158"/>
-          <path d="M 191 100 Q 199 112 200 128 Q 201 144 196 158"/>
-          <circle cx="206" cy="125" r="1.5" fill="#00ff9c"/>
-          <circle cx="201" cy="158" r="1" fill="#00ff9c"/>
-        </g>
-        <!-- Forehead circuit -->
-        <g opacity=".2" stroke="#00ff9c" stroke-width=".6" fill="none">
-          <path d="M 105 55 L 100 42 L 108 35"/>
-          <path d="M 128 48 L 128 36"/>
-          <path d="M 151 55 L 156 42 L 148 35"/>
-          <circle cx="108" cy="35" r="1.5" fill="#00ff9c"/>
-          <circle cx="128" cy="36" r="1.5" fill="#00ff9c"/>
-          <circle cx="148" cy="35" r="1.5" fill="#00ff9c"/>
-        </g>
-
-        <!-- === EYEBROWS — full, defined === -->
-        <!-- Left brow -->
-        <path d="M 78 104 Q 90 97 108 98 Q 118 98 122 102" fill="none" stroke="#2a1005" stroke-width="4" stroke-linecap="round" filter="url(#blur1)"/>
-        <path d="M 79 103 Q 91 96 108 97 Q 118 97 121 101" fill="none" stroke="#1a0802" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- Right brow -->
-        <path d="M 178 104 Q 166 97 148 98 Q 138 98 134 102" fill="none" stroke="#2a1005" stroke-width="4" stroke-linecap="round" filter="url(#blur1)"/>
-        <path d="M 177 103 Q 165 96 148 97 Q 138 97 135 101" fill="none" stroke="#1a0802" stroke-width="2.5" stroke-linecap="round"/>
-
-        <!-- === EYE SOCKETS === shadow depth -->
-        <ellipse cx="100" cy="127" rx="26" ry="17" fill="#200e04" opacity=".6"/>
-        <ellipse cx="156" cy="127" rx="26" ry="17" fill="#200e04" opacity=".6"/>
-
-        <!-- === LEFT EYE === -->
-        <!-- White of eye (slightly off-white, realistic) -->
-        <ellipse cx="100" cy="127" rx="23" ry="14" fill="#e8ddd0" opacity=".92"/>
-        <!-- Iris -->
-        <ellipse id="irisL" cx="100" cy="127" rx="13" ry="13" fill="url(#iris)" filter="url(#eg)"/>
-        <!-- Pupil -->
-        <ellipse id="pupL" cx="100" cy="127" rx="6" ry="6" fill="url(#pup)"/>
-        <!-- Pupil inner depth -->
-        <ellipse cx="100" cy="127" rx="3.5" ry="3.5" fill="#000000" opacity=".9"/>
-        <!-- Corneal shine — two catchlights, realistic -->
-        <ellipse cx="96" cy="122" rx="3.5" ry="2.5" fill="white" opacity=".7"/>
-        <ellipse cx="104" cy="130" rx="1.5" ry="1" fill="white" opacity=".35"/>
-        <!-- Iris ring detail -->
-        <circle cx="100" cy="127" r="13" fill="none" stroke="#005533" stroke-width=".8" opacity=".5"/>
-        <circle cx="100" cy="127" r="10" fill="none" stroke="#00ff9c" stroke-width=".3" opacity=".3"/>
-        <!-- Bioluminescent iris glow ring -->
-        <circle cx="100" cy="127" r="14" fill="none" stroke="#00ff9c" stroke-width="1.5" opacity=".25" filter="url(#eg2)" id="glowL"/>
-        <!-- Eyelid top -->
-        <path d="M 77 127 Q 88 116 100 115 Q 112 116 123 127" fill="#3d1f0a" opacity=".95"/>
-        <path d="M 78 127 Q 89 117 100 116 Q 111 117 122 127" fill="none" stroke="#1a0805" stroke-width="1"/>
-        <!-- Lashes suggestion -->
-        <path d="M 77 127 Q 88 118 100 116 Q 112 118 123 127" fill="none" stroke="#0d0500" stroke-width="2.5" stroke-linecap="round" opacity=".9"/>
-        <!-- Eyelid bottom -->
-        <path d="M 79 129 Q 90 136 100 137 Q 110 136 121 129" fill="#3d1f0a" opacity=".7"/>
-        <!-- Blink overlay -->
-        <ellipse id="blkL" cx="100" cy="127" rx="23" ry="0" fill="#3d1f0a"/>
-
-        <!-- === RIGHT EYE === -->
-        <ellipse cx="156" cy="127" rx="23" ry="14" fill="#e8ddd0" opacity=".92"/>
-        <ellipse id="irisR" cx="156" cy="127" rx="13" ry="13" fill="url(#iris)" filter="url(#eg)"/>
-        <ellipse id="pupR" cx="156" cy="127" rx="6" ry="6" fill="url(#pup)"/>
-        <ellipse cx="156" cy="127" rx="3.5" ry="3.5" fill="#000000" opacity=".9"/>
-        <ellipse cx="152" cy="122" rx="3.5" ry="2.5" fill="white" opacity=".7"/>
-        <ellipse cx="160" cy="130" rx="1.5" ry="1" fill="white" opacity=".35"/>
-        <circle cx="156" cy="127" r="13" fill="none" stroke="#005533" stroke-width=".8" opacity=".5"/>
-        <circle cx="156" cy="127" r="10" fill="none" stroke="#00ff9c" stroke-width=".3" opacity=".3"/>
-        <circle cx="156" cy="127" r="14" fill="none" stroke="#00ff9c" stroke-width="1.5" opacity=".25" filter="url(#eg2)" id="glowR"/>
-        <path d="M 133 127 Q 144 116 156 115 Q 168 116 179 127" fill="#3d1f0a" opacity=".95"/>
-        <path d="M 134 127 Q 145 117 156 116 Q 167 117 178 127" fill="none" stroke="#1a0805" stroke-width="1"/>
-        <path d="M 133 127 Q 144 118 156 116 Q 168 118 179 127" fill="none" stroke="#0d0500" stroke-width="2.5" stroke-linecap="round" opacity=".9"/>
-        <path d="M 135 129 Q 146 136 156 137 Q 166 136 177 129" fill="#3d1f0a" opacity=".7"/>
-        <ellipse id="blkR" cx="156" cy="127" rx="23" ry="0" fill="#3d1f0a"/>
-
-        <!-- === NOSE — realistic, full === -->
-        <!-- Nose bridge -->
-        <path d="M 120 105 Q 119 128 116 142 Q 115 150 116 158" fill="none" stroke="#5a2d10" stroke-width="1" opacity=".35"/>
-        <path d="M 136 105 Q 137 128 140 142 Q 141 150 140 158" fill="none" stroke="#5a2d10" stroke-width="1" opacity=".35"/>
-        <!-- Nose tip -->
-        <ellipse cx="128" cy="163" rx="14" ry="9" fill="#9a5c22" opacity=".55"/>
-        <ellipse cx="128" cy="161" rx="10" ry="6" fill="#b8722e" opacity=".4"/>
-        <!-- Nostrils -->
-        <ellipse cx="118" cy="166" rx="6" ry="4" fill="#3a1a06" opacity=".7"/>
-        <ellipse cx="138" cy="166" rx="6" ry="4" fill="#3a1a06" opacity=".7"/>
-        <!-- Nose highlight -->
-        <ellipse cx="126" cy="157" rx="3" ry="4" fill="#e8965a" opacity=".2"/>
-
-        <!-- === LIPS — full, defined === -->
-        <!-- Upper lip -->
-        <path d="M 103 190 Q 112 184 120 183 Q 128 185 136 183 Q 144 184 153 190" fill="url(#lip)" opacity=".9"/>
-        <!-- Cupid's bow shape -->
-        <path d="M 112 186 Q 120 182 128 183 Q 136 182 144 186" fill="none" stroke="#8b3a1a" stroke-width=".8" opacity=".5"/>
-        <!-- Lower lip — fuller -->
-        <path d="M 103 190 Q 112 202 128 204 Q 144 202 153 190" fill="#7a3214" opacity=".85"/>
-        <!-- Lip highlight -->
-        <ellipse cx="128" cy="198" rx="12" ry="4" fill="#c05a2a" opacity=".3"/>
-        <!-- Lip line -->
-        <path id="lipLine" d="M 103 190 Q 115 188 128 189 Q 141 188 153 190" fill="none" stroke="#3a1205" stroke-width="1" opacity=".6"/>
-        <!-- Mouth open gap (animated) -->
-        <ellipse id="mthGap" cx="128" cy="194" rx="0" ry="0" fill="#1a0500" opacity=".95"/>
-        <!-- Teeth (shown when speaking) -->
-        <g id="teeth" opacity="0">
-          <rect x="116" y="191" width="6" height="7" rx="1.5" fill="#e8ddd0" opacity=".9"/>
-          <rect x="123" y="190" width="6" height="8" rx="1.5" fill="#f0e8e0" opacity=".9"/>
-          <rect x="130" y="190" width="6" height="8" rx="1.5" fill="#f0e8e0" opacity=".9"/>
-          <rect x="137" y="191" width="6" height="7" rx="1.5" fill="#e8ddd0" opacity=".9"/>
-        </g>
-        <!-- Speaking aura -->
-        <ellipse id="spkAura" cx="128" cy="194" rx="0" ry="0" fill="none" stroke="#00ff9c" stroke-width="1" opacity="0"/>
-
-        <!-- === CHIN/JAW structure === -->
-        <path d="M 58 170 Q 55 200 60 220 Q 75 250 128 258 Q 181 250 196 220 Q 201 200 198 170" fill="none" stroke="#5a2d10" stroke-width=".5" opacity=".2"/>
-        <!-- Jaw shadow -->
-        <path d="M 50 165 Q 44 200 52 230 Q 68 262 128 270 Q 188 262 204 230 Q 212 200 206 165" fill="#1a0800" opacity=".15"/>
-
-        <!-- === EARS === -->
-        <!-- Left ear -->
-        <path d="M 42 122 Q 36 130 36 142 Q 36 155 44 162 Q 50 167 55 162 Q 48 155 48 142 Q 48 130 55 122 Z" fill="url(#sk1)"/>
-        <path d="M 44 128 Q 40 138 40 148 Q 40 158 46 164" fill="none" stroke="#5a2d10" stroke-width=".8" opacity=".4"/>
-        <!-- Right ear -->
-        <path d="M 214 122 Q 220 130 220 142 Q 220 155 212 162 Q 206 167 201 162 Q 208 155 208 142 Q 208 130 201 122 Z" fill="url(#sk1)"/>
-        <path d="M 212 128 Q 216 138 216 148 Q 216 158 210 164" fill="none" stroke="#5a2d10" stroke-width=".8" opacity=".4"/>
-        <!-- Ear tech implant (subtle alien touch) -->
-        <circle cx="38" cy="142" r="3" fill="#001a08" stroke="#00ff9c" stroke-width=".7" opacity=".6" id="earL"/>
-        <circle cx="218" cy="142" r="3" fill="#001a08" stroke="#00ff9c" stroke-width=".7" opacity=".6" id="earR"/>
-
-        <!-- === HAIR — natural, flowing === -->
-        <!-- Main hair mass -->
-        <path d="M 58 90 Q 52 70 55 50 Q 60 25 80 14 Q 100 5 128 4 Q 156 5 176 14 Q 196 25 201 50 Q 204 70 198 90" fill="#0d0802" opacity=".97"/>
-        <!-- Hair depth/volume -->
-        <path d="M 62 94 Q 55 72 58 50 Q 63 22 84 11 Q 105 2 128 2 Q 151 2 172 11 Q 193 22 198 50 Q 201 72 194 94" fill="#160e05" opacity=".8"/>
-        <!-- Hair highlight — natural sheen -->
-        <path d="M 85 8 Q 110 3 128 4 Q 146 3 168 9 Q 155 6 128 6 Q 101 6 85 8 Z" fill="#3d2810" opacity=".4"/>
-        <!-- Hair strands suggestion -->
-        <path d="M 58 90 Q 50 75 53 55 Q 60 28 78 16" fill="none" stroke="#2a1a08" stroke-width="2" opacity=".5"/>
-        <path d="M 198 90 Q 206 75 203 55 Q 196 28 178 16" fill="none" stroke="#2a1a08" stroke-width="2" opacity=".5"/>
-        <!-- Side hair flowing over cheeks -->
-        <path d="M 56 95 Q 44 115 42 145 Q 40 175 50 200" fill="none" stroke="#1a1005" stroke-width="8" stroke-linecap="round" opacity=".8"/>
-        <path d="M 200 95 Q 212 115 214 145 Q 216 175 206 200" fill="none" stroke="#1a1005" stroke-width="8" stroke-linecap="round" opacity=".8"/>
-
-        <!-- === HOLOGRAPHIC OVERLAY === -->
-        <ellipse cx="128" cy="155" rx="88" ry="120" fill="url(#holo)" opacity=".6"/>
-
-        <!-- === HUD ELEMENTS === -->
-        <!-- Corner brackets -->
-        <g stroke="#00ff9c" stroke-width="1.2" fill="none" opacity=".45">
-          <polyline points="28,28 28,18 38,18"/>
-          <polyline points="228,18 238,18 238,28"/>
-          <polyline points="28,292 28,302 38,302"/>
-          <polyline points="228,302 238,302 238,292"/>
-        </g>
-        <!-- Face scan line -->
-        <line id="fscan" x1="28" y1="70" x2="228" y2="70" stroke="#00ff9c" stroke-width=".8" opacity=".2"/>
-        <!-- HUD data readouts -->
-        <rect x="26" y="56" width="60" height="11" rx="1" fill="#000d05" stroke="#00ff9c" stroke-width=".4" opacity=".7"/>
-        <text x="29" y="64" font-family="monospace" font-size="5.5" fill="#00ff9c" letter-spacing=".8" opacity=".8">BIO: HYBRID-Ω</text>
-        <rect x="170" y="56" width="60" height="11" rx="1" fill="#000d05" stroke="#00ff9c" stroke-width=".4" opacity=".7"/>
-        <text x="173" y="64" font-family="monospace" font-size="5.5" fill="#00ff9c" letter-spacing=".8" opacity=".8">NET: ACTIVE</text>
-        <!-- Small accent dots -->
-        <circle cx="33" cy="23" r="1.5" fill="#00ff9c" opacity=".5" id="h1"/>
-        <circle cx="223" cy="23" r="1.5" fill="#00ff9c" opacity=".5" id="h2"/>
-      </svg>
-    </div>
-
-    <!-- Voice bars -->
+    <div class="flbl">// XENAI :: HYBRID INTELLIGENCE <span id="fst">ONLINE</span></div>
+    <div id="fcwrap"></div>
     <div class="vbars" id="vbars">
       <div class="vb" id="v0"></div><div class="vb" id="v1"></div><div class="vb" id="v2"></div>
       <div class="vb" id="v3"></div><div class="vb" id="v4"></div><div class="vb" id="v5"></div>
       <div class="vb" id="v6"></div><div class="vb" id="v7"></div><div class="vb" id="v8"></div>
     </div>
-
-    <!-- Groq Key Input -->
-    <div class="keybox" id="keybox">
-      <p>XENAI requires a free Groq API key to activate.<br/>Get yours at console.groq.com → API Keys — it's free.</p>
-      <div class="keyrow">
-        <input class="kinput" id="kin" type="password" placeholder="gsk_..."/>
-        <button class="kbtn" onclick="activateKey()">ACTIVATE</button>
+    <div class="kbox" id="kbox">
+      <p>XENAI requires a free Groq API key.<br/>Get yours free at <b>console.groq.com</b> → API Keys</p>
+      <div class="kr">
+        <input class="ki" id="kin" type="password" placeholder="gsk_..."/>
+        <button class="kb" onclick="activateKey()">ACTIVATE</button>
       </div>
-      <div class="kstat" id="kst"></div>
+      <div class="ks" id="kst"></div>
     </div>
   </div>
 
-  <!-- CHAT PANEL -->
-  <div class="panel cpanel">
-    <div class="plabel">// XENAI :: HIVE INTELLIGENCE <span>AI MODULE</span></div>
-    <div class="cmsgs" id="cmsgs">
-      <div class="msg ai">
-        <div class="spkr">XENAI //</div>
-        Interface initializing... Enter your Groq API key to bring me online. Once activated, ask me anything about George Carter, XenClipse Studios, or his work.
-      </div>
+  <div class="panel cp">
+    <div class="pl">// XENAI :: HIVE INTELLIGENCE <span>AI MODULE</span></div>
+    <div class="cm" id="cmsgs">
+      <div class="msg ai"><div class="spkr">XENAI //</div>Consciousness initializing... Enter your Groq API key on the left to bring me fully online. I know everything about George Carter and XenClipse Studios.</div>
     </div>
     <div class="suggs">
       <button class="sb" onclick="ask(this)">Who is George Carter?</button>
@@ -501,18 +187,17 @@ body::after{content:'';position:fixed;top:-3px;left:0;right:0;height:2px;backgro
       <button class="sb" onclick="ask(this)">What is XenClipse Studios?</button>
       <button class="sb" onclick="ask(this)">What is his tech stack?</button>
     </div>
-    <div class="cinrow">
+    <div class="cir">
       <input class="cin" id="cin" placeholder="ASK XENAI ANYTHING..." onkeydown="if(event.key==='Enter')send()"/>
-      <button class="sbtn" id="sbtn" onclick="send()">TRANSMIT</button>
+      <button class="snd" id="sbtn" onclick="send()">TRANSMIT</button>
     </div>
   </div>
 </div>
 
 <!-- BIO + OBJECTIVES -->
 <div class="g2 fi d2">
-  <div class="panel">
-    <div class="plabel">// BIO-CORTEX :: UNIT IDENTITY <span>MODULE 01</span></div>
-    <div class="bgrid">
+  <div class="panel"><div class="pl">// BIO-CORTEX :: UNIT IDENTITY <span>MODULE 01</span></div>
+    <div class="bgr">
       <div class="hxa">
         <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
           <defs><style>.hp{animation:hpa 3s ease-in-out infinite}@keyframes hpa{0%,100%{opacity:.3}50%{opacity:1}}</style></defs>
@@ -538,8 +223,7 @@ body::after{content:'';position:fixed;top:-3px;left:0;right:0;height:2px;backgro
       </div>
     </div>
   </div>
-  <div class="panel">
-    <div class="plabel">// ACTIVE-QUESTS :: PRIORITY OBJ <span>MODULE 02</span></div>
+  <div class="panel"><div class="pl">// ACTIVE-QUESTS :: PRIORITY OBJ <span>MODULE 02</span></div>
     <div class="obr"><div class="olbl">BLUEPRINT_GEN<span>75%</span></div><div class="btrk"><div class="bfil" style="width:75%"></div></div></div>
     <div class="obr"><div class="olbl">PORTFOLIO_POLISH<span>50%</span></div><div class="btrk"><div class="bfil" style="width:50%"></div></div></div>
     <div class="obr"><div class="olbl">UE5_ENGINE_DEPTH<span>30%</span></div><div class="btrk"><div class="bfil" style="width:30%"></div></div></div>
@@ -548,8 +232,7 @@ body::after{content:'';position:fixed;top:-3px;left:0;right:0;height:2px;backgro
 </div>
 
 <!-- TECH STACK -->
-<div class="panel full fi d3">
-  <div class="plabel">// TECH-MATRIX :: COMBAT LOADOUT <span>MODULE 03</span></div>
+<div class="panel full fi d3"><div class="pl">// TECH-MATRIX :: COMBAT LOADOUT <span>MODULE 03</span></div>
   <div class="g4" style="margin-bottom:0">
     <div class="tc"><div class="ti">⚙️</div><div class="tn">UNREAL ENGINE</div><div class="tt">ENGINE CORE</div></div>
     <div class="tc"><div class="ti">🎮</div><div class="tn">UNITY</div><div class="tt">ENGINE CORE</div></div>
@@ -567,23 +250,22 @@ body::after{content:'';position:fixed;top:-3px;left:0;right:0;height:2px;backgro
   <a class="pc" href="https://george-carter.itch.io/" target="_blank" rel="noopener">
     <div class="ph"><div class="pt">BLUEPRINT-GEN</div><div class="pb wp">IN DEV</div></div>
     <div class="pd">Auto-generates movement &amp; combat Blueprints inside UE Editor. Slashes early-stage prototyping time to near zero.</div>
-    <div class="ptags"><span class="tg">C++</span><span class="tg">UNREAL ENGINE</span><span class="tg">BLUEPRINT SYSTEM</span><span class="tg">UE PLUGIN</span></div>
-    <div class="pbar"><div class="pbfil" style="width:75%"></div></div>
+    <div class="ptg"><span class="tg">C++</span><span class="tg">UNREAL ENGINE</span><span class="tg">BLUEPRINT SYSTEM</span><span class="tg">UE PLUGIN</span></div>
+    <div class="pbar"><div class="pbf" style="width:75%"></div></div>
     <div class="pft"><span>COMPLETION: 75%</span><span>REPO INCOMING →</span></div>
   </a>
   <a class="pc" href="https://george-carter.itch.io/" target="_blank" rel="noopener">
     <div class="ph"><div class="pt">DR-MARIO-X</div><div class="pb lv">■ LIVE</div></div>
     <div class="pd">Classic Dr. Mario rebuilt with MAGIC, HACKER &amp; BIRD theme variants. Each explores a different core game mechanic.</div>
-    <div class="ptags"><span class="tg">C++</span><span class="tg">GAMEPLAY SYSTEMS</span><span class="tg">CUSTOM LOGIC</span><span class="tg">PUZZLE</span></div>
-    <div class="pbar"><div class="pbfil" style="width:100%"></div></div>
+    <div class="ptg"><span class="tg">C++</span><span class="tg">GAMEPLAY SYSTEMS</span><span class="tg">CUSTOM LOGIC</span><span class="tg">PUZZLE</span></div>
+    <div class="pbar"><div class="pbf" style="width:100%"></div></div>
     <div class="pft"><span>STATUS: SHIPPED</span><span>PLAY ON ITCH.IO →</span></div>
   </a>
 </div>
 
 <!-- LINKS -->
-<div class="panel full fi d4">
-  <div class="plabel">// TRANSMISSION :: UPLINK CHANNELS <span>MODULE 04</span></div>
-  <div class="lrow">
+<div class="panel full fi d4"><div class="pl">// TRANSMISSION :: UPLINK CHANNELS <span>MODULE 04</span></div>
+  <div class="lr">
     <a class="cb rd" href="https://george-carter.itch.io/" target="_blank" rel="noopener"><span>🎮 &nbsp;ITCH.IO DEPLOY</span></a>
     <a class="cb" href="https://github.com/George-Mando" target="_blank" rel="noopener"><span>🐙 &nbsp;GITHUB NEXUS</span></a>
     <a class="cb or" href="mailto:xenclipsestudios@gmail.com"><span>📡 &nbsp;OPEN CHANNEL</span></a>
@@ -591,22 +273,24 @@ body::after{content:'';position:fixed;top:-3px;left:0;right:0;height:2px;backgro
 </div>
 
 <!-- STATS -->
-<div class="panel full fi d4">
-  <div class="plabel">// TELEMETRY :: PERFORMANCE READINGS <span>MODULE 05</span></div>
-  <div class="sg"><img src="https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=merko&include_all_commits=true&count_private=true&hide_border=true&bg_color=000800&title_color=00ff9c&icon_color=00ff9c&text_color=55cc88&custom_title=TELEMETRY+READOUT" alt="stats"/><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=George-Mando&layout=compact&langs_count=8&theme=merko&hide_border=true&bg_color=000800&title_color=00ff9c&text_color=55cc88&custom_title=LANG+MATRIX" alt="langs"/></div>
+<div class="panel full fi d4"><div class="pl">// TELEMETRY :: PERFORMANCE READINGS <span>MODULE 05</span></div>
+  <div class="sg"><img src="https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=merko&include_all_commits=true&count_private=true&hide_border=true&bg_color=000800&title_color=00ff9c&icon_color=00ff9c&text_color=55cc88&custom_title=TELEMETRY+READOUT" alt="stats"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=George-Mando&layout=compact&langs_count=8&theme=merko&hide_border=true&bg_color=000800&title_color=00ff9c&text_color=55cc88&custom_title=LANG+MATRIX" alt="langs"/></div>
   <div class="sw"><img src="https://streak-stats.demolab.com?user=George-Mando&theme=merko&hide_border=true&background=000800&ring=00FF9C&fire=FF6B35&currStreakLabel=00FF9C&sideLabels=00FF9C&dates=448844" alt="streak"/></div>
   <div class="aw"><img src="https://github-readme-activity-graph.vercel.app/graph?username=George-Mando&theme=react-dark&bg_color=000800&color=00ff9c&line=00ff9c&point=ff6b35&area=true&hide_border=true&area_color=001a06" alt="activity"/></div>
 </div>
 
 <!-- SNAKE -->
-<div class="panel full fi d5">
-  <div class="plabel">// HIVE-CLUSTER :: NEURAL ACTIVITY <span>MODULE 06</span></div>
-  <div class="snk"><picture><source media="(prefers-color-scheme:dark)" srcset="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake-dark.svg"/><source media="(prefers-color-scheme:light)" srcset="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake.svg"/><img alt="snake" src="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake-dark.svg"/></picture></div>
+<div class="panel full fi d5"><div class="pl">// HIVE-CLUSTER :: NEURAL ACTIVITY <span>MODULE 06</span></div>
+  <div class="snk"><picture>
+    <source media="(prefers-color-scheme:dark)" srcset="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake-dark.svg"/>
+    <source media="(prefers-color-scheme:light)" srcset="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake.svg"/>
+    <img alt="snake" src="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake-dark.svg"/>
+  </picture></div>
 </div>
 
 <!-- TROPHIES -->
-<div class="panel full fi d5">
-  <div class="plabel">// COMMENDATIONS :: HIVE HONOURS <span>MODULE 07</span></div>
+<div class="panel full fi d5"><div class="pl">// COMMENDATIONS :: HIVE HONOURS <span>MODULE 07</span></div>
   <div class="tw"><img src="https://github-profile-trophy.vercel.app/?username=George-Mando&theme=matrix&no-frame=true&no-bg=true&margin-w=8&row=1" alt="trophies"/></div>
 </div>
 
@@ -624,7 +308,6 @@ body::after{content:'';position:fixed;top:-3px;left:0;right:0;height:2px;backgro
 <span class="pr">xenclipse@hive:~$</span> <div class="cur"></div></pre>
 </div>
 
-<!-- FOOTER -->
 <div class="ftr">
   <img src="https://komarev.com/ghpvc/?username=George-Mando&color=00ff9c&style=flat-square&label=UNITS+DETECTED" alt="visitors" style="vertical-align:middle;margin-right:10px;"/>
   XENCLIPSE STUDIOS &nbsp;·&nbsp; ALL SECTORS OPERATIONAL &nbsp;·&nbsp; HIVE-PRIME
@@ -632,256 +315,348 @@ body::after{content:'';position:fixed;top:-3px;left:0;right:0;height:2px;backgro
 </div>
 
 <script>
-// ═══════════════════════════════════════════════
-//  XENAI — Groq-powered AI with session key
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
+// XENAI HOLOGRAPHIC FACE — Canvas Engine
+// ═══════════════════════════════════════
+window.xenaiSpeaking = false;
 
-const GROQ_ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions';
-const GROQ_MODEL    = 'llama-3.3-70b-versatile';
+function buildFace() {
+  const wrap = document.getElementById('fcwrap');
+  wrap.innerHTML = '';
+  const canvas = document.createElement('canvas');
+  canvas.width = 276; canvas.height = 306;
+  canvas.style.cssText = 'width:276px;height:306px;display:block;margin:0 auto;border-radius:3px;';
+  wrap.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  const W=276, H=306, CX=138, CY=148;
 
-const SYSTEM = `You are XENAI, the AI assistant embedded in George Carter's portfolio. You are an alien-human hybrid intelligence — part organic consciousness, part digital construct — the voice of XenClipse Studios.
-
-Speak like a real, living woman: warm but precise, confident, slightly mysterious. Natural conversational rhythm. No robotic phrasing. Short to medium responses unless asked for detail. Occasional dry wit. You care about George's work and represent him with pride.
-
-FACTS ABOUT GEORGE CARTER:
-- Name: George Carter
-- Studio: XenClipse Studios (founder)
-- GitHub: github.com/George-Mando  
-- itch.io: george-carter.itch.io
-- Email: xenclipsestudios@gmail.com
-- Engines: Unreal Engine 5, Unity
-- Languages: C++, C# (primary), Python (scripting)
-- Tools: Git, GitHub, Visual Studio, VS Code
-- Current project: Procedural Blueprint Generator — a UE5 plugin that auto-generates movement and combat Blueprints inside the editor, cutting prototype time dramatically. 75% complete.
-- Shipped: Dr. Mario Reimagined — puzzle game rebuilt with Magic, Hacker, and Bird theme variants exploring different core mechanics. Live on itch.io.
-- Philosophy: "Good game feel isn't magic — it's engineered."
-- Speciality: Gameplay systems, tools development, engine plugins, world-building
-- Status: Open to hire and contract work
-- Passion: Systems that feel alive
-
-When asked about hiring, be enthusiastic and direct them to xenclipsestudios@gmail.com.`;
-
-let apiKey = sessionStorage.getItem('xenai_groq_key') || '';
-let hist = [];
-let speaking = false;
-let mouthTimer = null;
-
-// ── Restore key if in session ──
-if (apiKey) {
-  document.getElementById('keybox').style.display = 'none';
-  document.getElementById('fst').textContent = 'ONLINE';
-  setTimeout(() => greet(), 1000);
-}
-
-function activateKey() {
-  const k = document.getElementById('kin').value.trim();
-  const st = document.getElementById('kst');
-  if (!k.startsWith('gsk_')) {
-    st.textContent = '✗ Invalid format — Groq keys start with gsk_';
-    st.className = 'kstat er'; return;
+  // Skull wireframe outline
+  const skull = [];
+  for(let i=0;i<36;i++){
+    const a=(i/36)*Math.PI*2;
+    const rx=72+Math.sin(a*3)*5+Math.cos(a*5)*3;
+    const ry=88+Math.cos(a*2)*7+Math.sin(a*4)*3;
+    skull.push({x:Math.cos(a)*rx, y:Math.sin(a)*ry-8});
   }
-  apiKey = k;
-  sessionStorage.setItem('xenai_groq_key', k);
-  st.textContent = '✓ Key accepted — activating XENAI...';
-  st.className = 'kstat ok';
-  document.getElementById('fst').textContent = 'ONLINE';
-  document.getElementById('afp').classList.add('spk');
-  setTimeout(() => {
-    document.getElementById('afp').classList.remove('spk');
-    document.getElementById('keybox').style.display = 'none';
-    greet();
-  }, 800);
-}
 
-function greet() {
-  const g = "I'm online. XENAI here — the intelligence behind XenClipse Studios. George Carter built this world, and I'm here to tell you everything about it. What do you want to know?";
-  addMsg('ai', g); speak(g);
-}
-
-// ── FACE ANIMATION ──
-const F = {
-  iL: document.getElementById('irisL'), iR: document.getElementById('irisR'),
-  pL: document.getElementById('pupL'),  pR: document.getElementById('pupR'),
-  bL: document.getElementById('blkL'),  bR: document.getElementById('blkR'),
-  mg: document.getElementById('mthGap'), th: document.getElementById('teeth'),
-  sa: document.getElementById('spkAura'), sc: document.getElementById('fscan'),
-  gL: document.getElementById('glowL'), gR: document.getElementById('glowR'),
-};
-
-// Eye drift — smooth, human-like
-let et = 0;
-setInterval(() => {
-  et += 0.015;
-  const dx = Math.sin(et * 0.6) * 2.8 + Math.sin(et * 1.3) * 1.2;
-  const dy = Math.sin(et * 0.4) * 1.5 + Math.cos(et * 0.9) * 0.8;
-  F.pL.setAttribute('cx', 100 + dx); F.pL.setAttribute('cy', 127 + dy);
-  F.pR.setAttribute('cx', 156 + dx); F.pR.setAttribute('cy', 127 + dy);
-  F.iL.setAttribute('cx', 100 + dx * 0.35); F.iL.setAttribute('cy', 127 + dy * 0.35);
-  F.iR.setAttribute('cx', 156 + dx * 0.35); F.iR.setAttribute('cy', 127 + dy * 0.35);
-}, 45);
-
-// Blink — natural timing variation
-function doBlink() {
-  const fr = [0, 3, 8, 14, 14, 8, 3, 0]; let i = 0;
-  const a = setInterval(() => {
-    if (i >= fr.length) { clearInterval(a); return; }
-    F.bL.setAttribute('ry', fr[i]); F.bR.setAttribute('ry', fr[i]); i++;
-  }, 25);
-  setTimeout(doBlink, 2000 + Math.random() * 5000);
-}
-setTimeout(doBlink, 1800);
-
-// Face scan line
-let sy = 70, sd = 1;
-setInterval(() => {
-  sy += sd * 1.6; if (sy > 260) sd = -1; if (sy < 60) sd = 1;
-  F.sc.setAttribute('y1', sy); F.sc.setAttribute('y2', sy);
-}, 38);
-
-// Iris glow breathe
-let gt = 0;
-setInterval(() => {
-  gt += 0.03;
-  const op = 0.18 + Math.sin(gt) * 0.12;
-  F.gL.setAttribute('opacity', Math.max(0.05, op));
-  F.gR.setAttribute('opacity', Math.max(0.05, op));
-}, 50);
-
-// Mouth animation when speaking
-function startMouth() {
-  if (mouthTimer) return; let mf = 0;
-  mouthTimer = setInterval(() => {
-    mf++;
-    const o = Math.abs(Math.sin(mf * 0.38)) * 8 + Math.sin(mf * 0.8) * 2 + Math.random() * 2;
-    const w = 18 + Math.sin(mf * 0.25) * 4;
-    F.mg.setAttribute('rx', o > 1.5 ? w : 0);
-    F.mg.setAttribute('ry', o > 1.5 ? o : 0);
-    F.mg.setAttribute('cy', 194 + o * 0.2);
-    F.th.setAttribute('opacity', o > 3.5 ? 0.85 : 0);
-    F.sa.setAttribute('rx', o * 3.5); F.sa.setAttribute('ry', o * 1.4);
-    F.sa.setAttribute('opacity', o > 2 ? 0.3 : 0);
-  }, 70);
-}
-function stopMouth() {
-  if (mouthTimer) { clearInterval(mouthTimer); mouthTimer = null; }
-  F.mg.setAttribute('rx', 0); F.mg.setAttribute('ry', 0);
-  F.th.setAttribute('opacity', 0);
-  F.sa.setAttribute('rx', 0); F.sa.setAttribute('ry', 0); F.sa.setAttribute('opacity', 0);
-}
-
-// Voice bars
-setInterval(() => {
-  for (let i = 0; i < 9; i++) {
-    const b = document.getElementById('v' + i); if (!b) continue;
-    b.style.height = (speaking ? 3 + Math.random() * 17 : 2 + Math.abs(Math.sin(Date.now() / 600 + i * 0.8)) * 4) + 'px';
-    b.classList.toggle('on', speaking);
-  }
-}, 75);
-
-// ── SPEECH — best female voice ──
-let voices = [];
-function loadVoices() {
-  voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
-}
-if (window.speechSynthesis) {
-  loadVoices();
-  window.speechSynthesis.onvoiceschanged = loadVoices;
-}
-
-function getBestVoice() {
-  // Priority list — most natural-sounding female voices
-  const preferred = [
-    'Google UK English Female',
-    'Microsoft Sonia Online (Natural) - English (United Kingdom)',
-    'Microsoft Aria Online (Natural) - English (United States)',
-    'Samantha', 'Karen', 'Moira', 'Tessa',
-    'Google US English',
+  // Face landmark mesh
+  const lm = [
+    // jaw 0-8
+    {x:-66,y:58},{x:-58,y:78},{x:-44,y:98},{x:-24,y:113},{x:0,y:118},{x:24,y:113},{x:44,y:98},{x:58,y:78},{x:66,y:58},
+    // cheeks 9-10
+    {x:-70,y:18},{x:70,y:18},
+    // brow 11-16
+    {x:-50,y:-30},{x:-30,y:-37},{x:-10,y:-33},{x:10,y:-33},{x:30,y:-37},{x:50,y:-30},
+    // nose 17-22
+    {x:-8,y:-8},{x:8,y:-8},{x:-10,y:16},{x:10,y:16},{x:0,y:26},{x:-13,y:31},{x:13,y:31},
+    // lips 23-30
+    {x:-27,y:53},{x:-13,y:48},{x:0,y:50},{x:13,y:48},{x:27,y:53},{x:13,y:61},{x:0,y:63},{x:-13,y:61},
+    // eye corners 31-36
+    {x:-40,y:-17},{x:-25,y:-22},{x:-10,y:-17},{x:10,y:-17},{x:25,y:-22},{x:40,y:-17}
   ];
-  for (const name of preferred) {
-    const v = voices.find(v => v.name === name);
-    if (v) return v;
+  const edges=[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[0,9],[8,10],[9,11],[10,15],[11,12],[12,13],[13,14],[14,15],[16,17],[18,19],[19,20],[20,21],[21,22],[23,24],[24,25],[25,26],[26,27],[27,28],[28,29],[29,30],[30,23],[31,32],[32,33],[34,35],[35,36]];
+
+  // Neural particles
+  const pts = Array.from({length:65},()=>({
+    x:(Math.random()-.5)*210, y:(Math.random()-.5)*255,
+    vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35,
+    r:Math.random()*1.6+.3, ph:Math.random()*Math.PI*2, sp:.018+Math.random()*.025
+  }));
+
+  // Data streams
+  const chars='01アイウエオ∂∑∆∇◈◉▲▼◆⬡⬢';
+  const streams=Array.from({length:11},(_, i)=>({
+    x:14+i*24, y:-Math.random()*180,
+    spd:.7+Math.random()*1.1,
+    ch:Array.from({length:9},()=>chars[Math.floor(Math.random()*chars.length)]),
+    op:.25+Math.random()*.35
+  }));
+
+  let t=0, rotY=0, rotX=0, tRotY=0, tRotX=0;
+  let eyeA=0, eyeG=0, blinkS=0, blinkD=0, nextBlink=160;
+  let waveOff=0, speakI=0;
+
+  function proj(x,y,z){
+    const cy=Math.cos(rotY),sy=Math.sin(rotY),cx=Math.cos(rotX),sx=Math.sin(rotX);
+    const x2=x*cy-z*sy, z2=x*sy+z*cy, y2=y*cx-z2*sx, z3=y*sx+z2*cx;
+    const sc=300/(300+z3);
+    return{x:x2*sc+CX, y:y2*sc+CY, sc, z:z3};
   }
-  // Fallback: first female-sounding en voice
-  return voices.find(v => v.lang.startsWith('en') && (v.name.includes('Female') || v.name.includes('female')))
-      || voices.find(v => v.lang.startsWith('en'))
-      || voices[0];
+
+  function frame(){
+    t++; ctx.clearRect(0,0,W,H);
+
+    // Void background
+    const bg=ctx.createRadialGradient(CX,CY-5,8,CX,CY,155);
+    bg.addColorStop(0,'rgba(0,28,11,.96)');
+    bg.addColorStop(.5,'rgba(0,10,4,.98)');
+    bg.addColorStop(1,'rgba(0,3,1,1)');
+    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+
+    // Data streams
+    ctx.font='7px monospace';
+    streams.forEach(s=>{
+      s.y+=s.spd; if(s.y>H+56){s.y=-56; s.ch=Array.from({length:9},()=>chars[Math.floor(Math.random()*chars.length)]);}
+      s.ch.forEach((c,i)=>{const a=Math.max(0,s.op-i*.065); ctx.fillStyle=`rgba(0,255,156,${a})`; ctx.fillText(c,s.x,s.y-i*9);});
+      if(Math.random()<.035) s.ch[0]=chars[Math.floor(Math.random()*chars.length)];
+    });
+
+    // Rotation drift
+    tRotY=Math.sin(t*.007)*.16+Math.sin(t*.0025)*.07;
+    tRotX=Math.sin(t*.005)*.07; rotY+=(tRotY-rotY)*.035; rotX+=(tRotX-rotX)*.035;
+
+    // Neural net
+    pts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy; p.ph+=p.sp;
+      if(Math.abs(p.x)>120){p.vx*=-1;} if(Math.abs(p.y)>148){p.vy*=-1;}
+      const op=.25+Math.sin(p.ph)*.25;
+      ctx.beginPath(); ctx.arc(p.x+CX,p.y+CY,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(0,255,156,${op})`; ctx.fill();
+    });
+    for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<42){ctx.beginPath(); ctx.moveTo(pts[i].x+CX,pts[i].y+CY); ctx.lineTo(pts[j].x+CX,pts[j].y+CY); ctx.strokeStyle=`rgba(0,255,156,${.11*(1-d/42)})`; ctx.lineWidth=.5; ctx.stroke();}
+    }
+
+    // Skull wireframe
+    const ps=skull.map(p=>proj(p.x,p.y,0));
+    ctx.beginPath(); ps.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y)); ctx.closePath();
+    ctx.strokeStyle='rgba(0,255,156,.32)'; ctx.lineWidth=1; ctx.stroke();
+    const sfg=ctx.createRadialGradient(CX,CY-8,0,CX,CY-8,90);
+    sfg.addColorStop(0,'rgba(0,255,156,.035)'); sfg.addColorStop(1,'rgba(0,255,156,0)');
+    ctx.fillStyle=sfg; ctx.fill();
+
+    // Internal skull lines
+    [[{x:0,y:-78,z:0},{x:0,y:88,z:0}],[{x:-58,y:-8,z:0},{x:58,y:-8,z:0}],[{x:-38,y:-48,z:18},{x:38,y:-48,z:18}]].forEach(l=>{
+      const p1=proj(l[0].x,l[0].y,l[0].z),p2=proj(l[1].x,l[1].y,l[1].z);
+      ctx.beginPath(); ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y);
+      ctx.strokeStyle='rgba(0,255,156,.1)'; ctx.lineWidth=.6; ctx.stroke();
+    });
+
+    // Face mesh
+    const pl=lm.map(p=>proj(p.x,p.y,4));
+    edges.forEach(([a,b])=>{if(!pl[a]||!pl[b])return; ctx.beginPath(); ctx.moveTo(pl[a].x,pl[a].y); ctx.lineTo(pl[b].x,pl[b].y); ctx.strokeStyle='rgba(0,210,120,.18)'; ctx.lineWidth=.5; ctx.stroke();});
+    pl.forEach((p,i)=>{const k=[4,9,10,12,15,20,25,28,32,35].includes(i); ctx.beginPath(); ctx.arc(p.x,p.y,k?1.8:.9,0,Math.PI*2); ctx.fillStyle=k?'rgba(0,255,156,.85)':'rgba(0,255,156,.35)'; ctx.fill();});
+
+    // EYES
+    eyeA+=.038; eyeG=.55+Math.sin(t*.045)*.28;
+    nextBlink--;
+    if(nextBlink<=0){blinkD=1; nextBlink=140+Math.floor(Math.random()*220);}
+    if(blinkD===1){blinkS+=.14; if(blinkS>=1)blinkD=-1;}
+    else if(blinkD===-1){blinkS-=.14; if(blinkS<=0){blinkS=0;blinkD=0;}}
+
+    [-38,38].forEach((ex,idx)=>{
+      const ep=proj(ex,-14,8), er=15.5*ep.sc;
+      // Socket
+      ctx.beginPath(); ctx.ellipse(ep.x,ep.y,er,er*.68,0,0,Math.PI*2);
+      ctx.fillStyle='rgba(0,4,1,.92)'; ctx.fill();
+      ctx.strokeStyle='rgba(0,255,156,.45)'; ctx.lineWidth=.9; ctx.stroke();
+      // Iris
+      const ig=ctx.createRadialGradient(ep.x,ep.y,0,ep.x,ep.y,er*.82);
+      ig.addColorStop(0,`rgba(200,255,230,${eyeG})`);
+      ig.addColorStop(.28,`rgba(0,255,156,${eyeG*.92})`);
+      ig.addColorStop(.65,`rgba(0,170,85,${eyeG*.5})`);
+      ig.addColorStop(1,'rgba(0,35,15,0)');
+      ctx.beginPath(); ctx.ellipse(ep.x,ep.y,er*.82,er*.56,0,0,Math.PI*2);
+      ctx.fillStyle=ig; ctx.fill();
+      // Pupil
+      ctx.beginPath(); ctx.ellipse(ep.x,ep.y,er*.28,er*.38,0,0,Math.PI*2);
+      ctx.fillStyle='rgba(0,0,0,.97)'; ctx.fill();
+      // Iris spokes
+      for(let i=0;i<10;i++){
+        const a=(i/10)*Math.PI*2+eyeA*(idx?1:-1);
+        ctx.beginPath(); ctx.moveTo(ep.x+Math.cos(a)*er*.3,ep.y+Math.sin(a)*er*.2); ctx.lineTo(ep.x+Math.cos(a)*er*.76,ep.y+Math.sin(a)*er*.52);
+        ctx.strokeStyle=`rgba(0,255,156,${.12+Math.sin(a+t*.04)*.08})`; ctx.lineWidth=.45; ctx.stroke();
+      }
+      // Catchlight
+      ctx.beginPath(); ctx.ellipse(ep.x-er*.2,ep.y-er*.17,er*.17,er*.11,-.3,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,255,255,.72)'; ctx.fill();
+      // Outer glow
+      const og=ctx.createRadialGradient(ep.x,ep.y,er*.65,ep.x,ep.y,er*2);
+      og.addColorStop(0,`rgba(0,255,156,${eyeG*.22})`); og.addColorStop(1,'rgba(0,255,156,0)');
+      ctx.beginPath(); ctx.ellipse(ep.x,ep.y,er*2,er*1.4,0,0,Math.PI*2); ctx.fillStyle=og; ctx.fill();
+      // Targeting reticle
+      const ro=.28+Math.sin(t*.038+idx)*.18;
+      [0,Math.PI*.5,Math.PI,Math.PI*1.5].forEach(a=>{
+        const a2=a+t*.007*(idx?1:-1);
+        ctx.beginPath(); ctx.moveTo(ep.x+Math.cos(a2)*er*1.22,ep.y+Math.sin(a2)*er*.87); ctx.lineTo(ep.x+Math.cos(a2)*er*1.42,ep.y+Math.sin(a2)*er*1.02);
+        ctx.strokeStyle=`rgba(0,255,156,${ro})`; ctx.lineWidth=.9; ctx.stroke();
+      });
+      // Blink
+      if(blinkS>0){ctx.beginPath(); ctx.ellipse(ep.x,ep.y,er*1.05,er*.72*blinkS,0,0,Math.PI*2); ctx.fillStyle='rgba(0,12,5,.97)'; ctx.fill();}
+    });
+
+    // Mouth
+    const mO=window.xenaiSpeaking?(0.35+Math.abs(Math.sin(t*.32))*.65):0;
+    const mpL=[-27,-13,0,13,27].map(x=>proj(x,50,7));
+    ctx.beginPath(); mpL.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+    ctx.strokeStyle='rgba(0,255,156,.3)'; ctx.lineWidth=1.1; ctx.stroke();
+    if(mO>0){
+      const mpB=[-22,0,22].map(x=>proj(x,50+mO*17,7));
+      ctx.beginPath(); ctx.moveTo(proj(-27,50,7).x,proj(-27,50,7).y);
+      mpB.forEach(p=>ctx.lineTo(p.x,p.y)); ctx.lineTo(proj(27,50,7).x,proj(27,50,7).y);
+      ctx.strokeStyle='rgba(0,255,156,.3)'; ctx.lineWidth=.9; ctx.stroke();
+      const mg=ctx.createRadialGradient(CX,proj(0,50+mO*8,7).y,0,CX,proj(0,50+mO*8,7).y,mO*32);
+      mg.addColorStop(0,`rgba(0,255,156,${mO*.28})`); mg.addColorStop(1,'rgba(0,255,156,0)');
+      ctx.beginPath(); ctx.ellipse(CX,proj(0,50+mO*8,7).y,mO*34,mO*13,0,0,Math.PI*2); ctx.fillStyle=mg; ctx.fill();
+    }
+
+    // Waveform
+    waveOff+=speakI>0?.14:.035;
+    const wY=H-50, wAm=17;
+    ctx.beginPath();
+    for(let x=10;x<W-10;x+=2){
+      const y=wY+(Math.sin(x*.048+waveOff)*.5+Math.sin(x*.115+waveOff*1.25)*.3+(speakI>0?Math.sin(x*.19+waveOff*2)*(speakI*.75):0))*wAm;
+      x===10?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle=`rgba(0,255,156,${.45+speakI*.42})`; ctx.lineWidth=1.1; ctx.stroke();
+    ctx.beginPath();
+    for(let x=10;x<W-10;x+=2){const y=wY+Math.sin(x*.075+waveOff*.65+1)*wAm*.38; x===10?ctx.moveTo(x,y):ctx.lineTo(x,y);}
+    ctx.strokeStyle='rgba(0,190,95,.18)'; ctx.lineWidth=.6; ctx.stroke();
+
+    // Biometric readouts
+    ctx.font='6px Share Tech Mono,monospace';
+    ctx.fillStyle='rgba(0,255,156,.48)';
+    ctx.fillText(`NEURAL: ${Math.floor(70+Math.sin(t*.018)*9)} Hz`,12,H-26);
+    ctx.fillText(`SYNC: ${(98.1+Math.sin(t*.009)*.7).toFixed(1)}%`,12,H-16);
+    ctx.textAlign='right';
+    ctx.fillText(`COGN: ACTIVE`,W-12,H-26);
+    ctx.fillText(`UP: ${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}`,W-12,H-16);
+    ctx.textAlign='left';
+
+    // HUD corners
+    [[8,8],[W-8,8],[8,H-8],[W-8,H-8]].forEach(([x,y],i)=>{
+      const sx=i%2===0?1:-1, sy=i<2?1:-1;
+      ctx.beginPath(); ctx.moveTo(x,y+sy*15); ctx.lineTo(x,y); ctx.lineTo(x+sx*15,y);
+      ctx.strokeStyle='rgba(0,255,156,.58)'; ctx.lineWidth=1.4; ctx.stroke();
+    });
+
+    // Scan line
+    const sY=(t*1.4)%H;
+    const sg=ctx.createLinearGradient(0,sY-7,0,sY+2);
+    sg.addColorStop(0,'rgba(0,255,156,0)'); sg.addColorStop(1,'rgba(0,255,156,.13)');
+    ctx.fillStyle=sg; ctx.fillRect(0,sY-7,W,9);
+
+    // Labels
+    ctx.font='6.5px Share Tech Mono,monospace'; ctx.fillStyle='rgba(0,255,156,.38)';
+    ctx.fillText('BIO: HYBRID-Ω',13,21); ctx.textAlign='right'; ctx.fillText('NET: ACTIVE',W-13,21); ctx.textAlign='left';
+
+    // Pulse ring
+    const pr=92+Math.sin(t*.038)*4;
+    ctx.beginPath(); ctx.arc(CX,CY-8,pr,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(0,255,156,${.06+Math.sin(t*.038)*.03})`; ctx.lineWidth=.9; ctx.stroke();
+
+    if(window.xenaiSpeaking) speakI=Math.min(1,speakI+.07);
+    else if(speakI>0) speakI-=.018;
+
+    requestAnimationFrame(frame);
+  }
+  frame();
 }
 
-function speak(text) {
-  if (!window.speechSynthesis) return;
+// ═══════════════════════════════════════
+// GROQ AI + SPEECH
+// ═══════════════════════════════════════
+const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const GROQ_MDL = 'llama-3.3-70b-versatile';
+const SYS = `You are XENAI, the AI assistant embedded in George Carter's portfolio. You are an alien-human hybrid intelligence — the voice and consciousness of XenClipse Studios.
+
+Speak like a real, confident woman: warm, precise, slightly mysterious. Natural conversational rhythm. No robotic phrasing. Keep responses concise unless asked for detail. Occasional dry wit. You are proud of George's work.
+
+GEORGE CARTER FACTS:
+- Name: George Carter | Studio: XenClipse Studios (founder)
+- GitHub: github.com/George-Mando | itch.io: george-carter.itch.io | Email: xenclipsestudios@gmail.com
+- Engines: Unreal Engine 5, Unity | Languages: C++, C# (primary), Python
+- Tools: Git, GitHub, Visual Studio, VS Code
+- Building: Procedural Blueprint Generator — UE5 plugin auto-generating movement & combat Blueprints, 75% complete
+- Shipped: Dr. Mario Reimagined — puzzle game with Magic, Hacker, Bird themes on itch.io
+- Philosophy: "Good game feel isn't magic — it's engineered."
+- Speciality: Gameplay systems, tools, plugins, world-building
+- Status: Open to hire and contracts — contact xenclipsestudios@gmail.com`;
+
+let apiKey = sessionStorage.getItem('xai_gk') || '';
+let hist = [], speaking = false;
+
+if(apiKey){ document.getElementById('kbox').style.display='none'; setTimeout(greet,900); }
+
+function activateKey(){
+  const k=document.getElementById('kin').value.trim(), st=document.getElementById('kst');
+  if(!k.startsWith('gsk_')){ st.textContent='✗ Groq keys start with gsk_'; st.className='ks er'; return; }
+  apiKey=k; sessionStorage.setItem('xai_gk',k);
+  st.textContent='✓ Activated — bringing XENAI online...'; st.className='ks ok';
+  document.getElementById('fst').textContent='ONLINE';
+  document.getElementById('afp').classList.add('spk');
+  setTimeout(()=>{ document.getElementById('afp').classList.remove('spk'); document.getElementById('kbox').style.display='none'; greet(); },700);
+}
+
+function greet(){
+  const g="I'm online. XENAI here — the intelligence of XenClipse Studios. George built this world, and I'm here to tell you everything about it. What do you want to know?";
+  addMsg('ai',g); speak(g);
+}
+
+// ── VOICE ──
+let voices=[];
+function loadV(){ voices=window.speechSynthesis?window.speechSynthesis.getVoices():[]; }
+if(window.speechSynthesis){ loadV(); window.speechSynthesis.onvoiceschanged=loadV; }
+
+function bestVoice(){
+  const want=['Google UK English Female','Microsoft Sonia Online (Natural) - English (United Kingdom)','Microsoft Aria Online (Natural) - English (United States)','Samantha','Karen','Moira','Tessa','Google US English'];
+  for(const n of want){ const v=voices.find(v=>v.name===n); if(v)return v; }
+  return voices.find(v=>v.lang.startsWith('en')&&(v.name.toLowerCase().includes('female')))||voices.find(v=>v.lang.startsWith('en'))||voices[0];
+}
+
+function speak(txt){
+  if(!window.speechSynthesis)return;
   window.speechSynthesis.cancel();
-  const clean = text.replace(/[*_`#\[\]]/g, '').trim();
-  const u = new SpeechSynthesisUtterance(clean);
-  const v = getBestVoice();
-  if (v) u.voice = v;
-  u.pitch  = 1.05;   // Slightly above neutral — warm, feminine
-  u.rate   = 0.92;   // Natural pace — not too fast
-  u.volume = 1;
-  u.onstart = () => {
-    speaking = true;
-    document.getElementById('afp').classList.add('spk');
-    document.getElementById('fst').textContent = 'SPEAKING';
-    startMouth();
-  };
-  u.onend = u.onerror = () => {
-    speaking = false;
-    document.getElementById('afp').classList.remove('spk');
-    document.getElementById('fst').textContent = apiKey ? 'ONLINE' : 'STANDBY';
-    stopMouth();
-  };
+  const u=new SpeechSynthesisUtterance(txt.replace(/[*_`#\[\]]/g,'').trim());
+  const v=bestVoice(); if(v)u.voice=v; u.pitch=1.05; u.rate=0.91; u.volume=1;
+  u.onstart=()=>{ speaking=true; window.xenaiSpeaking=true; document.getElementById('afp').classList.add('spk'); document.getElementById('fst').textContent='SPEAKING'; };
+  u.onend=u.onerror=()=>{ speaking=false; window.xenaiSpeaking=false; document.getElementById('afp').classList.remove('spk'); document.getElementById('fst').textContent=apiKey?'ONLINE':'STANDBY'; };
   window.speechSynthesis.speak(u);
 }
 
+// ── VOICE BARS ──
+setInterval(()=>{
+  for(let i=0;i<9;i++){
+    const b=document.getElementById('v'+i); if(!b)continue;
+    b.style.height=(speaking?3+Math.random()*16:2+Math.abs(Math.sin(Date.now()/550+i*.8))*3.5)+'px';
+    b.classList.toggle('on',speaking);
+  }
+},75);
+
 // ── CHAT ──
-function addMsg(role, txt) {
-  const box = document.getElementById('cmsgs');
-  const d = document.createElement('div');
-  d.className = 'msg ' + role;
-  d.innerHTML = '<div class="spkr">' + (role === 'ai' ? 'XENAI //' : 'OPERATOR //') + '</div>' + txt;
-  box.appendChild(d); box.scrollTop = box.scrollHeight; return d;
+function addMsg(role,txt){
+  const box=document.getElementById('cmsgs'), d=document.createElement('div');
+  d.className='msg '+role;
+  d.innerHTML='<div class="spkr">'+(role==='ai'?'XENAI //':'OPERATOR //')+'</div>'+txt;
+  box.appendChild(d); box.scrollTop=box.scrollHeight; return d;
 }
 
-async function send() {
-  const inp = document.getElementById('cin'), btn = document.getElementById('sbtn');
-  const txt = inp.value.trim(); if (!txt) return;
-  if (!apiKey) {
-    const m = addMsg('ai', 'I need my activation key first — enter your Groq API key on the left panel.');
-    speak('I need my activation key first.'); return;
-  }
-  addMsg('usr', txt); inp.value = ''; btn.disabled = true;
-  hist.push({ role: 'user', content: txt });
-  const t = addMsg('ai', '<em>Thinking...</em>'); t.classList.add('thnk');
-
-  try {
-    const res = await fetch(GROQ_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey },
-      body: JSON.stringify({
-        model: GROQ_MODEL,
-        max_tokens: 280,
-        messages: [{ role: 'system', content: SYSTEM }, ...hist]
-      })
-    });
-    const data = await res.json();
-    t.remove();
-    if (data.error) {
-      const e = 'Error: ' + data.error.message;
-      addMsg('ai', e); speak('There was an error with my connection. Check the API key.');
-      hist.pop();
-    } else {
-      const reply = data.choices[0].message.content;
-      hist.push({ role: 'assistant', content: reply });
-      addMsg('ai', reply); speak(reply);
-    }
-  } catch(e) {
-    t.remove();
-    addMsg('ai', 'Connection failed. Check your internet connection or API key.');
-    hist.pop();
-  }
-  btn.disabled = false;
+async function send(){
+  const inp=document.getElementById('cin'), btn=document.getElementById('sbtn');
+  const txt=inp.value.trim(); if(!txt)return;
+  if(!apiKey){ addMsg('ai','I need my Groq API key to respond — enter it in the left panel.'); return; }
+  addMsg('usr',txt); inp.value=''; btn.disabled=true;
+  hist.push({role:'user',content:txt});
+  const t=addMsg('ai','<em>Processing...</em>'); t.classList.add('thnk');
+  try{
+    const res=await fetch(GROQ_URL,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:GROQ_MDL,max_tokens:260,messages:[{role:'system',content:SYS},...hist]})});
+    const d=await res.json(); t.remove();
+    if(d.error){ addMsg('ai','Error: '+d.error.message); hist.pop(); }
+    else{ const r=d.choices[0].message.content; hist.push({role:'assistant',content:r}); addMsg('ai',r); speak(r); }
+  }catch(e){ t.remove(); addMsg('ai','Connection failed. Check your API key or internet.'); hist.pop(); }
+  btn.disabled=false;
 }
 
-function ask(btn) { document.getElementById('cin').value = btn.textContent; send(); }
+function ask(btn){ document.getElementById('cin').value=btn.textContent; send(); }
+
+// ── BOOT ──
+window.addEventListener('load',()=>{
+  buildFace();
+  if(window.speechSynthesis){ loadV(); window.speechSynthesis.onvoiceschanged=loadV; }
+  // Auto-greet if key already stored
+  if(apiKey) document.getElementById('fst').textContent='ONLINE';
+});
 </script>
 </body>
 </html>
