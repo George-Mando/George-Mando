@@ -1,0 +1,70 @@
+<svg viewBox="0 0 900 120" xmlns="http://www.w3.org/2000/svg" font-family="'Courier New', monospace">
+  <defs>
+    <style>
+      .p1{animation:pulse 2.5s ease-in-out infinite}
+      .p2{animation:pulse 2.5s ease-in-out infinite .8s}
+      .p3{animation:pulse 2.5s ease-in-out infinite 1.6s}
+      .scan{animation:scan 4s linear infinite}
+      .blink{animation:blink 1.2s step-end infinite}
+      .glow{animation:glowline 2s ease-in-out infinite alternate}
+      @keyframes pulse{0%,100%{opacity:.2}50%{opacity:1}}
+      @keyframes scan{0%{transform:translateY(-2px);opacity:.35}100%{transform:translateY(118px);opacity:0}}
+      @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+      @keyframes glowline{0%{opacity:.3}100%{opacity:.85}}
+    </style>
+    <filter id="g"><feGaussianBlur stdDeviation="2" result="b"/><feComposite in="SourceGraphic" in2="b" operator="over"/></filter>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000800"/><stop offset="100%" stop-color="#000100"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="120" fill="url(#bg)"/>
+  <g opacity="0.04" stroke="#00ff9c" stroke-width="0.5">
+    <line x1="0" y1="30" x2="900" y2="30"/><line x1="0" y1="60" x2="900" y2="60"/>
+    <line x1="0" y1="90" x2="900" y2="90"/>
+    <line x1="150" y1="0" x2="150" y2="120"/><line x1="300" y1="0" x2="300" y2="120"/>
+    <line x1="450" y1="0" x2="450" y2="120"/><line x1="600" y1="0" x2="600" y2="120"/>
+    <line x1="750" y1="0" x2="750" y2="120"/>
+  </g>
+  <rect class="scan" x="0" y="0" width="900" height="1" fill="#00ff9c" opacity="0.1"/>
+
+  <rect x="8" y="8" width="884" height="104" rx="3" fill="none" stroke="#00ff9c" stroke-width="1" opacity="0.3" class="glow"/>
+  <polyline points="8,24 8,8 24,8" fill="none" stroke="#00ff9c" stroke-width="2.5" filter="url(#g)"/>
+  <polyline points="876,8 892,8 892,24" fill="none" stroke="#00ff9c" stroke-width="2.5" filter="url(#g)"/>
+  <polyline points="8,96 8,112 24,112" fill="none" stroke="#00ff9c" stroke-width="2.5" filter="url(#g)"/>
+  <polyline points="876,112 892,112 892,96" fill="none" stroke="#00ff9c" stroke-width="2.5" filter="url(#g)"/>
+
+  <rect x="8" y="8" width="884" height="20" fill="#001a06" opacity="0.9"/>
+  <text x="20" y="21" fill="#00ff9c" font-size="9" letter-spacing="4" opacity="0.9">// TRANSMISSION :: UPLINK CHANNELS</text>
+  <text x="880" y="21" fill="#00ff9c" font-size="9" letter-spacing="2" text-anchor="end" opacity="0.6">MODULE_04</text>
+  <line x1="8" y1="28" x2="892" y2="28" stroke="#00ff9c" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Three channel blocks -->
+  <!-- ITCH.IO -->
+  <rect x="20" y="36" width="230" height="44" rx="3" fill="#001a06" stroke="#fa5c5c" stroke-width="1" class="p1" filter="url(#g)"/>
+  <circle cx="36" cy="58" r="5" fill="#fa5c5c" class="p1" filter="url(#g)"/>
+  <text x="48" y="53" fill="#fa5c5c" font-size="10" font-weight="bold" letter-spacing="2" opacity="0.9">ITCH.IO DEPLOY</text>
+  <text x="48" y="68" fill="#fa5c5c" font-size="8" letter-spacing="1" opacity="0.6">george-carter.itch.io</text>
+  <text x="240" y="63" fill="#fa5c5c" font-size="9" text-anchor="end" opacity="0.6" letter-spacing="1">HIVE-01</text>
+
+  <!-- GITHUB -->
+  <rect x="335" y="36" width="230" height="44" rx="3" fill="#001a06" stroke="#00ff9c" stroke-width="1" class="p2" filter="url(#g)"/>
+  <circle cx="351" cy="58" r="5" fill="#00ff9c" class="p2" filter="url(#g)"/>
+  <text x="363" y="53" fill="#00ff9c" font-size="10" font-weight="bold" letter-spacing="2" opacity="0.9">GITHUB NEXUS</text>
+  <text x="363" y="68" fill="#00ff9c" font-size="8" letter-spacing="1" opacity="0.6">github.com/George-Mando</text>
+  <text x="556" y="63" fill="#00ff9c" font-size="9" text-anchor="end" opacity="0.6" letter-spacing="1">HIVE-02</text>
+
+  <!-- EMAIL -->
+  <rect x="650" y="36" width="232" height="44" rx="3" fill="#001a06" stroke="#ff6b35" stroke-width="1" class="p3" filter="url(#g)"/>
+  <circle cx="666" cy="58" r="5" fill="#ff6b35" class="p3" filter="url(#g)"/>
+  <text x="678" y="53" fill="#ff6b35" font-size="10" font-weight="bold" letter-spacing="2" opacity="0.9">OPEN CHANNEL</text>
+  <text x="678" y="68" fill="#ff6b35" font-size="8" letter-spacing="1" opacity="0.6">xenclipsestudios@gmail.com</text>
+  <text x="874" y="63" fill="#ff6b35" font-size="9" text-anchor="end" opacity="0.6" letter-spacing="1">HIVE-03</text>
+
+  <!-- Connector lines between blocks -->
+  <line x1="250" y1="58" x2="335" y2="58" stroke="#00ff9c" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.3"/>
+  <line x1="565" y1="58" x2="650" y2="58" stroke="#00ff9c" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.3"/>
+
+  <!-- Quote bottom -->
+  <text x="450" y="104" fill="#00ff9c" font-size="9" text-anchor="middle" letter-spacing="3" opacity="0.55" font-style="italic">"Good game feel isn't magic — it's engineered."<tspan class="blink"> _</tspan></text>
+</svg>
