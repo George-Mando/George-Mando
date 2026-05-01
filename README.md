@@ -25,16 +25,6 @@
 
 ---
 
-## 🖥️ `XENCLIPSE CONTROL PANEL`
-
-<div align="center">
-
-<img src="xenclipse-panel.svg" alt="XenClipse Studios Control Panel — animated sci-fi dashboard with radar, waveforms, retro games, skill matrix, and terminal" width="860"/>
-
-</div>
-
----
-
 ## 🕹️ `RETRO ARCADE`
 
 <div align="center">
