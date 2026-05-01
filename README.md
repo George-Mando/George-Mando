@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- ANIMATED WAVE HEADER -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0d0d,50:00ff9c,100:0d0d0d&height=200&section=header&text=GEORGE%20MANDO&fontSize=60&fontColor=00ff9c&fontAlignY=38&desc=Game%20Developer%20%7C%20Systems%20Architect%20%7C%20World%20Builder&descAlignY=58&descSize=16&animation=fadeIn" />
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0d0d,50:00ff9c,100:0d0d0d&height=200&section=header&text=GEORGE%20CARTER&fontSize=60&fontColor=00ff9c&fontAlignY=38&desc=Game%20Developer%20%7C%20Systems%20Architect%20%7C%20World%20Builder&descAlignY=58&descSize=16&animation=fadeIn" />
 
 <!-- ANIMATED TYPING SVG -->
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=3000&pause=800&color=00FF9C&center=true&vCenter=true&width=700&lines=%F0%9F%9A%80+Unreal+Engine+%7C+Unity+%7C+C%2B%2B;%F0%9F%8E%AE+Building+Systems+That+Feel+Alive;%F0%9F%94%A7+Tools+%7C+Plugins+%7C+Gameplay+Loops;%F0%9F%A7%A0+Clean+Code.+Fun+Games.+Real+Results.)](https://git.io/typing-svg)
