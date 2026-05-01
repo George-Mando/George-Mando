@@ -37,39 +37,18 @@
 
 ---
 
-## 🕹️ `RETRO ARCADE`
+## 🐝 `WELCOME TO THE HIVE`
 
 <div align="center">
 
-> *While you're here — the games never stop at XenClipse Studios.*
+> *While you're here — systems are initializing at XenClipse Studios.*
 
-<!-- 
-  ╔══════════════════════════════════════════════════════════════╗
-  ║  ARCADE SETUP — 2 OPTIONS, PICK ONE:                        ║
-  ║                                                             ║
-  ║  OPTION A — Animated GIF (easiest):                         ║
-  ║  1. Open arcade/index.html in your browser                  ║
-  ║  2. Screen-record it for ~10 seconds                        ║
-  ║  3. Convert to GIF (ezgif.com works great)                  ║
-  ║  4. Save as arcade-preview.gif in your repo root            ║
-  ║  5. Uncomment the img tag below                             ║
-  ║                                                             ║
-  ║  OPTION B — Live GitHub Pages link (coolest):               ║
-  ║  1. Push arcade/index.html to your repo                     ║
-  ║  2. Go to Settings → Pages → Deploy from /arcade folder     ║
-  ║  3. Your arcade goes live at:                               ║
-  ║     https://george-mando.github.io/George-Mando/            ║
-  ║  4. Uncomment the badge link below                          ║
-  ╚══════════════════════════════════════════════════════════════╝
--->
+<!-- TEMPORARY HIVE MODE
+     This replaces the arcade until games are live -->
 
-<!-- OPTION A: Replace with your recorded GIF -->
-<!-- <img src="arcade-preview.gif" width="100%" alt="Retro Arcade — Space Invaders, Pac-Man, Tetris, Pong, Asteroids, Snake" /> -->
+[![ENTER HIVE INTERFACE](https://img.shields.io/badge/▶_ENTER_HIVE_CONTROL_PANEL-00ff9c?style=for-the-badge&logoColor=black&labelColor=000000)](https://george-mando.github.io/George-Mando/)
 
-<!-- OPTION B: Live arcade badge — swap in your Pages URL -->
-[![PLAY ARCADE](https://img.shields.io/badge/▶_PLAY_RETRO_ARCADE-00ff9c?style=for-the-badge&logoColor=black&labelColor=000000)](https://george-mando.github.io/George-Mando/)
-
-**6 classic 80s games running simultaneously — Space Invaders · Pac-Man · Tetris · Pong · Asteroids · Snake**
+**XenClipse Control Panel · Portfolio · Systems Hub**
 
 </div>
 
