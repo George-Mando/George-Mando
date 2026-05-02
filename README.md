@@ -16,7 +16,7 @@
 <br/>
 
 <!-- CONTRIBUTION GRAPH — works automatically, no setup needed -->
-[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=George-Mando&theme=react-dark&bg_color=0d0d0d&color=00ff9c&line=00ff9c&point=ff6b35&area=true&hide_border=true)](https://github.com/George-Mando)
+[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=George-Mando&theme=react-dark&bg_color=0d0d0d&color=00ff9c&line=00ff9c&point=ff6b35&area=true&hide_border=true)](https://github.com/D-D)
 
 </div>
 
