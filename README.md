@@ -14,15 +14,8 @@
 
 <br/>
 
-<!-- SNAKE CONTRIBUTION ANIMATION -->
-<!-- ⚠️ Snake only appears after you run the GitHub Action once:
-     Repo → Actions → Generate Snake → Run workflow
-     Once the 'output' branch is created this will auto-display -->
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake.svg">
-  <img alt="🐍 Snake animation loads after running the Generate Snake GitHub Action" src="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake-dark.svg" />
-</picture>
+<!-- CONTRIBUTION GRAPH — works automatically, no setup needed -->
+[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=George-Mando&theme=react-dark&bg_color=0d0d0d&color=00ff9c&line=00ff9c&point=ff6b35&area=true&hide_border=true)](https://github.com/George-Mando)
 
 </div>
 
