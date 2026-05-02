@@ -14,7 +14,7 @@
 
 <br/>
 
-<!-- SNAKE CONTRIBUTION ANIMATION (activate via GitHub Actions - see bottom) -->
+<!-- SNAKE CONTRIBUTION ANIMATION -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/George-Mando/George-Mando/output/github-contribution-grid-snake.svg">
@@ -31,9 +31,6 @@
 
 > *While you're here — systems are initializing at XenClipse Studios.*
 
-<!-- TEMPORARY HIVE MODE
-     This replaces the arcade until games are live -->
-
 [![ENTER HIVE INTERFACE](https://img.shields.io/badge/▶_ENTER_HIVE_CONTROL_PANEL-00ff9c?style=for-the-badge&logoColor=black&labelColor=000000)](https://george-mando.github.io/George-Mando/)
 
 **XenClipse Control Panel · Portfolio · Systems Hub**
@@ -47,11 +44,11 @@
 ```cpp
 namespace XenClipseStudios {
 
-class GeorgeMando : public GameDeveloper {
+class GeorgeCarter : public GameDeveloper {
 public:
-    const std::string name     = "George Mando";
+    const std::string name     = "George Carter";
     const std::string studio   = "XenClipse Studios";
-    std::vector<std::string> engines = {"Unreal Engine", "Unity"};
+    std::vector<std::string> engines = {"Unreal Engine 5", "Unity"};
     std::vector<std::string> langs   = {"C++", "C#", "Python"};
 
     std::string currently_building = "Procedural Blueprint Generator (UE Plugin)";
@@ -83,7 +80,7 @@ public:
 <td width="50%" valign="top">
 
 ### 🔧 Procedural Blueprint Generator
-> *Unreal Engine Plugin*
+> *Unreal Engine Plugin · In Development*
 
 ⚡ Auto-generates movement & combat Blueprints inside UE Editor. Built to slash early-stage prototyping time to near zero.
 
@@ -91,13 +88,29 @@ public:
 ![Unreal](https://img.shields.io/badge/Unreal_Engine-0E1128?style=flat-square&logo=unrealengine&logoColor=white)
 ![Blueprint](https://img.shields.io/badge/Blueprint_System-1F6FEB?style=flat-square)
 
-🔗 *Repository coming soon*
+🔗 *Repository coming soon · 75% complete*
 
 </td>
 <td width="50%" valign="top">
 
-### 💊 Dr. Mario Reimagined
-> *Multi-Theme Gameplay Experiments*
+### 🪶 Feather Fall
+> *Puzzle Game · In Development*
+
+🥚 Drop rocks to brick eggs — match **4 or more** in a row to break them. A gravity-based twist on classic match-clearing mechanics with a bird theme.
+
+![C++](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white)
+![Gameplay Systems](https://img.shields.io/badge/Gameplay_Systems-FF6B35?style=flat-square)
+![Puzzle](https://img.shields.io/badge/Puzzle_Logic-7B2FBE?style=flat-square)
+
+🔗 *Coming soon to itch.io*
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 💊 Dr Malware
+> *Multi-Theme Puzzle Game · Shipped*
 
 🎮 Classic puzzle mechanics rebuilt with **magic**, **hacker**, and **bird** theme variants. Each one explores a different core game mechanic.
 
@@ -106,6 +119,39 @@ public:
 ![Custom Logic](https://img.shields.io/badge/Custom_Logic-7B2FBE?style=flat-square)
 
 🎮 [**Play on itch.io →**](https://george-carter.itch.io/)
+
+</td>
+<td width="50%" valign="top">
+
+### ⚙️ Clockwork Horrors
+> *FPS · Shipped · Full Sail University*
+
+❄️ Intense first-person shooter set in an icy post-apocalyptic wasteland. Play as **Timebot** — humanity's last guardian — battling AI-corrupted infected with Time-Surge combos and adaptive enemy AI.
+
+![C++](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white)
+![FPS](https://img.shields.io/badge/FPS-FF6B35?style=flat-square)
+![Unreal](https://img.shields.io/badge/Unreal_Engine-0E1128?style=flat-square&logo=unrealengine&logoColor=white)
+
+🎮 [**Play on itch.io →**](https://george-carter.itch.io/)
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🌑 Shadows of Beginnings
+> *Action-Adventure RPG · Shipped · Nebula Interactive*
+
+⚔️ Rise from novice adventurer to powerful hero while rebuilding a dying town. George led **UI/UX & AI Design** — HUD, menus, quest log, enemy behavior, and monster house events.
+
+![Unreal](https://img.shields.io/badge/Unreal_Engine-0E1128?style=flat-square&logo=unrealengine&logoColor=white)
+![UI/UX](https://img.shields.io/badge/UI%2FUX_Design-00599C?style=flat-square)
+![AI Design](https://img.shields.io/badge/AI_Systems-27c93f?style=flat-square)
+
+🎮 [**Download on itch.io →**](https://george-carter.itch.io/)
+
+</td>
+<td width="50%" valign="top">
 
 </td>
 </tr>
@@ -181,6 +227,7 @@ public:
 ║                   ACTIVE  QUESTS                     ║
 ╠══════════════════════════════════════════════════════╣
 ║  [■■■■■■■░░░]  75%  Procedural Blueprint Generator  ║
+║  [■■░░░░░░░░]  20%  Feather Fall                     ║
 ║  [■■■■■░░░░░]  50%  Portfolio polish & employer-ready║
 ║  [■■■░░░░░░░]  30%  Deeper UE5 engine internals      ║
 ║  [■░░░░░░░░░]  10%  Open source contributions        ║
