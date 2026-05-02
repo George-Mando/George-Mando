@@ -15,7 +15,7 @@
 <style>
 :root{
   --acid:#00ff9c;--acid-dim:#00cc78;--acid-dark:#004d2e;
-  --orange:#ff6b35;--red:#fa5c5c;--bg:#000600;--panel:#000d05;
+  --orange:#ff6b35;--red:#fa5c5c;--blue:#0a66c2;--bg:#000600;--panel:#000d05;
   --border:#00ff9c22;--border-bright:#00ff9c55;--text:#7fffa0;--text-dim:#3a8c55;
   --safe-top:env(safe-area-inset-top,0px);
   --safe-bottom:env(safe-area-inset-bottom,0px);
@@ -24,22 +24,14 @@
 html,body{height:100%;overflow:hidden;background:var(--bg);}
 body{font-family:'Share Tech Mono',monospace;color:var(--text);cursor:default;
   padding-top:var(--safe-top);padding-bottom:var(--safe-bottom);}
-
-/* SCANLINE OVERLAY */
 body::before{content:'';position:fixed;inset:0;
   background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,156,.008) 2px,rgba(0,255,156,.008) 4px);
   pointer-events:none;z-index:9999;}
-
-/* GRID BG */
 .gbg{position:fixed;inset:0;
   background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
   background-size:32px 32px;pointer-events:none;z-index:0;}
-
-/* LAYOUT */
 .app{position:fixed;inset:0;display:flex;flex-direction:column;z-index:1;
   padding-top:var(--safe-top);padding-bottom:var(--safe-bottom);}
-
-/* TOP BAR */
 .topbar{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
   padding:10px 16px 8px;border-bottom:1px solid var(--border-bright);background:rgba(0,6,0,.95);}
 .topbar-left{display:flex;align-items:center;gap:8px;}
@@ -53,24 +45,18 @@ body::before{content:'';position:fixed;inset:0;
   letter-spacing:4px;color:var(--acid);text-shadow:0 0 20px rgba(0,255,156,.5);}
 .topbar-right{font-size:8px;letter-spacing:2px;color:var(--text-dim);text-align:right;line-height:1.6;}
 .topbar-right b{color:var(--acid);}
-
-/* NAV TABS */
 .nav{flex-shrink:0;display:flex;border-bottom:1px solid var(--border-bright);background:rgba(0,6,0,.9);}
 .nav-tab{flex:1;padding:10px 4px 8px;font-family:'Share Tech Mono',monospace;
   font-size:9px;letter-spacing:2px;color:var(--text-dim);background:none;border:none;
   cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:3px;border-bottom:2px solid transparent;}
 .nav-tab.active{color:var(--acid);border-bottom-color:var(--acid);}
 .nav-tab .nav-icon{font-size:14px;}
-
-/* SCREENS */
 .screens{flex:1;overflow:hidden;position:relative;}
 .screen{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:14px;
   display:none;-webkit-overflow-scrolling:touch;}
 .screen.active{display:block;}
 .screen::-webkit-scrollbar{width:2px;}
 .screen::-webkit-scrollbar-thumb{background:var(--border-bright);}
-
-/* PANELS */
 .panel{background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;padding:14px;
   margin-bottom:12px;position:relative;}
 .panel::before,.panel::after{content:'';position:absolute;width:10px;height:10px;border-color:var(--acid);border-style:solid;}
@@ -79,8 +65,6 @@ body::before{content:'';position:fixed;inset:0;
 .pl{font-size:8px;letter-spacing:3px;color:var(--text-dim);margin-bottom:10px;
   padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;}
 .pl span{color:var(--acid);opacity:.6;}
-
-/* ── SCREEN: HOME ── */
 .hero{text-align:center;padding:16px 12px 20px;background:var(--panel);
   border:1px solid var(--border-bright);border-radius:4px;margin-bottom:12px;position:relative;overflow:hidden;}
 .hero::before{content:'';position:absolute;inset:0;
@@ -101,15 +85,12 @@ body::before{content:'';position:fixed;inset:0;
   border:1px solid var(--acid);border-radius:2px;font-size:9px;letter-spacing:3px;
   color:var(--acid);background:rgba(0,255,156,.04);animation:dp 2s ease-in-out infinite;margin-top:8px;}
 .status-dot{width:5px;height:5px;border-radius:50%;background:var(--acid);}
-
 .bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px;}
 .brow{display:flex;flex-direction:column;gap:2px;padding:8px;
   background:rgba(0,255,156,.02);border:1px solid var(--border);border-radius:3px;}
 .bk{font-size:8px;letter-spacing:1px;color:var(--text-dim);}
 .bv{font-size:10px;color:var(--text);letter-spacing:.5px;}
 .bv.hi{color:var(--acid);}
-
-/* OBJECTIVES */
 .obr{margin-bottom:10px;}
 .olbl{font-size:9px;letter-spacing:2px;color:var(--text-dim);
   margin-bottom:4px;display:flex;justify-content:space-between;}
@@ -118,17 +99,13 @@ body::before{content:'';position:fixed;inset:0;
 .bfil{height:100%;background:linear-gradient(90deg,var(--acid-dark),var(--acid));border-radius:1px;position:relative;}
 .bfil::after{content:'';position:absolute;right:0;top:0;bottom:0;width:2px;
   background:var(--acid);box-shadow:0 0 5px var(--acid);animation:dp 2s infinite;}
-
-/* TECH GRID */
 .tg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
 .tc{padding:10px 6px;background:var(--panel);border:1px solid var(--border);
-  border-radius:3px;text-align:center;transition:all .2s;active:scale(.97);}
+  border-radius:3px;text-align:center;transition:all .2s;}
 .tc:active{border-color:var(--acid);background:rgba(0,255,156,.04);}
 .ti{font-size:16px;margin-bottom:3px;}
 .tn{font-size:8px;letter-spacing:1px;color:var(--text);}
 .tt{font-size:7px;letter-spacing:1px;color:var(--text-dim);}
-
-/* LINKS */
 .link-btn{display:flex;align-items:center;gap:10px;padding:12px 16px;
   background:var(--panel);border:1px solid var(--border-bright);border-radius:3px;
   color:var(--text);text-decoration:none;font-size:11px;letter-spacing:2px;
@@ -140,8 +117,7 @@ body::before{content:'';position:fixed;inset:0;
 .link-btn.or{border-left:2px solid var(--orange);}
 .link-btn.ac{border-left:2px solid var(--acid);}
 .link-btn.rd{border-left:2px solid var(--red);}
-
-/* PROJECTS */
+.link-btn.bl{border-left:2px solid #0a66c2;}
 .proj-card{background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;
   padding:14px;margin-bottom:12px;position:relative;overflow:hidden;text-decoration:none;display:block;color:inherit;}
 .proj-card:active{border-color:var(--acid);box-shadow:0 0 20px rgba(0,255,156,.08);}
@@ -156,15 +132,11 @@ body::before{content:'';position:fixed;inset:0;
 .proj-bar{height:3px;background:rgba(0,255,156,.07);border-radius:1px;overflow:hidden;}
 .proj-fill{height:100%;background:var(--acid);border-radius:1px;box-shadow:0 0 4px var(--acid);}
 .proj-foot{display:flex;justify-content:space-between;margin-top:7px;font-size:8px;color:var(--text-dim);}
-
-/* ── SCREEN: XENAI ── */
 .face-wrap{display:flex;justify-content:center;margin-bottom:10px;}
 #xenai-canvas{border-radius:4px;border:1px solid var(--border-bright);display:block;}
 .vbars{display:flex;align-items:flex-end;gap:3px;height:16px;justify-content:center;margin-bottom:10px;}
 .vb{width:3px;background:var(--acid);border-radius:2px;opacity:.15;transition:height .07s,opacity .07s;}
 .vb.on{opacity:1;}
-
-/* KEY BOX */
 .kbox{background:#000400;border:1px solid rgba(0,255,156,.2);border-radius:3px;padding:12px;margin-bottom:10px;}
 .kbox p{font-size:9px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;}
 .kbox p b{color:var(--acid);}
@@ -178,8 +150,6 @@ body::before{content:'';position:fixed;inset:0;
 .kb:active{background:var(--acid);color:#000;}
 .ks{font-size:9px;margin-top:6px;letter-spacing:1px;}
 .ks.ok{color:var(--acid);}.ks.er{color:var(--red);}
-
-/* CHAT */
 .chat-msgs{height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;
   padding:10px;background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:3px;
   margin-bottom:8px;-webkit-overflow-scrolling:touch;}
@@ -194,12 +164,10 @@ body::before{content:'';position:fixed;inset:0;
 .spkr{font-size:8px;letter-spacing:3px;margin-bottom:3px;}
 .msg.ai .spkr{color:var(--acid);opacity:.55;}
 .msg.usr .spkr{color:var(--text-dim);}
-
 .suggs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;}
 .sb{font-size:9px;padding:5px 9px;background:transparent;border:1px solid rgba(0,255,156,.22);
   color:var(--text-dim);font-family:'Share Tech Mono',monospace;cursor:pointer;border-radius:2px;}
 .sb:active{border-color:var(--acid);color:var(--acid);background:rgba(0,255,156,.04);}
-
 .chat-input-row{display:flex;gap:6px;}
 .cin{flex:1;background:#000500;border:1px solid var(--border-bright);color:var(--acid);
   font-family:'Share Tech Mono',monospace;font-size:12px;padding:10px 12px;border-radius:3px;
@@ -211,8 +179,6 @@ body::before{content:'';position:fixed;inset:0;
   cursor:pointer;border-radius:3px;transition:all .2s;white-space:nowrap;}
 .snd:active{background:var(--acid);color:#000;}
 .snd:disabled{opacity:.35;}
-
-/* TERMINAL */
 .term{padding:14px;background:#000300;border:1px solid var(--border-bright);border-radius:4px;margin-bottom:12px;}
 .tbar{display:flex;gap:5px;margin-bottom:10px;}
 .td{width:9px;height:9px;border-radius:50%;}
@@ -222,15 +188,9 @@ body::before{content:'';position:fixed;inset:0;
 .term .cm{color:var(--text-dim);}
 .cur{display:inline-block;width:6px;height:11px;background:var(--acid);animation:cur 1s step-end infinite;vertical-align:text-bottom;}
 @keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
-
-/* STATS IMAGES */
 .stats-img{width:100%;border-radius:3px;margin-bottom:10px;display:block;}
-
-/* ANIMATIONS */
 @keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .fi{animation:fi .4s ease both;}
-
-/* INSTALL BANNER */
 .install-banner{background:#001a08;border:1px solid rgba(0,255,156,.3);border-radius:3px;
   padding:10px 12px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .install-text{font-size:9px;letter-spacing:1px;color:var(--text-dim);line-height:1.5;}
@@ -239,7 +199,6 @@ body::before{content:'';position:fixed;inset:0;
   font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;cursor:pointer;
   border-radius:2px;white-space:nowrap;flex-shrink:0;}
 .install-btn:active{background:var(--acid);color:#000;}
-
 .ftr{text-align:center;padding:14px;font-size:8px;color:var(--text-dim);letter-spacing:2px;}
 </style>
 </head>
@@ -247,20 +206,16 @@ body::before{content:'';position:fixed;inset:0;
 <div class="gbg"></div>
 <div class="app">
 
-  <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-left">
       <div class="sdots">
-        <div class="sd g"></div>
-        <div class="sd o"></div>
-        <div class="sd r"></div>
+        <div class="sd g"></div><div class="sd o"></div><div class="sd r"></div>
       </div>
     </div>
     <div class="topbar-title">XENCLIPSE</div>
     <div class="topbar-right"><b id="sys-status">SYS ONLINE</b>Ω-7 · HIVE</div>
   </div>
 
-  <!-- NAV -->
   <nav class="nav">
     <button class="nav-tab active" onclick="showScreen('home',this)">
       <span class="nav-icon">⬡</span>HOME
@@ -276,15 +231,13 @@ body::before{content:'';position:fixed;inset:0;
     </button>
   </nav>
 
-  <!-- SCREENS -->
   <div class="screens">
 
     <!-- HOME SCREEN -->
     <div class="screen active fi" id="screen-home">
       <div id="install-banner" class="install-banner" style="display:none">
         <div class="install-text">
-          <b>ADD TO HOME SCREEN</b>
-          Install for native app experience
+          <b>ADD TO HOME SCREEN</b>Install for native app experience
         </div>
         <button class="install-btn" onclick="installApp()">INSTALL</button>
       </div>
@@ -340,6 +293,12 @@ body::before{content:'';position:fixed;inset:0;
         <a class="link-btn ac" href="https://github.com/George-Mando" target="_blank">
           <span class="lb-icon">🐙</span>
           <span class="lb-text">GITHUB NEXUS</span>
+          <span class="lb-arr">→</span>
+        </a>
+        <!-- ★ NEW: LinkedIn -->
+        <a class="link-btn bl" href="https://www.linkedin.com/in/george-carter-ba996b315" target="_blank">
+          <span class="lb-icon">💼</span>
+          <span class="lb-text">LINKEDIN NETWORK</span>
           <span class="lb-arr">→</span>
         </a>
         <a class="link-btn or" href="mailto:xenclipsestudios@gmail.com">
@@ -413,58 +372,34 @@ body::before{content:'';position:fixed;inset:0;
         </div>
       </div>
 
-      <!-- DR MALWARE — LIVE -->
       <a class="proj-card" href="https://george-carter.itch.io/" target="_blank">
-        <div class="proj-head">
-          <div class="proj-title">DR MALWARE</div>
-          <div class="proj-badge live">■ LIVE</div>
-        </div>
+        <div class="proj-head"><div class="proj-title">DR MALWARE</div><div class="proj-badge live">■ LIVE</div></div>
         <div class="proj-desc">Classic puzzle mechanics rebuilt with MAGIC, HACKER &amp; BIRD theme variants. Each explores a different core game mechanic. Fully playable on itch.io.</div>
-        <div class="proj-tags">
-          <span class="tag">C++</span><span class="tag">GAMEPLAY SYSTEMS</span><span class="tag">CUSTOM LOGIC</span><span class="tag">PUZZLE</span>
-        </div>
+        <div class="proj-tags"><span class="tag">C++</span><span class="tag">GAMEPLAY SYSTEMS</span><span class="tag">CUSTOM LOGIC</span><span class="tag">PUZZLE</span></div>
         <div class="proj-bar"><div class="proj-fill" style="width:100%"></div></div>
         <div class="proj-foot"><span>STATUS: SHIPPED ✓</span><span>PLAY ON ITCH.IO →</span></div>
       </a>
 
-      <!-- CLOCKWORK HORRORS — LIVE -->
       <a class="proj-card" href="https://george-carter.itch.io/" target="_blank">
-        <div class="proj-head">
-          <div class="proj-title">CLOCKWORK HORRORS</div>
-          <div class="proj-badge live">■ LIVE</div>
-        </div>
+        <div class="proj-head"><div class="proj-title">CLOCKWORK HORRORS</div><div class="proj-badge live">■ LIVE</div></div>
         <div class="proj-desc">Intense first-person shooter set in an icy post-apocalyptic wasteland. Battle relentless waves of AI-corrupted infected as Timebot — humanity's last guardian. Time-Surge combos, adaptive enemy AI, and moral choices that shape the fate of mankind.</div>
-        <div class="proj-tags">
-          <span class="tag">C++</span><span class="tag">FPS</span><span class="tag">UNITY</span><span class="tag">AI SYSTEMS</span><span class="tag">FULL SAIL</span>
-        </div>
+        <div class="proj-tags"><span class="tag">C++</span><span class="tag">FPS</span><span class="tag">UNITY</span><span class="tag">AI SYSTEMS</span><span class="tag">FULL SAIL</span></div>
         <div class="proj-bar"><div class="proj-fill" style="width:100%"></div></div>
         <div class="proj-foot"><span>STATUS: SHIPPED ✓</span><span>PLAY ON ITCH.IO →</span></div>
       </a>
 
-      <!-- SHADOWS OF BEGINNINGS — LIVE -->
       <a class="proj-card" href="https://george-carter.itch.io/" target="_blank">
-        <div class="proj-head">
-          <div class="proj-title">SHADOWS OF BEGINNINGS</div>
-          <div class="proj-badge live">■ LIVE</div>
-        </div>
+        <div class="proj-head"><div class="proj-title">SHADOWS OF BEGINNINGS</div><div class="proj-badge live">■ LIVE</div></div>
         <div class="proj-desc">Action-Adventure RPG built in Unreal Engine. Rise from a newly registered adventurer to a powerful hero while rebuilding a dying town and surviving dark, horror-tinged encounters. George led UI/UX &amp; AI Design — HUD, menus, quest log, enemy behavior, horror event logic, and monster house triggers.</div>
-        <div class="proj-tags">
-          <span class="tag">UNREAL ENGINE</span><span class="tag">ARPG</span><span class="tag">UI/UX</span><span class="tag">AI DESIGN</span><span class="tag">NEBULA INTERACTIVE</span>
-        </div>
+        <div class="proj-tags"><span class="tag">UNREAL ENGINE</span><span class="tag">ARPG</span><span class="tag">UI/UX</span><span class="tag">AI DESIGN</span><span class="tag">NEBULA INTERACTIVE</span></div>
         <div class="proj-bar"><div class="proj-fill" style="width:100%"></div></div>
         <div class="proj-foot"><span>STATUS: SHIPPED ✓</span><span>DOWNLOAD ON ITCH.IO →</span></div>
       </a>
 
-      <!-- FEATHER FALL — IN DEV -->
       <a class="proj-card" href="https://george-carter.itch.io/" target="_blank">
-        <div class="proj-head">
-          <div class="proj-title">FEATHER FALL</div>
-          <div class="proj-badge wip">IN DEV</div>
-        </div>
+        <div class="proj-head"><div class="proj-title">FEATHER FALL</div><div class="proj-badge wip">IN DEV</div></div>
         <div class="proj-desc">A gravity-based puzzle game — drop rocks to brick eggs. Match 4 or more in a row to break them. A fresh spin on classic match-clearing mechanics with a bird-themed twist.</div>
-        <div class="proj-tags">
-          <span class="tag">C++</span><span class="tag">PUZZLE</span><span class="tag">MATCH-4</span><span class="tag">GAMEPLAY SYSTEMS</span>
-        </div>
+        <div class="proj-tags"><span class="tag">C++</span><span class="tag">PUZZLE</span><span class="tag">MATCH-4</span><span class="tag">GAMEPLAY SYSTEMS</span></div>
         <div class="proj-bar"><div class="proj-fill" style="width:20%"></div></div>
         <div class="proj-foot"><span>COMPLETION: EARLY DEV</span><span>COMING SOON →</span></div>
       </a>
@@ -506,13 +441,10 @@ body::before{content:'';position:fixed;inset:0;
       </div>
     </div>
 
-  </div><!-- /screens -->
-</div><!-- /app -->
+  </div>
+</div>
 
 <script>
-// ═══════════════════════
-// NAV
-// ═══════════════════════
 function showScreen(id, tab) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -521,33 +453,19 @@ function showScreen(id, tab) {
   if (id === 'xenai' && !faceBuilt) { buildFace(); faceBuilt = true; }
 }
 
-// ═══════════════════════
-// PWA INSTALL
-// ═══════════════════════
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
+  e.preventDefault(); deferredPrompt = e;
   document.getElementById('install-banner').style.display = 'flex';
 });
 function installApp() {
   if (deferredPrompt) {
     deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
-      deferredPrompt = null;
-      document.getElementById('install-banner').style.display = 'none';
-    });
-  } else {
-    alert('To install: tap Share → "Add to Home Screen" in Safari, or use Chrome\'s install option.');
-  }
+    deferredPrompt.userChoice.then(() => { deferredPrompt = null; document.getElementById('install-banner').style.display = 'none'; });
+  } else { alert('To install: tap Share → "Add to Home Screen" in Safari, or use Chrome\'s install option.'); }
 }
-window.addEventListener('appinstalled', () => {
-  document.getElementById('install-banner').style.display = 'none';
-});
+window.addEventListener('appinstalled', () => { document.getElementById('install-banner').style.display = 'none'; });
 
-// ═══════════════════════
-// XENAI FACE
-// ═══════════════════════
 let faceBuilt = false;
 window.xenaiSpeaking = false;
 
@@ -555,7 +473,6 @@ function buildFace() {
   const canvas = document.getElementById('xenai-canvas');
   const ctx = canvas.getContext('2d');
   const W = 240, H = 264, CX = 120, CY = 128;
-
   const skull = [];
   for (let i = 0; i < 36; i++) {
     const a = (i / 36) * Math.PI * 2;
@@ -585,7 +502,6 @@ function buildFace() {
   }));
   let t=0,rotY=0,rotX=0,tRotY=0,tRotX=0;
   let eyeA=0,eyeG=0,blinkS=0,blinkD=0,nextBlink=160,waveOff=0,speakI=0;
-
   function proj(x,y,z){
     const cy=Math.cos(rotY),sy=Math.sin(rotY),cx=Math.cos(rotX),sx=Math.sin(rotX);
     const x2=x*cy-z*sy,z2=x*sy+z*cy,y2=y*cx-z2*sx,z3=y*sx+z2*cx;
@@ -660,9 +576,6 @@ function buildFace() {
   frame();
 }
 
-// ═══════════════════════
-// GROQ AI + SPEECH
-// ═══════════════════════
 const GROQ_URL='https://api.groq.com/openai/v1/chat/completions';
 const GROQ_MDL='llama-3.3-70b-versatile';
 const SYS=`You are XENAI, the AI assistant embedded in George Carter's portfolio. You are an alien-human hybrid intelligence — the voice and consciousness of XenClipse Studios.
@@ -672,6 +585,7 @@ Speak like a real, confident woman: warm, precise, slightly mysterious. Natural 
 GEORGE CARTER FACTS:
 - Name: George Carter | Studio: XenClipse Studios (founder)
 - GitHub: github.com/George-Mando | itch.io: george-carter.itch.io | Email: xenclipsestudios@gmail.com
+- LinkedIn: linkedin.com/in/george-carter-ba996b315
 - Engines: Unreal Engine 5, Unity | Languages: C++, C# (primary), Python
 - Tools: Git, GitHub, Visual Studio, VS Code
 - Shipped: Shadows of Beginnings — Action-Adventure RPG built in Unreal Engine with Nebula Interactive; George led UI/UX & AI Design (HUD, menus, quest log, enemy behavior, horror event logic, monster house triggers); downloadable on itch.io
@@ -680,7 +594,7 @@ GEORGE CARTER FACTS:
 - In Development: Feather Fall — gravity-based puzzle game where you drop rocks to brick eggs; match 4 or more in a row to break them; a bird-themed twist on classic match-clearing mechanics
 - Philosophy: "Good game feel isn't magic — it's engineered."
 - Speciality: Gameplay systems, tools, plugins, world-building
-- Status: Open to hire and contracts — contact xenclipsestudios@gmail.com`;
+- Status: Open to hire and contracts — contact xenclipsestudios@gmail.com or connect on LinkedIn`;
 
 let apiKey=localStorage.getItem('xai_gk')||'';
 let hist=[],speaking=false;
@@ -754,11 +668,8 @@ async function send(){
 
 function ask(btn){document.getElementById('cin').value=btn.textContent;send();}
 
-// Service Worker registration
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('sw.js').catch(()=>{});
-  });
+  window.addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); });
 }
 </script>
 </body>
