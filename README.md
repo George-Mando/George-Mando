@@ -169,20 +169,37 @@ public:
 
 <div align="center">
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=merko&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=00ff9c&icon_color=00ff9c&text_color=c9d1d9"/>
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=George-Mando&layout=compact&langs_count=8&theme=merko&hide_border=true&bg_color=0d1117&title_color=00ff9c&text_color=c9d1d9"/>
+<!-- 
+  STATS NOTE: github-readme-stats and streak-stats are third-party services
+  that rate-limit and go down frequently. Using reliable shields.io badges
+  and the official GitHub stats card with a fallback approach instead.
+-->
+
+<!-- GitHub Stats — using vercel deployment with cache-busting for reliability -->
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=merko&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=00ff9c&icon_color=00ff9c&text_color=c9d1d9&cache_seconds=86400" onerror="this.style.display='none'" />
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=George-Mando&layout=compact&langs_count=8&theme=merko&hide_border=true&bg_color=0d1117&title_color=00ff9c&text_color=c9d1d9&cache_seconds=86400" onerror="this.style.display='none'" />
 
 </div>
 
 <div align="center">
 
-![Streak](https://streak-stats.demolab.com?user=George-Mando&theme=merko&hide_border=true&background=0D1117&ring=00FF9C&fire=FF6B35&currStreakLabel=00FF9C&sideLabels=00FF9C&dates=8b949e)
+<!-- Streak stats with longer cache -->
+<img src="https://streak-stats.demolab.com?user=George-Mando&theme=merko&hide_border=true&background=0D1117&ring=00FF9C&fire=FF6B35&currStreakLabel=00FF9C&sideLabels=00FF9C&dates=8b949e&cache_seconds=86400" onerror="this.style.display='none'" />
 
 </div>
 
 <div align="center">
 
-[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=George-Mando&theme=react-dark&bg_color=0d1117&color=00ff9c&line=00ff9c&point=ff6b35&area=true&hide_border=true)](https://github.com/ashutosh00710/github-readme-activity-graph)
+<!-- Reliable shields.io fallback stats that always work -->
+
+![](https://img.shields.io/github/followers/George-Mando?style=for-the-badge&color=00ff9c&labelColor=0d1117&label=FOLLOWERS&logo=github)
+![](https://img.shields.io/github/stars/George-Mando?style=for-the-badge&color=00ff9c&labelColor=0d1117&label=TOTAL+STARS&logo=github&affiliations=OWNER)
+
+</div>
+
+<div align="center">
+
+[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=George-Mando&theme=react-dark&bg_color=0d1117&color=00ff9c&line=00ff9c&point=ff6b35&area=true&hide_border=true)](https://ashutosh00710.github.io/github-readme-activity-graph)
 
 </div>
 
