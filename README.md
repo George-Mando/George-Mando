@@ -49,7 +49,7 @@ public:
     std::vector<std::string> engines = {"Unreal Engine 5", "Unity"};
     std::vector<std::string> langs   = {"C++", "C#", "Python"};
 
-    std::string currently_building = "Procedural Blueprint Generator (UE Plugin)";
+    std::string currently_building = "Feather Fall";
     std::string passion            = "Systems that feel alive";
     bool        open_to_work       = true;  // <-- hire me!
 
@@ -65,7 +65,7 @@ public:
 
 | 🎯 Focus | 🛠️ Currently | 🌱 Learning | ⚡ Fun Fact |
 |:---:|:---:|:---:|:---:|
-| Gameplay Systems & Tools | UE5 Plugin Dev | Engine Internals | I debug with printf and I'm not ashamed |
+| Gameplay Systems & Tools | Feather Fall | Engine Internals | I debug with printf and I'm not ashamed |
 
 </div>
 
@@ -89,8 +89,6 @@ public:
 🔗 *Coming soon to itch.io*
 
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 
 ### 💊 Dr Malware
@@ -105,6 +103,8 @@ public:
 🎮 [**Play on itch.io →**](https://george-carter.itch.io/)
 
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 
 ### ⚙️ Clockwork Horrors
@@ -119,8 +119,6 @@ public:
 🎮 [**Play on itch.io →**](https://george-carter.itch.io/)
 
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 
 ### 🌑 Shadows of Beginnings
@@ -133,9 +131,6 @@ public:
 ![AI Design](https://img.shields.io/badge/AI_Systems-27c93f?style=flat-square)
 
 🎮 [**Download on itch.io →**](https://george-carter.itch.io/)
-
-</td>
-<td width="50%" valign="top">
 
 </td>
 </tr>
@@ -210,7 +205,6 @@ public:
 ╔══════════════════════════════════════════════════════╗
 ║                   ACTIVE  QUESTS                     ║
 ╠══════════════════════════════════════════════════════╣
-║  [■■■■■■■░░░]  75%  Procedural Blueprint Generator  ║
 ║  [■■░░░░░░░░]  20%  Feather Fall                     ║
 ║  [■■■■■░░░░░]  50%  Portfolio polish & employer-ready║
 ║  [■■■░░░░░░░]  30%  Deeper UE5 engine internals      ║
