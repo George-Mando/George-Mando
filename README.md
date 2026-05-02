@@ -10,6 +10,7 @@
 
 [![itch.io](https://img.shields.io/badge/itch.io-%23FA5C5C.svg?style=for-the-badge&logo=itch.io&logoColor=white)](https://george-carter.itch.io/)
 [![GitHub](https://img.shields.io/badge/github-%23181717.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/George-Mando)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230A66C2.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/george-carter-ba996b315)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:xenclipsestudios@gmail.com)
 
 <br/>
@@ -222,6 +223,8 @@ public:
 &nbsp;
 [![GitHub Follow](https://img.shields.io/badge/GitHub-Follow%20Me-00ff9c?style=for-the-badge&logo=github&logoColor=white&labelColor=0d0d0d)](https://github.com/George-Mando)
 &nbsp;
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0d0d0d)](https://www.linkedin.com/in/george-carter-ba996b315)
+&nbsp;
 [![Email](https://img.shields.io/badge/Email-Hire%20Me-FF6B35?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0d0d0d)](mailto:xenclipsestudios@gmail.com)
 
 <br/>
@@ -236,52 +239,3 @@ public:
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0d0d,50:00ff9c,100:0d0d0d&height=120&section=footer&animation=fadeIn" />
 
 </div>
-
----
-
-<!-- ═══════════════════════════════════════════════════
-     ⚙️  SETUP GUIDE — DELETE AFTER READING
-     ═══════════════════════════════════════════════════
-
-  1. CREATE YOUR PROFILE REPO
-     → New repo named exactly: George-Mando
-     → Make it PUBLIC, check "Add a README file"
-     → Replace the README with this file
-
-  2. ACTIVATE THE SNAKE ANIMATION
-     → Go to the repo → Actions → "set up a workflow yourself"
-     → Paste this into the .yml file and save as snake.yml:
-
-name: Generate Snake
-on:
-  schedule: [{ cron: "0 */12 * * *" }]
-  workflow_dispatch:
-  push: { branches: ["main"] }
-jobs:
-  generate:
-    permissions: { contents: write }
-    runs-on: ubuntu-latest
-    steps:
-      - uses: Platane/snk/svg-only@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-      - uses: crazy-max/ghaction-github-pages@v3.1.0
-        with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-     → Run it once manually from Actions tab → snake will appear!
-
-  3. ANIMATED WAVE HEADER/FOOTER
-     → Works automatically via capsule-render.vercel.app
-     → No setup needed!
-
-  4. ACTIVITY GRAPH
-     → Works automatically after a few commits exist
-
-═══════════════════════════════════════════════════ -->
