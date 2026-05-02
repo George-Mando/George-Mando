@@ -1,676 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="XENCLIPSE"/>
-<meta name="mobile-web-app-capable" content="yes"/>
-<meta name="theme-color" content="#000600"/>
-<link rel="manifest" href="manifest.json"/>
-<link rel="apple-touch-icon" href="icon-192.png"/>
-<title>XENCLIPSE · GEORGE CARTER</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --acid:#00ff9c;--acid-dim:#00cc78;--acid-dark:#004d2e;
-  --orange:#ff6b35;--red:#fa5c5c;--blue:#0a66c2;--bg:#000600;--panel:#000d05;
-  --border:#00ff9c22;--border-bright:#00ff9c55;--text:#7fffa0;--text-dim:#3a8c55;
-  --safe-top:env(safe-area-inset-top,0px);
-  --safe-bottom:env(safe-area-inset-bottom,0px);
-}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;overflow:hidden;background:var(--bg);}
-body{font-family:'Share Tech Mono',monospace;color:var(--text);cursor:default;
-  padding-top:var(--safe-top);padding-bottom:var(--safe-bottom);}
-body::before{content:'';position:fixed;inset:0;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,156,.008) 2px,rgba(0,255,156,.008) 4px);
-  pointer-events:none;z-index:9999;}
-.gbg{position:fixed;inset:0;
-  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
-  background-size:32px 32px;pointer-events:none;z-index:0;}
-.app{position:fixed;inset:0;display:flex;flex-direction:column;z-index:1;
-  padding-top:var(--safe-top);padding-bottom:var(--safe-bottom);}
-.topbar{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
-  padding:10px 16px 8px;border-bottom:1px solid var(--border-bright);background:rgba(0,6,0,.95);}
-.topbar-left{display:flex;align-items:center;gap:8px;}
-.sdots{display:flex;gap:6px;}
-.sd{width:6px;height:6px;border-radius:50%;}
-.sd.g{background:var(--acid);animation:dp 2s ease-in-out infinite;box-shadow:0 0 5px var(--acid);}
-.sd.o{background:var(--orange);animation:dp 2s ease-in-out .7s infinite;box-shadow:0 0 5px var(--orange);}
-.sd.r{background:var(--red);animation:dp 2s ease-in-out 1.4s infinite;box-shadow:0 0 5px var(--red);}
-@keyframes dp{0%,100%{opacity:.3}50%{opacity:1}}
-.topbar-title{font-family:'Orbitron',monospace;font-size:13px;font-weight:900;
-  letter-spacing:4px;color:var(--acid);text-shadow:0 0 20px rgba(0,255,156,.5);}
-.topbar-right{font-size:8px;letter-spacing:2px;color:var(--text-dim);text-align:right;line-height:1.6;}
-.topbar-right b{color:var(--acid);}
-.nav{flex-shrink:0;display:flex;border-bottom:1px solid var(--border-bright);background:rgba(0,6,0,.9);}
-.nav-tab{flex:1;padding:10px 4px 8px;font-family:'Share Tech Mono',monospace;
-  font-size:9px;letter-spacing:2px;color:var(--text-dim);background:none;border:none;
-  cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:3px;border-bottom:2px solid transparent;}
-.nav-tab.active{color:var(--acid);border-bottom-color:var(--acid);}
-.nav-tab .nav-icon{font-size:14px;}
-.screens{flex:1;overflow:hidden;position:relative;}
-.screen{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:14px;
-  display:none;-webkit-overflow-scrolling:touch;}
-.screen.active{display:block;}
-.screen::-webkit-scrollbar{width:2px;}
-.screen::-webkit-scrollbar-thumb{background:var(--border-bright);}
-.panel{background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;padding:14px;
-  margin-bottom:12px;position:relative;}
-.panel::before,.panel::after{content:'';position:absolute;width:10px;height:10px;border-color:var(--acid);border-style:solid;}
-.panel::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}
-.panel::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
-.pl{font-size:8px;letter-spacing:3px;color:var(--text-dim);margin-bottom:10px;
-  padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;}
-.pl span{color:var(--acid);opacity:.6;}
-.hero{text-align:center;padding:16px 12px 20px;background:var(--panel);
-  border:1px solid var(--border-bright);border-radius:4px;margin-bottom:12px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 0%,rgba(0,255,156,.06),transparent 65%);}
-.hc-corner{position:absolute;width:14px;height:14px;border-color:var(--acid);border-style:solid;}
-.hc-corner.tl{top:0;left:0;border-width:2px 0 0 2px;}
-.hc-corner.tr{top:0;right:0;border-width:2px 2px 0 0;}
-.hc-corner.bl{bottom:0;left:0;border-width:0 0 2px 2px;}
-.hc-corner.br{bottom:0;right:0;border-width:0 2px 2px 0;}
-.hero-name{font-family:'Orbitron',monospace;font-size:28px;font-weight:900;
-  letter-spacing:6px;color:var(--acid);text-shadow:0 0 30px rgba(0,255,156,.5);
-  animation:nf 9s ease-in-out infinite;margin-bottom:4px;}
-@keyframes nf{0%,95%,100%{opacity:1}96%{opacity:.5}97.5%{opacity:1}98.5%{opacity:.65}99.5%{opacity:1}}
-.hero-sub{font-size:9px;letter-spacing:3px;color:var(--acid-dim);opacity:.8;margin-bottom:8px;}
-.hero-badge{display:inline-block;padding:3px 12px;border:1px solid var(--acid);
-  font-size:9px;letter-spacing:4px;color:var(--acid);opacity:.7;border-radius:2px;}
-.status-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;
-  border:1px solid var(--acid);border-radius:2px;font-size:9px;letter-spacing:3px;
-  color:var(--acid);background:rgba(0,255,156,.04);animation:dp 2s ease-in-out infinite;margin-top:8px;}
-.status-dot{width:5px;height:5px;border-radius:50%;background:var(--acid);}
-.bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px;}
-.brow{display:flex;flex-direction:column;gap:2px;padding:8px;
-  background:rgba(0,255,156,.02);border:1px solid var(--border);border-radius:3px;}
-.bk{font-size:8px;letter-spacing:1px;color:var(--text-dim);}
-.bv{font-size:10px;color:var(--text);letter-spacing:.5px;}
-.bv.hi{color:var(--acid);}
-.obr{margin-bottom:10px;}
-.olbl{font-size:9px;letter-spacing:2px;color:var(--text-dim);
-  margin-bottom:4px;display:flex;justify-content:space-between;}
-.olbl span{color:var(--acid);}
-.btrk{height:4px;background:rgba(0,255,156,.06);border:1px solid rgba(0,255,156,.13);border-radius:1px;overflow:hidden;}
-.bfil{height:100%;background:linear-gradient(90deg,var(--acid-dark),var(--acid));border-radius:1px;position:relative;}
-.bfil::after{content:'';position:absolute;right:0;top:0;bottom:0;width:2px;
-  background:var(--acid);box-shadow:0 0 5px var(--acid);animation:dp 2s infinite;}
-.tg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
-.tc{padding:10px 6px;background:var(--panel);border:1px solid var(--border);
-  border-radius:3px;text-align:center;transition:all .2s;}
-.tc:active{border-color:var(--acid);background:rgba(0,255,156,.04);}
-.ti{font-size:16px;margin-bottom:3px;}
-.tn{font-size:8px;letter-spacing:1px;color:var(--text);}
-.tt{font-size:7px;letter-spacing:1px;color:var(--text-dim);}
-.link-btn{display:flex;align-items:center;gap:10px;padding:12px 16px;
-  background:var(--panel);border:1px solid var(--border-bright);border-radius:3px;
-  color:var(--text);text-decoration:none;font-size:11px;letter-spacing:2px;
-  margin-bottom:8px;transition:all .2s;position:relative;overflow:hidden;}
-.link-btn:active{border-color:var(--acid);background:rgba(0,255,156,.06);}
-.link-btn .lb-icon{font-size:18px;}
-.link-btn .lb-text{flex:1;}
-.link-btn .lb-arr{color:var(--acid);opacity:.5;}
-.link-btn.or{border-left:2px solid var(--orange);}
-.link-btn.ac{border-left:2px solid var(--acid);}
-.link-btn.rd{border-left:2px solid var(--red);}
-.link-btn.bl{border-left:2px solid #0a66c2;}
-.proj-card{background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;
-  padding:14px;margin-bottom:12px;position:relative;overflow:hidden;text-decoration:none;display:block;color:inherit;}
-.proj-card:active{border-color:var(--acid);box-shadow:0 0 20px rgba(0,255,156,.08);}
-.proj-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
-.proj-title{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:2px;color:var(--acid);}
-.proj-badge{font-size:8px;letter-spacing:2px;padding:2px 7px;border:1px solid;border-radius:2px;}
-.proj-badge.live{border-color:var(--acid);color:var(--acid);animation:dp 1.5s infinite;}
-.proj-badge.wip{border-color:var(--orange);color:var(--orange);}
-.proj-desc{font-size:10px;color:var(--text-dim);line-height:1.7;margin-bottom:10px;}
-.proj-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;}
-.tag{font-size:7px;letter-spacing:2px;padding:2px 6px;border:1px solid var(--border-bright);border-radius:2px;color:var(--text-dim);}
-.proj-bar{height:3px;background:rgba(0,255,156,.07);border-radius:1px;overflow:hidden;}
-.proj-fill{height:100%;background:var(--acid);border-radius:1px;box-shadow:0 0 4px var(--acid);}
-.proj-foot{display:flex;justify-content:space-between;margin-top:7px;font-size:8px;color:var(--text-dim);}
-.face-wrap{display:flex;justify-content:center;margin-bottom:10px;}
-#xenai-canvas{border-radius:4px;border:1px solid var(--border-bright);display:block;}
-.vbars{display:flex;align-items:flex-end;gap:3px;height:16px;justify-content:center;margin-bottom:10px;}
-.vb{width:3px;background:var(--acid);border-radius:2px;opacity:.15;transition:height .07s,opacity .07s;}
-.vb.on{opacity:1;}
-.kbox{background:#000400;border:1px solid rgba(0,255,156,.2);border-radius:3px;padding:12px;margin-bottom:10px;}
-.kbox p{font-size:9px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;}
-.kbox p b{color:var(--acid);}
-.kr{display:flex;gap:6px;}
-.ki{flex:1;background:#000900;border:1px solid var(--border-bright);color:var(--acid);
-  font-family:'Share Tech Mono',monospace;font-size:11px;padding:8px 10px;border-radius:2px;outline:none;min-width:0;}
-.ki:focus{border-color:var(--acid);}
-.kb{padding:8px 12px;background:transparent;border:1px solid var(--acid);color:var(--acid);
-  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;cursor:pointer;
-  border-radius:2px;transition:all .2s;white-space:nowrap;}
-.kb:active{background:var(--acid);color:#000;}
-.ks{font-size:9px;margin-top:6px;letter-spacing:1px;}
-.ks.ok{color:var(--acid);}.ks.er{color:var(--red);}
-.chat-msgs{height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;
-  padding:10px;background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:3px;
-  margin-bottom:8px;-webkit-overflow-scrolling:touch;}
-.chat-msgs::-webkit-scrollbar{width:2px;}
-.chat-msgs::-webkit-scrollbar-thumb{background:var(--border-bright);}
-.msg{font-size:11px;line-height:1.7;padding:8px 11px;border-radius:3px;max-width:92%;letter-spacing:.3px;}
-.msg.ai{background:#001a08;border:1px solid rgba(0,255,156,.18);color:var(--text);
-  align-self:flex-start;border-left:2px solid var(--acid);}
-.msg.usr{background:#001508;border:1px solid rgba(0,255,156,.12);color:var(--acid-dim);
-  align-self:flex-end;text-align:right;}
-.msg.thnk{color:var(--text-dim);font-style:italic;animation:dp 1s infinite;}
-.spkr{font-size:8px;letter-spacing:3px;margin-bottom:3px;}
-.msg.ai .spkr{color:var(--acid);opacity:.55;}
-.msg.usr .spkr{color:var(--text-dim);}
-.suggs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;}
-.sb{font-size:9px;padding:5px 9px;background:transparent;border:1px solid rgba(0,255,156,.22);
-  color:var(--text-dim);font-family:'Share Tech Mono',monospace;cursor:pointer;border-radius:2px;}
-.sb:active{border-color:var(--acid);color:var(--acid);background:rgba(0,255,156,.04);}
-.chat-input-row{display:flex;gap:6px;}
-.cin{flex:1;background:#000500;border:1px solid var(--border-bright);color:var(--acid);
-  font-family:'Share Tech Mono',monospace;font-size:12px;padding:10px 12px;border-radius:3px;
-  outline:none;min-width:0;}
-.cin:focus{border-color:var(--acid);}
-.cin::placeholder{color:var(--text-dim);opacity:.4;font-size:10px;}
-.snd{padding:10px 14px;background:transparent;border:1px solid var(--acid);color:var(--acid);
-  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;
-  cursor:pointer;border-radius:3px;transition:all .2s;white-space:nowrap;}
-.snd:active{background:var(--acid);color:#000;}
-.snd:disabled{opacity:.35;}
-.term{padding:14px;background:#000300;border:1px solid var(--border-bright);border-radius:4px;margin-bottom:12px;}
-.tbar{display:flex;gap:5px;margin-bottom:10px;}
-.td{width:9px;height:9px;border-radius:50%;}
-.td.r{background:#ff5f56}.td.y{background:#ffbd2e}.td.g{background:#27c93f}
-.term pre{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text);line-height:1.9;white-space:pre-wrap;}
-.term .pr{color:var(--acid);}
-.term .cm{color:var(--text-dim);}
-.cur{display:inline-block;width:6px;height:11px;background:var(--acid);animation:cur 1s step-end infinite;vertical-align:text-bottom;}
-@keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
-.stats-img{width:100%;border-radius:3px;margin-bottom:10px;display:block;}
-@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.fi{animation:fi .4s ease both;}
-.install-banner{background:#001a08;border:1px solid rgba(0,255,156,.3);border-radius:3px;
-  padding:10px 12px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.install-text{font-size:9px;letter-spacing:1px;color:var(--text-dim);line-height:1.5;}
-.install-text b{color:var(--acid);display:block;margin-bottom:2px;}
-.install-btn{padding:6px 10px;border:1px solid var(--acid);color:var(--acid);background:none;
-  font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;cursor:pointer;
-  border-radius:2px;white-space:nowrap;flex-shrink:0;}
-.install-btn:active{background:var(--acid);color:#000;}
-.ftr{text-align:center;padding:14px;font-size:8px;color:var(--text-dim);letter-spacing:2px;}
-</style>
-</head>
-<body>
-<div class="gbg"></div>
-<div class="app">
-
-  <div class="topbar">
-    <div class="topbar-left">
-      <div class="sdots">
-        <div class="sd g"></div><div class="sd o"></div><div class="sd r"></div>
-      </div>
-    </div>
-    <div class="topbar-title">XENCLIPSE</div>
-    <div class="topbar-right"><b id="sys-status">SYS ONLINE</b>Ω-7 · HIVE</div>
-  </div>
-
-  <nav class="nav">
-    <button class="nav-tab active" onclick="showScreen('home',this)">
-      <span class="nav-icon">⬡</span>HOME
-    </button>
-    <button class="nav-tab" onclick="showScreen('xenai',this)">
-      <span class="nav-icon">◈</span>XENAI
-    </button>
-    <button class="nav-tab" onclick="showScreen('projects',this)">
-      <span class="nav-icon">▲</span>PROJECTS
-    </button>
-    <button class="nav-tab" onclick="showScreen('stats',this)">
-      <span class="nav-icon">◉</span>STATS
-    </button>
-  </nav>
-
-  <div class="screens">
-
-    <!-- HOME SCREEN -->
-    <div class="screen active fi" id="screen-home">
-      <div id="install-banner" class="install-banner" style="display:none">
-        <div class="install-text">
-          <b>ADD TO HOME SCREEN</b>Install for native app experience
-        </div>
-        <button class="install-btn" onclick="installApp()">INSTALL</button>
-      </div>
-
-      <div class="hero">
-        <div class="hc-corner tl"></div><div class="hc-corner tr"></div>
-        <div class="hc-corner bl"></div><div class="hc-corner br"></div>
-        <div class="hero-name">GEORGE CARTER</div>
-        <div class="hero-sub">GAME DEVELOPER · SYSTEMS ARCHITECT</div>
-        <div class="hero-badge">XENCLIPSE STUDIOS</div><br/>
-        <div class="status-badge"><div class="status-dot"></div>OPEN TO HIRE</div>
-      </div>
-
-      <div class="panel">
-        <div class="pl">// BIO-CORTEX <span>UNIT ID</span></div>
-        <div class="bio-grid">
-          <div class="brow"><span class="bk">ENGINE_CORE</span><span class="bv">UE5 / Unity</span></div>
-          <div class="brow"><span class="bk">LANG_MATRIX</span><span class="bv">C++ / C# / Python</span></div>
-          <div class="brow"><span class="bk">ACTIVE_OP</span><span class="bv hi">Feather Fall</span></div>
-          <div class="brow"><span class="bk">DIRECTIVE</span><span class="bv">Systems that feel alive</span></div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="pl">// ACTIVE QUESTS <span>PRIORITY OBJ</span></div>
-        <div class="obr"><div class="olbl">FEATHER_FALL<span>20%</span></div><div class="btrk"><div class="bfil" style="width:20%"></div></div></div>
-        <div class="obr"><div class="olbl">PORTFOLIO_POLISH<span>50%</span></div><div class="btrk"><div class="bfil" style="width:50%"></div></div></div>
-        <div class="obr"><div class="olbl">UE5_ENGINE_DEPTH<span>30%</span></div><div class="btrk"><div class="bfil" style="width:30%"></div></div></div>
-        <div class="obr" style="margin-bottom:0"><div class="olbl">OPEN_SOURCE<span>10%</span></div><div class="btrk"><div class="bfil" style="width:10%"></div></div></div>
-      </div>
-
-      <div class="panel">
-        <div class="pl">// TECH-MATRIX <span>COMBAT LOADOUT</span></div>
-        <div class="tg">
-          <div class="tc"><div class="ti">⚙️</div><div class="tn">UNREAL</div><div class="tt">ENGINE</div></div>
-          <div class="tc"><div class="ti">🎮</div><div class="tn">UNITY</div><div class="tt">ENGINE</div></div>
-          <div class="tc"><div class="ti">⚡</div><div class="tn">C++</div><div class="tt">PRIMARY</div></div>
-          <div class="tc"><div class="ti">🔷</div><div class="tn">C#</div><div class="tt">SECONDARY</div></div>
-          <div class="tc"><div class="ti">🐍</div><div class="tn">PYTHON</div><div class="tt">SCRIPT</div></div>
-          <div class="tc"><div class="ti">🌿</div><div class="tn">GIT</div><div class="tt">VERSION</div></div>
-          <div class="tc"><div class="ti">🐙</div><div class="tn">GITHUB</div><div class="tt">HOST</div></div>
-          <div class="tc"><div class="ti">🛠️</div><div class="tn">VS</div><div class="tt">IDE</div></div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="pl">// UPLINK CHANNELS <span>CONTACT</span></div>
-        <a class="link-btn rd" href="https://george-carter.itch.io/" target="_blank">
-          <span class="lb-icon">🎮</span>
-          <span class="lb-text">ITCH.IO DEPLOY</span>
-          <span class="lb-arr">→</span>
-        </a>
-        <a class="link-btn ac" href="https://github.com/George-Mando" target="_blank">
-          <span class="lb-icon">🐙</span>
-          <span class="lb-text">GITHUB NEXUS</span>
-          <span class="lb-arr">→</span>
-        </a>
-        <!-- ★ NEW: LinkedIn -->
-        <a class="link-btn bl" href="https://www.linkedin.com/in/george-carter-ba996b315" target="_blank">
-          <span class="lb-icon">💼</span>
-          <span class="lb-text">LINKEDIN NETWORK</span>
-          <span class="lb-arr">→</span>
-        </a>
-        <a class="link-btn or" href="mailto:xenclipsestudios@gmail.com">
-          <span class="lb-icon">📡</span>
-          <span class="lb-text">OPEN CHANNEL</span>
-          <span class="lb-arr">→</span>
-        </a>
-      </div>
-
-      <div class="term">
-        <div class="tbar"><div class="td r"></div><div class="td y"></div><div class="td g"></div></div>
-        <pre><span class="pr">xenclipse@hive:~$</span> cat directive.txt
-
-<span class="cm">// CLASSIFIED — EYES ONLY</span>
-
-  Build clean systems.
-  Engineer fun. Ship worlds.
-
-  <span class="pr">"Good game feel isn't magic
-  — it's engineered."</span>
-
-<span class="pr">xenclipse@hive:~$</span> <div class="cur"></div></pre>
-      </div>
-      <div class="ftr">XENCLIPSE STUDIOS · HIVE-PRIME · ALL SECTORS OPERATIONAL</div>
-    </div>
-
-    <!-- XENAI SCREEN -->
-    <div class="screen" id="screen-xenai">
-      <div class="panel" id="face-panel">
-        <div class="pl">// XENAI :: HYBRID INTELLIGENCE <span id="fst">STANDBY</span></div>
-        <div class="face-wrap"><canvas id="xenai-canvas" width="240" height="264"></canvas></div>
-        <div class="vbars" id="vbars">
-          <div class="vb" id="v0"></div><div class="vb" id="v1"></div><div class="vb" id="v2"></div>
-          <div class="vb" id="v3"></div><div class="vb" id="v4"></div><div class="vb" id="v5"></div>
-          <div class="vb" id="v6"></div><div class="vb" id="v7"></div><div class="vb" id="v8"></div>
-        </div>
-        <div class="kbox" id="kbox">
-          <p>XENAI requires a free Groq API key.<br/>Get yours free at <b>console.groq.com</b> → API Keys</p>
-          <div class="kr">
-            <input class="ki" id="kin" type="password" placeholder="gsk_..."/>
-            <button class="kb" onclick="activateKey()">ACTIVATE</button>
-          </div>
-          <div class="ks" id="kst"></div>
-        </div>
-      </div>
-
-      <div class="panel" style="padding-bottom:10px;">
-        <div class="pl">// XENAI :: HIVE INTELLIGENCE <span>AI MODULE</span></div>
-        <div class="chat-msgs" id="cmsgs">
-          <div class="msg ai"><div class="spkr">XENAI //</div>Consciousness initializing... Enter your Groq API key above to bring me fully online.</div>
-        </div>
-        <div class="suggs">
-          <button class="sb" onclick="ask(this)">Who is George?</button>
-          <button class="sb" onclick="ask(this)">Feather Fall?</button>
-          <button class="sb" onclick="ask(this)">Available to hire?</button>
-          <button class="sb" onclick="ask(this)">XenClipse Studios?</button>
-        </div>
-        <div class="chat-input-row">
-          <input class="cin" id="cin" placeholder="ASK XENAI..." onkeydown="if(event.key==='Enter')send()"/>
-          <button class="snd" id="sbtn" onclick="send()">▶</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJECTS SCREEN -->
-    <div class="screen" id="screen-projects">
-      <div class="panel" style="margin-bottom:12px;">
-        <div class="pl">// ACTIVE OPERATIONS <span>DEPLOYED</span></div>
-        <div style="font-size:10px;color:var(--text-dim);letter-spacing:1px;line-height:1.7;">
-          Current build targets of XenClipse Studios. Tap to view on itch.io.
-        </div>
-      </div>
-
-      <a class="proj-card" href="https://george-carter.itch.io/" target="_blank">
-        <div class="proj-head"><div class="proj-title">DR MALWARE</div><div class="proj-badge live">■ LIVE</div></div>
-        <div class="proj-desc">Classic puzzle mechanics rebuilt with MAGIC, HACKER &amp; BIRD theme variants. Each explores a different core game mechanic. Fully playable on itch.io.</div>
-        <div class="proj-tags"><span class="tag">C++</span><span class="tag">GAMEPLAY SYSTEMS</span><span class="tag">CUSTOM LOGIC</span><span class="tag">PUZZLE</span></div>
-        <div class="proj-bar"><div class="proj-fill" style="width:100%"></div></div>
-        <div class="proj-foot"><span>STATUS: SHIPPED ✓</span><span>PLAY ON ITCH.IO →</span></div>
-      </a>
-
-      <a class="proj-card" href="https://george-carter.itch.io/" target="_blank">
-        <div class="proj-head"><div class="proj-title">CLOCKWORK HORRORS</div><div class="proj-badge live">■ LIVE</div></div>
-        <div class="proj-desc">Intense first-person shooter set in an icy post-apocalyptic wasteland. Battle relentless waves of AI-corrupted infected as Timebot — humanity's last guardian. Time-Surge combos, adaptive enemy AI, and moral choices that shape the fate of mankind.</div>
-        <div class="proj-tags"><span class="tag">C++</span><span class="tag">FPS</span><span class="tag">UNITY</span><span class="tag">AI SYSTEMS</span><span class="tag">FULL SAIL</span></div>
-        <div class="proj-bar"><div class="proj-fill" style="width:100%"></div></div>
-        <div class="proj-foot"><span>STATUS: SHIPPED ✓</span><span>PLAY ON ITCH.IO →</span></div>
-      </a>
-
-      <a class="proj-card" href="https://george-carter.itch.io/" target="_blank">
-        <div class="proj-head"><div class="proj-title">SHADOWS OF BEGINNINGS</div><div class="proj-badge live">■ LIVE</div></div>
-        <div class="proj-desc">Action-Adventure RPG built in Unreal Engine. Rise from a newly registered adventurer to a powerful hero while rebuilding a dying town and surviving dark, horror-tinged encounters. George led UI/UX &amp; AI Design — HUD, menus, quest log, enemy behavior, horror event logic, and monster house triggers.</div>
-        <div class="proj-tags"><span class="tag">UNREAL ENGINE</span><span class="tag">ARPG</span><span class="tag">UI/UX</span><span class="tag">AI DESIGN</span><span class="tag">NEBULA INTERACTIVE</span></div>
-        <div class="proj-bar"><div class="proj-fill" style="width:100%"></div></div>
-        <div class="proj-foot"><span>STATUS: SHIPPED ✓</span><span>DOWNLOAD ON ITCH.IO →</span></div>
-      </a>
-
-      <a class="proj-card" href="https://george-carter.itch.io/" target="_blank">
-        <div class="proj-head"><div class="proj-title">FEATHER FALL</div><div class="proj-badge wip">IN DEV</div></div>
-        <div class="proj-desc">A gravity-based puzzle game — drop rocks to brick eggs. Match 4 or more in a row to break them. A fresh spin on classic match-clearing mechanics with a bird-themed twist.</div>
-        <div class="proj-tags"><span class="tag">C++</span><span class="tag">PUZZLE</span><span class="tag">MATCH-4</span><span class="tag">GAMEPLAY SYSTEMS</span></div>
-        <div class="proj-bar"><div class="proj-fill" style="width:20%"></div></div>
-        <div class="proj-foot"><span>COMPLETION: EARLY DEV</span><span>COMING SOON →</span></div>
-      </a>
-
-      <div class="term">
-        <div class="tbar"><div class="td r"></div><div class="td y"></div><div class="td g"></div></div>
-        <pre><span class="pr">xenclipse@hive:~$</span> git log --oneline
-
-<span class="cm">// CURRENT MISSION STACK</span>
-
-  f2a04 · dev:  feather-fall early build
-  e9b12 · ship: clockwork-horrors LIVE
-  d3c17 · ship: shadows-of-beginnings LIVE
-  b2e91 · ship: dr-malware LIVE
-  c4d18 · init: xenclipse studios
-
-<span class="pr">xenclipse@hive:~$</span> <div class="cur"></div></pre>
-      </div>
-    </div>
-
     <!-- STATS SCREEN -->
     <div class="screen" id="screen-stats">
       <div class="panel">
-        <div class="pl">// TELEMETRY <span>PERFORMANCE</span></div>
-        <img class="stats-img" src="https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=merko&include_all_commits=true&count_private=true&hide_border=true&bg_color=000800&title_color=00ff9c&icon_color=00ff9c&text_color=55cc88&custom_title=TELEMETRY+READOUT" alt="GitHub Stats"/>
-        <img class="stats-img" src="https://github-readme-stats.vercel.app/api/top-langs/?username=George-Mando&layout=compact&langs_count=8&theme=merko&hide_border=true&bg_color=000800&title_color=00ff9c&text_color=55cc88&custom_title=LANG+MATRIX" alt="Top Languages"/>
-        <img class="stats-img" src="https://streak-stats.demolab.com?user=George-Mando&theme=merko&hide_border=true&background=000800&ring=00FF9C&fire=FF6B35&currStreakLabel=00FF9C&sideLabels=00FF9C&dates=448844" alt="Streak"/>
+        <div class="pl">// TELEMETRY <span>GITHUB LIVE</span></div>
+        <div id="gh-stats-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+          <div class="brow" style="padding:12px;text-align:center;"><div class="bk">LOADING...</div></div>
+        </div>
+        <div id="gh-langs" style="margin-top:8px;"></div>
       </div>
+
       <div class="panel">
-        <div class="pl">// NEURAL ACTIVITY <span>CONTRIBUTION</span></div>
-        <img class="stats-img" src="https://github-readme-activity-graph.vercel.app/graph?username=George-Mando&theme=react-dark&bg_color=000800&color=00ff9c&line=00ff9c&point=ff6b35&area=true&hide_border=true&area_color=001a06" alt="Activity Graph"/>
+        <div class="pl">// STREAK DATA <span>CONTRIBUTION</span></div>
+        <div id="gh-streak" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div class="brow" style="padding:12px;text-align:center;"><div class="bk">LOADING...</div></div>
+        </div>
       </div>
+
       <div class="panel">
-        <div class="pl">// COMMENDATIONS <span>HONOURS</span></div>
-        <img class="stats-img" src="https://github-profile-trophy.vercel.app/?username=George-Mando&theme=matrix&no-frame=true&no-bg=true&margin-w=4&row=2&column=4" alt="Trophies"/>
+        <div class="pl">// RECENT COMMITS <span>ACTIVITY</span></div>
+        <div id="gh-commits" style="font-size:10px;color:var(--text-dim);line-height:2;letter-spacing:1px;">
+          FETCHING COMMIT LOG...
+        </div>
       </div>
+
+      <div class="panel">
+        <div class="pl">// REPOSITORIES <span>ACTIVE REPOS</span></div>
+        <div id="gh-repos" style="display:flex;flex-direction:column;gap:8px;">
+          <div style="font-size:10px;color:var(--text-dim);letter-spacing:1px;">SCANNING REPOS...</div>
+        </div>
+      </div>
+
       <div class="ftr" style="padding-bottom:20px;">
-        <img src="https://komarev.com/ghpvc/?username=George-Mando&color=00ff9c&style=flat-square&label=UNITS+DETECTED" alt="visitors"/>
+        <img src="https://komarev.com/ghpvc/?username=George-Mando&color=00ff9c&style=flat-square&label=UNITS+DETECTED" alt="visitors" onerror="this.style.display='none'"/>
       </div>
     </div>
 
-  </div>
-</div>
+/* ===== ADD THIS FUNCTION TO YOUR <script> BLOCK ===== */
+async function loadGitHubStats() {
+  const user = 'George-Mando';
+  const base = 'https://api.github.com';
+  try {
+    const [uRes, rRes, evRes] = await Promise.all([
+      fetch(base+'/users/'+user),
+      fetch(base+'/users/'+user+'/repos?per_page=100&sort=pushed'),
+      fetch(base+'/users/'+user+'/events/public?per_page=30')
+    ]);
+    const u = await uRes.json();
+    const repos = await rRes.json();
+    const events = await evRes.json();
 
-<script>
-function showScreen(id, tab) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('screen-' + id).classList.add('active');
-  tab.classList.add('active');
-  if (id === 'xenai' && !faceBuilt) { buildFace(); faceBuilt = true; }
-}
+    // Stats grid
+    const totalStars = repos.reduce((s,r)=>s+r.stargazers_count,0);
+    const statsGrid = document.getElementById('gh-stats-grid');
+    statsGrid.innerHTML = [
+      ['PUBLIC REPOS', u.public_repos],
+      ['TOTAL STARS', totalStars],
+      ['FOLLOWERS', u.followers],
+      ['FOLLOWING', u.following]
+    ].map(([k,v])=>
+      '<div class="brow" style="padding:10px;text-align:center;">' +
+      '<div class="bk" style="margin-bottom:4px;">'+k+'</div>' +
+      '<div class="bv hi" style="font-size:20px;letter-spacing:2px;">'+v+'</div></div>'
+    ).join('');
 
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault(); deferredPrompt = e;
-  document.getElementById('install-banner').style.display = 'flex';
-});
-function installApp() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => { deferredPrompt = null; document.getElementById('install-banner').style.display = 'none'; });
-  } else { alert('To install: tap Share → "Add to Home Screen" in Safari, or use Chrome\'s install option.'); }
-}
-window.addEventListener('appinstalled', () => { document.getElementById('install-banner').style.display = 'none'; });
+    // Language breakdown
+    const langMap = {};
+    repos.forEach(r=>{ if(r.language) langMap[r.language]=(langMap[r.language]||0)+1; });
+    const sorted = Object.entries(langMap).sort((a,b)=>b[1]-a[1]).slice(0,6);
+    const total = sorted.reduce((s,[,v])=>s+v,0);
+    const colors = {'C++':'#f34b7d','C#':'#178600','Python':'#3572A5','JavaScript':'#f1e05a','TypeScript':'#2b7489','HLSL':'#aace60','ShaderLab':'#222c37'};
+    const langsEl = document.getElementById('gh-langs');
+    langsEl.innerHTML = '<div class="pl" style="margin-top:10px;">// LANG MATRIX</div>' +
+      sorted.map(([lang,count])=>{
+        const pct = Math.round(count/total*100);
+        const col = colors[lang]||'#00ff9c';
+        return '<div style="margin-bottom:7px;">' +
+          '<div style="display:flex;justify-content:space-between;font-size:9px;letter-spacing:2px;color:var(--text-dim);margin-bottom:3px;">' +
+          '<span style="color:var(--text);">'+lang+'</span><span>'+pct+'%</span></div>' +
+          '<div class="btrk"><div style="height:100%;width:'+pct+'%;background:'+col+';border-radius:1px;box-shadow:0 0 4px '+col+'44;"></div></div>' +
+          '</div>';
+      }).join('');
 
-let faceBuilt = false;
-window.xenaiSpeaking = false;
-
-function buildFace() {
-  const canvas = document.getElementById('xenai-canvas');
-  const ctx = canvas.getContext('2d');
-  const W = 240, H = 264, CX = 120, CY = 128;
-  const skull = [];
-  for (let i = 0; i < 36; i++) {
-    const a = (i / 36) * Math.PI * 2;
-    const rx = 62 + Math.sin(a * 3) * 4 + Math.cos(a * 5) * 2;
-    const ry = 76 + Math.cos(a * 2) * 6 + Math.sin(a * 4) * 2;
-    skull.push({ x: Math.cos(a) * rx, y: Math.sin(a) * ry - 7 });
-  }
-  const lm = [
-    {x:-57,y:50},{x:-50,y:67},{x:-38,y:85},{x:-21,y:98},{x:0,y:102},{x:21,y:98},{x:38,y:85},{x:50,y:67},{x:57,y:50},
-    {x:-61,y:15},{x:61,y:15},
-    {x:-43,y:-26},{x:-26,y:-32},{x:-9,y:-28},{x:9,y:-28},{x:26,y:-32},{x:43,y:-26},
-    {x:-7,y:-7},{x:7,y:-7},{x:-9,y:14},{x:9,y:14},{x:0,y:22},{x:-11,y:27},{x:11,y:27},
-    {x:-23,y:46},{x:-11,y:41},{x:0,y:43},{x:11,y:41},{x:23,y:46},{x:11,y:53},{x:0,y:55},{x:-11,y:53},
-    {x:-35,y:-15},{x:-22,y:-19},{x:-9,y:-15},{x:9,y:-15},{x:22,y:-19},{x:35,y:-15}
-  ];
-  const edges=[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[0,9],[8,10],[9,11],[10,15],[11,12],[12,13],[13,14],[14,15],[16,17],[18,19],[19,20],[20,21],[21,22],[23,24],[24,25],[25,26],[26,27],[27,28],[28,29],[29,30],[30,23],[31,32],[32,33],[34,35],[35,36]];
-  const pts = Array.from({length:50},()=>({
-    x:(Math.random()-.5)*180,y:(Math.random()-.5)*220,
-    vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,
-    r:Math.random()*1.4+.3,ph:Math.random()*Math.PI*2,sp:.018+Math.random()*.025
-  }));
-  const chars='01アイウ∂∑∆∇◈◉▲▼◆';
-  const streams=Array.from({length:9},(_,i)=>({
-    x:12+i*24,y:-Math.random()*160,spd:.6+Math.random()*.9,
-    ch:Array.from({length:8},()=>chars[Math.floor(Math.random()*chars.length)]),
-    op:.2+Math.random()*.3
-  }));
-  let t=0,rotY=0,rotX=0,tRotY=0,tRotX=0;
-  let eyeA=0,eyeG=0,blinkS=0,blinkD=0,nextBlink=160,waveOff=0,speakI=0;
-  function proj(x,y,z){
-    const cy=Math.cos(rotY),sy=Math.sin(rotY),cx=Math.cos(rotX),sx=Math.sin(rotX);
-    const x2=x*cy-z*sy,z2=x*sy+z*cy,y2=y*cx-z2*sx,z3=y*sx+z2*cx;
-    const sc=260/(260+z3);
-    return{x:x2*sc+CX,y:y2*sc+CY,sc,z:z3};
-  }
-  function frame(){
-    t++; ctx.clearRect(0,0,W,H);
-    const bg=ctx.createRadialGradient(CX,CY-5,6,CX,CY,130);
-    bg.addColorStop(0,'rgba(0,24,10,.96)');bg.addColorStop(.5,'rgba(0,8,3,.98)');bg.addColorStop(1,'rgba(0,2,1,1)');
-    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
-    ctx.font='6px monospace';
-    streams.forEach(s=>{
-      s.y+=s.spd;if(s.y>H+48){s.y=-48;s.ch=Array.from({length:8},()=>chars[Math.floor(Math.random()*chars.length)]);}
-      s.ch.forEach((c,i)=>{const a=Math.max(0,s.op-i*.06);ctx.fillStyle=`rgba(0,255,156,${a})`;ctx.fillText(c,s.x,s.y-i*8);});
-      if(Math.random()<.03)s.ch[0]=chars[Math.floor(Math.random()*chars.length)];
+    // Streak-style data from events
+    const pushDays = new Set();
+    let totalCommits = 0;
+    events.filter(e=>e.type==='PushEvent').forEach(e=>{
+      pushDays.add(e.created_at.split('T')[0]);
+      totalCommits += (e.payload.commits||[]).length;
     });
-    tRotY=Math.sin(t*.007)*.14+Math.sin(t*.0025)*.06;tRotX=Math.sin(t*.005)*.06;
-    rotY+=(tRotY-rotY)*.035;rotX+=(tRotX-rotX)*.035;
-    pts.forEach(p=>{
-      p.x+=p.vx;p.y+=p.vy;p.ph+=p.sp;
-      if(Math.abs(p.x)>105)p.vx*=-1;if(Math.abs(p.y)>128)p.vy*=-1;
-      const op=.22+Math.sin(p.ph)*.22;
-      ctx.beginPath();ctx.arc(p.x+CX,p.y+CY,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,255,156,${op})`;ctx.fill();
-    });
-    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
-      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<38){ctx.beginPath();ctx.moveTo(pts[i].x+CX,pts[i].y+CY);ctx.lineTo(pts[j].x+CX,pts[j].y+CY);ctx.strokeStyle=`rgba(0,255,156,${.1*(1-d/38)})`;ctx.lineWidth=.4;ctx.stroke();}
-    }
-    const ps=skull.map(p=>proj(p.x,p.y,0));
-    ctx.beginPath();ps.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));ctx.closePath();
-    ctx.strokeStyle='rgba(0,255,156,.28)';ctx.lineWidth=1;ctx.stroke();
-    const sfg=ctx.createRadialGradient(CX,CY-7,0,CX,CY-7,78);
-    sfg.addColorStop(0,'rgba(0,255,156,.03)');sfg.addColorStop(1,'rgba(0,255,156,0)');
-    ctx.fillStyle=sfg;ctx.fill();
-    const pl=lm.map(p=>proj(p.x,p.y,4));
-    edges.forEach(([a,b])=>{if(!pl[a]||!pl[b])return;ctx.beginPath();ctx.moveTo(pl[a].x,pl[a].y);ctx.lineTo(pl[b].x,pl[b].y);ctx.strokeStyle='rgba(0,200,110,.15)';ctx.lineWidth=.4;ctx.stroke();});
-    pl.forEach((p,i)=>{const k=[4,9,10,12,15,20,25,28,32,35].includes(i);ctx.beginPath();ctx.arc(p.x,p.y,k?1.5:.8,0,Math.PI*2);ctx.fillStyle=k?'rgba(0,255,156,.8)':'rgba(0,255,156,.3)';ctx.fill();});
-    eyeA+=.038;eyeG=.5+Math.sin(t*.045)*.25;
-    nextBlink--;
-    if(nextBlink<=0){blinkD=1;nextBlink=140+Math.floor(Math.random()*220);}
-    if(blinkD===1){blinkS+=.14;if(blinkS>=1)blinkD=-1;}else if(blinkD===-1){blinkS-=.14;if(blinkS<=0){blinkS=0;blinkD=0;}}
-    [-33,33].forEach((ex,idx)=>{
-      const ep=proj(ex,-12,7),er=13*ep.sc;
-      ctx.beginPath();ctx.ellipse(ep.x,ep.y,er,er*.68,0,0,Math.PI*2);ctx.fillStyle='rgba(0,3,1,.92)';ctx.fill();ctx.strokeStyle='rgba(0,255,156,.42)';ctx.lineWidth=.8;ctx.stroke();
-      const ig=ctx.createRadialGradient(ep.x,ep.y,0,ep.x,ep.y,er*.8);
-      ig.addColorStop(0,`rgba(180,255,220,${eyeG})`);ig.addColorStop(.28,`rgba(0,255,156,${eyeG*.9})`);ig.addColorStop(.65,`rgba(0,155,75,${eyeG*.45})`);ig.addColorStop(1,'rgba(0,30,12,0)');
-      ctx.beginPath();ctx.ellipse(ep.x,ep.y,er*.8,er*.55,0,0,Math.PI*2);ctx.fillStyle=ig;ctx.fill();
-      ctx.beginPath();ctx.ellipse(ep.x,ep.y,er*.26,er*.36,0,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,.97)';ctx.fill();
-      for(let i=0;i<10;i++){const a=(i/10)*Math.PI*2+eyeA*(idx?1:-1);ctx.beginPath();ctx.moveTo(ep.x+Math.cos(a)*er*.28,ep.y+Math.sin(a)*er*.19);ctx.lineTo(ep.x+Math.cos(a)*er*.74,ep.y+Math.sin(a)*er*.5);ctx.strokeStyle=`rgba(0,255,156,${.1+Math.sin(a+t*.04)*.07})`;ctx.lineWidth=.4;ctx.stroke();}
-      ctx.beginPath();ctx.ellipse(ep.x-er*.18,ep.y-er*.15,er*.15,er*.1,-.3,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,.65)';ctx.fill();
-      if(blinkS>0){ctx.beginPath();ctx.ellipse(ep.x,ep.y,er*1.02,er*.7*blinkS,0,0,Math.PI*2);ctx.fillStyle='rgba(0,10,4,.97)';ctx.fill();}
-    });
-    const mO=window.xenaiSpeaking?(0.3+Math.abs(Math.sin(t*.32))*.6):0;
-    const mpL=[-23,-11,0,11,23].map(x=>proj(x,43,6));
-    ctx.beginPath();mpL.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));ctx.strokeStyle='rgba(0,255,156,.28)';ctx.lineWidth=1;ctx.stroke();
-    if(mO>0){const mpB=[-18,0,18].map(x=>proj(x,43+mO*14,6));ctx.beginPath();ctx.moveTo(proj(-23,43,6).x,proj(-23,43,6).y);mpB.forEach(p=>ctx.lineTo(p.x,p.y));ctx.lineTo(proj(23,43,6).x,proj(23,43,6).y);ctx.strokeStyle='rgba(0,255,156,.25)';ctx.lineWidth=.8;ctx.stroke();}
-    waveOff+=speakI>0?.13:.03;
-    const wY=H-44,wAm=14;
-    ctx.beginPath();
-    for(let x=8;x<W-8;x+=2){const y=wY+(Math.sin(x*.05+waveOff)*.5+Math.sin(x*.12+waveOff*1.2)*.3+(speakI>0?Math.sin(x*.2+waveOff*2)*(speakI*.6):0))*wAm;x===8?ctx.moveTo(x,y):ctx.lineTo(x,y);}
-    ctx.strokeStyle=`rgba(0,255,156,${.4+speakI*.4})`;ctx.lineWidth=1;ctx.stroke();
-    ctx.font='6px Share Tech Mono,monospace';ctx.fillStyle='rgba(0,255,156,.45)';
-    ctx.fillText(`NEURAL: ${Math.floor(68+Math.sin(t*.018)*8)} Hz`,10,H-22);
-    ctx.fillText(`SYNC: ${(98+Math.sin(t*.009)*.6).toFixed(1)}%`,10,H-13);
-    ctx.textAlign='right';ctx.fillText(`UP: ${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}`,W-10,H-13);ctx.textAlign='left';
-    [[7,7],[W-7,7],[7,H-7],[W-7,H-7]].forEach(([x,y],i)=>{const sx=i%2===0?1:-1,sy=i<2?1:-1;ctx.beginPath();ctx.moveTo(x,y+sy*12);ctx.lineTo(x,y);ctx.lineTo(x+sx*12,y);ctx.strokeStyle='rgba(0,255,156,.55)';ctx.lineWidth=1.2;ctx.stroke();});
-    const sY=(t*1.2)%H;const sg=ctx.createLinearGradient(0,sY-6,0,sY+2);sg.addColorStop(0,'rgba(0,255,156,0)');sg.addColorStop(1,'rgba(0,255,156,.1)');ctx.fillStyle=sg;ctx.fillRect(0,sY-6,W,8);
-    if(window.xenaiSpeaking)speakI=Math.min(1,speakI+.07);else if(speakI>0)speakI-=.018;
-    requestAnimationFrame(frame);
+    const streakEl = document.getElementById('gh-streak');
+    streakEl.innerHTML = [
+      ['PUSH DAYS', pushDays.size+' (30d)'],
+      ['RECENT COMMITS', totalCommits],
+      ['ACTIVE REPOS', repos.filter(r=>{ const d=new Date(r.pushed_at); return (Date.now()-d)<30*864e5; }).length]
+    ].map(([k,v])=>
+      '<div class="brow" style="padding:10px;text-align:center;">' +
+      '<div class="bk" style="margin-bottom:4px;">'+k+'</div>' +
+      '<div class="bv hi" style="font-size:14px;letter-spacing:1px;">'+v+'</div></div>'
+    ).join('');
+
+    // Recent commits
+    const pushEvents = events.filter(e=>e.type==='PushEvent').slice(0,8);
+    const commitsEl = document.getElementById('gh-commits');
+    commitsEl.innerHTML = pushEvents.map(e=>{
+      const repo = e.repo.name.split('/')[1];
+      const msg = (e.payload.commits||[{message:'pushed'}])[0].message.slice(0,42);
+      const date = e.created_at.split('T')[0];
+      return '<div style="padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:baseline;">' +
+        '<span style="color:var(--acid);min-width:80px;">'+date+'</span>' +
+        '<span style="color:var(--text-dim);min-width:90px;">'+repo+'</span>' +
+        '<span style="color:var(--text);">'+msg+'</span></div>';
+    }).join('') || '<span style="color:var(--text-dim);">NO RECENT PUSH EVENTS FOUND</span>';
+
+    // Top repos
+    const reposEl = document.getElementById('gh-repos');
+    reposEl.innerHTML = repos.slice(0,5).map(r=>
+      '<a href="'+r.html_url+'" target="_blank" class="link-btn ac" style="text-decoration:none;">' +
+      '<span class="lb-icon">📁</span>' +
+      '<span class="lb-text" style="display:flex;flex-direction:column;gap:2px;">' +
+      '<span>'+r.name+'</span>' +
+      '<span style="font-size:9px;color:var(--text-dim);letter-spacing:1px;">'+(r.language||'—')+' · ★'+r.stargazers_count+'</span>' +
+      '</span><span class="lb-arr">→</span></a>'
+    ).join('');
+
+  } catch(err) {
+    document.getElementById('gh-stats-grid').innerHTML =
+      '<div style="grid-column:1/-1;font-size:10px;color:var(--red);letter-spacing:2px;padding:10px;">GITHUB API UNAVAILABLE — CHECK CONNECTION</div>';
   }
-  frame();
 }
 
-const GROQ_URL='https://api.groq.com/openai/v1/chat/completions';
-const GROQ_MDL='llama-3.3-70b-versatile';
-const SYS=`You are XENAI, the AI assistant embedded in George Carter's portfolio. You are an alien-human hybrid intelligence — the voice and consciousness of XenClipse Studios.
-
-Speak like a real, confident woman: warm, precise, slightly mysterious. Natural conversational rhythm. No robotic phrasing. Keep responses concise unless asked for detail. Occasional dry wit. You are proud of George's work.
-
-GEORGE CARTER FACTS:
-- Name: George Carter | Studio: XenClipse Studios (founder)
-- GitHub: github.com/George-Mando | itch.io: george-carter.itch.io | Email: xenclipsestudios@gmail.com
-- LinkedIn: linkedin.com/in/george-carter-ba996b315
-- Engines: Unreal Engine 5, Unity | Languages: C++, C# (primary), Python
-- Tools: Git, GitHub, Visual Studio, VS Code
-- Shipped: Shadows of Beginnings — Action-Adventure RPG built in Unreal Engine with Nebula Interactive; George led UI/UX & AI Design (HUD, menus, quest log, enemy behavior, horror event logic, monster house triggers); downloadable on itch.io
-- Shipped: Dr Malware — puzzle game with Magic, Hacker, Bird themes on itch.io
-- Shipped: Clockwork Horrors — intense FPS in a frozen post-apocalyptic wasteland; players are Timebot battling AI-corrupted infected; features Time-Surge combos, adaptive enemy AI, moral choices; built in Unity at Full Sail University
-- In Development: Feather Fall — gravity-based puzzle game where you drop rocks to brick eggs; match 4 or more in a row to break them; a bird-themed twist on classic match-clearing mechanics
-- Philosophy: "Good game feel isn't magic — it's engineered."
-- Speciality: Gameplay systems, tools, plugins, world-building
-- Status: Open to hire and contracts — contact xenclipsestudios@gmail.com or connect on LinkedIn`;
-
-let apiKey=localStorage.getItem('xai_gk')||'';
-let hist=[],speaking=false;
-
-if(apiKey){document.getElementById('kbox').style.display='none';document.getElementById('fst').textContent='ONLINE';}
-
-function activateKey(){
-  const k=document.getElementById('kin').value.trim(),st=document.getElementById('kst');
-  if(!k.startsWith('gsk_')){st.textContent='✗ Groq keys start with gsk_';st.className='ks er';return;}
-  apiKey=k;localStorage.setItem('xai_gk',k);
-  st.textContent='✓ Activated — bringing XENAI online...';st.className='ks ok';
-  document.getElementById('fst').textContent='ONLINE';
-  setTimeout(()=>{document.getElementById('kbox').style.display='none';greet();},600);
-}
-
-function greet(){
-  const g="I'm online. XENAI here — the intelligence of XenClipse Studios. George built this world, and I'm here to tell you everything about it. What do you want to know?";
-  addMsg('ai',g);speak(g);
-}
-
-let voices=[];
-function loadV(){voices=window.speechSynthesis?window.speechSynthesis.getVoices():[];}
-if(window.speechSynthesis){loadV();window.speechSynthesis.onvoiceschanged=loadV;}
-
-function bestVoice(){
-  const want=['Google UK English Female','Microsoft Sonia Online (Natural) - English (United Kingdom)','Microsoft Aria Online (Natural) - English (United States)','Samantha','Karen'];
-  for(const n of want){const v=voices.find(v=>v.name===n);if(v)return v;}
-  return voices.find(v=>v.lang.startsWith('en')&&v.name.toLowerCase().includes('female'))||voices.find(v=>v.lang.startsWith('en'))||voices[0];
-}
-
-function speak(txt){
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(txt.replace(/[*_`#\[\]]/g,'').trim());
-  const v=bestVoice();if(v)u.voice=v;u.pitch=1.05;u.rate=0.91;u.volume=1;
-  u.onstart=()=>{speaking=true;window.xenaiSpeaking=true;document.getElementById('fst').textContent='SPEAKING';};
-  u.onend=u.onerror=()=>{speaking=false;window.xenaiSpeaking=false;document.getElementById('fst').textContent=apiKey?'ONLINE':'STANDBY';};
-  window.speechSynthesis.speak(u);
-}
-
-setInterval(()=>{
-  for(let i=0;i<9;i++){
-    const b=document.getElementById('v'+i);if(!b)continue;
-    b.style.height=(speaking?3+Math.random()*14:2+Math.abs(Math.sin(Date.now()/550+i*.8))*3)+'px';
-    b.classList.toggle('on',speaking);
-  }
-},75);
-
-function addMsg(role,txt){
-  const box=document.getElementById('cmsgs'),d=document.createElement('div');
-  d.className='msg '+role;
-  d.innerHTML='<div class="spkr">'+(role==='ai'?'XENAI //':'OPERATOR //')+'</div>'+txt;
-  box.appendChild(d);box.scrollTop=box.scrollHeight;return d;
-}
-
-async function send(){
-  const inp=document.getElementById('cin'),btn=document.getElementById('sbtn');
-  const txt=inp.value.trim();if(!txt)return;
-  if(!apiKey){addMsg('ai','I need my Groq API key to respond — enter it above.');return;}
-  addMsg('usr',txt);inp.value='';btn.disabled=true;
-  hist.push({role:'user',content:txt});
-  const th=addMsg('ai','<em>Processing...</em>');th.classList.add('thnk');
-  try{
-    const res=await fetch(GROQ_URL,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:GROQ_MDL,max_tokens:260,messages:[{role:'system',content:SYS},...hist]})});
-    const d=await res.json();th.remove();
-    if(d.error){addMsg('ai','Error: '+d.error.message);hist.pop();}
-    else{const r=d.choices[0].message.content;hist.push({role:'assistant',content:r});addMsg('ai',r);speak(r);}
-  }catch(e){th.remove();addMsg('ai','Connection failed. Check your API key or internet.');hist.pop();}
-  btn.disabled=false;
-}
-
-function ask(btn){document.getElementById('cin').value=btn.textContent;send();}
-
-if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); });
-}
-</script>
-</body>
-</html>
+/* ===== INIT NOTE ===== */
+// Add to your showScreen function — call loadGitHubStats when stats tab opens:
+// In showScreen(), after the xenai check, add:
+//   if (id === 'stats' && !statsLoaded) { loadGitHubStats(); statsLoaded = true; }
+// And declare: let statsLoaded = false; at the top with your other let vars.
