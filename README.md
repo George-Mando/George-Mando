@@ -176,9 +176,9 @@ public:
 -->
 
 <!-- GitHub Stats — using vercel deployment with cache-busting for reliability -->
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=merko&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=00ff9c&icon_color=00ff9c&text_color=c9d1d9&cache_seconds=86400" onerror="this.style.display='none'" />
+<!--<img height="180em" src="https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=merko&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=00ff9c&icon_color=00ff9c&text_color=c9d1d9&cache_seconds=86400" onerror="this.style.display='none'" />
 <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=George-Mando&layout=compact&langs_count=8&theme=merko&hide_border=true&bg_color=0d1117&title_color=00ff9c&text_color=c9d1d9&cache_seconds=86400" onerror="this.style.display='none'" />
-
+-->
 </div>
 
 <div align="center">
