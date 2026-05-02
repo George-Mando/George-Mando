@@ -1,4 +1,3 @@
-cat > /home/claude/index.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,8 +55,11 @@ body::before{content:'';position:fixed;inset:0;
 .screen{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:14px;
   display:none;-webkit-overflow-scrolling:touch;}
 .screen.active{display:block;}
-.screen::-webkit-scrollbar{width:2px;}
-.screen::-webkit-scrollbar-thumb{background:var(--border-bright);}
+/* ── WIDER SCROLLBAR ── */
+.screen::-webkit-scrollbar{width:8px;}
+.screen::-webkit-scrollbar-track{background:rgba(0,255,156,.03);border-left:1px solid var(--border);}
+.screen::-webkit-scrollbar-thumb{background:rgba(0,255,156,.25);border-radius:4px;border:1px solid var(--border-bright);}
+.screen::-webkit-scrollbar-thumb:hover{background:rgba(0,255,156,.45);}
 .panel{background:var(--panel);border:1px solid var(--border-bright);border-radius:4px;padding:14px;
   margin-bottom:12px;position:relative;}
 .panel::before,.panel::after{content:'';position:absolute;width:10px;height:10px;border-color:var(--acid);border-style:solid;}
@@ -150,7 +152,7 @@ body::before{content:'';position:fixed;inset:0;
 .chat-msgs{height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;
   padding:10px;background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:3px;
   margin-bottom:8px;-webkit-overflow-scrolling:touch;}
-.chat-msgs::-webkit-scrollbar{width:2px;}
+.chat-msgs::-webkit-scrollbar{width:4px;}
 .chat-msgs::-webkit-scrollbar-thumb{background:var(--border-bright);}
 .msg{font-size:11px;line-height:1.7;padding:8px 11px;border-radius:3px;max-width:92%;letter-spacing:.3px;}
 .msg.ai{background:#001a08;border:1px solid rgba(0,255,156,.18);color:var(--text);align-self:flex-start;border-left:2px solid var(--acid);}
@@ -224,6 +226,62 @@ body::before{content:'';position:fixed;inset:0;
   font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;border-radius:3px;
   margin-bottom:14px;transition:all .2s;cursor:pointer;width:100%;}
 .res-open-btn:active{background:var(--acid);color:#000;}
+/* ── VIEW COUNTER ── */
+.view-counter-panel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:0;}
+.vc-box{padding:12px;text-align:center;background:rgba(0,255,156,.02);border:1px solid var(--border);border-radius:3px;position:relative;overflow:hidden;}
+.vc-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,255,156,.04),transparent 70%);}
+.vc-label{font-size:7px;letter-spacing:3px;color:var(--text-dim);margin-bottom:6px;}
+.vc-num{font-family:'Orbitron',monospace;font-size:20px;color:var(--acid);text-shadow:0 0 15px rgba(0,255,156,.4);}
+.vc-sub{font-size:7px;color:var(--text-dim);letter-spacing:1px;margin-top:3px;}
+/* ── SKILL MATRIX ── */
+.skill-row{margin-bottom:10px;}
+.skill-head{display:flex;justify-content:space-between;margin-bottom:5px;align-items:center;}
+.skill-name{font-size:9px;letter-spacing:2px;color:var(--text);}
+.skill-pct{font-size:8px;letter-spacing:1px;color:var(--acid);}
+.skill-track{height:6px;background:rgba(0,255,156,.05);border:1px solid rgba(0,255,156,.1);border-radius:3px;overflow:hidden;position:relative;}
+.skill-fill{height:100%;border-radius:3px;position:relative;transition:width 1.2s cubic-bezier(.22,1,.36,1);}
+.skill-fill::after{content:'';position:absolute;right:0;top:0;bottom:0;width:3px;border-radius:2px;filter:blur(1px);}
+.skill-fill.cpp{background:linear-gradient(90deg,#00331a,#00ff9c);box-shadow:0 0 8px rgba(0,255,156,.3);}
+.skill-fill.cpp::after{background:#00ff9c;}
+.skill-fill.csharp{background:linear-gradient(90deg,#001a2e,#0a66c2);box-shadow:0 0 8px rgba(10,102,194,.3);}
+.skill-fill.csharp::after{background:#0a66c2;}
+.skill-fill.ue5{background:linear-gradient(90deg,#1a0a00,#ff6b35);box-shadow:0 0 8px rgba(255,107,53,.3);}
+.skill-fill.ue5::after{background:#ff6b35;}
+.skill-fill.unity{background:linear-gradient(90deg,#0d0d0d,#aaaaaa);box-shadow:0 0 8px rgba(180,180,180,.3);}
+.skill-fill.unity::after{background:#aaa;}
+.skill-fill.python{background:linear-gradient(90deg,#1a1500,#ffdd54);box-shadow:0 0 8px rgba(255,221,84,.3);}
+.skill-fill.python::after{background:#ffdd54;}
+.skill-fill.ai{background:linear-gradient(90deg,#1a0028,#9b59b6);box-shadow:0 0 8px rgba(155,89,182,.3);}
+.skill-fill.ai::after{background:#9b59b6;}
+.skill-fill.ui{background:linear-gradient(90deg,#001a12,#27c93f);box-shadow:0 0 8px rgba(39,201,63,.3);}
+.skill-fill.ui::after{background:#27c93f;}
+/* ── FOLLOWER GRID ── */
+.follower-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.follower-card{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;
+  background:rgba(0,255,156,.02);border:1px solid var(--border);border-radius:3px;
+  text-decoration:none;transition:all .2s;cursor:pointer;}
+.follower-card:active{border-color:var(--acid);background:rgba(0,255,156,.05);}
+.follower-avatar{width:38px;height:38px;border-radius:50%;border:1px solid var(--border-bright);
+  background:var(--acid-dark);overflow:hidden;position:relative;}
+.follower-avatar img{width:100%;height:100%;object-fit:cover;}
+.follower-avatar-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  font-size:14px;background:linear-gradient(135deg,var(--acid-dark),#001a0a);}
+.follower-name{font-size:7px;letter-spacing:1px;color:var(--text-dim);text-align:center;
+  max-width:56px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+/* ── MISSION TIMELINE ── */
+.timeline{position:relative;padding-left:18px;}
+.timeline::before{content:'';position:absolute;left:5px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--acid),transparent);}
+.tl-item{position:relative;margin-bottom:14px;padding:10px 12px;background:rgba(0,255,156,.02);border:1px solid var(--border);border-radius:3px;border-left:1px solid var(--acid);}
+.tl-item::before{content:'◆';position:absolute;left:-20px;top:50%;transform:translateY(-50%);font-size:8px;color:var(--acid);text-shadow:0 0 8px var(--acid);}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:var(--acid);position:absolute;left:-22px;top:50%;transform:translateY(-50%);box-shadow:0 0 8px var(--acid);}
+.tl-date{font-size:7px;letter-spacing:3px;color:var(--text-dim);margin-bottom:4px;}
+.tl-title{font-size:10px;letter-spacing:2px;color:var(--acid);font-family:'Orbitron',monospace;margin-bottom:3px;}
+.tl-detail{font-size:8px;color:var(--text-dim);line-height:1.6;letter-spacing:.3px;}
+.tl-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px;}
+.tl-tag{font-size:7px;letter-spacing:1px;padding:1px 5px;border:1px solid var(--border);border-radius:2px;color:var(--text-dim);}
+.tl-item.live .tl-title{color:var(--acid);}
+.tl-item.live::after{content:'■ LIVE';position:absolute;right:8px;top:8px;font-size:7px;color:var(--acid);letter-spacing:2px;animation:dp 1.5s infinite;}
+.tl-item.dev::after{content:'IN DEV';position:absolute;right:8px;top:8px;font-size:7px;color:var(--orange);letter-spacing:2px;}
 </style>
 </head>
 <body>
@@ -240,7 +298,7 @@ body::before{content:'';position:fixed;inset:0;
     <button class="nav-tab active" onclick="showScreen('home',this)"><span class="nav-icon">⬡</span>HOME</button>
     <button class="nav-tab" onclick="showScreen('xenai',this)"><span class="nav-icon">◈</span>XENAI</button>
     <button class="nav-tab" onclick="showScreen('projects',this)"><span class="nav-icon">▲</span>PROJECTS</button>
-    <button class="nav-tab" onclick="showScreen('resume',this)"><span class="nav-icon">📄</span>RESUME</button>
+    <button class="nav-tab" onclick="showScreen('resume',this)"><span class="nav-icon">◫</span>RESUME</button>
     <button class="nav-tab" onclick="showScreen('stats',this)"><span class="nav-icon">◉</span>STATS</button>
   </nav>
 
@@ -400,7 +458,6 @@ body::before{content:'';position:fixed;inset:0;
     <!-- RESUME -->
     <div class="screen" id="screen-resume">
       <div class="panel">
-        <!-- Header -->
         <div class="res-header">
           <div class="res-name">GEORGE CARTER</div>
           <div class="res-title">GAME DEVELOPER · GAMEPLAY PROGRAMMER · AI &amp; UI/UX SYSTEMS</div>
@@ -412,16 +469,12 @@ body::before{content:'';position:fixed;inset:0;
             <a href="https://george-carter.itch.io/" target="_blank">🎮 ITCH.IO</a>
           </div>
         </div>
-
-        <!-- Summary -->
         <div class="res-section">
           <div class="res-section-title">PROFESSIONAL SUMMARY</div>
           <div style="font-size:9px;color:var(--text-dim);line-height:1.8;letter-spacing:.3px;padding:8px;background:rgba(0,255,156,.02);border:1px solid var(--border);border-radius:3px;">
             Game Developer specializing in gameplay programming, AI systems, and UI/UX architecture with experience across Unity (C#) and Unreal Engine (C++/Blueprints). Backed by 16 years of professional Mechanical Engineering experience. Adept at building core player systems, enemy behaviors, environmental mechanics, and resource/progression frameworks. Brings a rare combination of engineering discipline, systems thinking, and creative game development to every project.
           </div>
         </div>
-
-        <!-- Skills -->
         <div class="res-section">
           <div class="res-section-title">SKILLS MATRIX</div>
           <div class="res-skill-grid">
@@ -433,16 +486,10 @@ body::before{content:'';position:fixed;inset:0;
             <div class="res-skill-item"><div class="res-skill-cat">ENG SOFTWARE</div><div class="res-skill-val">SolidWorks (Professional), AutoCAD, Creo, RISA, ProNest 2023</div></div>
           </div>
         </div>
-
-        <!-- Game Dev Experience -->
         <div class="res-section">
           <div class="res-section-title">GAME DEVELOPMENT · ACADEMIC</div>
-
           <div class="res-job">
-            <div class="res-job-head">
-              <div class="res-job-title">🌑 SHADOWS OF BEGINNINGS</div>
-              <div class="res-job-date">APR 2026 – PRESENT</div>
-            </div>
+            <div class="res-job-head"><div class="res-job-title">🌑 SHADOWS OF BEGINNINGS</div><div class="res-job-date">APR 2026 – PRESENT</div></div>
             <div class="res-job-company">Team Nebula Interactive · Full Sail University</div>
             <div class="res-job-sub">Action Adventure RPG · Unreal Engine · UI/UX &amp; AI Design Lead</div>
             <ul class="res-bullets">
@@ -454,12 +501,8 @@ body::before{content:'';position:fixed;inset:0;
               <li>Developed gameplay and systems using Unreal Engine (C++ &amp; Blueprints)</li>
             </ul>
           </div>
-
           <div class="res-job">
-            <div class="res-job-head">
-              <div class="res-job-title">⚙️ CLOCKWORK HORRORS</div>
-              <div class="res-job-date">JUN 2025</div>
-            </div>
+            <div class="res-job-head"><div class="res-job-title">⚙️ CLOCKWORK HORRORS</div><div class="res-job-date">JUN 2025</div></div>
             <div class="res-job-company">Team Clockwork · Full Sail University</div>
             <div class="res-job-sub">First Person Shooter · Unity (C#) · Gameplay &amp; AI Systems</div>
             <ul class="res-bullets">
@@ -471,12 +514,8 @@ body::before{content:'';position:fixed;inset:0;
               <li>Collaborated via GitHub, Trello, and Discord for version control and task tracking</li>
             </ul>
           </div>
-
           <div class="res-job" style="margin-bottom:0">
-            <div class="res-job-head">
-              <div class="res-job-title">💊 DR. MALWARE</div>
-              <div class="res-job-date">OCT 2025</div>
-            </div>
+            <div class="res-job-head"><div class="res-job-title">💊 DR. MALWARE</div><div class="res-job-date">OCT 2025</div></div>
             <div class="res-job-company">Green Team · Full Sail University</div>
             <div class="res-job-sub">Puzzle Game · C++ / Vulkan · Core Gameplay Systems</div>
             <ul class="res-bullets">
@@ -488,11 +527,8 @@ body::before{content:'';position:fixed;inset:0;
             </ul>
           </div>
         </div>
-
-        <!-- Engineering Experience -->
         <div class="res-section">
           <div class="res-section-title">ENGINEERING EXPERIENCE</div>
-
           <div class="res-job">
             <div class="res-job-head"><div class="res-job-title">CHIEF ENGINEER</div><div class="res-job-date">SEP 2021 – PRESENT</div></div>
             <div class="res-job-company">Barrett Trailers · Purcell, OK</div>
@@ -501,7 +537,6 @@ body::before{content:'';position:fixed;inset:0;
               <li>Created custom designs for semi-trailers and P-model trailers improving safety and cost efficiency</li>
             </ul>
           </div>
-
           <div class="res-job">
             <div class="res-job-head"><div class="res-job-title">INDEPENDENT ENGINEER / CONSULTANT</div><div class="res-job-date">APR 2020 – SEP 2021</div></div>
             <div class="res-job-company">Evolve Contracted Resources (Tesla) · Remote</div>
@@ -510,7 +545,6 @@ body::before{content:'';position:fixed;inset:0;
               <li>Delivered engineering solutions that improved safety, reduced costs, and streamlined assembly</li>
             </ul>
           </div>
-
           <div class="res-job">
             <div class="res-job-head"><div class="res-job-title">ENGINEERING MANAGER</div><div class="res-job-date">JAN 2015 – SEP 2020</div></div>
             <div class="res-job-company">Urban Farmhouse Designs · Oklahoma City, OK</div>
@@ -519,7 +553,6 @@ body::before{content:'';position:fixed;inset:0;
               <li>Led engineering department producing drawings and parts for all company product lines</li>
             </ul>
           </div>
-
           <div class="res-job">
             <div class="res-job-head"><div class="res-job-title">MECHANICAL ENGINEERING MANAGER</div><div class="res-job-date">MAR 2009 – JAN 2015</div></div>
             <div class="res-job-company">Titan Tanks &amp; Vessels · Elmore City, OK</div>
@@ -528,7 +561,6 @@ body::before{content:'';position:fixed;inset:0;
               <li>Supervised production of steel storage tanks, oil and gas trailers, and skids</li>
             </ul>
           </div>
-
           <div class="res-job">
             <div class="res-job-head"><div class="res-job-title">MECHANICAL ENGINEER &amp; DESIGNER</div><div class="res-job-date">MAR 2007 – MAR 2009</div></div>
             <div class="res-job-company">Halliburton · Duncan, OK</div>
@@ -537,7 +569,6 @@ body::before{content:'';position:fixed;inset:0;
               <li>Projects included pumps, stands, HT-2000 Trailers, Twin Panther trailers, and skids</li>
             </ul>
           </div>
-
           <div class="res-job" style="margin-bottom:0">
             <div class="res-job-head"><div class="res-job-title">CIVIL DESIGNER &amp; DRAFTER</div><div class="res-job-date">MAR 2004 – MAR 2007</div></div>
             <div class="res-job-company">M.J. Lewis and Associates · Duncan, OK</div>
@@ -546,8 +577,6 @@ body::before{content:'';position:fixed;inset:0;
             </ul>
           </div>
         </div>
-
-        <!-- Education -->
         <div class="res-section">
           <div class="res-section-title">EDUCATION</div>
           <div class="res-edu">
@@ -565,8 +594,6 @@ body::before{content:'';position:fixed;inset:0;
             <div class="res-job-company">Cameron University · Lawton, OK</div>
           </div>
         </div>
-
-        <!-- Certifications -->
         <div class="res-section">
           <div class="res-section-title">CERTIFICATIONS</div>
           <div class="res-cert-list">
@@ -576,8 +603,6 @@ body::before{content:'';position:fixed;inset:0;
             <div class="res-cert">SolidWorks PDM Certification</div>
           </div>
         </div>
-
-        <!-- Download CTA -->
         <a class="res-open-btn" href="mailto:xenclipsestudios@gmail.com?subject=Resume Request - George Carter">
           📡 REQUEST FULL RESUME FILE
         </a>
@@ -589,6 +614,28 @@ body::before{content:'';position:fixed;inset:0;
 
     <!-- STATS -->
     <div class="screen" id="screen-stats">
+
+      <!-- VIEW COUNTER -->
+      <div class="panel">
+        <div class="pl">// SURVEILLANCE DATA <span>PAGE INTEL</span></div>
+        <div class="view-counter-panel">
+          <div class="vc-box">
+            <div class="vc-label">TOTAL VIEWS</div>
+            <div class="vc-num" id="vc-total">—</div>
+            <div class="vc-sub">GLOBAL PROFILE</div>
+          </div>
+          <div class="vc-box">
+            <div class="vc-label">YOUR VISITS</div>
+            <div class="vc-num" id="vc-local">—</div>
+            <div class="vc-sub">THIS DEVICE</div>
+          </div>
+        </div>
+        <div style="margin-top:8px;text-align:center;">
+          <img id="komarev-badge" src="https://komarev.com/ghpvc/?username=George-Mando&color=00ff9c&style=flat-square&label=PROFILE+VIEWS" alt="views" style="opacity:.7;" onerror="this.style.display='none'"/>
+        </div>
+      </div>
+
+      <!-- GITHUB TELEMETRY -->
       <div class="panel">
         <div class="pl">// TELEMETRY <span>PERFORMANCE</span></div>
         <div id="stat-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
@@ -597,6 +644,8 @@ body::before{content:'';position:fixed;inset:0;
         <div class="pl" style="margin-top:2px;margin-bottom:8px;">// LANG MATRIX <span>TOP LANGUAGES</span></div>
         <div id="lang-bars"><div style="font-size:9px;color:var(--text-dim);letter-spacing:2px;animation:dp 1.5s infinite;">SCANNING REPOSITORIES...</div></div>
       </div>
+
+      <!-- STREAK -->
       <div class="panel">
         <div class="pl">// STREAK DATA <span>30-DAY ACTIVITY</span></div>
         <div id="streak-cards" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
@@ -605,17 +654,70 @@ body::before{content:'';position:fixed;inset:0;
           <div class="brow" style="padding:10px;text-align:center;"><div class="bk" style="animation:dp 1.5s infinite;">—</div></div>
         </div>
       </div>
+
+      <!-- SKILL MATRIX (replaces Top Repositories) -->
       <div class="panel">
-        <div class="pl">// NEURAL ACTIVITY <span>RECENT COMMITS</span></div>
-        <div id="commit-log" style="font-size:9px;color:var(--text-dim);line-height:2;letter-spacing:.5px;animation:dp 1.5s infinite;">FETCHING COMMIT LOG...</div>
+        <div class="pl">// SKILL MATRIX <span>PROFICIENCY SCAN</span></div>
+        <div id="skill-matrix">
+          <div class="skill-row"><div class="skill-head"><span class="skill-name">C++ · PRIMARY LANG</span><span class="skill-pct">88%</span></div><div class="skill-track"><div class="skill-fill cpp" style="width:0%" data-w="88%"></div></div></div>
+          <div class="skill-row"><div class="skill-head"><span class="skill-name">UNREAL ENGINE 5</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill ue5" style="width:0%" data-w="80%"></div></div></div>
+          <div class="skill-row"><div class="skill-head"><span class="skill-name">UNITY / C#</span><span class="skill-pct">78%</span></div><div class="skill-track"><div class="skill-fill csharp" style="width:0%" data-w="78%"></div></div></div>
+          <div class="skill-row"><div class="skill-head"><span class="skill-name">AI SYSTEMS DESIGN</span><span class="skill-pct">82%</span></div><div class="skill-track"><div class="skill-fill ai" style="width:0%" data-w="82%"></div></div></div>
+          <div class="skill-row"><div class="skill-head"><span class="skill-name">UI/UX ARCHITECTURE</span><span class="skill-pct">85%</span></div><div class="skill-track"><div class="skill-fill ui" style="width:0%" data-w="85%"></div></div></div>
+          <div class="skill-row"><div class="skill-head"><span class="skill-name">PYTHON · SCRIPTING</span><span class="skill-pct">65%</span></div><div class="skill-track"><div class="skill-fill python" style="width:0%" data-w="65%"></div></div></div>
+          <div class="skill-row" style="margin-bottom:0"><div class="skill-head"><span class="skill-name">GAMEPLAY SYSTEMS</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill cpp" style="width:0%" data-w="90%"></div></div></div>
+        </div>
       </div>
+
+      <!-- OPERATOR FOLLOWERS (replaces Neural Activity) -->
       <div class="panel">
-        <div class="pl">// TOP REPOSITORIES <span>ACTIVE REPOS</span></div>
-        <div id="repo-list" style="display:flex;flex-direction:column;gap:8px;"><div style="font-size:9px;color:var(--text-dim);letter-spacing:1px;animation:dp 1.5s infinite;">SCANNING...</div></div>
+        <div class="pl">// OPERATOR INTEL <span>GITHUB NETWORK</span></div>
+        <div id="follower-grid" class="follower-grid">
+          <div style="grid-column:1/-1;font-size:9px;color:var(--text-dim);letter-spacing:2px;animation:dp 1.5s infinite;">SCANNING NETWORK...</div>
+        </div>
+        <div id="follower-more" style="display:none;text-align:center;margin-top:8px;">
+          <a href="https://github.com/George-Mando?tab=followers" target="_blank" style="font-size:8px;color:var(--text-dim);letter-spacing:2px;text-decoration:none;border:1px solid var(--border);padding:4px 12px;border-radius:2px;">VIEW ALL FOLLOWERS →</a>
+        </div>
       </div>
-      <div class="ftr" style="padding-bottom:20px;">
-        <img src="https://komarev.com/ghpvc/?username=George-Mando&color=00ff9c&style=flat-square&label=UNITS+DETECTED" alt="visitors" onerror="this.style.display='none'"/>
+
+      <!-- MISSION TIMELINE (replaces both old panels) -->
+      <div class="panel">
+        <div class="pl">// MISSION TIMELINE <span>DEPLOYMENT LOG</span></div>
+        <div class="timeline">
+          <div class="tl-item dev">
+            <div class="tl-date">2026 · IN PROGRESS</div>
+            <div class="tl-title">FEATHER FALL</div>
+            <div class="tl-detail">Gravity-based puzzle game. Drop rocks to brick eggs — match 4 or more in a row. Bird-themed twist on classic match-clearing mechanics.</div>
+            <div class="tl-tags"><span class="tl-tag">C++</span><span class="tl-tag">PUZZLE</span><span class="tl-tag">MATCH-4</span></div>
+          </div>
+          <div class="tl-item live">
+            <div class="tl-date">APR 2026 · SHIPPED</div>
+            <div class="tl-title">SHADOWS OF BEGINNINGS</div>
+            <div class="tl-detail">ARPG in Unreal Engine 5. Led UI/UX &amp; AI Design — HUD, quest log, enemy behavior trees, monster house ambush events.</div>
+            <div class="tl-tags"><span class="tl-tag">UE5</span><span class="tl-tag">ARPG</span><span class="tl-tag">AI DESIGN</span><span class="tl-tag">NEBULA INTERACTIVE</span></div>
+          </div>
+          <div class="tl-item live">
+            <div class="tl-date">JUN 2025 · SHIPPED</div>
+            <div class="tl-title">CLOCKWORK HORRORS</div>
+            <div class="tl-detail">FPS in icy post-apocalyptic wasteland. Full enemy AI, player systems, XP progression, environmental hazards. Time-Surge combat combos.</div>
+            <div class="tl-tags"><span class="tl-tag">UNITY</span><span class="tl-tag">FPS</span><span class="tl-tag">FULL SAIL</span></div>
+          </div>
+          <div class="tl-item live">
+            <div class="tl-date">OCT 2025 · SHIPPED</div>
+            <div class="tl-title">DR MALWARE</div>
+            <div class="tl-detail">Multi-theme puzzle game — Magic, Hacker &amp; Bird variants. Built in C++/Vulkan. Match-4 logic, cascade combos, seed-based randomization, full save/load.</div>
+            <div class="tl-tags"><span class="tl-tag">C++</span><span class="tl-tag">VULKAN</span><span class="tl-tag">PUZZLE</span></div>
+          </div>
+          <div class="tl-item" style="border-left-color:var(--orange);">
+            <div class="tl-date">2021 · ONGOING</div>
+            <div class="tl-title" style="color:var(--orange);">XENCLIPSE STUDIOS</div>
+            <div class="tl-detail">Independent game studio founded by George Carter. Mission: build clean systems, engineer fun, ship worlds.</div>
+            <div class="tl-tags"><span class="tl-tag">STUDIO</span><span class="tl-tag">INDIE</span><span class="tl-tag">OKLAHOMA</span></div>
+          </div>
+        </div>
       </div>
+
+      <div class="ftr" style="padding-bottom:20px;">XENCLIPSE STUDIOS · ALL SECTORS NOMINAL</div>
     </div>
 
   </div>
@@ -630,7 +732,25 @@ function showScreen(id, tab) {
   document.getElementById('screen-' + id).classList.add('active');
   tab.classList.add('active');
   if (id === 'xenai' && !faceBuilt) { buildFace(); faceBuilt = true; }
-  if (id === 'stats' && !statsLoaded) { loadGitHubStats(); statsLoaded = true; }
+  if (id === 'stats' && !statsLoaded) { loadStats(); statsLoaded = true; }
+}
+
+/* ── VIEW COUNTER ── */
+function initViewCounter() {
+  // Local visit count (this device)
+  let visits = parseInt(localStorage.getItem('xc_visits') || '0') + 1;
+  localStorage.setItem('xc_visits', visits);
+  document.getElementById('vc-local').textContent = visits;
+  // Global uses komarev badge (already rendered in img tag)
+  document.getElementById('vc-total').textContent = '—';
+}
+initViewCounter();
+
+/* ── ANIMATE SKILL BARS ── */
+function animateSkills() {
+  document.querySelectorAll('.skill-fill[data-w]').forEach((el, i) => {
+    setTimeout(() => { el.style.width = el.dataset.w; }, 150 + i * 120);
+  });
 }
 
 let deferredPrompt;
@@ -642,26 +762,57 @@ function installApp() {
 window.addEventListener('appinstalled', () => { document.getElementById('install-banner').style.display = 'none'; });
 
 /* ── GITHUB API STATS ── */
-async function loadGitHubStats() {
+async function loadStats() {
+  animateSkills();
   const user = 'George-Mando', api = 'https://api.github.com';
   const LC = {'C++':'#f34b7d','C#':'#178600','Python':'#3572A5','JavaScript':'#f1e05a','TypeScript':'#2b7489','HLSL':'#aace60','ShaderLab':'#222c37','GDScript':'#355570','Lua':'#6666cc','HTML':'#e34c26','CSS':'#563d7c'};
   try {
-    const [uRes, rRes, evRes] = await Promise.all([fetch(api+'/users/'+user), fetch(api+'/users/'+user+'/repos?per_page=100&sort=pushed'), fetch(api+'/users/'+user+'/events/public?per_page=30')]);
+    const [uRes, rRes, evRes, flRes] = await Promise.all([
+      fetch(api+'/users/'+user),
+      fetch(api+'/users/'+user+'/repos?per_page=100&sort=pushed'),
+      fetch(api+'/users/'+user+'/events/public?per_page=30'),
+      fetch(api+'/users/'+user+'/followers?per_page=24')
+    ]);
     if (!uRes.ok) throw new Error('API '+uRes.status);
-    const u = await uRes.json(), repos = await rRes.json(), events = await evRes.json();
-    const ra = Array.isArray(repos)?repos:[], ea = Array.isArray(events)?events:[];
+    const u = await uRes.json(), repos = await rRes.json(), events = await evRes.json(), followers = await flRes.json();
+    const ra = Array.isArray(repos)?repos:[], ea = Array.isArray(events)?events:[], fa = Array.isArray(followers)?followers:[];
     const stars = ra.reduce((s,r)=>s+(r.stargazers_count||0),0), forks = ra.reduce((s,r)=>s+(r.forks_count||0),0);
+
+    // Update view counter with follower count as proxy for audience
+    document.getElementById('vc-total').textContent = (u.followers||0) + '+';
+
     document.getElementById('stat-cards').innerHTML = [['PUBLIC REPOS',u.public_repos||0,'📁'],['TOTAL STARS',stars,'⭐'],['FOLLOWERS',u.followers||0,'👥'],['TOTAL FORKS',forks,'🍴']].map(([k,v,i])=>'<div class="brow" style="padding:12px;text-align:center;"><div style="font-size:18px;margin-bottom:4px;">'+i+'</div><div class="bk" style="margin-bottom:5px;">'+k+'</div><div class="stat-num">'+v+'</div></div>').join('');
+
     const lm={};ra.forEach(r=>{if(r.language)lm[r.language]=(lm[r.language]||0)+1;});
     const sl=Object.entries(lm).sort((a,b)=>b[1]-a[1]).slice(0,7),lt=sl.reduce((s,[,v])=>s+v,0);
     document.getElementById('lang-bars').innerHTML=sl.map(([l,c])=>{const p=Math.round(c/lt*100),col=LC[l]||'#00ff9c';return'<div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;font-size:9px;letter-spacing:2px;margin-bottom:4px;"><span style="color:var(--text);">'+l+'</span><span style="color:var(--text-dim);">'+p+'%</span></div><div class="btrk"><div style="height:100%;width:'+p+'%;background:'+col+';border-radius:1px;box-shadow:0 0 5px '+col+'66;transition:width .6s;"></div></div></div>';}).join('')||'<div style="font-size:9px;color:var(--text-dim);">NO LANGUAGE DATA</div>';
+
     const pe=ea.filter(e=>e.type==='PushEvent'),pd=new Set(pe.map(e=>e.created_at.split('T')[0])),rc=pe.reduce((s,e)=>s+((e.payload&&e.payload.commits)?e.payload.commits.length:0),0),ar=ra.filter(r=>r.pushed_at&&(Date.now()-new Date(r.pushed_at))<30*864e5).length;
     document.getElementById('streak-cards').innerHTML=[['PUSH DAYS',pd.size+' (30d)'],['COMMITS',rc],['ACTIVE REPOS',ar]].map(([k,v])=>'<div class="brow" style="padding:10px;text-align:center;"><div class="bk" style="margin-bottom:5px;">'+k+'</div><div class="bv hi" style="font-size:15px;">'+v+'</div></div>').join('');
-    document.getElementById('commit-log').innerHTML=pe.slice(0,8).map(e=>{const rp=e.repo.name.split('/')[1],mg=(e.payload&&e.payload.commits&&e.payload.commits[0])?e.payload.commits[0].message.split('\n')[0].slice(0,44):'pushed',dt=e.created_at.split('T')[0];return'<div style="padding:6px 0;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px;"><span style="color:var(--acid);min-width:78px;font-size:9px;">'+dt+'</span><span style="color:var(--orange);min-width:80px;font-size:9px;">'+rp+'</span><span style="color:var(--text);font-size:9px;">'+mg+'</span></div>';}).join('')||'<span style="color:var(--text-dim);font-size:9px;">NO RECENT PUSH EVENTS</span>';
-    document.getElementById('repo-list').innerHTML=ra.filter(r=>!r.fork).slice(0,6).map(r=>'<a href="'+r.html_url+'" target="_blank" class="link-btn ac" style="text-decoration:none;margin-bottom:0;"><span class="lb-icon" style="font-size:14px;">📁</span><span class="lb-text" style="display:flex;flex-direction:column;gap:2px;min-width:0;"><span style="font-size:10px;letter-spacing:1px;">'+r.name+'</span><span style="font-size:9px;color:var(--text-dim);">'+(r.language||'—')+' · ★'+r.stargazers_count+'</span></span><span class="lb-arr">→</span></a>').join('')||'<div style="font-size:10px;color:var(--text-dim);">NO REPOS FOUND</div>';
+
+    // Followers grid
+    if (fa.length > 0) {
+      const grid = document.getElementById('follower-grid');
+      grid.innerHTML = fa.slice(0, 16).map(f =>
+        `<a class="follower-card" href="https://github.com/${f.login}" target="_blank">
+          <div class="follower-avatar">
+            <img src="${f.avatar_url}&s=80" alt="${f.login}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=follower-avatar-placeholder>◈</div>'"/>
+          </div>
+          <div class="follower-name">${f.login}</div>
+        </a>`
+      ).join('');
+      if (fa.length > 16 || u.followers > 16) {
+        document.getElementById('follower-more').style.display = 'block';
+      }
+    } else {
+      document.getElementById('follower-grid').innerHTML = '<div style="font-size:9px;color:var(--text-dim);letter-spacing:1px;">NO FOLLOWERS FOUND</div>';
+    }
+
   } catch(err) {
     document.getElementById('stat-cards').innerHTML='<div style="grid-column:1/-1;font-size:9px;color:var(--red);letter-spacing:2px;padding:10px;text-align:center;">GITHUB API UNAVAILABLE<br><span style="font-size:8px;color:var(--text-dim);">RATE LIMIT OR CONNECTION ERROR</span></div>';
     document.getElementById('lang-bars').innerHTML='<div style="font-size:9px;color:var(--red);">CONNECTION FAILED</div>';
+    document.getElementById('follower-grid').innerHTML='<div style="font-size:9px;color:var(--red);">CONNECTION FAILED</div>';
+    // Still animate skills even if API fails
   }
 }
 
@@ -736,15 +887,3 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.s
 </script>
 </body>
 </html>
-HTMLEOF
-echo "done - $(wc -l < /home/claude/index.html) lines"
-
-
-
-
-
-
-
-
-
-
