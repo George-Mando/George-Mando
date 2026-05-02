@@ -77,20 +77,6 @@ public:
 <tr>
 <td width="50%" valign="top">
 
-### 🔧 Procedural Blueprint Generator
-> *Unreal Engine Plugin · In Development*
-
-⚡ Auto-generates movement & combat Blueprints inside UE Editor. Built to slash early-stage prototyping time to near zero.
-
-![C++](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white)
-![Unreal](https://img.shields.io/badge/Unreal_Engine-0E1128?style=flat-square&logo=unrealengine&logoColor=white)
-![Blueprint](https://img.shields.io/badge/Blueprint_System-1F6FEB?style=flat-square)
-
-🔗 *Repository coming soon · 75% complete*
-
-</td>
-<td width="50%" valign="top">
-
 ### 🪶 Feather Fall
 > *Puzzle Game · In Development*
 
