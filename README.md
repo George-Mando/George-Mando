@@ -25,6 +25,8 @@
 
 <div align="center">
 
+<img src="https://raw.githubusercontent.com/George-Mando/George-Mando/main/xenclipse-logo.png" width="480" alt="XenClipse Studios" />
+
 > *While you're here — systems are initializing at XenClipse Studios.*
 
 [![ENTER HIVE INTERFACE](https://img.shields.io/badge/▶_ENTER_HIVE_CONTROL_PANEL-00ff9c?style=for-the-badge&logoColor=black&labelColor=000000)](https://george-mando.github.io/George-Mando/)
