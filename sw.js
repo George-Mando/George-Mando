@@ -20,9 +20,10 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  // Network first for API calls and live stats
+  // Network first for API calls and live data
   if (
     e.request.url.includes('api.groq.com') ||
+    e.request.url.includes('api.github.com') ||
     e.request.url.includes('github-readme') ||
     e.request.url.includes('streak-stats') ||
     e.request.url.includes('komarev') ||
