@@ -137,7 +137,7 @@ body::before{content:'';position:fixed;inset:0;
 .vb{width:3px;background:var(--acid);border-radius:2px;opacity:.15;transition:height .07s,opacity .07s;}
 .vb.on{opacity:1;}
 
-/* ── KEY BOX — redesigned to always be prominent ── */
+/* ── KEY BOX ── */
 .kbox{background:#000400;border:1px solid rgba(0,255,156,.35);border-radius:3px;padding:14px;margin-bottom:10px;position:relative;}
 .kbox::before{content:'';position:absolute;top:-1px;left:-1px;width:10px;height:10px;border-color:var(--acid);border-style:solid;border-width:2px 0 0 2px;}
 .kbox::after{content:'';position:absolute;bottom:-1px;right:-1px;width:10px;height:10px;border-color:var(--acid);border-style:solid;border-width:0 2px 2px 0;}
@@ -158,10 +158,10 @@ body::before{content:'';position:fixed;inset:0;
 .ks.ok{color:#000;background:var(--acid);border:1px solid var(--acid);}
 .ks.er{color:var(--red);border:1px solid rgba(250,92,92,.3);background:rgba(250,92,92,.05);}
 .ks.testing{color:var(--text-dim);border:1px solid var(--border);background:rgba(0,255,156,.02);animation:dp 1s infinite;}
-.kbox-dismiss{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;
-  padding:7px;border:1px solid var(--border-bright);border-radius:2px;cursor:pointer;
-  font-size:9px;letter-spacing:2px;color:var(--text-dim);transition:all .2s;}
-.kbox-dismiss:active{border-color:var(--acid);color:var(--acid);}
+/* kbox-status indicator shown in stats panel header */
+.kbox-status-pill{display:inline-flex;align-items:center;gap:5px;font-size:8px;letter-spacing:2px;padding:2px 8px;border-radius:2px;border:1px solid var(--border);color:var(--text-dim);}
+.kbox-status-pill.online{border-color:var(--acid);color:var(--acid);animation:dp 2s ease-in-out infinite;}
+.kbox-status-pill.offline{border-color:var(--red);color:var(--red);}
 
 .chat-msgs{height:240px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;
   padding:10px;background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:3px;
@@ -378,7 +378,7 @@ body::before{content:'';position:fixed;inset:0;
       <div class="ftr">XENCLIPSE STUDIOS · HIVE-PRIME · ALL SECTORS OPERATIONAL</div>
     </div>
 
-    <!-- XENAI -->
+    <!-- XENAI (kbox removed — key is now managed in STATS) -->
     <div class="screen" id="screen-xenai">
       <div class="panel" id="face-panel">
         <div class="pl">// XENAI :: HYBRID INTELLIGENCE <span id="fst">STANDBY</span></div>
@@ -388,28 +388,17 @@ body::before{content:'';position:fixed;inset:0;
           <div class="vb" id="v3"></div><div class="vb" id="v4"></div><div class="vb" id="v5"></div>
           <div class="vb" id="v6"></div><div class="vb" id="v7"></div><div class="vb" id="v8"></div>
         </div>
-        <!-- API KEY BOX — always visible until valid key confirmed -->
-        <div class="kbox" id="kbox">
-          <div class="kbox-header">GROQ API KEY REQUIRED</div>
-          <p>XENAI needs a free Groq API key to come online.<br/>
-          Get yours free at <b>console.groq.com</b> → API Keys → Create Key</p>
-          <div class="kbox-stored" id="kbox-stored" style="display:none;">
-            KEY ON FILE: <b id="kbox-stored-val">—</b> &nbsp;·&nbsp; Re-enter below to change or click ACTIVATE to use saved key
-          </div>
-          <div class="kr">
-            <input class="ki" id="kin" type="password" placeholder="gsk_..." autocomplete="off"/>
-            <button class="kb" onclick="activateKey()">ACTIVATE</button>
-          </div>
-          <div class="ks" id="kst" style="display:none;"></div>
-          <div class="kbox-dismiss" id="kbox-dismiss" style="display:none;" onclick="dismissKbox()">
-            ▶ XENAI IS ONLINE — HIDE THIS PANEL
-          </div>
+        <!-- Key status indicator only — manage key in STATS tab -->
+        <div style="text-align:center;margin-bottom:6px;">
+          <span id="xenai-key-hint" style="font-size:8px;letter-spacing:2px;color:var(--text-dim);">
+            ◈ Configure XENAI API key in the <b style="color:var(--acid);cursor:pointer;" onclick="document.querySelector('.nav-tab:last-child').click()">STATS</b> tab
+          </span>
         </div>
       </div>
       <div class="panel" style="padding-bottom:10px;">
         <div class="pl">// XENAI :: HIVE INTELLIGENCE <span>AI MODULE</span></div>
         <div class="chat-msgs" id="cmsgs">
-          <div class="msg ai"><div class="spkr">XENAI //</div>Consciousness initializing... Enter your Groq API key above to bring me fully online.</div>
+          <div class="msg ai"><div class="spkr">XENAI //</div>Consciousness initializing... Configure my Groq API key in the STATS tab to bring me fully online.</div>
         </div>
         <div class="suggs">
           <button class="sb" onclick="ask(this)">Who is George?</button>
@@ -568,6 +557,25 @@ body::before{content:'';position:fixed;inset:0;
 
     <!-- STATS -->
     <div class="screen" id="screen-stats">
+
+      <!-- ══ XENAI API KEY — PERMANENT, ALWAYS VISIBLE ══ -->
+      <div class="panel">
+        <div class="pl">// XENAI :: API ACCESS <span id="fst-stats">STANDBY</span></div>
+        <div class="kbox" id="kbox">
+          <div class="kbox-header">GROQ API KEY</div>
+          <p>XENAI needs a free Groq API key to come online.<br/>
+          Get yours free at <b>console.groq.com</b> → API Keys → Create Key</p>
+          <div class="kbox-stored" id="kbox-stored" style="display:none;">
+            KEY ON FILE: <b id="kbox-stored-val">—</b> &nbsp;·&nbsp; Re-enter below to change
+          </div>
+          <div class="kr">
+            <input class="ki" id="kin" type="password" placeholder="gsk_..." autocomplete="off"/>
+            <button class="kb" onclick="activateKey()">ACTIVATE</button>
+          </div>
+          <div class="ks" id="kst" style="display:none;"></div>
+        </div>
+      </div>
+
       <div class="panel">
         <div class="pl">// SURVEILLANCE DATA <span>PAGE INTEL</span></div>
         <div class="view-counter-panel">
@@ -725,7 +733,7 @@ function buildFace() {
   frame();
 }
 
-/* ── XENAI CHAT — FIXED KEY SYSTEM ── */
+/* ── XENAI CHAT ── */
 const GROQ_URL='https://api.groq.com/openai/v1/chat/completions', GROQ_MDL='llama-3.3-70b-versatile';
 const SYS=`You are XENAI, the AI assistant embedded in George Carter's portfolio. Alien-human hybrid intelligence — voice of XenClipse Studios. Speak like a real confident woman: warm, precise, slightly mysterious. Concise unless asked for detail. Proud of George's work. George Carter: Game Developer, XenClipse Studios founder, Marlow OK. GitHub: George-Mando. Engines: UE5, Unity. Languages: C++, C#, Python. 16 years mechanical engineering background. BS Game Development from Full Sail (Jun 2026), BS Mechanical Engineering from Cameron University (2008). Shipped: Shadows of Beginnings (ARPG, UE5, Nebula Interactive — UI/UX & AI Design lead), Clockwork Horrors (FPS, Unity, Full Sail), Dr Malware (puzzle, C++/Vulkan). In dev: Feather Fall (match-4 puzzle). Open to hire: xenclipsestudios@gmail.com. Philosophy: "Good game feel isn't magic — it's engineered."`;
 
@@ -733,28 +741,38 @@ let apiKey = localStorage.getItem('xai_gk') || '';
 let keyValidated = localStorage.getItem('xai_gk_valid') === '1';
 let hist = [], speaking = false;
 
-// On load — show stored key info but KEEP kbox visible until validated
+/* Update both the stats panel label and the xenai face status */
+function setKeyStatus(state) {
+  // state: 'online' | 'standby' | 'offline'
+  const fst = document.getElementById('fst');
+  const fstStats = document.getElementById('fst-stats');
+  const hint = document.getElementById('xenai-key-hint');
+  if (state === 'online') {
+    if (fst) fst.textContent = 'ONLINE';
+    if (fstStats) fstStats.textContent = 'ONLINE';
+    if (hint) hint.innerHTML = '◈ XENAI is <b style="color:var(--acid);">ONLINE</b> — ask anything in the XENAI tab';
+  } else if (state === 'offline') {
+    if (fst) fst.textContent = 'OFFLINE';
+    if (fstStats) fstStats.textContent = 'OFFLINE';
+  } else {
+    if (fst) fst.textContent = 'STANDBY';
+    if (fstStats) fstStats.textContent = 'STANDBY';
+  }
+}
+
 function initKbox() {
-  if (apiKey && keyValidated) {
-    // Key previously validated — show dismiss option but still show box
+  if (apiKey) {
     const storedEl = document.getElementById('kbox-stored');
     const storedVal = document.getElementById('kbox-stored-val');
-    const dismissEl = document.getElementById('kbox-dismiss');
-    if (storedEl) { storedEl.style.display = 'block'; storedVal.textContent = apiKey.substring(0, 8) + '...'; }
-    if (dismissEl) dismissEl.style.display = 'flex';
-    document.getElementById('fst').textContent = 'KEY ON FILE';
-    // Auto-activate with stored key
-    autoActivate();
-  } else if (apiKey) {
-    // Key stored but not validated — show it's there
-    const storedEl = document.getElementById('kbox-stored');
-    const storedVal = document.getElementById('kbox-stored-val');
-    if (storedEl) { storedEl.style.display = 'block'; storedVal.textContent = apiKey.substring(0, 8) + '... (not yet verified)'; }
+    if (storedEl) { storedEl.style.display = 'block'; storedVal.textContent = apiKey.substring(0, 8) + (keyValidated ? '...' : '... (not yet verified)'); }
+    if (keyValidated) {
+      setKeyStatus('online');
+      autoActivate();
+    }
   }
 }
 
 async function autoActivate() {
-  // Silently test the stored key
   try {
     const res = await fetch(GROQ_URL, {
       method: 'POST',
@@ -762,35 +780,34 @@ async function autoActivate() {
       body: JSON.stringify({model: GROQ_MDL, max_tokens: 5, messages: [{role: 'user', content: 'hi'}]})
     });
     if (res.ok) {
-      document.getElementById('fst').textContent = 'ONLINE';
-      document.getElementById('kbox-dismiss').style.display = 'flex';
+      setKeyStatus('online');
       const ks = document.getElementById('kst');
       ks.textContent = '✓ Key validated — XENAI is online';
       ks.className = 'ks ok';
       ks.style.display = 'block';
       greet();
     } else {
-      // Key failed — clear it and show error
       apiKey = ''; keyValidated = false;
       localStorage.removeItem('xai_gk'); localStorage.removeItem('xai_gk_valid');
       const ks = document.getElementById('kst');
       ks.textContent = '✗ Saved key invalid or expired — enter a new key';
       ks.className = 'ks er'; ks.style.display = 'block';
-      document.getElementById('fst').textContent = 'STANDBY';
+      const storedEl = document.getElementById('kbox-stored');
+      if (storedEl) storedEl.style.display = 'none';
+      setKeyStatus('standby');
     }
   } catch(e) {
-    document.getElementById('fst').textContent = 'OFFLINE';
+    setKeyStatus('offline');
   }
 }
 
 async function activateKey() {
   const k = document.getElementById('kin').value.trim();
   const st = document.getElementById('kst');
-  const useKey = k || apiKey; // use typed key, or fall back to stored key
+  const useKey = k || apiKey;
   if (!useKey) { st.textContent = '✗ Enter a Groq API key (starts with gsk_)'; st.className = 'ks er'; st.style.display = 'block'; return; }
   if (!useKey.startsWith('gsk_')) { st.textContent = '✗ Groq keys start with gsk_'; st.className = 'ks er'; st.style.display = 'block'; return; }
   st.textContent = '◈ Testing connection to Groq...'; st.className = 'ks testing'; st.style.display = 'block';
-  // Actually test the key with a real API call
   try {
     const res = await fetch(GROQ_URL, {
       method: 'POST',
@@ -801,28 +818,24 @@ async function activateKey() {
       apiKey = useKey; keyValidated = true;
       localStorage.setItem('xai_gk', apiKey); localStorage.setItem('xai_gk_valid', '1');
       st.textContent = '✓ XENAI IS ONLINE — Connection established'; st.className = 'ks ok';
-      document.getElementById('fst').textContent = 'ONLINE';
-      document.getElementById('kbox-dismiss').style.display = 'flex';
+      setKeyStatus('online');
+      // Update stored key display
+      const storedEl = document.getElementById('kbox-stored');
+      const storedVal = document.getElementById('kbox-stored-val');
+      if (storedEl) { storedEl.style.display = 'block'; storedVal.textContent = apiKey.substring(0, 8) + '...'; }
+      document.getElementById('kin').value = '';
       greet();
     } else {
       const d = await res.json();
       st.textContent = '✗ Key rejected: ' + (d.error?.message || 'Invalid key'); st.className = 'ks er';
-      document.getElementById('fst').textContent = 'STANDBY';
+      setKeyStatus('standby');
     }
   } catch(e) {
     st.textContent = '✗ Connection failed — check your internet'; st.className = 'ks er';
   }
 }
 
-function dismissKbox() {
-  const kbox = document.getElementById('kbox');
-  kbox.style.transition = 'opacity .4s';
-  kbox.style.opacity = '0';
-  setTimeout(() => { kbox.style.display = 'none'; }, 400);
-}
-
 function greet() {
-  // Only greet once
   const msgs = document.getElementById('cmsgs');
   if (msgs.querySelectorAll('.msg.ai').length > 1) return;
   const g = "I'm online. XENAI here — the intelligence of XenClipse Studios. George built this world, and I'm here to tell you everything about it. What do you want to know?";
@@ -833,13 +846,13 @@ let voices = [];
 function loadV(){voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];}
 if(window.speechSynthesis){loadV(); window.speechSynthesis.onvoiceschanged = loadV;}
 function bestVoice(){const want=['Google UK English Female','Microsoft Sonia Online (Natural) - English (United Kingdom)','Microsoft Aria Online (Natural) - English (United States)','Samantha','Karen'];for(const n of want){const v=voices.find(v=>v.name===n);if(v)return v;}return voices.find(v=>v.lang.startsWith('en')&&v.name.toLowerCase().includes('female'))||voices.find(v=>v.lang.startsWith('en'))||voices[0];}
-function speak(txt){if(!window.speechSynthesis)return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt.replace(/[*_`#\[\]]/g,'').trim());const v=bestVoice();if(v)u.voice=v;u.pitch=1.05;u.rate=0.91;u.volume=1;u.onstart=()=>{speaking=true;window.xenaiSpeaking=true;document.getElementById('fst').textContent='SPEAKING';};u.onend=u.onerror=()=>{speaking=false;window.xenaiSpeaking=false;document.getElementById('fst').textContent=apiKey?'ONLINE':'STANDBY';};window.speechSynthesis.speak(u);}
+function speak(txt){if(!window.speechSynthesis)return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt.replace(/[*_`#\[\]]/g,'').trim());const v=bestVoice();if(v)u.voice=v;u.pitch=1.05;u.rate=0.91;u.volume=1;u.onstart=()=>{speaking=true;window.xenaiSpeaking=true;const fst=document.getElementById('fst');if(fst)fst.textContent='SPEAKING';};u.onend=u.onerror=()=>{speaking=false;window.xenaiSpeaking=false;setKeyStatus(apiKey?'online':'standby');};window.speechSynthesis.speak(u);}
 setInterval(()=>{for(let i=0;i<9;i++){const b=document.getElementById('v'+i);if(!b)continue;b.style.height=(speaking?3+Math.random()*14:2+Math.abs(Math.sin(Date.now()/550+i*.8))*3)+'px';b.classList.toggle('on',speaking);}},75);
 function addMsg(role,txt){const box=document.getElementById('cmsgs'),d=document.createElement('div');d.className='msg '+role;d.innerHTML='<div class="spkr">'+(role==='ai'?'XENAI //':'OPERATOR //')+'</div>'+txt;box.appendChild(d);box.scrollTop=box.scrollHeight;return d;}
 async function send(){
   const inp=document.getElementById('cin'),btn=document.getElementById('sbtn');
   const txt=inp.value.trim();if(!txt)return;
-  if(!apiKey){addMsg('ai','I need my Groq API key to respond — enter it in the panel above.');return;}
+  if(!apiKey){addMsg('ai','I need my Groq API key to respond — configure it in the STATS tab.');return;}
   addMsg('usr',txt);inp.value='';btn.disabled=true;hist.push({role:'user',content:txt});
   const th=addMsg('ai','<em>Processing...</em>');th.classList.add('thnk');
   try{
@@ -847,12 +860,11 @@ async function send(){
     const d=await res.json();th.remove();
     if(d.error){addMsg('ai','Error: '+d.error.message);hist.pop();}
     else{const r=d.choices[0].message.content;hist.push({role:'assistant',content:r});addMsg('ai',r);speak(r);}
-  }catch(e){th.remove();addMsg('ai','Connection failed. Check your API key or internet.');hist.pop();}
+  }catch(e){th.remove();addMsg('ai','Connection failed. Check your API key in the STATS tab.');hist.pop();}
   btn.disabled=false;
 }
 function ask(btn){document.getElementById('cin').value=btn.textContent;send();}
 
-// Initialize key box state on load
 window.addEventListener('load', () => {
   initKbox();
   if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
