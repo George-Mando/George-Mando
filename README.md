@@ -209,7 +209,9 @@ public:
 
 <div align="center">
 
-[![trophy](https://github-profile-trophy.vercel.app/?username=George-Mando&theme=darkhub&no-frame=true&no-bg=true&margin-w=8&column=6)](https://github.com/ryo-ma/github-profile-trophy)
+![George's GitHub Stats](https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=dark&hide_border=true&bg_color=0a0a0f&title_color=00e5ff&icon_color=ff6a00&text_color=e8e6e0)
+
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=George-Mando&layout=compact&theme=dark&hide_border=true&bg_color=0a0a0f&title_color=00e5ff&text_color=e8e6e0)
 
 </div>
 
