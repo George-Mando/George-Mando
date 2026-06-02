@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>George Carter — Game Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface2: #16161f;
+  --border: #1e1e2e;
+  --accent: #e85d2a;
+  --accent2: #ff8c5a;
+  --text: #e8e6e0;
+  --muted: #8a8899;
+  --dim: #4a4960;
+  --green: #4ecb7a;
+  --blue: #5ab4f5;
+  --gold: #f5c842;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;line-height:1.6}
+body{max-width:900px;margin:0 auto;padding:48px 32px}
+
+/* HEADER */
+.header{border-bottom:1px solid var(--border);padding-bottom:32px;margin-bottom:36px;position:relative}
+.header::before{content:'';position:absolute;top:0;left:-32px;right:-32px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2),transparent)}
+.name{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;letter-spacing:-1px;color:#fff;line-height:1;margin-bottom:10px}
+.tagline{font-family:'Syne',sans-serif;font-size:11px;font-weight:500;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+.meta{font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:18px}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.link{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);border-radius:3px;color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.5px;transition:all .2s}
+.link:hover{border-color:var(--accent);color:var(--accent)}
+.link-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+/* LAYOUT */
+.body{display:grid;grid-template-columns:1fr 280px;gap:40px}
+.main{}
+.sidebar{}
+
+/* SECTION */
+.section{margin-bottom:36px}
+.sec-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* SUMMARY */
+.summary{font-size:12.5px;color:#b8b6b0;line-height:1.8;border-left:2px solid var(--accent);padding-left:16px}
+
+/* SKILLS */
+.skill-group{margin-bottom:12px}
+.skill-cat{font-family:'Syne',sans-serif;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{padding:3px 8px;background:var(--surface2);border:1px solid var(--border);border-radius:2px;font-size:11px;color:var(--text)}
+.tag.hi{border-color:var(--accent);color:var(--accent2)}
+
+/* ENTRY */
+.entry{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.entry:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.entry-header{margin-bottom:8px}
+.entry-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px;line-height:1.2;margin-bottom:4px}
+.entry-emoji{font-size:14px}
+.entry-date{font-size:10px;letter-spacing:1px;color:var(--accent);font-family:'Syne',sans-serif;font-weight:600}
+.entry-org{font-size:11px;color:var(--muted);margin-bottom:2px}
+.entry-sub{font-size:11px;color:var(--dim)}
+.badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:2px;font-size:10px;letter-spacing:.5px;font-family:'Syne',sans-serif;font-weight:600;margin-right:4px;margin-top:5px}
+.badge.green{background:#0d2b1c;color:var(--green);border:1px solid #1a4a30}
+.badge.blue{background:#0a1e2e;color:var(--blue);border:1px solid #1a3a50}
+.badge.orange{background:#2a1208;color:var(--accent2);border:1px solid #4a2010}
+.bullets{margin-top:10px;padding-left:0;list-style:none}
+.bullets li{position:relative;padding-left:16px;color:#9a9890;font-size:11.5px;margin-bottom:5px;line-height:1.6}
+.bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:10px;top:1px}
+
+/* EDU */
+.edu-entry{margin-bottom:16px}
+.edu-degree{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff}
+.edu-school{font-size:11px;color:var(--muted);margin-top:2px}
+.edu-date{font-size:10px;color:var(--accent);letter-spacing:1px;margin-top:2px;font-family:'Syne',sans-serif}
+
+/* CERTS */
+.cert{padding:8px 10px;background:var(--surface2);border:1px solid var(--border);border-radius:3px;margin-bottom:6px;font-size:11px;color:var(--text);display:flex;align-items:center;gap:8px}
+.cert::before{content:'◆';color:var(--gold);font-size:9px;flex-shrink:0}
+
+/* ENG TAG */
+.eng-badge{display:inline-block;padding:2px 8px;background:#1a0a1e;color:#c98af5;border:1px solid #3a1a5e;border-radius:2px;font-size:10px;font-family:'Syne',sans-serif;font-weight:600;margin-left:8px;vertical-align:middle}
+
+@media(max-width:700px){
+  .body{grid-template-columns:1fr}
+  .name{font-size:32px}
+}
+@media print{
+  :root{--bg:#fff;--surface:#f8f8f8;--surface2:#f0f0f0;--border:#ddd;--text:#111;--muted:#555;--dim:#999}
+  html{background:#fff}
+  body{padding:24px}
+  .header::before{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="tagline">Game Developer · Gameplay Programmer · AI &amp; UI/UX Systems</div>
+  <div class="name">George Carter</div>
+  <div class="meta">16 Years Engineering Experience &nbsp;·&nbsp; Marlow, OK</div>
+  <div class="links">
+    <a class="link" href="mailto:gtcarter@student.fullsail.edu"><span class="link-dot"></span>FSU Email</a>
+    <a class="link" href="mailto:xenclipsestudios@gmail.com"><span class="link-dot"></span>Studio Email</a>
+    <a class="link" href="https://www.linkedin.com/in/george-carter-ba996b315" target="_blank"><span class="link-dot"></span>LinkedIn</a>
+    <a class="link" href="https://george-carter.itch.io/" target="_blank"><span class="link-dot"></span>Itch.io</a>
+  </div>
+</header>
+
+<div class="body">
+<!-- MAIN COLUMN -->
+<main>
+
+  <!-- SUMMARY -->
+  <section class="section">
+    <div class="sec-label">Profile</div>
+    <p class="summary">Game Developer specializing in gameplay programming, AI systems, and UI/UX architecture with experience across Unity (C#) and Unreal Engine (C++/Blueprints). Backed by 16 years of professional Mechanical Engineering experience. Adept at building core player systems, enemy behaviors, environmental mechanics, and resource/progression frameworks.</p>
+  </section>
+
+  <!-- GAME DEV -->
+  <section class="section">
+    <div class="sec-label">Game Development · Academic</div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <div class="entry-title"><span class="entry-emoji">🌑</span> Shadows of Beginnings</div>
+        <div class="entry-date">APR 2026 – PRESENT</div>
+        <div class="entry-org">Team Nebula Interactive · Full Sail University</div>
+        <div style="margin-top:5px">
+          <span class="badge green">Action Adventure RPG</span>
+          <span class="badge orange">Unreal Engine</span>
+          <span class="badge blue">UI/UX &amp; AI Lead</span>
+        </div>
+      </div>
+      <ul class="bullets">
+        <li>Designed and implemented HUD and UI systems including menus, quest logs, and interaction displays</li>
+        <li>Designed and implemented enemy AI behaviors for escalating combat encounters</li>
+        <li>Created horror event logic tied to exploration, tension, and player decision-making</li>
+        <li>Implemented 'monster house' trigger systems for ambushes and scripted encounters</li>
+        <li>Developed gameplay and systems using Unreal Engine (C++ &amp; Blueprints)</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <div class="entry-title"><span class="entry-emoji">⚙️</span> Clockwork Horrors</div>
+        <div class="entry-date">JUN 2025</div>
+        <div class="entry-org">Team Clockwork · Full Sail University</div>
+        <div style="margin-top:5px">
+          <span class="badge green">First Person Shooter</span>
+          <span class="badge orange">Unity (C#)</span>
+          <span class="badge blue">Gameplay &amp; AI Systems</span>
+        </div>
+      </div>
+      <ul class="bullets">
+        <li>Implemented core FPS player systems: movement, crouch/hide, shooting, and pause functionality</li>
+        <li>Created enemy AI for Clockwork Rifleman and Detonator Wraith with multiple difficulty tiers</li>
+        <li>Designed environmental hazards: frozen terrain, snowy surfaces, collapsing structures</li>
+        <li>Implemented XP-based progression and energy cell resource systems</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <div class="entry-title"><span class="entry-emoji">💊</span> Dr. Malware</div>
+        <div class="entry-date">OCT 2025</div>
+        <div class="entry-org">Green Team · Full Sail University</div>
+        <div style="margin-top:5px">
+          <span class="badge green">Puzzle Game</span>
+          <span class="badge orange">C++ / Vulkan</span>
+          <span class="badge blue">Core Gameplay Systems</span>
+        </div>
+      </div>
+      <ul class="bullets">
+        <li>Implemented core virus mechanics including placement, color assignment, and visual/audio feedback</li>
+        <li>Built combo detection system supporting match-four logic and cascading reactions</li>
+        <li>Finalized save/load system with reliable state persistence and error handling</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- ENGINEERING -->
+  <section class="section">
+    <div class="sec-label">Engineering Experience</div>
+
+    <div class="entry">
+      <div class="entry-title">Chief Engineer <span class="eng-badge">Barrett Trailers</span></div>
+      <div class="entry-date">SEP 2021 – PRESENT &nbsp;·&nbsp; Purcell, OK</div>
+      <ul class="bullets">
+        <li>Designed and modified parts across manufacturing, trailer, and stock trailer equipment departments</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">Independent Engineer / Consultant <span class="eng-badge">Evolve / Tesla</span></div>
+      <div class="entry-date">APR 2020 – SEP 2021 &nbsp;·&nbsp; Remote</div>
+      <ul class="bullets">
+        <li>Delivered engineering solutions that improved safety, reduced costs, and streamlined assembly</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">Engineering Manager <span class="eng-badge">Urban Farmhouse Designs</span></div>
+      <div class="entry-date">JAN 2015 – SEP 2020 &nbsp;·&nbsp; Oklahoma City, OK</div>
+      <ul class="bullets">
+        <li>Led engineering department producing drawings and parts for all company product lines</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">Mechanical Engineering Manager <span class="eng-badge">Titan Tanks &amp; Vessels</span></div>
+      <div class="entry-date">MAR 2009 – JAN 2015 &nbsp;·&nbsp; Elmore City, OK</div>
+      <ul class="bullets">
+        <li>Managed designers and drafters; oversaw ASME code and non-code tank and vessel design</li>
+      </ul>
+    </div>
+
+  </section>
+</main>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="sec-label">Skills</div>
+
+    <div class="skill-group">
+      <div class="skill-cat">Game Engines</div>
+      <div class="skill-tags">
+        <span class="tag hi">Unreal Engine</span>
+        <span class="tag hi">Unity</span>
+        <span class="tag">C++</span>
+        <span class="tag">Blueprints</span>
+        <span class="tag">C#</span>
+      </div>
+    </div>
+
+    <div class="skill-group" style="margin-top:12px">
+      <div class="skill-cat">Languages &amp; Tools</div>
+      <div class="skill-tags">
+        <span class="tag">C++</span>
+        <span class="tag">C#</span>
+        <span class="tag">Visual Studio</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">Perforce</span>
+        <span class="tag">Vulkan</span>
+      </div>
+    </div>
+
+    <div class="skill-group" style="margin-top:12px">
+      <div class="skill-cat">Game Systems</div>
+      <div class="skill-tags">
+        <span class="tag hi">AI Behavior Trees</span>
+        <span class="tag hi">State Machines</span>
+        <span class="tag">UI/UX</span>
+        <span class="tag">Physics</span>
+        <span class="tag">Save/Load</span>
+        <span class="tag">HUD Systems</span>
+        <span class="tag">Menu Flows</span>
+      </div>
+    </div>
+
+    <div class="skill-group" style="margin-top:12px">
+      <div class="skill-cat">Productivity</div>
+      <div class="skill-tags">
+        <span class="tag">Trello</span>
+        <span class="tag">Discord</span>
+        <span class="tag">GitHub</span>
+      </div>
+    </div>
+
+    <div class="skill-group" style="margin-top:12px">
+      <div class="skill-cat">Engineering Software</div>
+      <div class="skill-tags">
+        <span class="tag">SolidWorks</span>
+        <span class="tag">AutoCAD</span>
+        <span class="tag">Creo</span>
+        <span class="tag">RISA</span>
+        <span class="tag">ProNest 2023</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section">
+    <div class="sec-label">Education</div>
+
+    <div class="edu-entry">
+      <div class="edu-degree">B.S. Game Development</div>
+      <div class="edu-school">Full Sail University · Winter Park, FL</div>
+      <div class="edu-date">JUN 2026</div>
+    </div>
+
+    <div class="edu-entry">
+      <div class="edu-degree">B.S. Mechanical Engineering</div>
+      <div class="edu-school">Cameron University · Lawton, OK</div>
+      <div class="edu-date">MAY 2008</div>
+    </div>
+
+    <div class="edu-entry">
+      <div class="edu-degree">A.A.S. Applied Science</div>
+      <div class="edu-school">Cameron University · Lawton, OK</div>
+      <div class="edu-date">MAY 2006</div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section">
+    <div class="sec-label">Certifications</div>
+    <div class="cert">SolidWorks Certified Professional – Core</div>
+    <div class="cert">SolidWorks CP – Advanced Sheet Metal</div>
+    <div class="cert">SolidWorks CP – Advanced Weldments</div>
+    <div class="cert">SolidWorks PDM Certification</div>
+  </section>
+
+</aside>
+</div>
+
+</body>
+</html>
