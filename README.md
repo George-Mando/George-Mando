@@ -234,6 +234,71 @@ public:
 
 ---
 
+---
+
+## 📄 `RESUME`
+
+<div align="center">
+
+[![Download Resume – Xenclipse Edition](https://img.shields.io/badge/⬇_RESUME-XENCLIPSE_EDITION-00e5ff?style=for-the-badge&labelColor=000000&logoColor=black)](https://github.com/George-Mando/George-Mando/raw/main/george-carter-resume-xenclipse.pdf)
+&nbsp;
+[![Download Resume – Dark Edition](https://img.shields.io/badge/⬇_RESUME-DARK_EDITION-ff6b35?style=for-the-badge&labelColor=000000)](https://github.com/George-Mando/George-Mando/raw/main/george-carter-resume-original.pdf)
+
+</div>
+
+### 🧠 Skills at a Glance
+
+<div align="center">
+
+| Category | Skills |
+|:---|:---|
+| 🎮 **Game Engines** | Unreal Engine 5 (C++ & Blueprints), Unity (C#) |
+| 💻 **Languages** | C++, C#, Python |
+| 🤖 **Game Systems** | AI Behavior Trees, State Machines, HUD/UI, Physics, Save/Load |
+| 🛠️ **Tools** | GitHub, Visual Studio, Trello, Perforce, Vulkan (intro) |
+| 🔩 **Engineering** | SolidWorks (Pro), AutoCAD, Creo, RISA, ProNest 2023 |
+
+</div>
+
+### 🗂️ Experience Summary
+
+```
+GAME DEVELOPMENT
+─────────────────────────────────────────────────────────
+🌑 Shadows of Beginnings   APR 2026–PRESENT   UE5   UI/UX & AI Lead
+⚙️  Clockwork Horrors        JUN 2025           Unity  Gameplay & AI Systems
+💊 Dr. Malware              OCT 2025           C++/Vulkan  Core Systems
+
+ENGINEERING  (16 Years)
+─────────────────────────────────────────────────────────
+⚙️  Chief Engineer            SEP 2021–PRESENT   Barrett Trailers
+🔬 Independent Engineer      APR 2020–SEP 2021  Evolve / Tesla (Remote)
+🏗️  Engineering Manager       JAN 2015–SEP 2020  Urban Farmhouse Designs
+🏭 Mech. Engineering Mgr     MAR 2009–JAN 2015  Titan Tanks & Vessels
+```
+
+### 🎓 Education & Certifications
+
+<div align="center">
+
+| Degree | School | Year |
+|:---|:---|:---:|
+| B.S. Game Development | Full Sail University | 2026 |
+| B.S. Mechanical Engineering | Cameron University | 2008 |
+| A.A.S. Applied Science | Cameron University | 2006 |
+
+</div>
+
+<div align="center">
+
+![CSWP Core](https://img.shields.io/badge/CSWP-Core-0078D7?style=flat-square&logo=dassaultsystemes&logoColor=white)
+![CSWP Sheet Metal](https://img.shields.io/badge/CSWP-Advanced_Sheet_Metal-0078D7?style=flat-square&logo=dassaultsystemes&logoColor=white)
+![CSWP Weldments](https://img.shields.io/badge/CSWP-Advanced_Weldments-0078D7?style=flat-square&logo=dassaultsystemes&logoColor=white)
+![SolidWorks PDM](https://img.shields.io/badge/SolidWorks-PDM_Certified-0078D7?style=flat-square&logo=dassaultsystemes&logoColor=white)
+
+</div>
+
+
 <div align="center">
 
 [![itch.io](https://img.shields.io/badge/itch.io-See%20My%20Games-FA5C5C?style=for-the-badge&logo=itch.io&logoColor=white&labelColor=0d0d0d)](https://george-carter.itch.io/)
