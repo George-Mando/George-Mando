@@ -240,9 +240,9 @@ public:
 
 <div align="center">
 
-[![Download Resume – Xenclipse Edition](https://img.shields.io/badge/⬇_RESUME-XENCLIPSE_EDITION-00e5ff?style=for-the-badge&labelColor=000000&logoColor=black)](https://github.com/George-Mando/George-Mando/raw/main/george-carter-resume-xenclipse.pdf)
-&nbsp;
-[![Download Resume – Dark Edition](https://img.shields.io/badge/⬇_RESUME-DARK_EDITION-ff6b35?style=for-the-badge&labelColor=000000)](https://github.com/George-Mando/George-Mando/raw/main/george-carter-resume-original.pdf)
+[![View Resume – Roll the Dice](https://img.shields.io/badge/🎲_VIEW_RESUME-ROLL_THE_VARIANT-00ff9c?style=for-the-badge&labelColor=000000)](https://george-mando.github.io/George-Mando/resume)
+
+> *Each visit randomly loads one of two resume designs — re-roll anytime.*
 
 </div>
 
