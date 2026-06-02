@@ -4,156 +4,404 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>George Carter — Resume</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
+/* ── RESET ── */
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:#000600;overflow:hidden}
-body{font-family:'Share Tech Mono',monospace;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:28px}
-body::before{content:'';position:fixed;inset:0;
-  background-image:linear-gradient(rgba(0,255,156,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,156,.04) 1px,transparent 1px);
-  background-size:32px 32px;pointer-events:none}
-body::after{content:'';position:fixed;inset:0;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,156,.006) 2px,rgba(0,255,156,.006) 4px);
-  pointer-events:none}
-.panel{
-  position:relative;z-index:1;text-align:center;
-  background:rgba(0,13,5,.95);border:1px solid rgba(0,255,156,.3);
-  border-radius:6px;padding:40px 48px;min-width:320px;max-width:480px;
+html{min-height:100%}
+
+/* ── ROLL SCREEN ── */
+#roll-screen{
+  position:fixed;inset:0;z-index:9999;
+  background:#000a04;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+  transition:opacity .7s ease;
 }
-.panel::before,.panel::after{content:'';position:absolute;width:14px;height:14px;border-color:rgba(0,255,156,.6);border-style:solid}
-.panel::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
-.panel::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
-.sys-label{font-size:9px;letter-spacing:4px;color:rgba(0,255,156,.4);margin-bottom:24px}
-.dice-wrap{margin:0 auto 24px;width:80px;height:80px}
-.dice{
-  width:80px;height:80px;border-radius:10px;border:2px solid rgba(0,255,156,.5);
-  background:rgba(0,20,10,.8);display:flex;align-items:center;justify-content:center;font-size:46px;
+#roll-screen.hidden{opacity:0;pointer-events:none}
+.rs-label{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:5px;color:rgba(0,255,140,.4);margin-bottom:4px}
+.rs-dice{
+  width:88px;height:88px;border-radius:12px;
+  border:2px solid rgba(0,255,140,.45);
+  background:#001408;
+  display:flex;align-items:center;justify-content:center;
+  font-size:50px;line-height:1;
+  font-family:'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif;
 }
-.dice.rolling{animation:roll 1.4s cubic-bezier(.4,0,.2,1) forwards}
-@keyframes roll{
-  0%  {transform:rotateY(0)      rotateX(0)      scale(1);  box-shadow:none}
-  20% {transform:rotateY(180deg) rotateX(90deg)  scale(1.2);box-shadow:0 0 30px rgba(0,255,156,.4)}
-  50% {transform:rotateY(360deg) rotateX(180deg) scale(.85);box-shadow:0 0 10px rgba(0,255,156,.2)}
-  80% {transform:rotateY(540deg) rotateX(270deg) scale(1.1);box-shadow:0 0 25px rgba(0,255,156,.3)}
-  100%{transform:rotateY(720deg) rotateX(360deg) scale(1);  box-shadow:0 0 15px rgba(0,255,156,.15)}
+.rs-dice.spin{animation:dspin 1.3s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes dspin{
+  0%  {transform:rotateY(0)      rotateX(0)      scale(1)}
+  25% {transform:rotateY(180deg) rotateX(90deg)  scale(1.18)}
+  55% {transform:rotateY(360deg) rotateX(180deg) scale(.88)}
+  80% {transform:rotateY(540deg) rotateX(270deg) scale(1.08)}
+  100%{transform:rotateY(720deg) rotateX(360deg) scale(1)}
 }
-.status{font-size:10px;letter-spacing:3px;color:rgba(0,255,156,.5);min-height:18px;margin-bottom:6px}
-.bar-wrap{width:100%;height:3px;background:rgba(0,255,156,.08);border-radius:2px;overflow:hidden;margin-bottom:24px}
-.bar-fill{height:100%;width:0;border-radius:2px;background:linear-gradient(90deg,#00ff9c,#00e5ff);box-shadow:0 0 8px rgba(0,255,156,.5)}
-.result{
-  font-family:'Orbitron',monospace;font-size:13px;font-weight:700;
-  letter-spacing:2px;padding:8px 20px;border-radius:3px;
-  opacity:0;transform:translateY(6px);
+.rs-bar-wrap{width:220px;height:3px;background:rgba(0,255,140,.08);border-radius:2px;overflow:hidden}
+.rs-bar{height:100%;width:0;background:linear-gradient(90deg,#00ff8c,#00e5ff);transition:width 1.3s ease-out;border-radius:2px}
+.rs-status{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:rgba(0,255,140,.5);min-height:16px}
+.rs-result{
+  font-family:'Orbitron',monospace;font-size:14px;font-weight:700;letter-spacing:2px;
+  padding:8px 22px;border-radius:3px;
+  opacity:0;transform:translateY(8px);
   transition:opacity .4s,transform .4s;
-  display:inline-block;margin-bottom:12px;text-decoration:none;cursor:pointer;
+  cursor:pointer;text-decoration:none;display:inline-block;
 }
-.result.show{opacity:1;transform:translateY(0)}
-.result.xen{color:#00e5ff;border:1px solid rgba(0,229,255,.3);background:rgba(0,229,255,.07)}
-.result.xen:hover{background:rgba(0,229,255,.15)}
-.result.orig{color:#ff8c5a;border:1px solid rgba(255,107,53,.3);background:rgba(255,107,53,.07)}
-.result.orig:hover{background:rgba(255,107,53,.15)}
-.open-hint{font-size:9px;letter-spacing:2px;color:rgba(0,255,156,.3);margin-bottom:20px;
+.rs-result.show{opacity:1;transform:translateY(0)}
+.rs-result.xen{color:#00e5ff;border:1px solid rgba(0,229,255,.35);background:rgba(0,229,255,.06)}
+.rs-result.orig{color:#ff8c5a;border:1px solid rgba(255,106,0,.35);background:rgba(255,106,0,.06)}
+.rs-hint{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(0,255,140,.25);
   opacity:0;transition:opacity .4s}
-.open-hint.show{opacity:1}
-.reroll{
-  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;
-  background:none;border:1px solid rgba(0,255,156,.2);color:rgba(0,255,156,.4);
-  padding:8px 20px;border-radius:3px;cursor:pointer;
-  opacity:0;transition:opacity .4s,background .2s,color .2s,border-color .2s;display:block;margin:0 auto;
+.rs-hint.show{opacity:1}
+.rs-reroll{
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;
+  background:none;border:1px solid rgba(0,255,140,.2);color:rgba(0,255,140,.4);
+  padding:7px 20px;border-radius:3px;cursor:pointer;
+  opacity:0;transition:opacity .4s,background .2s,color .2s,border-color .2s;
 }
-.reroll.show{opacity:1}
-.reroll:hover{border-color:rgba(0,255,156,.7);color:#00ff9c;background:rgba(0,255,156,.05)}
+.rs-reroll:hover{border-color:rgba(0,255,140,.7);color:#00ff8c;background:rgba(0,255,140,.05)}
+.rs-reroll.show{opacity:1}
+
+/* grid bg on roll screen */
+#roll-screen::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,255,140,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,140,.03) 1px,transparent 1px);
+  background-size:30px 30px;
+}
+
+/* ── RESUME WRAPPER ── */
+#resume{
+  opacity:0;transition:opacity .7s ease;
+  font-family:'DM Mono',monospace;font-size:13px;line-height:1.6;
+  min-height:100vh;
+}
+#resume.show{opacity:1}
+
+/* ── THEME: XENCLIPSE ── */
+body.xen #resume{background:#060608;color:#e0f7ff}
+body.xen{--acc:#00e5ff;--acc2:#00bfff;--border:#1a1a2e;--surf:#13131e;--muted:#6a8a9a;--dim:#3a4a55}
+
+/* ── THEME: ORIGINAL ── */
+body.orig #resume{background:#0a0a0f;color:#e8e6e0}
+body.orig{--acc:#e85d2a;--acc2:#ff8c5a;--border:#1e1e2e;--surf:#16161f;--muted:#8a8899;--dim:#4a4960}
+
+/* ── SHARED RESUME STYLES ── */
+.r-wrap{max-width:920px;margin:0 auto;padding:clamp(24px,4vw,48px) clamp(16px,3vw,32px)}
+
+/* header */
+.r-head{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:32px;position:relative;overflow:hidden}
+body.xen .r-head::before{content:'';position:absolute;top:0;left:-32px;right:-32px;height:3px;background:linear-gradient(90deg,#ff6a00,#ee0979,#c850c0,#00e5ff,transparent)}
+body.orig .r-head::before{content:'';position:absolute;top:0;left:-32px;right:-32px;height:3px;background:linear-gradient(90deg,#e85d2a,#ff8c5a,transparent)}
+
+.r-name{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-1px;line-height:1;margin-bottom:10px;font-size:clamp(30px,5vw,48px)}
+body.xen .r-name{background:linear-gradient(90deg,#00e5ff,#00bfff 40%,#c850c0 75%,#ff6a00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+body.orig .r-name{color:#fff}
+
+.r-tagline{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:3px;color:var(--acc);text-transform:uppercase;margin-bottom:6px}
+.r-meta{font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:16px}
+.r-links{display:flex;flex-wrap:wrap;gap:7px}
+.r-link{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border:1px solid var(--border);border-radius:3px;color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.5px;transition:all .2s}
+.r-link:hover{border-color:var(--acc);color:var(--acc)}
+.r-dot{width:6px;height:6px;border-radius:50%;background:var(--acc);flex-shrink:0}
+
+/* layout */
+.r-body{display:grid;grid-template-columns:1fr 270px;gap:36px}
+@media(max-width:680px){.r-body{grid-template-columns:1fr}}
+
+/* section */
+.r-sec{margin-bottom:30px}
+.r-sec-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;color:var(--acc);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.r-sec-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,color-mix(in srgb,var(--acc) 30%,transparent),transparent)}
+
+/* summary */
+.r-summary{font-size:12.5px;color:var(--muted);line-height:1.8;border-left:2px solid var(--acc);padding-left:14px}
+
+/* entry */
+.r-entry{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--border)}
+.r-entry:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.r-etitle{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:3px}
+.r-edate{font-size:10px;letter-spacing:1px;color:var(--acc);font-family:'Syne',sans-serif;font-weight:600}
+.r-eorg{font-size:11px;color:var(--muted);margin-bottom:2px}
+.r-badges{margin-top:5px;display:flex;flex-wrap:wrap;gap:4px}
+.badge{padding:2px 7px;border-radius:2px;font-size:10px;letter-spacing:.5px;font-family:'Syne',sans-serif;font-weight:600}
+.bg-g{background:rgba(0,180,100,.07);color:#00c878;border:1px solid rgba(0,180,100,.25)}
+.bg-o{background:rgba(255,107,53,.08);color:#ff8c5a;border:1px solid rgba(255,107,53,.25)}
+.bg-b{background:rgba(90,140,255,.07);color:#7ab0ff;border:1px solid rgba(90,140,255,.25)}
+.r-bullets{margin-top:9px;list-style:none;padding:0}
+.r-bullets li{position:relative;padding-left:15px;color:var(--muted);font-size:11.5px;margin-bottom:5px;line-height:1.6}
+.r-bullets li::before{content:'▸';position:absolute;left:0;color:var(--acc);font-size:10px;top:1px}
+
+/* eng badge */
+.eng-b{display:inline-block;padding:2px 7px;background:rgba(180,100,255,.07);color:#c090f0;border:1px solid rgba(180,100,255,.2);border-radius:2px;font-size:10px;font-family:'Syne',sans-serif;font-weight:600;margin-left:7px;vertical-align:middle}
+
+/* sidebar */
+.sk-group{margin-bottom:11px}
+.sk-cat{font-family:'Syne',sans-serif;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.sk-tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{padding:3px 8px;background:var(--surf);border:1px solid var(--border);border-radius:2px;font-size:11px;color:#e0e0e0}
+.tag.hi{border-color:var(--acc);color:var(--acc2)}
+.edu-e{margin-bottom:13px}
+.edu-deg{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff}
+.edu-sch{font-size:11px;color:var(--muted);margin-top:2px}
+.edu-yr{font-size:10px;color:var(--acc);letter-spacing:1px;margin-top:2px;font-family:'Syne',sans-serif}
+.cert{padding:7px 10px;background:var(--surf);border:1px solid var(--border);border-radius:3px;margin-bottom:5px;font-size:11px;color:#e0e0e0;display:flex;align-items:center;gap:8px}
+.cert::before{content:'◆';color:#f5c842;font-size:9px;flex-shrink:0}
+
+/* floating re-roll bar */
+.float-bar{
+  position:fixed;bottom:20px;right:20px;z-index:100;
+  display:flex;align-items:center;gap:10px;
+  background:rgba(0,0,0,.8);border:1px solid rgba(0,255,140,.2);
+  border-radius:4px;padding:8px 14px;backdrop-filter:blur(8px);
+  opacity:0;transition:opacity .5s 1s;
+}
+.float-bar.show{opacity:1}
+.float-theme{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.3)}
+.float-btn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;
+  background:none;border:1px solid rgba(0,255,140,.25);color:rgba(0,255,140,.6);
+  padding:5px 12px;border-radius:3px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.float-btn:hover{border-color:rgba(0,255,140,.8);color:#00ff8c;background:rgba(0,255,140,.07)}
 </style>
 </head>
 <body>
-<div class="panel">
-  <div class="sys-label">// XENCLIPSE STUDIOS · RESUME SYSTEM</div>
-  <div class="dice-wrap"><div class="dice" id="dice">🎲</div></div>
-  <div class="status" id="status">INITIALIZING...</div>
-  <div class="bar-wrap"><div class="bar-fill" id="bar"></div></div>
-  <a class="result" id="result" href="#" target="_self"></a>
-  <div class="open-hint" id="hint">CLICK TO OPEN · AUTO-OPENING...</div>
-  <button class="reroll" id="reroll-btn" onclick="startRoll()">🎲 &nbsp;RE-ROLL VARIANT</button>
+
+<!-- ── ROLL SCREEN ── -->
+<div id="roll-screen">
+  <div class="rs-label">XENCLIPSE STUDIOS · RESUME SYSTEM</div>
+  <div class="rs-dice" id="dice">&#x1F3B2;</div>
+  <div class="rs-bar-wrap"><div class="rs-bar" id="bar"></div></div>
+  <div class="rs-status" id="status">INITIALIZING...</div>
+  <div class="rs-result" id="result"></div>
+  <div class="rs-hint" id="hint">CLICK TO SKIP · AUTO-LOADING</div>
+  <button class="rs-reroll" id="reroll-btn" onclick="doRoll(true)">&#x1F3B2;&nbsp; RE-ROLL VARIANT</button>
+</div>
+
+<!-- ── RESUME ── -->
+<div id="resume">
+<div class="r-wrap">
+
+  <header class="r-head">
+    <div class="r-tagline">Game Developer · Gameplay Programmer · AI &amp; UI/UX Systems</div>
+    <div class="r-name">George Carter</div>
+    <div class="r-meta">16 Years Engineering Experience &nbsp;·&nbsp; Marlow, OK</div>
+    <div class="r-links">
+      <a class="r-link" href="mailto:gtcarter@student.fullsail.edu"><span class="r-dot"></span>FSU Email</a>
+      <a class="r-link" href="mailto:xenclipsestudios@gmail.com"><span class="r-dot"></span>Studio Email</a>
+      <a class="r-link" href="https://www.linkedin.com/in/george-carter-ba996b315" target="_blank"><span class="r-dot"></span>LinkedIn</a>
+      <a class="r-link" href="https://george-carter.itch.io/" target="_blank"><span class="r-dot"></span>Itch.io</a>
+      <a class="r-link" href="https://github.com/George-Mando" target="_blank"><span class="r-dot"></span>GitHub</a>
+    </div>
+  </header>
+
+  <div class="r-body">
+  <main>
+
+    <section class="r-sec">
+      <div class="r-sec-label">Profile</div>
+      <p class="r-summary">Game Developer specializing in gameplay programming, AI systems, and UI/UX architecture with experience across Unity (C#) and Unreal Engine (C++/Blueprints). Backed by 16 years of professional Mechanical Engineering experience. Adept at building core player systems, enemy behaviors, environmental mechanics, and resource/progression frameworks.</p>
+    </section>
+
+    <section class="r-sec">
+      <div class="r-sec-label">Game Development · Academic</div>
+
+      <div class="r-entry">
+        <div class="r-etitle">&#x1F311; Shadows of Beginnings</div>
+        <div class="r-edate">APR 2026 – PRESENT</div>
+        <div class="r-eorg">Team Nebula Interactive · Full Sail University</div>
+        <div class="r-badges"><span class="badge bg-g">Action Adventure RPG</span><span class="badge bg-o">Unreal Engine</span><span class="badge bg-b">UI/UX &amp; AI Lead</span></div>
+        <ul class="r-bullets">
+          <li>Designed and implemented HUD and UI systems including menus, quest logs, and interaction displays</li>
+          <li>Designed and implemented enemy AI behaviors for escalating combat encounters</li>
+          <li>Created horror event logic tied to exploration, tension, and player decision-making</li>
+          <li>Implemented 'monster house' trigger systems for ambushes and scripted encounters</li>
+          <li>Developed gameplay and systems using Unreal Engine (C++ &amp; Blueprints)</li>
+        </ul>
+      </div>
+
+      <div class="r-entry">
+        <div class="r-etitle">&#x2699;&#xFE0F; Clockwork Horrors</div>
+        <div class="r-edate">JUN 2025</div>
+        <div class="r-eorg">Team Clockwork · Full Sail University</div>
+        <div class="r-badges"><span class="badge bg-g">First Person Shooter</span><span class="badge bg-o">Unity (C#)</span><span class="badge bg-b">Gameplay &amp; AI Systems</span></div>
+        <ul class="r-bullets">
+          <li>Implemented core FPS player systems: movement, crouch/hide, shooting, and pause functionality</li>
+          <li>Created enemy AI for Clockwork Rifleman and Detonator Wraith with multiple difficulty tiers</li>
+          <li>Designed environmental hazards: frozen terrain, snowy surfaces, collapsing structures</li>
+          <li>Implemented XP-based progression and energy cell resource systems</li>
+        </ul>
+      </div>
+
+      <div class="r-entry">
+        <div class="r-etitle">&#x1F48A; Dr. Malware</div>
+        <div class="r-edate">OCT 2025</div>
+        <div class="r-eorg">Green Team · Full Sail University</div>
+        <div class="r-badges"><span class="badge bg-g">Puzzle Game</span><span class="badge bg-o">C++ / Vulkan</span><span class="badge bg-b">Core Gameplay Systems</span></div>
+        <ul class="r-bullets">
+          <li>Implemented core virus mechanics including placement, color assignment, and visual/audio feedback</li>
+          <li>Built combo detection system supporting match-four logic and cascading reactions</li>
+          <li>Finalized save/load system with reliable state persistence and error handling</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="r-sec">
+      <div class="r-sec-label">Engineering Experience</div>
+      <div class="r-entry">
+        <div class="r-etitle">Chief Engineer <span class="eng-b">Barrett Trailers</span></div>
+        <div class="r-edate">SEP 2021 – PRESENT · Purcell, OK</div>
+        <ul class="r-bullets"><li>Designed and modified parts across manufacturing, trailer, and stock trailer equipment departments</li></ul>
+      </div>
+      <div class="r-entry">
+        <div class="r-etitle">Independent Engineer / Consultant <span class="eng-b">Evolve / Tesla</span></div>
+        <div class="r-edate">APR 2020 – SEP 2021 · Remote</div>
+        <ul class="r-bullets"><li>Delivered engineering solutions that improved safety, reduced costs, and streamlined assembly</li></ul>
+      </div>
+      <div class="r-entry">
+        <div class="r-etitle">Engineering Manager <span class="eng-b">Urban Farmhouse Designs</span></div>
+        <div class="r-edate">JAN 2015 – SEP 2020 · Oklahoma City, OK</div>
+        <ul class="r-bullets"><li>Led engineering department producing drawings and parts for all company product lines</li></ul>
+      </div>
+      <div class="r-entry">
+        <div class="r-etitle">Mechanical Engineering Manager <span class="eng-b">Titan Tanks &amp; Vessels</span></div>
+        <div class="r-edate">MAR 2009 – JAN 2015 · Elmore City, OK</div>
+        <ul class="r-bullets"><li>Managed designers and drafters; oversaw ASME code and non-code tank and vessel design</li></ul>
+      </div>
+    </section>
+
+  </main>
+
+  <aside>
+    <section class="r-sec">
+      <div class="r-sec-label">Skills</div>
+      <div class="sk-group"><div class="sk-cat">Game Engines</div><div class="sk-tags"><span class="tag hi">Unreal Engine</span><span class="tag hi">Unity</span><span class="tag">C++</span><span class="tag">Blueprints</span><span class="tag">C#</span></div></div>
+      <div class="sk-group" style="margin-top:10px"><div class="sk-cat">Languages &amp; Tools</div><div class="sk-tags"><span class="tag">C++</span><span class="tag">C#</span><span class="tag">Visual Studio</span><span class="tag">GitHub</span><span class="tag">Perforce</span><span class="tag">Vulkan</span></div></div>
+      <div class="sk-group" style="margin-top:10px"><div class="sk-cat">Game Systems</div><div class="sk-tags"><span class="tag hi">AI Behavior Trees</span><span class="tag hi">State Machines</span><span class="tag">UI/UX</span><span class="tag">Physics</span><span class="tag">Save/Load</span><span class="tag">HUD Systems</span><span class="tag">Menu Flows</span></div></div>
+      <div class="sk-group" style="margin-top:10px"><div class="sk-cat">Productivity</div><div class="sk-tags"><span class="tag">Trello</span><span class="tag">Discord</span><span class="tag">GitHub</span></div></div>
+      <div class="sk-group" style="margin-top:10px"><div class="sk-cat">Engineering Software</div><div class="sk-tags"><span class="tag">SolidWorks</span><span class="tag">AutoCAD</span><span class="tag">Creo</span><span class="tag">RISA</span><span class="tag">ProNest 2023</span></div></div>
+    </section>
+
+    <section class="r-sec">
+      <div class="r-sec-label">Education</div>
+      <div class="edu-e"><div class="edu-deg">B.S. Game Development</div><div class="edu-sch">Full Sail University · Winter Park, FL</div><div class="edu-yr">JUN 2026</div></div>
+      <div class="edu-e"><div class="edu-deg">B.S. Mechanical Engineering</div><div class="edu-sch">Cameron University · Lawton, OK</div><div class="edu-yr">MAY 2008</div></div>
+      <div class="edu-e"><div class="edu-deg">A.A.S. Applied Science</div><div class="edu-sch">Cameron University · Lawton, OK</div><div class="edu-yr">MAY 2006</div></div>
+    </section>
+
+    <section class="r-sec">
+      <div class="r-sec-label">Certifications</div>
+      <div class="cert">SolidWorks Certified Professional – Core</div>
+      <div class="cert">SolidWorks CP – Advanced Sheet Metal</div>
+      <div class="cert">SolidWorks CP – Advanced Weldments</div>
+      <div class="cert">SolidWorks PDM Certification</div>
+    </section>
+  </aside>
+  </div>
+
+</div>
+</div>
+
+<!-- floating re-roll -->
+<div class="float-bar" id="float-bar">
+  <span class="float-theme" id="float-label"></span>
+  <button class="float-btn" onclick="doRoll(true)">&#x1F3B2; RE-ROLL</button>
 </div>
 
 <script>
-// ── CONFIG ── update BASE if your Pages URL changes
-const BASE = 'https://george-mando.github.io/George-Mando/';
-const FACES = ['⚀','⚁','⚂','⚃','⚄','⚅'];
-const VARIANTS = [
-  { file: BASE + 'george-carter-resume-xenclipse.html', label: '▶  XENCLIPSE EDITION', cls: 'xen' },
-  { file: BASE + 'george-carter-resume-original.html',  label: '▶  DARK EDITION',      cls: 'orig' }
-];
+const FACES = ['&#x2680;','&#x2681;','&#x2682;','&#x2683;','&#x2684;','&#x2685;'];
+const THEMES = {
+  xen:  { cls:'xen',  label:'XENCLIPSE EDITION', rCls:'xen'  },
+  orig: { cls:'orig', label:'DARK EDITION',       rCls:'orig' }
+};
+const KEYS = Object.keys(THEMES);
+let last = null, rolling = false, autoTimer = null;
 
-let rolling = false;
-let lastPick = -1;
-let redirectTimer = null;
-
-function startRoll(){
-  if(rolling) return;
+function doRoll(userTriggered) {
+  if (rolling) return;
   rolling = true;
-  if(redirectTimer) clearTimeout(redirectTimer);
+  if (autoTimer) clearTimeout(autoTimer);
+
+  // show roll screen
+  const rs = document.getElementById('roll-screen');
+  rs.classList.remove('hidden');
+  document.getElementById('resume').classList.remove('show');
+  document.getElementById('float-bar').classList.remove('show');
 
   const dice   = document.getElementById('dice');
-  const status = document.getElementById('status');
   const bar    = document.getElementById('bar');
+  const status = document.getElementById('status');
   const result = document.getElementById('result');
   const hint   = document.getElementById('hint');
-  const btn    = document.getElementById('reroll-btn');
+  const reroll = document.getElementById('reroll-btn');
 
-  // reset UI
-  result.className = 'result';
+  // reset
+  result.className = 'rs-result';
   result.textContent = '';
-  result.href = '#';
-  hint.className = 'open-hint';
-  btn.className  = 'reroll';
+  hint.className = 'rs-hint';
+  reroll.className = 'rs-reroll';
   bar.style.transition = 'none';
-  bar.style.width = '0%';
+  bar.style.width = '0';
   status.textContent = 'ROLLING VARIANT...';
+  dice.classList.remove('spin');
 
-  // pick variant — never repeat same one twice in a row
+  // pick theme (never same twice in a row)
   let pick;
-  do { pick = Math.floor(Math.random() * VARIANTS.length) }
-  while(pick === lastPick && VARIANTS.length > 1);
-  lastPick = pick;
-  const v = VARIANTS[pick];
+  do { pick = KEYS[Math.floor(Math.random() * KEYS.length)]; } while (pick === last && KEYS.length > 1);
+  last = pick;
+  const t = THEMES[pick];
 
-  // spin dice faces
-  dice.classList.add('rolling');
-  let i = 0;
-  const ticker = setInterval(()=>{
-    dice.textContent = FACES[Math.floor(Math.random() * 6)];
-    if(++i >= 14) clearInterval(ticker);
-  }, 90);
+  // spin dice
+  void dice.offsetWidth; // reflow to restart animation
+  dice.classList.add('spin');
+  let fi = 0;
+  const ticker = setInterval(() => {
+    const f = FACES[Math.floor(Math.random() * 6)];
+    dice.innerHTML = f;
+    if (++fi >= 13) clearInterval(ticker);
+  }, 95);
 
-  // animate progress bar
-  requestAnimationFrame(()=> requestAnimationFrame(()=>{
-    bar.style.transition = 'width 1.4s ease-out';
+  // progress bar
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    bar.style.transition = 'width 1.3s ease-out';
     bar.style.width = '100%';
   }));
 
-  // reveal result as clickable link
-  setTimeout(()=>{
+  // show result label
+  setTimeout(() => {
     status.textContent = 'VARIANT SELECTED';
-    result.href = v.file;
-    result.className = 'result ' + v.cls + ' show';
-    result.textContent = v.label;
-  }, 950);
+    result.className = 'rs-result ' + t.rCls + ' show';
+    result.textContent = '▶  ' + t.label;
+    result.onclick = () => reveal(pick, t);
+  }, 960);
 
-  // show hint + reroll button
-  setTimeout(()=>{
-    hint.className = 'open-hint show';
-    btn.className  = 'reroll show';
+  // show hint + reroll
+  setTimeout(() => {
+    hint.className = 'rs-hint show';
+    reroll.className = 'rs-reroll show';
   }, 1150);
 
-  // auto-redirect
-  redirectTimer = setTimeout(()=>{
-    rolling = false;
-    window.location.href = v.file;
-  }, 2400);
+  // auto-reveal
+  autoTimer = setTimeout(() => reveal(pick, t), 2300);
 }
 
-startRoll();
+function reveal(pick, t) {
+  if (autoTimer) clearTimeout(autoTimer);
+
+  // apply theme to body
+  document.body.classList.remove('xen', 'orig');
+  document.body.classList.add(t.cls);
+
+  // update floating label
+  document.getElementById('float-label').textContent = '// ' + t.label;
+
+  // hide roll screen, show resume
+  document.getElementById('roll-screen').classList.add('hidden');
+  document.getElementById('resume').classList.add('show');
+  document.getElementById('float-bar').classList.add('show');
+
+  rolling = false;
+}
+
+// kick off on load
+doRoll(false);
 </script>
 </body>
 </html>
