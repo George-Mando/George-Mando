@@ -146,6 +146,20 @@ body.orig .r-name{color:#fff}
 .cert{padding:7px 10px;background:var(--surf);border:1px solid var(--border);border-radius:3px;margin-bottom:5px;font-size:11px;color:#e0e0e0;display:flex;align-items:center;gap:8px}
 .cert::before{content:'◆';color:#f5c842;font-size:9px;flex-shrink:0}
 
+/* back button */
+.back-btn{
+  position:fixed;top:16px;left:16px;z-index:100;
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;
+  background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.4);padding:7px 14px;border-radius:3px;
+  text-decoration:none;backdrop-filter:blur(8px);
+  opacity:0;transition:opacity .5s 1s, border-color .2s, color .2s, background .2s;
+}
+.back-btn:hover{border-color:var(--acc);color:var(--acc);background:rgba(0,0,0,.9)}
+.back-btn.show{opacity:1}
+.back-arr{font-size:12px}
+
 /* floating re-roll bar */
 .float-bar{
   position:fixed;bottom:20px;right:20px;z-index:100;
@@ -299,6 +313,11 @@ body.orig .r-name{color:#fff}
 </div>
 </div>
 
+<!-- back button -->
+<a class="back-btn" id="back-btn" href="https://george-mando.github.io/George-Mando/">
+  <span class="back-arr">&#x2190;</span> BACK TO PORTFOLIO
+</a>
+
 <!-- floating re-roll -->
 <div class="float-bar" id="float-bar">
   <span class="float-theme" id="float-label"></span>
@@ -396,6 +415,7 @@ function reveal(pick, t) {
   document.getElementById('roll-screen').classList.add('hidden');
   document.getElementById('resume').classList.add('show');
   document.getElementById('float-bar').classList.add('show');
+  document.getElementById('back-btn').classList.add('show');
 
   rolling = false;
 }
