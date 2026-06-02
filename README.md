@@ -209,9 +209,28 @@ public:
 
 <div align="center">
 
-![George's GitHub Stats](https://github-readme-stats.vercel.app/api?username=George-Mando&show_icons=true&theme=dark&hide_border=true&bg_color=0a0a0f&title_color=00e5ff&icon_color=ff6a00&text_color=e8e6e0)
+```
+╔══════════════════════════════════════════════════════════════════╗
+║                      GITHUB  MILESTONES                          ║
+╠══════════════════════════════════════════════════════════════════╣
+║  🎮  Game Developer          Full Sail University  · 2024–2026   ║
+║  🔩  16 Years Engineering    Mechanical → Game Dev Pipeline       ║
+║  🤖  AI Systems              Behavior Trees · State Machines      ║
+║  🖥️  Dual Engine              Unreal Engine 5  +  Unity (C#)      ║
+║  📐  3x CSWP Certified       SolidWorks Professional              ║
+║  🚀  3 Shipped Games         RPG · FPS · Puzzle                   ║
+╚══════════════════════════════════════════════════════════════════╝
+```
 
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=George-Mando&layout=compact&theme=dark&hide_border=true&bg_color=0a0a0f&title_color=00e5ff&text_color=e8e6e0)
+| Milestone | Status |
+|:---|:---:|
+| 🎮 First Game Shipped | ✅ |
+| 🤖 AI Systems Implemented | ✅ |
+| 🖥️ Dual Engine Proficiency (UE5 + Unity) | ✅ |
+| 🎓 B.S. Game Development | 🔄 Jun 2026 |
+| 🚀 Studio Founded — XenClipse Studios | ✅ |
+| 💼 16 Years Professional Engineering | ✅ |
+| 📐 SolidWorks Certified Professional (x3) | ✅ |
 
 </div>
 
