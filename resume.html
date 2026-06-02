@@ -4,446 +4,182 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>George Carter — Resume</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Syne:wght@400;500;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
 <style>
-/* ── SHARED RESET ── */
 *{box-sizing:border-box;margin:0;padding:0}
-html{min-height:100%}
-body{font-family:'Share Tech Mono',monospace;min-height:100vh;transition:background .4s}
+html,body{height:100%;background:#000600;overflow:hidden}
+body{font-family:'Share Tech Mono',monospace;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:28px}
 
-/* ── ROLL OVERLAY ── */
-#roll-screen{
-  position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:24px;
-  background:#000600;transition:opacity .6s;
+/* grid bg */
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(0,255,156,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,156,.04) 1px,transparent 1px);
+  background-size:32px 32px;pointer-events:none}
+
+/* scanlines */
+body::after{content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,156,.006) 2px,rgba(0,255,156,.006) 4px);
+  pointer-events:none}
+
+.panel{
+  position:relative;z-index:1;text-align:center;
+  background:rgba(0,13,5,.95);border:1px solid rgba(0,255,156,.3);
+  border-radius:6px;padding:40px 48px;min-width:320px;max-width:480px;
 }
-#roll-screen.fade{opacity:0;pointer-events:none}
-.dice-wrap{position:relative;width:90px;height:90px}
+/* corner brackets */
+.panel::before,.panel::after{content:'';position:absolute;width:14px;height:14px;border-color:rgba(0,255,156,.6);border-style:solid}
+.panel::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.panel::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+
+.sys-label{font-size:9px;letter-spacing:4px;color:rgba(0,255,156,.4);margin-bottom:24px}
+
+/* dice */
+.dice-wrap{margin:0 auto 24px;width:80px;height:80px}
 .dice{
-  width:90px;height:90px;border-radius:12px;border:2px solid #00ff9c;
-  display:flex;align-items:center;justify-content:center;
-  font-size:52px;animation:spin 1.2s cubic-bezier(.4,0,.2,1) forwards;
-  background:#000d05;box-shadow:0 0 30px rgba(0,255,156,.3);
+  width:80px;height:80px;border-radius:10px;border:2px solid rgba(0,255,156,.5);
+  background:rgba(0,20,10,.8);display:flex;align-items:center;justify-content:center;
+  font-size:46px;
 }
-@keyframes spin{
-  0%  {transform:rotateY(0)   rotateX(0)   scale(1)}
-  25% {transform:rotateY(180deg) rotateX(90deg) scale(1.15)}
-  50% {transform:rotateY(360deg) rotateX(180deg) scale(0.9)}
-  75% {transform:rotateY(540deg) rotateX(270deg) scale(1.1)}
-  100%{transform:rotateY(720deg) rotateX(360deg) scale(1)}
-}
-#roll-label{
-  font-family:'Orbitron',monospace;font-size:11px;letter-spacing:4px;
-  color:#00ff9c;text-shadow:0 0 15px rgba(0,255,156,.5);
-  animation:flicker 1.2s ease-in-out;
-}
-@keyframes flicker{0%,100%{opacity:.4}25%,75%{opacity:1}50%{opacity:.6}}
-#roll-result{
-  font-family:'Orbitron',monospace;font-size:13px;letter-spacing:3px;
-  opacity:0;transition:opacity .4s .5s;
-}
-#roll-result.show{opacity:1}
-.roll-bar{
-  width:200px;height:3px;background:#001a0a;border-radius:2px;overflow:hidden;
-}
-.roll-bar-fill{
-  height:100%;width:0%;background:linear-gradient(90deg,#00ff9c,#00e5ff);
-  animation:fill 1.2s ease-out forwards;
-  box-shadow:0 0 8px rgba(0,255,156,.6);
-}
-@keyframes fill{to{width:100%}}
-
-/* ── THEME A: XENCLIPSE (cyan) ── */
-body.theme-xen{
-  background:#060608;color:#e0f7ff;
-  --acc:#00e5ff;--acc2:#00bfff;--border:#1a1a2e;--surface:#13131e;
-  --muted:#6a8a9a;--dim:#3a4a55;
-}
-.xen-header{
-  border-bottom:1px solid var(--border);padding-bottom:32px;margin-bottom:36px;
-  position:relative;overflow:hidden;
-}
-.xen-header::before{
-  content:'';position:absolute;top:0;left:-32px;right:-32px;height:3px;
-  background:linear-gradient(90deg,#ff6a00,#ee0979,#c850c0,#00e5ff,transparent)
-}
-.xen-name{
-  font-family:'Syne',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:800;
-  letter-spacing:-1px;line-height:1;margin-bottom:10px;
-  background:linear-gradient(90deg,#00e5ff 0%,#00bfff 40%,#c850c0 75%,#ff6a00 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+.dice.rolling{animation:roll 1.4s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes roll{
+  0%  {transform:rotateY(0)   rotateX(0)   scale(1);   box-shadow:none}
+  20% {transform:rotateY(180deg) rotateX(90deg)  scale(1.2); box-shadow:0 0 30px rgba(0,255,156,.4)}
+  50% {transform:rotateY(360deg) rotateX(180deg) scale(.85); box-shadow:0 0 10px rgba(0,255,156,.2)}
+  80% {transform:rotateY(540deg) rotateX(270deg) scale(1.1); box-shadow:0 0 25px rgba(0,255,156,.3)}
+  100%{transform:rotateY(720deg) rotateX(360deg) scale(1);   box-shadow:0 0 15px rgba(0,255,156,.15)}
 }
 
-/* ── THEME B: ORIGINAL (orange) ── */
-body.theme-orig{
-  background:#0a0a0f;color:#e8e6e0;
-  --acc:#e85d2a;--acc2:#ff8c5a;--border:#1e1e2e;--surface:#16161f;
-  --muted:#8a8899;--dim:#4a4960;
-}
-.orig-name{
-  font-family:'Syne',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:800;
-  letter-spacing:-1px;color:#fff;line-height:1;margin-bottom:10px;
-}
+.status{font-size:10px;letter-spacing:3px;color:rgba(0,255,156,.5);min-height:18px;margin-bottom:6px;transition:color .3s}
 
-/* ── SHARED LAYOUT ── */
-.resume-wrap{max-width:960px;margin:0 auto;padding:clamp(24px,4vw,48px) clamp(16px,3vw,32px)}
-.resume-body{display:grid;grid-template-columns:1fr 270px;gap:40px}
-@media(max-width:680px){.resume-body{grid-template-columns:1fr}}
+/* progress bar */
+.bar-wrap{width:100%;height:3px;background:rgba(0,255,156,.08);border-radius:2px;overflow:hidden;margin-bottom:24px}
+.bar-fill{height:100%;width:0;border-radius:2px;transition:width 1.4s ease-out;
+  background:linear-gradient(90deg,#00ff9c,#00e5ff);
+  box-shadow:0 0 8px rgba(0,255,156,.5)}
 
-/* tagline / meta */
-.tagline{
-  font-family:'Syne',sans-serif;font-size:11px;font-weight:600;
-  letter-spacing:3px;color:var(--acc);text-transform:uppercase;margin-bottom:8px;
+/* result badge */
+.result{
+  font-family:'Orbitron',monospace;font-size:13px;font-weight:700;
+  letter-spacing:2px;padding:8px 20px;border-radius:3px;
+  opacity:0;transform:translateY(6px);
+  transition:opacity .4s .9s, transform .4s .9s;
+  display:inline-block;margin-bottom:20px
 }
-.meta{font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:18px}
-.links{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:0}
-.lnk{
-  display:inline-flex;align-items:center;gap:6px;padding:5px 12px;
-  border:1px solid rgba(128,128,180,.2);border-radius:3px;color:var(--muted);
-  text-decoration:none;font-size:11px;letter-spacing:.5px;transition:all .2s;
-  background:rgba(128,128,180,.03)
-}
-.lnk:hover{border-color:var(--acc);color:var(--acc)}
-.lnk-dot{width:6px;height:6px;border-radius:50%;background:var(--acc);flex-shrink:0}
+.result.show{opacity:1;transform:translateY(0)}
+.result.xen{color:#00e5ff;border:1px solid rgba(0,229,255,.3);background:rgba(0,229,255,.07)}
+.result.orig{color:#ff8c5a;border:1px solid rgba(255,107,53,.3);background:rgba(255,107,53,.07)}
 
-/* section */
-.sec-label{
-  font-family:'Syne',sans-serif;font-size:10px;font-weight:700;
-  letter-spacing:4px;color:var(--acc);text-transform:uppercase;
-  margin-bottom:16px;display:flex;align-items:center;gap:10px
-}
-.sec-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(128,200,255,.2),transparent)}
-.section{margin-bottom:32px}
+/* redirect note */
+.redirect-note{font-size:9px;letter-spacing:2px;color:rgba(0,255,156,.3);margin-bottom:24px;
+  opacity:0;transition:opacity .4s 1.1s}
+.redirect-note.show{opacity:1}
 
-/* summary */
-.summary{
-  font-size:12.5px;color:var(--muted);line-height:1.8;
-  border-left:2px solid var(--acc);padding-left:16px
+/* reroll btn */
+.reroll{
+  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;
+  background:none;border:1px solid rgba(0,255,156,.25);color:rgba(0,255,156,.5);
+  padding:8px 20px;border-radius:3px;cursor:pointer;transition:all .2s;
+  opacity:0;transition:opacity .4s 1.2s, background .2s, color .2s, border-color .2s
 }
+.reroll.show{opacity:1}
+.reroll:hover{border-color:rgba(0,255,156,.7);color:#00ff9c;background:rgba(0,255,156,.05)}
 
-/* entry */
-.entry{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--border)}
-.entry:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.entry-title{
-  font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;
-  line-height:1.2;margin-bottom:4px
-}
-.entry-date{font-size:10px;letter-spacing:1px;color:var(--acc);font-family:'Syne',sans-serif;font-weight:600}
-.entry-org{font-size:11px;color:var(--muted);margin-bottom:2px}
-.badges{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px}
-.badge{
-  padding:2px 7px;border-radius:2px;font-size:10px;letter-spacing:.5px;
-  font-family:'Syne',sans-serif;font-weight:600
-}
-.bg-g{background:rgba(0,200,120,.07);color:#00c878;border:1px solid rgba(0,200,120,.25)}
-.bg-o{background:rgba(255,107,53,.08);color:#ff8c5a;border:1px solid rgba(255,107,53,.25)}
-.bg-b{background:rgba(100,150,255,.07);color:#90b8ff;border:1px solid rgba(100,150,255,.25)}
-.bullets{margin-top:10px;list-style:none;padding:0}
-.bullets li{
-  position:relative;padding-left:16px;color:var(--muted);
-  font-size:11.5px;margin-bottom:5px;line-height:1.6
-}
-.bullets li::before{
-  content:'▸';position:absolute;left:0;color:var(--acc);font-size:10px;top:1px
-}
-
-/* sidebar */
-.skill-group{margin-bottom:12px}
-.skill-cat{
-  font-family:'Syne',sans-serif;font-size:10px;font-weight:600;
-  color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px
-}
-.skill-tags{display:flex;flex-wrap:wrap;gap:5px}
-.tag{
-  padding:3px 8px;background:var(--surface);border:1px solid var(--border);
-  border-radius:2px;font-size:11px;color:#e0e0e0
-}
-.tag.hi{border-color:var(--acc);color:var(--acc2)}
-.edu-entry{margin-bottom:14px}
-.edu-degree{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff}
-.edu-school{font-size:11px;color:var(--muted);margin-top:2px}
-.edu-date{font-size:10px;color:var(--acc);letter-spacing:1px;margin-top:2px;font-family:'Syne',sans-serif}
-.cert{
-  padding:7px 10px;background:var(--surface);border:1px solid var(--border);
-  border-radius:3px;margin-bottom:6px;font-size:11px;color:#e0e0e0;
-  display:flex;align-items:center;gap:8px
-}
-.cert::before{content:'◆';color:#f5c842;font-size:9px;flex-shrink:0}
-.eng-badge{
-  display:inline-block;padding:2px 8px;background:rgba(180,100,255,.08);
-  color:#c090f0;border:1px solid rgba(180,100,255,.2);border-radius:2px;
-  font-size:10px;font-family:'Syne',sans-serif;font-weight:600;
-  margin-left:8px;vertical-align:middle
-}
-
-/* re-roll button */
-.reroll-bar{
-  text-align:center;padding:20px 0 8px;
-  border-top:1px solid var(--border);margin-top:8px
-}
-.reroll-btn{
-  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;
-  text-transform:uppercase;background:none;border:1px solid var(--acc);
-  color:var(--acc);padding:8px 24px;border-radius:3px;cursor:pointer;
-  transition:all .2s
-}
-.reroll-btn:hover{background:var(--acc);color:#000}
-.theme-label{
-  font-size:10px;letter-spacing:2px;color:var(--dim);margin-top:8px;
-  font-family:'Syne',sans-serif
-}
-
-/* download buttons */
-.dl-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.dl-btn{
-  flex:1;min-width:160px;display:flex;align-items:center;justify-content:center;
-  gap:6px;padding:10px 16px;border-radius:3px;font-family:'Syne',sans-serif;
-  font-size:10px;font-weight:700;letter-spacing:2px;text-decoration:none;
-  border:1px solid;transition:all .2s;text-align:center
-}
-.dl-btn.xen{color:#00e5ff;border-color:rgba(0,229,255,.35);background:rgba(0,229,255,.05)}
-.dl-btn.xen:hover{background:rgba(0,229,255,.12)}
-.dl-btn.orig{color:#ff8c5a;border-color:rgba(255,107,53,.35);background:rgba(255,107,53,.05)}
-.dl-btn.orig:hover{background:rgba(255,107,53,.12)}
+.dots{display:inline-block;animation:dot 1.2s infinite}
+@keyframes dot{0%{content:''}33%{content:'.'}66%{content:'..'}100%{content:'...'}}
 </style>
 </head>
 <body>
 
-<!-- ROLL SCREEN -->
-<div id="roll-screen">
+<div class="panel">
+  <div class="sys-label">// XENCLIPSE STUDIOS · RESUME SYSTEM</div>
+
   <div class="dice-wrap">
     <div class="dice" id="dice">🎲</div>
   </div>
-  <div class="roll-bar"><div class="roll-bar-fill"></div></div>
-  <div id="roll-label">ROLLING RESUME VARIANT</div>
-  <div id="roll-result"></div>
-</div>
 
-<!-- RESUME CONTENT (hidden until roll completes) -->
-<div id="resume-content" style="opacity:0;transition:opacity .6s">
-<div class="resume-wrap">
+  <div class="status" id="status">INITIALIZING<span class="dots"></span></div>
+  <div class="bar-wrap"><div class="bar-fill" id="bar"></div></div>
 
-  <!-- HEADER (populated by JS) -->
-  <header id="res-header" style="margin-bottom:36px;padding-bottom:32px;border-bottom:1px solid var(--border,#1e1e2e);position:relative;overflow:hidden"></header>
+  <div class="result" id="result"></div>
+  <div class="redirect-note" id="redir-note">REDIRECTING TO RESUME<span class="dots"></span></div>
 
-  <div class="resume-body">
-  <main>
-
-    <section class="section">
-      <div class="sec-label">Profile</div>
-      <p class="summary">Game Developer specializing in gameplay programming, AI systems, and UI/UX architecture with experience across Unity (C#) and Unreal Engine (C++/Blueprints). Backed by 16 years of professional Mechanical Engineering experience. Adept at building core player systems, enemy behaviors, environmental mechanics, and resource/progression frameworks.</p>
-    </section>
-
-    <section class="section">
-      <div class="sec-label">Game Development · Academic</div>
-
-      <div class="entry">
-        <div class="entry-title">🌑 Shadows of Beginnings</div>
-        <div class="entry-date">APR 2026 – PRESENT</div>
-        <div class="entry-org">Team Nebula Interactive · Full Sail University</div>
-        <div class="badges"><span class="badge bg-g">Action Adventure RPG</span><span class="badge bg-o">Unreal Engine</span><span class="badge bg-b">UI/UX &amp; AI Lead</span></div>
-        <ul class="bullets">
-          <li>Designed and implemented HUD and UI systems including menus, quest logs, and interaction displays</li>
-          <li>Designed and implemented enemy AI behaviors for escalating combat encounters</li>
-          <li>Created horror event logic tied to exploration, tension, and player decision-making</li>
-          <li>Implemented 'monster house' trigger systems for ambushes and scripted encounters</li>
-          <li>Developed gameplay and systems using Unreal Engine (C++ &amp; Blueprints)</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-title">⚙️ Clockwork Horrors</div>
-        <div class="entry-date">JUN 2025</div>
-        <div class="entry-org">Team Clockwork · Full Sail University</div>
-        <div class="badges"><span class="badge bg-g">First Person Shooter</span><span class="badge bg-o">Unity (C#)</span><span class="badge bg-b">Gameplay &amp; AI Systems</span></div>
-        <ul class="bullets">
-          <li>Implemented core FPS player systems: movement, crouch/hide, shooting, and pause functionality</li>
-          <li>Created enemy AI for Clockwork Rifleman and Detonator Wraith with multiple difficulty tiers</li>
-          <li>Designed environmental hazards: frozen terrain, snowy surfaces, collapsing structures</li>
-          <li>Implemented XP-based progression and energy cell resource systems</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-title">💊 Dr. Malware</div>
-        <div class="entry-date">OCT 2025</div>
-        <div class="entry-org">Green Team · Full Sail University</div>
-        <div class="badges"><span class="badge bg-g">Puzzle Game</span><span class="badge bg-o">C++ / Vulkan</span><span class="badge bg-b">Core Gameplay Systems</span></div>
-        <ul class="bullets">
-          <li>Implemented core virus mechanics including placement, color assignment, and visual/audio feedback</li>
-          <li>Built combo detection system supporting match-four logic and cascading reactions</li>
-          <li>Finalized save/load system with reliable state persistence and error handling</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="sec-label">Engineering Experience</div>
-      <div class="entry">
-        <div class="entry-title">Chief Engineer <span class="eng-badge">Barrett Trailers</span></div>
-        <div class="entry-date">SEP 2021 – PRESENT · Purcell, OK</div>
-        <ul class="bullets"><li>Designed and modified parts across manufacturing, trailer, and stock trailer equipment departments</li></ul>
-      </div>
-      <div class="entry">
-        <div class="entry-title">Independent Engineer / Consultant <span class="eng-badge">Evolve / Tesla</span></div>
-        <div class="entry-date">APR 2020 – SEP 2021 · Remote</div>
-        <ul class="bullets"><li>Delivered engineering solutions that improved safety, reduced costs, and streamlined assembly</li></ul>
-      </div>
-      <div class="entry">
-        <div class="entry-title">Engineering Manager <span class="eng-badge">Urban Farmhouse Designs</span></div>
-        <div class="entry-date">JAN 2015 – SEP 2020 · Oklahoma City, OK</div>
-        <ul class="bullets"><li>Led engineering department producing drawings and parts for all company product lines</li></ul>
-      </div>
-      <div class="entry">
-        <div class="entry-title">Mechanical Engineering Manager <span class="eng-badge">Titan Tanks &amp; Vessels</span></div>
-        <div class="entry-date">MAR 2009 – JAN 2015 · Elmore City, OK</div>
-        <ul class="bullets"><li>Managed designers and drafters; oversaw ASME code and non-code tank and vessel design</li></ul>
-      </div>
-    </section>
-
-  </main>
-
-  <aside>
-    <section class="section">
-      <div class="sec-label">Skills</div>
-      <div class="skill-group"><div class="skill-cat">Game Engines</div><div class="skill-tags"><span class="tag hi">Unreal Engine</span><span class="tag hi">Unity</span><span class="tag">C++</span><span class="tag">Blueprints</span><span class="tag">C#</span></div></div>
-      <div class="skill-group" style="margin-top:12px"><div class="skill-cat">Languages &amp; Tools</div><div class="skill-tags"><span class="tag">C++</span><span class="tag">C#</span><span class="tag">Visual Studio</span><span class="tag">GitHub</span><span class="tag">Perforce</span><span class="tag">Vulkan</span></div></div>
-      <div class="skill-group" style="margin-top:12px"><div class="skill-cat">Game Systems</div><div class="skill-tags"><span class="tag hi">AI Behavior Trees</span><span class="tag hi">State Machines</span><span class="tag">UI/UX</span><span class="tag">Physics</span><span class="tag">Save/Load</span><span class="tag">HUD Systems</span><span class="tag">Menu Flows</span></div></div>
-      <div class="skill-group" style="margin-top:12px"><div class="skill-cat">Productivity</div><div class="skill-tags"><span class="tag">Trello</span><span class="tag">Discord</span><span class="tag">GitHub</span></div></div>
-      <div class="skill-group" style="margin-top:12px"><div class="skill-cat">Engineering Software</div><div class="skill-tags"><span class="tag">SolidWorks</span><span class="tag">AutoCAD</span><span class="tag">Creo</span><span class="tag">RISA</span><span class="tag">ProNest 2023</span></div></div>
-    </section>
-
-    <section class="section">
-      <div class="sec-label">Education</div>
-      <div class="edu-entry"><div class="edu-degree">B.S. Game Development</div><div class="edu-school">Full Sail University · Winter Park, FL</div><div class="edu-date">JUN 2026</div></div>
-      <div class="edu-entry"><div class="edu-degree">B.S. Mechanical Engineering</div><div class="edu-school">Cameron University · Lawton, OK</div><div class="edu-date">MAY 2008</div></div>
-      <div class="edu-entry"><div class="edu-degree">A.A.S. Applied Science</div><div class="edu-school">Cameron University · Lawton, OK</div><div class="edu-date">MAY 2006</div></div>
-    </section>
-
-    <section class="section">
-      <div class="sec-label">Certifications</div>
-      <div class="cert">SolidWorks Certified Professional – Core</div>
-      <div class="cert">SolidWorks CP – Advanced Sheet Metal</div>
-      <div class="cert">SolidWorks CP – Advanced Weldments</div>
-      <div class="cert">SolidWorks PDM Certification</div>
-    </section>
-
-    <!-- Download both -->
-    <section class="section">
-      <div class="sec-label">Download Resume</div>
-      <div class="dl-row">
-        <a class="dl-btn xen" href="george-carter-resume-xenclipse.pdf" download>⬇ XENCLIPSE EDITION</a>
-        <a class="dl-btn orig" href="george-carter-resume-original.pdf" download>⬇ DARK EDITION</a>
-      </div>
-    </section>
-
-    <!-- Re-roll -->
-    <div class="reroll-bar">
-      <button class="reroll-btn" onclick="reroll()">🎲 RE-ROLL VARIANT</button>
-      <div class="theme-label" id="theme-label"></div>
-    </div>
-
-  </aside>
-  </div>
-</div>
+  <button class="reroll" id="reroll-btn" onclick="startRoll()">🎲 &nbsp;RE-ROLL VARIANT</button>
 </div>
 
 <script>
-const THEMES = {
-  xen: {
-    bodyClass: 'theme-xen',
-    label: 'XENCLIPSE EDITION',
-    resultColor: '#00e5ff',
-    headerHTML: `
-      <div style="height:3px;position:absolute;top:0;left:0;right:0;background:linear-gradient(90deg,#ff6a00,#ee0979,#c850c0,#00e5ff,transparent)"></div>
-      <div class="tagline" style="margin-top:6px">Game Developer · Gameplay Programmer · AI &amp; UI/UX Systems</div>
-      <div class="xen-name">George Carter</div>
-      <div class="meta">16 Years Engineering Experience &nbsp;·&nbsp; Marlow, OK</div>
-      <div class="links">
-        <a class="lnk" href="mailto:gtcarter@student.fullsail.edu"><span class="lnk-dot"></span>FSU Email</a>
-        <a class="lnk" href="mailto:xenclipsestudios@gmail.com"><span class="lnk-dot"></span>Studio Email</a>
-        <a class="lnk" href="https://www.linkedin.com/in/george-carter-ba996b315" target="_blank"><span class="lnk-dot"></span>LinkedIn</a>
-        <a class="lnk" href="https://george-carter.itch.io/" target="_blank"><span class="lnk-dot"></span>Itch.io</a>
-        <a class="lnk" href="https://github.com/George-Mando" target="_blank"><span class="lnk-dot"></span>GitHub</a>
-      </div>`
-  },
-  orig: {
-    bodyClass: 'theme-orig',
-    label: 'DARK EDITION',
-    resultColor: '#ff8c5a',
-    headerHTML: `
-      <div style="height:3px;position:absolute;top:0;left:0;right:0;background:linear-gradient(90deg,#e85d2a,#ff8c5a,transparent)"></div>
-      <div class="tagline" style="margin-top:6px">Game Developer · Gameplay Programmer · AI &amp; UI/UX Systems</div>
-      <div class="orig-name">George Carter</div>
-      <div class="meta">16 Years Engineering Experience &nbsp;·&nbsp; Marlow, OK</div>
-      <div class="links">
-        <a class="lnk" href="mailto:gtcarter@student.fullsail.edu"><span class="lnk-dot"></span>FSU Email</a>
-        <a class="lnk" href="mailto:xenclipsestudios@gmail.com"><span class="lnk-dot"></span>Studio Email</a>
-        <a class="lnk" href="https://www.linkedin.com/in/george-carter-ba996b315" target="_blank"><span class="lnk-dot"></span>LinkedIn</a>
-        <a class="lnk" href="https://george-carter.itch.io/" target="_blank"><span class="lnk-dot"></span>Itch.io</a>
-        <a class="lnk" href="https://github.com/George-Mando" target="_blank"><span class="lnk-dot"></span>GitHub</a>
-      </div>`
-  }
-};
+const FACES = ['⚀','⚁','⚂','⚃','⚄','⚅'];
+const VARIANTS = [
+  { file:'george-carter-resume-xenclipse.html', label:'XENCLIPSE EDITION', cls:'xen' },
+  { file:'george-carter-resume-original.html',  label:'DARK EDITION',      cls:'orig' }
+];
 
-const DICE_FACES = ['⚀','⚁','⚂','⚃','⚄','⚅'];
-let currentTheme = null;
+let rolling = false;
+let lastPick = -1;
 
-function pickTheme(){ return Math.random() < 0.5 ? 'xen' : 'orig' }
+function startRoll(){
+  if(rolling) return;
+  rolling = true;
 
-function applyTheme(key){
-  const t = THEMES[key];
-  document.body.className = t.bodyClass;
-  document.getElementById('res-header').innerHTML = t.headerHTML;
-  document.getElementById('theme-label').textContent = '// ' + t.label;
-  currentTheme = key;
-}
+  const dice     = document.getElementById('dice');
+  const status   = document.getElementById('status');
+  const bar      = document.getElementById('bar');
+  const result   = document.getElementById('result');
+  const note     = document.getElementById('redir-note');
+  const btn      = document.getElementById('reroll-btn');
 
-function rollAndReveal(key){
-  const rollScreen = document.getElementById('roll-screen');
-  const content    = document.getElementById('resume-content');
-  const dice       = document.getElementById('dice');
-  const result     = document.getElementById('roll-result');
-  const t          = THEMES[key];
-
-  rollScreen.style.opacity = '1';
-  rollScreen.style.pointerEvents = 'auto';
-  rollScreen.classList.remove('fade');
-  content.style.opacity = '0';
-  result.classList.remove('show');
+  // reset
+  result.className = 'result';
   result.textContent = '';
+  note.className = 'redirect-note';
+  btn.className  = 'reroll';
+  bar.style.transition = 'none';
+  bar.style.width = '0';
 
-  // Animate dice faces
+  // pick variant — avoid repeating same one
+  let pick;
+  do { pick = Math.floor(Math.random() * VARIANTS.length) } while(pick === lastPick && VARIANTS.length > 1);
+  lastPick = pick;
+  const v = VARIANTS[pick];
+
+  // animate dice
+  dice.className = 'dice rolling';
+  status.innerHTML = 'ROLLING VARIANT<span class="dots"></span>';
+
   let i = 0;
-  const faces = setInterval(()=>{
-    dice.textContent = DICE_FACES[Math.floor(Math.random()*6)];
-    if(++i > 10) clearInterval(faces);
-  }, 100);
+  const ticker = setInterval(()=>{
+    dice.textContent = FACES[Math.floor(Math.random()*6)];
+    if(++i >= 14) clearInterval(ticker);
+  }, 90);
 
-  // Show result label after 900ms
-  setTimeout(()=>{
-    result.textContent = '▶ ' + t.label;
-    result.style.color = t.resultColor;
-    result.classList.add('show');
-  }, 900);
+  // progress bar
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      bar.style.transition = 'width 1.4s ease-out';
+      bar.style.width = '100%';
+    });
+  });
 
-  // Apply theme + fade in resume after 1.4s
+  // show result
   setTimeout(()=>{
-    applyTheme(key);
-    rollScreen.classList.add('fade');
-    setTimeout(()=>{ content.style.opacity='1' }, 300);
-  }, 1400);
+    status.innerHTML = 'VARIANT SELECTED';
+    result.className = 'result ' + v.cls + ' show';
+    result.textContent = '▶  ' + v.label;
+  }, 950);
+
+  // show redirect note
+  setTimeout(()=>{
+    note.className = 'redirect-note show';
+    btn.className  = 'reroll show';
+  }, 1150);
+
+  // redirect
+  setTimeout(()=>{
+    rolling = false;
+    window.location.href = v.file;
+  }, 2200);
 }
 
-function reroll(){
-  // Pick a different theme than current
-  let next = pickTheme();
-  if(next === currentTheme) next = (currentTheme === 'xen') ? 'orig' : 'xen';
-  rollAndReveal(next);
-}
-
-// On load — roll immediately
-rollAndReveal(pickTheme());
+// auto-roll on load
+startRoll();
 </script>
 </body>
 </html>
