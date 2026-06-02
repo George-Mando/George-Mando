@@ -209,7 +209,7 @@ public:
 
 <div align="center">
 
-[![trophy](https://github-profile-trophy.vercel.app/?username=George-Mando&theme=matrix&no-frame=true&no-bg=true&margin-w=10&row=1)](https://github.com/ryo-ma/github-profile-trophy)
+[![trophy](https://github-profile-trophy.vercel.app/?username=George-Mando&theme=darkhub&no-frame=true&no-bg=true&margin-w=8&column=6)](https://github.com/ryo-ma/github-profile-trophy)
 
 </div>
 
