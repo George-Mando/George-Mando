@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>George Carter // Game Developer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap');
+
+  :root {
+    --void: #050608;
+    --panel: #0a0c10;
+    --surface: #0f1218;
+    --border: #1a2030;
+    --accent: #00e5ff;
+    --accent2: #7c3aed;
+    --accent3: #ff6b35;
+    --text: #c8d6e5;
+    --muted: #7eb8cc;
+    --glow: rgba(0,229,255,0.12);
+    --glow-strong: rgba(0,229,255,0.30);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 56px; }
+  body {
+    background: var(--void);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 56px;
+    background: rgba(5,6,8,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 12px; font-weight: 700;
+    color: var(--accent); letter-spacing: 3px;
+    text-shadow: 0 0 18px var(--accent);
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px; letter-spacing: 2px;
+    color: var(--muted); text-decoration: none; text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute;
+    bottom: -4px; left: 0; right: 0; height: 1px;
+    background: var(--accent);
+    transform: scaleX(0); transition: transform 0.2s; transform-origin: left;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  /* ── STATUS BAR ── */
+  .status-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    z-index: 200; height: 28px;
+    background: rgba(5,6,8,0.88);
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center;
+    padding: 0 20px; gap: 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px; color: var(--muted);
+  }
+  .status-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #22c55e; box-shadow: 0 0 8px #22c55e;
+    animation: blink 2s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+  .status-bar .s-accent { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative; height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 0 80px; overflow: hidden;
+  }
+  /* Hero background: image anchored right with breathing */
+  #hero-bg {
+    position: absolute; inset: -40px; z-index: 0;
+    background:
+      url('https://raw.githubusercontent.com/George-Mando/George-Mando/main/xenclipse-logo-cool.png') 85% center / 58% auto no-repeat,
+      #050608;
+    animation: heroBreath 5s ease-in-out infinite;
+  }
+  @keyframes heroBreath {
+    0%   { transform: scale(1.00); opacity: 0.90; }
+    50%  { transform: scale(1.05); opacity: 1.0; }
+    100% { transform: scale(1.00); opacity: 0.90; }
+  }
+    10%  { opacity: 1; background: radial-gradient(ellipse 55% 45% at 65% 40%, rgba(180,220,255,0.50) 0%, transparent 65%); }
+    11%  { opacity: 0; background: none; }
+    12%  { opacity: 0.7; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(0,229,255,0.30) 0%, transparent 70%); }
+    14%  { opacity: 0; background: none; }
+    44%  { opacity: 0; background: none; }
+    45%  { opacity: 1; background: radial-gradient(ellipse 40% 50% at 72% 35%, rgba(200,230,255,0.55) 0%, transparent 60%); }
+    46%  { opacity: 0; background: none; }
+    47%  { opacity: 0.5; background: radial-gradient(ellipse 80% 40% at 60% 55%, rgba(0,229,255,0.22) 0%, transparent 75%); }
+    49%  { opacity: 0; background: none; }
+    79%  { opacity: 0; background: none; }
+    80%  { opacity: 1; background: radial-gradient(ellipse 50% 55% at 75% 42%, rgba(160,210,255,0.45) 0%, transparent 65%); }
+    81%  { opacity: 0; background: none; }
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right,
+        rgba(5,6,8,1.0) 0%,
+        rgba(5,6,8,1.0) 42%,
+        rgba(5,6,8,0.85) 55%,
+        rgba(5,6,8,0.15) 75%,
+        rgba(5,6,8,0.0) 100%
+      ),
+      linear-gradient(to bottom,
+        rgba(5,6,8,0.5) 0%,
+        transparent 15%,
+        transparent 85%,
+        rgba(5,6,8,0.5) 100%
+      );
+    z-index: 1;
+  }
+  #grid-canvas { position: absolute; inset: 0; z-index: 0; opacity: 0.18; }
+  .hero-content { position: relative; z-index: 2; max-width: 480px; }
+
+  .hero-eyebrow {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px; letter-spacing: 4px;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 14px;
+    opacity: 0; animation: fadeUp 0.55s 0.2s forwards;
+  }
+  .hero-name {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(38px, 6.5vw, 78px);
+    font-weight: 900; line-height: 1.0;
+    color: #fff; text-transform: uppercase; letter-spacing: 2px;
+    opacity: 0; animation: fadeUp 0.55s 0.4s forwards;
+  }
+  .hero-name .hi { color: var(--accent); text-shadow: 0 0 40px var(--accent), 0 0 90px rgba(0,229,255,0.25); }
+  .glitch { position: relative; }
+  .glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    font-family: inherit; font-size: inherit; font-weight: inherit; color: inherit;
+  }
+  .glitch::before {
+    color: var(--accent3);
+    animation: gl1 4s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+  .glitch::after {
+    color: var(--accent2);
+    animation: gl2 4s infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+  @keyframes gl1 { 0%,88%,100%{transform:none;opacity:0} 90%{transform:translate(-3px,1px);opacity:0.75} 93%{transform:translate(3px,-1px);opacity:0.75} 95%{opacity:0} }
+  @keyframes gl2 { 0%,83%,100%{transform:none;opacity:0} 85%{transform:translate(3px,2px);opacity:0.75} 88%{transform:translate(-3px,-2px);opacity:0.75} 90%{opacity:0} }
+
+  .hero-titles {
+    font-size: clamp(12px, 1.4vw, 15px);
+    font-weight: 300; letter-spacing: 4px; text-transform: uppercase;
+    color: rgba(200,220,240,0.90); margin-top: 10px; text-shadow: 0 0 12px rgba(0,229,255,0.4);
+    max-width: 480px;
+    line-height: 2.0;
+    opacity: 0; animation: fadeUp 0.55s 0.6s forwards;
+  }
+  .hero-desc {
+    margin-top: 24px; font-size: 16px; line-height: 1.75;
+    color: var(--text); max-width: 540px;
+    opacity: 0; animation: fadeUp 0.55s 0.8s forwards;
+  }
+  .hero-ctas {
+    display: flex; gap: 14px; margin-top: 32px;
+    opacity: 0; animation: fadeUp 0.55s 1.0s forwards;
+  }
+
+  .corner { position: absolute; width: 20px; height: 20px; z-index: 2; }
+  .corner-tl { top: 76px; left: 56px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+  .corner-tr { top: 76px; right: 56px; border-top: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+  .corner-bl { bottom: 44px; left: 56px; border-bottom: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+  .corner-br { bottom: 44px; right: 56px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 13px 30px;
+    background: var(--accent); color: var(--void);
+    border: none; cursor: pointer; text-decoration: none;
+    clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+    transition: background 0.2s, box-shadow 0.2s; font-weight: 700;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #fff; box-shadow: 0 0 28px var(--accent); }
+  .btn-ghost {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 12px 30px;
+    background: transparent; color: var(--accent);
+    border: 1px solid var(--accent); cursor: pointer; text-decoration: none;
+    clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+    transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { background: var(--glow); }
+
+  /* ── SHARED SECTION ── */
+  section { padding: 96px 80px; }
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px; letter-spacing: 4px; color: var(--accent);
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+  }
+  .section-label::before { content:''; width: 28px; height: 1px; background: var(--accent); }
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(22px, 3vw, 38px); font-weight: 700;
+    color: #fff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 48px;
+  }
+  .hud-divider { display:flex; align-items:center; gap:14px; margin-bottom:32px; }
+  .hud-divider::before, .hud-divider::after { content:''; flex:1; height:1px; background: var(--border); }
+  .hud-diamond { width:7px; height:7px; background: var(--accent); transform: rotate(45deg); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--panel); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: start; }
+  .about-text p { font-size: 15px; line-height: 1.85; color: var(--text); margin-bottom: 14px; }
+  .about-text p strong { color: var(--accent); }
+  .about-text .eng-note {
+    margin-top: 20px; padding: 14px 18px;
+    background: var(--surface);
+    border-left: 3px solid var(--accent3);
+    font-size: 13px; line-height: 1.7; color: var(--muted);
+  }
+  .about-text .eng-note strong { color: var(--accent3); }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .skill-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px; letter-spacing: 1px;
+    padding: 9px 13px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text);
+    clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+    transition: border-color 0.2s, color 0.2s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .skill-tag::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--accent2);
+  }
+  .skill-tag.orange::before { background: var(--accent3); }
+  .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--void); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 22px; }
+
+  .project-card {
+    background: var(--panel); border: 1px solid var(--border);
+    position: relative; overflow: hidden; cursor: pointer;
+    transition: border-color 0.3s, transform 0.3s;
+    clip-path: polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px));
+  }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .project-card:hover .card-glow { opacity: 1; }
+  .card-glow {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--glow) 0%, transparent 55%);
+    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  .card-thumb {
+    width: 100%; height: 180px;
+    background: var(--surface);
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+    position: relative;
+  }
+  .card-img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    filter: saturate(0.75) brightness(0.85);
+    transition: filter 0.3s, transform 0.3s;
+  }
+  .project-card:hover .card-img {
+    filter: saturate(1) brightness(1);
+    transform: scale(1.04);
+  }
+  .card-content { padding: 20px 22px 24px; position: relative; z-index: 1; }
+  .card-type {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px; letter-spacing: 3px; color: var(--accent2); text-transform: uppercase; margin-bottom: 7px;
+  }
+  .card-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 14px; font-weight: 700;
+    color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 9px;
+  }
+  .card-desc { font-size: 13px; line-height: 1.65; color: var(--muted); margin-bottom: 14px; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px; letter-spacing: 1px;
+    padding: 3px 8px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--accent); text-transform: uppercase;
+  }
+  .card-date {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; color: var(--muted);
+    position: absolute; top: 14px; right: 18px;
+  }
+
+  /* ── YOUTUBE THUMBNAIL CARD THUMB ── */
+  .card-thumb--yt {
+    position: relative; overflow: hidden;
+    background: #000; height: 180px;
+  }
+  .card-thumb--yt .yt-bg {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    filter: saturate(0.75) brightness(0.7);
+    transition: filter 0.3s, transform 0.3s;
+  }
+  .project-card:hover .card-thumb--yt .yt-bg {
+    filter: saturate(1) brightness(0.9);
+    transform: scale(1.04);
+  }
+  .yt-play-overlay {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 10px;
+    background: rgba(5,6,8,0.40);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .yt-play-overlay:hover { background: rgba(5,6,8,0.25); }
+  .yt-play-btn {
+    width: 58px; height: 58px; border-radius: 50%;
+    background: rgba(0,229,255,0.15);
+    border: 2px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--accent);
+    box-shadow: 0 0 28px rgba(0,229,255,0.35);
+    transition: transform 0.2s, background 0.2s;
+  }
+  .yt-play-overlay:hover .yt-play-btn {
+    transform: scale(1.1);
+    background: rgba(0,229,255,0.28);
+  }
+  .yt-play-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase;
+  }
+  .yt-ext-link {
+    position: absolute; bottom: 10px; right: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; color: var(--accent);
+    background: rgba(5,6,8,0.75);
+    border: 1px solid rgba(0,229,255,0.4);
+    padding: 4px 10px;
+    text-decoration: none;
+    backdrop-filter: blur(6px);
+    z-index: 5;
+    transition: background 0.2s;
+  }
+  .yt-ext-link:hover { background: var(--glow); }
+
+  /* Portfolio iframe card */
+  .card-thumb--iframe {
+    position: relative; overflow: hidden;
+    background: #000; cursor: default;
+    height: 180px;
+  }
+  .card-iframe {
+    width: 160%;
+    height: 320px;
+    transform: scale(0.625);
+    transform-origin: top left;
+    border: none; display: block;
+    pointer-events: none;
+    filter: saturate(0.8) brightness(0.85);
+    transition: filter 0.3s;
+  }
+  .project-card:hover .card-iframe {
+    filter: saturate(1) brightness(1);
+  }
+  .iframe-visit {
+    position: absolute; bottom: 10px; right: 10px;
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(5,6,8,0.75);
+    border: 1px solid var(--accent);
+    padding: 6px 12px;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s;
+    z-index: 5;
+    backdrop-filter: blur(6px);
+  }
+  .iframe-visit:hover {
+    background: var(--glow);
+    box-shadow: 0 0 14px rgba(0,229,255,0.3);
+  }
+  .iframe-visit-icon { font-size: 14px; color: var(--accent); line-height: 1; }
+  .iframe-visit-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px; letter-spacing: 2px;
+    color: var(--accent); text-transform: uppercase;
+  }
+
+  /* featured */
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid; grid-template-columns: 1fr 1.1fr;
+  }
+  .project-card.featured .card-thumb,
+  .project-card.featured .card-thumb--yt { height: 100%; min-height: 240px; }
+  .project-card.featured .card-content { padding: 30px 32px; }
+  .project-card.featured .card-title { font-size: 20px; }
+  .project-card.featured .card-desc { font-size: 14px; color: var(--text); }
+  .featured-badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px; letter-spacing: 3px; color: var(--void);
+    background: var(--accent3); padding: 3px 10px;
+    text-transform: uppercase; display: inline-block; margin-bottom: 9px;
+  }
+
+  /* ── PROGEN SECTION ── */
+  #progen { background: var(--panel); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  #progen-wrap {
+    background: var(--void);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  #pg-scanlines {
+    position: absolute; inset: 0; pointer-events: none; z-index: 5;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px);
+  }
+  #pg-hud-top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 16px 8px;
+    border-bottom: 1px solid var(--border);
+    position: relative; z-index: 10;
+  }
+  .pg-hud-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase;
+  }
+  .pg-hud-right { display: flex; gap: 20px; align-items: center; }
+  .pg-badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; color: var(--void);
+    background: var(--accent3); padding: 3px 8px; text-transform: uppercase;
+  }
+  .pg-status {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; color: #22c55e;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .pg-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: blink 1.6s infinite; }
+  #pg-controls {
+    display: flex; align-items: center; gap: 14px; padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    position: relative; z-index: 10; flex-wrap: wrap;
+  }
+  #pg-gen-btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 9px 20px; background: transparent;
+    color: var(--accent); border: 1px solid var(--accent); cursor: pointer;
+    transition: background 0.15s;
+    clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+  }
+  #pg-gen-btn:hover { background: var(--glow); }
+  .pg-ctrl-label { font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+  .pg-ctrl-group { display: flex; align-items: center; gap: 8px; }
+  .pg-ctrl-group input[type=range] {
+    -webkit-appearance: none; width: 90px; height: 3px;
+    background: var(--border); outline: none; cursor: pointer;
+  }
+  .pg-ctrl-group input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 12px; height: 12px;
+    background: var(--accent); border-radius: 0; cursor: pointer;
+  }
+  .pg-ctrl-val { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: var(--accent); min-width: 20px; }
+  #pg-canvas-wrap { position: relative; }
+  #pg-canvas { display: block; width: 100%; cursor: crosshair; }
+  #pg-tooltip {
+    position: absolute; pointer-events: none; z-index: 20;
+    background: var(--panel); border: 1px solid var(--accent);
+    padding: 6px 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px; letter-spacing: 1px; color: var(--accent);
+    text-transform: uppercase; display: none;
+  }
+  #pg-hud-bottom {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+    position: relative; z-index: 10;
+  }
+  .pg-stat-cell {
+    padding: 10px 14px; border-right: 1px solid var(--border);
+  }
+  .pg-stat-cell:last-child { border-right: none; }
+  .pg-stat-num { font-family: 'Orbitron', monospace; font-size: 20px; font-weight: 700; color: var(--accent); letter-spacing: 1px; }
+  .pg-stat-num.orange { color: var(--accent3); }
+  .pg-stat-num.green { color: #22c55e; }
+  .pg-stat-num.purple { color: #a78bfa; }
+  .pg-stat-lbl { font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 2px; color: var(--muted); margin-top: 2px; text-transform: uppercase; }
+  #pg-legend {
+    display: flex; gap: 16px; flex-wrap: wrap; padding: 8px 16px;
+    border-top: 1px solid var(--border);
+    position: relative; z-index: 10;
+  }
+  .pg-lg-item { display: flex; align-items: center; gap: 6px; font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; }
+  .pg-lg-dot { width: 10px; height: 10px; flex-shrink: 0; }
+  .pg-lg-dot.start { background: #22c55e; }
+  .pg-lg-dot.key { background: var(--accent3); }
+  .pg-lg-dot.enemy { background: #7c3aed; }
+  .pg-lg-dot.loot { background: #facc15; }
+  .pg-lg-dot.secret { background: #ec4899; }
+  .pg-lg-dot.room { background: transparent; border: 1px solid rgba(0,229,255,0.4); }
+  #pg-seed-log {
+    padding: 8px 16px; border-top: 1px solid var(--border);
+    display: flex; gap: 8px; overflow: hidden;
+    position: relative; z-index: 10; height: 32px;
+  }
+  .pg-seed-chip {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px; letter-spacing: 1px; color: var(--muted);
+    border: 1px solid var(--border); padding: 2px 7px;
+    white-space: nowrap; text-transform: uppercase;
+    animation: fadeIn 0.4s ease;
+  }
+  .pg-seed-chip.active { color: var(--accent); border-color: rgba(0,229,255,0.4); }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+
+  .progen-desc {
+    margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  }
+  .progen-desc-block h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 14px; font-weight: 700; color: #fff;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .progen-desc-block p { font-size: 14px; line-height: 1.8; color: var(--text); }
+  .progen-desc-block p strong { color: var(--accent3); }
+
+  /* ── EXPERIENCE TIMELINE ── */
+  #experience { background: var(--void); }
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 6px; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 36px; }
+  .tl-item::before {
+    content: ''; position: absolute;
+    left: -32px; top: 6px;
+    width: 8px; height: 8px;
+    background: var(--accent); transform: rotate(45deg);
+    box-shadow: 0 0 10px var(--accent);
+  }
+  .tl-meta { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--accent2); text-transform: uppercase; margin-bottom: 4px; }
+  .tl-title { font-family: 'Orbitron', monospace; font-size: 14px; font-weight: 700; color: #fff; text-transform: uppercase; margin-bottom: 4px; }
+  .tl-sub { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+  .tl-desc { font-size: 13px; line-height: 1.7; color: var(--text); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--panel); border-top: 1px solid var(--border); text-align: center; }
+  .contact-inner { max-width: 580px; margin: 0 auto; }
+  .contact-inner p { font-size: 15px; line-height: 1.75; color: var(--muted); margin-bottom: 32px; }
+  .contact-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .contact-info {
+    margin-top: 32px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px; letter-spacing: 1px; color: var(--muted);
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+  }
+  .contact-info a { color: var(--accent); text-decoration: none; }
+  .contact-info a:hover { text-decoration: underline; }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 820px) {
+    section { padding: 60px 24px; }
+    #hero { padding: 0 24px; }
+
+    /* On mobile: image sits at bottom-right, gradient protects text at top */
+    #hero {
+      height: auto;
+      min-height: 100vh;
+      padding-bottom: 200px;
+    }
+    #hero-bg {
+      inset: -40px;
+      background:
+        url('https://raw.githubusercontent.com/George-Mando/George-Mando/main/xenclipse-logo-cool.png') center 80% / 95% auto no-repeat,
+        #050608;
+    }
+    .hero-overlay {
+      background: linear-gradient(to bottom,
+        rgba(5,6,8,1.0) 0%,
+        rgba(5,6,8,1.0) 55%,
+        rgba(5,6,8,0.5) 75%,
+        rgba(5,6,8,0.0) 100%
+      ) !important;
+    }
+    .hero-content { max-width: 100%; }
+    .hero-titles { font-size: 13px; letter-spacing: 3px; max-width: 100%; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .project-card.featured { grid-column: auto; display: block; }
+    .project-card.featured .card-thumb--yt { height: 200px; }
+    nav { padding: 0 18px; }
+    .nav-links { gap: 14px; }
+    .corner-tr,.corner-br { right: 18px; }
+    .corner-tl,.corner-bl { left: 18px; }
+    .progen-desc { grid-template-columns: 1fr; }
+    #pg-hud-bottom { grid-template-columns: 1fr 1fr; }
+    .pg-stat-cell:nth-child(2) { border-right: none; }
+    .pg-stat-cell:nth-child(3) { border-top: 1px solid var(--border); }
+    .pg-stat-cell:nth-child(4) { border-top: 1px solid var(--border); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">G.Carter // Dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#progen">XenCore</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO — image background -->
+<section id="hero">
+  <div id="hero-bg"></div>
+  <canvas id="grid-canvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">// Full Sail University &bull; B.S. Game Development &bull; Class of 2026</p>
+    <h1 class="hero-name glitch" data-text="GEORGE CARTER">
+      GEORGE <span class="hi">CARTER</span>
+    </h1>
+    <p class="hero-titles">Game Developer &nbsp;/&nbsp; Gameplay Programmer<br>&nbsp;/&nbsp; Systems Architect</p>
+    <p class="hero-desc">
+      Building interactive worlds from scratch — specializing in gameplay programming,
+      AI systems, and procedural generation. Backed by 16 years of engineering discipline
+      that makes every system ship clean.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-ghost">Contact Me</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">01 // Profile</p>
+  <h2 class="section-title">About Me</h2>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>
+        I'm a <strong>game developer at Full Sail University</strong> (graduating June 2026)
+        specializing in gameplay programming, AI systems, and UI/UX architecture in
+        Unreal Engine (C++/Blueprints) and Unity (C#).
+      </p>
+      <p>
+        My focus is on building systems that create emergent, replayable gameplay —
+        from procedural dungeon generators that loop forever to AI behavior trees that
+        keep players on edge. I believe the best games reward curiosity and punish complacency.
+      </p>
+      <div class="eng-note">
+        <strong>// Engineering background:</strong> 16 years as a Mechanical Engineer —
+        Chief Engineer at Barrett Trailers, embedded engineer at Tesla, and a decade of
+        team leadership. That foundation in systems thinking, iterative design, and
+        technical precision transfers directly to engine logic and gameplay architecture.
+      </div>
+    </div>
+    <div>
+      <div class="hud-divider"><div class="hud-diamond"></div></div>
+      <div class="skills-grid">
+        <div class="skill-tag">Unreal Engine 5</div>
+        <div class="skill-tag">Unity</div>
+        <div class="skill-tag">C++ / Blueprints</div>
+        <div class="skill-tag">C#</div>
+        <div class="skill-tag">AI Behavior Trees</div>
+        <div class="skill-tag">State Machines</div>
+        <div class="skill-tag">Procedural Gen</div>
+        <div class="skill-tag">UI &amp; UX Systems</div>
+        <div class="skill-tag">Save / Load Systems</div>
+        <div class="skill-tag">Physics Systems</div>
+        <div class="skill-tag orange">GitHub / Perforce</div>
+        <div class="skill-tag orange">Vulkan (Intro)</div>
+        <div class="skill-tag orange">SolidWorks CPro</div>
+        <div class="skill-tag orange">AutoCAD / Creo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">02 // Work</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <!-- FEATURED — Shadows of Beginnings with YT thumbnail + link -->
+    <div class="project-card featured reveal">
+      <div class="card-glow"></div>
+      <div class="card-thumb card-thumb--yt">
+        <!-- YouTube maxresdefault thumbnail as background image -->
+        <img class="yt-bg" src="https://img.youtube.com/vi/DpSxJ07QAeE/maxresdefault.jpg" alt="Shadows of Beginnings trailer thumbnail">
+        <a class="yt-play-overlay" href="https://www.youtube.com/watch?v=DpSxJ07QAeE" target="_blank" rel="noopener" title="Watch Shadows of Beginnings trailer on YouTube">
+          <span class="yt-play-btn">▶</span>
+          <span class="yt-play-label">// Watch Trailer on YouTube</span>
+        </a>
+      </div>
+      <div class="card-content">
+        <span class="featured-badge">Featured // Group Project</span>
+        <div class="card-date">Apr 2026 – Present</div>
+        <p class="card-type">// Action Adventure RPG</p>
+        <h3 class="card-title">Shadows of Beginnings</h3>
+        <p class="card-desc">
+          Team Nebula's action adventure RPG currently in development at Full Sail.
+          Responsible for engineering dynamic horror-event logic and ambush triggers that control
+          encounter pacing across multiple levels — keeping tension high and the player permanently off-balance.
+          My contribution: the final stage uses a procedural generation system that loops infinitely,
+          producing a new layout every run. Players think they can win. They can't. Unless they find the secret.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Unreal Engine</span>
+          <span class="tag">C++</span>
+          <span class="tag">Blueprints</span>
+          <span class="tag">AI Systems</span>
+          <span class="tag">XenCore</span>
+          <span class="tag">Level Design</span>
+          <span class="tag">Team Project</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLOCKWORK HORRORS -->
+    <div class="project-card reveal">
+      <div class="card-glow"></div>
+      <div class="card-thumb">
+        <img class="card-img" src="https://raw.githubusercontent.com/George-Mando/George-Mando/main/ClockWorkHorrors.png" alt="Clockwork Horrors screenshot">
+      </div>
+      <div class="card-content">
+        <div class="card-date">May – Jun 2025</div>
+        <p class="card-type">// Horror FPS</p>
+        <h3 class="card-title">Clockwork Horrors</h3>
+        <p class="card-desc">
+          Built core FPS systems from scratch — movement, crouch/hide, and shooting.
+          Engineered AI for two distinct enemy types: a Rifleman and a Detonator Wraith,
+          each with unique behavior patterns. Also handled terrain and XP/resource progression systems.
+        </p>
+        <div class="card-tags">
+          <span class="tag">FPS</span>
+          <span class="tag">AI Behavior</span>
+          <span class="tag">C++</span>
+          <span class="tag">Unreal Engine</span>
+          <span class="tag">XP Systems</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DR MALWARE -->
+    <div class="project-card reveal">
+      <div class="card-glow"></div>
+      <div class="card-thumb">
+        <img class="card-img" src="https://raw.githubusercontent.com/George-Mando/George-Mando/main/DRMalware.png" alt="Dr. Malware screenshot">
+      </div>
+      <div class="card-content">
+        <div class="card-date">Sep – Oct 2025</div>
+        <p class="card-type">// Puzzle Game</p>
+        <h3 class="card-title">Dr. Malware</h3>
+        <p class="card-desc">
+          Engineered virus mechanics, pill sequencing, and seed-based level logic across 5+ levels.
+          Built a full save/load system preserving 100% of player state —
+          no progress lost, no shortcuts taken.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Puzzle</span>
+          <span class="tag">C#</span>
+          <span class="tag">Unity</span>
+          <span class="tag">Save/Load</span>
+          <span class="tag">Seed Logic</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTFOLIO SITE — iframe preview -->
+    <div class="project-card reveal">
+      <div class="card-glow"></div>
+      <div class="card-thumb card-thumb--iframe">
+        <iframe
+          src="https://george-mando.github.io/George-Mando/"
+          class="card-iframe"
+          title="George Carter GitHub Portfolio Site"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          scrolling="no"
+        ></iframe>
+        <a href="https://george-mando.github.io/George-Mando/" target="_blank" class="iframe-visit" title="Open site in new tab">
+          <span class="iframe-visit-icon">↗</span>
+          <span class="iframe-visit-label">// Open Site</span>
+        </a>
+      </div>
+      <div class="card-content">
+        <p class="card-type">// Web / Personal</p>
+        <h3 class="card-title">Portfolio Site</h3>
+        <p class="card-desc">
+          This site — built with vanilla HTML, CSS, and JavaScript.
+          Custom grid canvas animations, HUD-style UI language, scroll reveals,
+          parallax card tilt, and a live XenCore dungeon visualizer.
+          No frameworks. No templates.
+        </p>
+        <div class="card-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Canvas API</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROGEN — FULL UPGRADED ENGINE -->
+<section id="progen">
+  <p class="section-label">03 // Systems</p>
+  <h2 class="section-title">XenCore Engine</h2>
+
+  <div id="progen-wrap" class="reveal">
+    <div id="pg-scanlines"></div>
+    <div id="pg-hud-top">
+      <span class="pg-hud-title">// XenCore Engine &nbsp;—&nbsp; Infinite Level Architecture</span>
+      <div class="pg-hud-right">
+        <span class="pg-badge">Featured System</span>
+        <span class="pg-status"><span class="pg-status-dot"></span>Loop Active</span>
+      </div>
+    </div>
+    <div id="pg-controls">
+      <button id="pg-gen-btn">// Generate New Level</button>
+      <div class="pg-ctrl-group">
+        <span class="pg-ctrl-label">Rooms</span>
+        <input type="range" id="pg-room-count" min="6" max="18" step="1" value="10">
+        <span class="pg-ctrl-val" id="pg-room-val">10</span>
+      </div>
+      <div class="pg-ctrl-group">
+        <span class="pg-ctrl-label">Density</span>
+        <input type="range" id="pg-density" min="1" max="5" step="1" value="3">
+        <span class="pg-ctrl-val" id="pg-density-val">3</span>
+      </div>
+      <div class="pg-ctrl-group" style="margin-left:auto">
+        <span class="pg-ctrl-label" style="color:#ec4899">Secret:</span>
+        <span id="pg-secret-hint" style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted)">—</span>
+      </div>
+    </div>
+    <div id="pg-canvas-wrap">
+      <canvas id="pg-canvas"></canvas>
+      <div id="pg-tooltip"></div>
+    </div>
+    <div id="pg-hud-bottom">
+      <div class="pg-stat-cell">
+        <div class="pg-stat-num green" id="pg-st-rooms">0</div>
+        <div class="pg-stat-lbl">Rooms</div>
+      </div>
+      <div class="pg-stat-cell">
+        <div class="pg-stat-num orange" id="pg-st-enemies">0</div>
+        <div class="pg-stat-lbl">Enemy Spawns</div>
+      </div>
+      <div class="pg-stat-cell">
+        <div class="pg-stat-num purple" id="pg-st-loot">0</div>
+        <div class="pg-stat-lbl">Loot Nodes</div>
+      </div>
+      <div class="pg-stat-cell">
+        <div class="pg-stat-num" id="pg-st-total">0</div>
+        <div class="pg-stat-lbl">Total Generated</div>
+      </div>
+    </div>
+    <div id="pg-legend">
+      <div class="pg-lg-item"><span class="pg-lg-dot start"></span>Start Room</div>
+      <div class="pg-lg-item"><span class="pg-lg-dot key"></span>Key / Exit</div>
+      <div class="pg-lg-item"><span class="pg-lg-dot enemy"></span>Enemy Spawn</div>
+      <div class="pg-lg-item"><span class="pg-lg-dot loot"></span>Loot Cache</div>
+      <div class="pg-lg-item"><span class="pg-lg-dot room"></span>Empty Room</div>
+      <div class="pg-lg-item"><span class="pg-lg-dot secret"></span>Secret Room</div>
+    </div>
+    <div id="pg-seed-log"></div>
+  </div>
+
+  <div class="progen-desc reveal">
+    <div class="progen-desc-block">
+      <h3>Infinite Level Architecture</h3>
+      <p>
+        The XenCore system generates a completely new dungeon layout every time the player
+        advances. Using a seeded room-graph algorithm, corridors, enemy spawns, loot placement,
+        and key location are all computed on the fly. Use the sliders above to control room count
+        and layout density in real time.
+      </p>
+    </div>
+    <div class="progen-desc-block">
+      <h3>The Infinite Loop</h3>
+      <p>
+        The infinite loop is <strong>intentional</strong>. The player is always one key away
+        from winning — but the game never ends. New level, every time, forever.
+        Hover any room to inspect it. Unless you find what's hidden in the <strong>secret room</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE TIMELINE -->
+<section id="experience">
+  <p class="section-label">04 // Record</p>
+  <h2 class="section-title">Experience</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px">
+    <div class="reveal">
+      <div class="hud-divider"><div class="hud-diamond"></div></div>
+      <p style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:24px">// Game Development</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-meta">Apr 2026 – Present</div>
+          <div class="tl-title">Shadows of Beginnings</div>
+          <div class="tl-sub">Team Nebula &bull; Full Sail University</div>
+          <div class="tl-desc">Horror-event logic, ambush triggers, encounter pacing, procedural generation final stage.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-meta">Sep 2025 – Oct 2025</div>
+          <div class="tl-title">Dr. Malware</div>
+          <div class="tl-sub">Puzzle Game &bull; Full Sail University</div>
+          <div class="tl-desc">Virus mechanics, pill sequencing, seed-based logic across 5+ levels. Full save/load system preserving 100% player state.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-meta">May 2025 – Jun 2025</div>
+          <div class="tl-title">Clockwork Horrors</div>
+          <div class="tl-sub">Team Clockwork &bull; Full Sail University</div>
+          <div class="tl-desc">Core FPS systems, AI behavior for Rifleman &amp; Detonator Wraith, terrain and XP/resource systems.</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="hud-divider"><div class="hud-diamond"></div></div>
+      <p style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--accent3);text-transform:uppercase;margin-bottom:24px">// Engineering (16 Years)</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-meta">Sep 2021 – Present</div>
+          <div class="tl-title">Chief Engineer</div>
+          <div class="tl-sub">Barrett Trailers &bull; Purcell, OK</div>
+          <div class="tl-desc">Led redesigns across 6+ trailer lines. 40+ component upgrades cut material and fabrication costs 12–18%.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-meta">Apr 2020 – Sep 2021</div>
+          <div class="tl-title">Mechanical Engineer</div>
+          <div class="tl-sub">Evolve / Tesla &bull; Remote</div>
+          <div class="tl-desc">Designed 120+ components for manufacturing systems across 3 Tesla groups.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-meta">Jan 2015 – Sep 2020</div>
+          <div class="tl-title">Engineering Manager</div>
+          <div class="tl-sub">Urban Farmhouse Designs &bull; OKC</div>
+          <div class="tl-desc">Led 8–12 person team. Oversaw 300+ SKUs across furniture and fixture lines.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-meta">2007 – 2015</div>
+          <div class="tl-title">Mech. Engineer → Manager</div>
+          <div class="tl-sub">Titan Tanks / Halliburton / MJ Lewis</div>
+          <div class="tl-desc">ASME tank design, down-hole tool components deployed across 30+ countries, 200+ civil drawings.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label" style="justify-content:center">05 // Contact</p>
+  <h2 class="section-title reveal" style="text-align:center">Let's Build Something</h2>
+  <div class="contact-inner reveal">
+    <p>Looking for a game developer who ships clean systems and sweats the details? Whether it's a studio role, internship, or a collab — I'm listening.</p>
+    <div class="contact-links">
+      <a href="mailto:gtcarter@student.fullsail.edu" class="btn-primary">Send Message</a>
+      <a href="https://www.linkedin.com/in/george-carter-ba996b315" target="_blank" class="btn-ghost">LinkedIn</a>
+      <a href="https://george-mando.github.io/George-Mando/" target="_blank" class="btn-ghost">GitHub Site</a>
+      <a href="https://george-carter.itch.io/" target="_blank" class="btn-ghost">Itch.io</a>
+    </div>
+    <div class="contact-info">
+      <span>📍 Marlow, Oklahoma</span>
+      <a href="tel:5807567426">📞 (580) 756-7426</a>
+      <a href="mailto:gtcarter@student.fullsail.edu">✉️ gtcarter@student.fullsail.edu</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <div class="status-dot"></div>
+  <span class="s-accent">ONLINE</span>
+  <span>// George Carter &bull; Full Sail &bull; Game Dev &bull; Class of 2026</span>
+  <span id="live-time" style="margin-left:auto"></span>
+</div>
+
+<script>
+// ── GRID CANVAS ──────────────────────────────────────
+const gc = document.getElementById('grid-canvas');
+const gx = gc.getContext('2d');
+function resizeGC() { gc.width = gc.offsetWidth; gc.height = gc.offsetHeight; drawGrid(); }
+function drawGrid() {
+  gx.clearRect(0,0,gc.width,gc.height);
+  const s = 58;
+  gx.strokeStyle = 'rgba(0,229,255,0.10)'; gx.lineWidth = 0.5;
+  for (let x=0; x<gc.width; x+=s) { gx.beginPath(); gx.moveTo(x,0); gx.lineTo(x,gc.height); gx.stroke(); }
+  for (let y=0; y<gc.height; y+=s) { gx.beginPath(); gx.moveTo(0,y); gx.lineTo(gc.width,y); gx.stroke(); }
+  gx.fillStyle = 'rgba(0,229,255,0.22)';
+  for (let x=0; x<=gc.width; x+=s) for (let y=0; y<=gc.height; y+=s) gx.fillRect(x-1,y-1,2,2);
+}
+resizeGC();
+window.addEventListener('resize', resizeGC);
+
+// ── PROGEN ENGINE ─────────────────────────────────────
+const pgCanvas = document.getElementById('pg-canvas');
+const pgCtx = pgCanvas.getContext('2d');
+const pgTooltip = document.getElementById('pg-tooltip');
+const pgSeedLog = document.getElementById('pg-seed-log');
+const CELL = 15;
+let pgTotalGen = 0;
+let pgRooms = [];
+let pgSeedHistory = [];
+let pgCurrentLevel = null;
+let pgAnimFrame = null;
+let pgParticles = [];
+
+function pgRng(seed) {
+  let s = seed >>> 0;
+  return () => {
+    s ^= s << 13; s ^= s >> 17; s ^= s << 5;
+    return (s >>> 0) / 4294967296;
+  };
+}
+
+function pgResize() {
+  const w = pgCanvas.parentElement.offsetWidth;
+  pgCanvas.width = w;
+  pgCanvas.height = Math.floor(w * 0.48);
+  if (pgCurrentLevel) pgDrawLevel(pgCurrentLevel);
+}
+
+function pgGenerate() {
+  if (pgAnimFrame) cancelAnimationFrame(pgAnimFrame);
+  pgParticles = [];
+  const w = pgCanvas.width, h = pgCanvas.height;
+  const cols = Math.floor(w / CELL), rows = Math.floor(h / CELL);
+  const seed = ((Date.now() * 2654435761) ^ (Math.random() * 0xFFFFFFFF)) >>> 0;
+  const r = pgRng(seed);
+  const targetCount = parseInt(document.getElementById('pg-room-count').value);
+  const density = parseInt(document.getElementById('pg-density').value);
+  const placed = [];
+  let attempts = 0;
+
+  while (placed.length < targetCount && attempts < 800) {
+    attempts++;
+    const rw = 3 + Math.floor(r() * 6);
+    const rh = 3 + Math.floor(r() * 4);
+    const rx = 1 + Math.floor(r() * (cols - rw - 2));
+    const ry = 1 + Math.floor(r() * (rows - rh - 2));
+    const pad = Math.max(1, 3 - density + 1);
+    let ok = true;
+    for (const rm of placed) {
+      if (rx < rm.x + rm.w + pad && rx + rw > rm.x - pad && ry < rm.y + rm.h + pad && ry + rh > rm.y - pad) {
+        ok = false; break;
+      }
+    }
+    if (ok) placed.push({ x: rx, y: ry, w: rw, h: rh, cx: rx + rw/2, cy: ry + rh/2 });
+  }
+
+  const corridors = [];
+  for (let i = 0; i < placed.length - 1; i++) corridors.push([i, i + 1]);
+  const extras = Math.floor(r() * (placed.length / 2));
+  for (let e = 0; e < extras; e++) {
+    const a = Math.floor(r() * placed.length);
+    const b = Math.floor(r() * placed.length);
+    if (a !== b) corridors.push([a, b]);
+  }
+
+  const roomTypes = placed.map((rm, i) => {
+    if (i === 0) return 'start';
+    if (i === placed.length - 1) return 'key';
+    const roll = r();
+    if (roll < 0.25) return 'enemy';
+    if (roll < 0.42) return 'loot';
+    if (roll < 0.47) return 'secret';
+    return 'empty';
+  });
+
+  const hasSecret = roomTypes.includes('secret');
+  const seedStr = (seed % 99999).toString().padStart(5, '0');
+  pgSeedHistory.unshift(seedStr);
+  if (pgSeedHistory.length > 8) pgSeedHistory.pop();
+  pgUpdateSeedLog(seedStr);
+
+  pgCurrentLevel = { placed, corridors, roomTypes, seed, seedStr };
+  pgRooms = placed.map((rm, i) => ({
+    ...rm, type: roomTypes[i],
+    px: rm.x * CELL, py: rm.y * CELL,
+    pw: rm.w * CELL, ph: rm.h * CELL
+  }));
+
+  let enemyCount = 0, lootCount = 0;
+  roomTypes.forEach(t => { if (t === 'enemy') enemyCount++; if (t === 'loot') lootCount++; });
+  pgTotalGen += placed.length;
+  document.getElementById('pg-st-rooms').textContent = placed.length;
+  document.getElementById('pg-st-enemies').textContent = enemyCount;
+  document.getElementById('pg-st-loot').textContent = lootCount;
+  document.getElementById('pg-st-total').textContent = pgTotalGen.toLocaleString();
+  const secretHint = document.getElementById('pg-secret-hint');
+  secretHint.textContent = hasSecret ? 'ROOM ' + (roomTypes.indexOf('secret') + 1) + ' IS NOT WHAT IT SEEMS' : '—';
+  secretHint.style.color = hasSecret ? '#ec4899' : 'var(--muted)';
+
+  pgAnimateReveal(pgCurrentLevel);
+}
+
+function pgDrawLevel(level, revealProgress) {
+  const { placed, corridors, roomTypes, seedStr } = level;
+  const w = pgCanvas.width, h = pgCanvas.height;
+  const prog = revealProgress !== undefined ? revealProgress : 1;
+  pgCtx.fillStyle = '#050608';
+  pgCtx.fillRect(0, 0, w, h);
+
+  pgCtx.strokeStyle = 'rgba(0,229,255,0.07)';
+  pgCtx.lineWidth = 0.5;
+  for (let x = 0; x < w; x += CELL) { pgCtx.beginPath(); pgCtx.moveTo(x, 0); pgCtx.lineTo(x, h); pgCtx.stroke(); }
+  for (let y = 0; y < h; y += CELL) { pgCtx.beginPath(); pgCtx.moveTo(0, y); pgCtx.lineTo(w, y); pgCtx.stroke(); }
+
+  const revealCorridors = Math.floor(prog * corridors.length);
+  for (let ci = 0; ci < revealCorridors; ci++) {
+    const [ai, bi] = corridors[ci];
+    const a = placed[ai], b = placed[bi];
+    const x1 = a.cx * CELL, y1 = a.cy * CELL;
+    const x2 = b.cx * CELL, y2 = b.cy * CELL;
+    pgCtx.strokeStyle = 'rgba(0,229,255,0.18)';
+    pgCtx.lineWidth = CELL * 0.7;
+    pgCtx.lineCap = 'square';
+    pgCtx.beginPath();
+    pgCtx.moveTo(x1, y1); pgCtx.lineTo(x2, y1); pgCtx.lineTo(x2, y2);
+    pgCtx.stroke();
+    pgCtx.strokeStyle = 'rgba(0,229,255,0.06)';
+    pgCtx.lineWidth = CELL * 0.7 - 2;
+    pgCtx.beginPath();
+    pgCtx.moveTo(x1, y1); pgCtx.lineTo(x2, y1); pgCtx.lineTo(x2, y2);
+    pgCtx.stroke();
+  }
+
+  const revealRooms = Math.floor(prog * placed.length);
+  for (let i = 0; i < revealRooms; i++) {
+    const rm = placed[i];
+    const type = roomTypes[i];
+    const px = rm.x * CELL, py = rm.y * CELL, pw = rm.w * CELL, ph = rm.h * CELL;
+    pgCtx.fillStyle = '#0a0c10';
+    pgCtx.fillRect(px, py, pw, ph);
+
+    let borderColor;
+    if (type === 'start') borderColor = '#22c55e';
+    else if (type === 'key') borderColor = '#ff6b35';
+    else if (type === 'enemy') borderColor = '#7c3aed';
+    else if (type === 'loot') borderColor = '#facc15';
+    else if (type === 'secret') borderColor = '#ec4899';
+    else borderColor = 'rgba(0,229,255,0.35)';
+
+    pgCtx.strokeStyle = borderColor;
+    pgCtx.lineWidth = (type === 'start' || type === 'key') ? 2 : 1.5;
+    pgCtx.strokeRect(px + 0.75, py + 0.75, pw - 1.5, ph - 1.5);
+
+    if (type === 'start' || type === 'key') {
+      pgCtx.fillStyle = borderColor + '22';
+      pgCtx.fillRect(px + 2, py + 2, pw - 4, ph - 4);
+    }
+
+    pgCtx.save();
+    pgCtx.textAlign = 'center'; pgCtx.textBaseline = 'middle';
+    const cx = px + pw / 2, cy = py + ph / 2;
+    if (type === 'start') { pgCtx.fillStyle = '#22c55e'; pgCtx.font = `bold ${CELL * 0.85}px Share Tech Mono, monospace`; pgCtx.fillText('S', cx, cy); }
+    else if (type === 'key') { pgCtx.fillStyle = '#ff6b35'; pgCtx.font = `bold ${CELL * 0.85}px Share Tech Mono, monospace`; pgCtx.fillText('K', cx, cy); }
+    else if (type === 'enemy') { pgCtx.fillStyle = '#7c3aed'; pgCtx.font = `${CELL * 0.75}px Share Tech Mono, monospace`; pgCtx.fillText('E', cx, cy); }
+    else if (type === 'loot') { pgCtx.fillStyle = '#facc15'; pgCtx.font = `${CELL * 0.7}px Share Tech Mono, monospace`; pgCtx.fillText('L', cx, cy); }
+    else if (type === 'secret') { pgCtx.fillStyle = '#ec4899'; pgCtx.font = `${CELL * 0.7}px Share Tech Mono, monospace`; pgCtx.fillText('?', cx, cy); }
+
+    pgCtx.fillStyle = 'rgba(255,255,255,0.08)';
+    pgCtx.font = '8px Share Tech Mono, monospace';
+    pgCtx.textAlign = 'left';
+    pgCtx.fillText((i + 1).toString(), px + 5, py + 10);
+    pgCtx.restore();
+  }
+
+  pgCtx.fillStyle = 'rgba(0,229,255,0.08)';
+  pgCtx.fillRect(0, 0, w, 18);
+  pgCtx.fillStyle = 'rgba(0,229,255,0.65)';
+  pgCtx.font = '9px Share Tech Mono, monospace';
+  pgCtx.textAlign = 'left';
+  pgCtx.fillText('// SEED:' + seedStr + '  ROOMS:' + placed.length + '  CORRIDORS:' + corridors.length + '  LOOP:#' + pgTotalGen + '  ACTIVE', 8, 12);
+  pgCtx.textAlign = 'right';
+  pgCtx.fillStyle = 'rgba(255,107,53,0.7)';
+  pgCtx.fillText('∞ LOOP ACTIVE', w - 8, 12);
+
+  pgParticles.forEach((p, idx) => {
+    p.life -= 0.02; p.x += p.vx; p.y += p.vy;
+    if (p.life <= 0) { pgParticles.splice(idx, 1); return; }
+    pgCtx.fillStyle = 'rgba(0,229,255,' + (p.life * 0.6) + ')';
+    pgCtx.fillRect(p.x, p.y, 2, 2);
+  });
+}
+
+function pgAnimateReveal(level) {
+  let prog = 0;
+  const start = performance.now();
+  const duration = 600;
+  function frame(now) {
+    prog = Math.min((now - start) / duration, 1);
+    pgDrawLevel(level, prog);
+    if (prog < 1) pgAnimFrame = requestAnimationFrame(frame);
+    else { pgAnimFrame = null; pgStartParticles(level); }
+  }
+  pgAnimFrame = requestAnimationFrame(frame);
+}
+
+function pgStartParticles(level) {
+  const { placed, roomTypes } = level;
+  placed.forEach((rm, i) => {
+    if (roomTypes[i] === 'enemy' || roomTypes[i] === 'key') {
+      for (let p = 0; p < 6; p++) {
+        pgParticles.push({
+          x: rm.cx * CELL + (Math.random() - 0.5) * rm.w * CELL,
+          y: rm.cy * CELL + (Math.random() - 0.5) * rm.h * CELL,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8,
+          life: Math.random() * 0.8 + 0.2
+        });
+      }
+    }
+  });
+  if (pgParticles.length) {
+    function pFrame() {
+      pgDrawLevel(level);
+      if (pgParticles.length > 0) pgAnimFrame = requestAnimationFrame(pFrame);
+    }
+    pgAnimFrame = requestAnimationFrame(pFrame);
+  }
+}
+
+function pgUpdateSeedLog(current) {
+  pgSeedLog.innerHTML = pgSeedHistory.map((s, i) =>
+    '<span class="pg-seed-chip' + (i === 0 ? ' active' : '') + '">SEED:' + s + '</span>'
+  ).join('');
+}
+
+pgCanvas.addEventListener('mousemove', e => {
+  const rect = pgCanvas.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) * (pgCanvas.width / rect.width);
+  const my = (e.clientY - rect.top) * (pgCanvas.height / rect.height);
+  let found = null;
+  pgRooms.forEach(rm => {
+    if (mx >= rm.px && mx <= rm.px + rm.pw && my >= rm.py && my <= rm.py + rm.ph) found = rm;
+  });
+  if (found) {
+    const labels = { start: 'SPAWN POINT', key: 'KEY ROOM — FIND THE EXIT', enemy: 'ENEMY SPAWN — DANGER', loot: 'LOOT CACHE — EXPLORE', secret: '??? — SOMETHING IS HIDDEN', empty: 'EMPTY ROOM' };
+    pgTooltip.style.display = 'block';
+    pgTooltip.style.left = (e.offsetX + 12) + 'px';
+    pgTooltip.style.top = (e.offsetY - 10) + 'px';
+    pgTooltip.textContent = labels[found.type] || 'ROOM';
+  } else { pgTooltip.style.display = 'none'; }
+});
+pgCanvas.addEventListener('mouseleave', () => { pgTooltip.style.display = 'none'; });
+
+document.getElementById('pg-gen-btn').addEventListener('click', pgGenerate);
+document.getElementById('pg-room-count').addEventListener('input', function() {
+  document.getElementById('pg-room-val').textContent = this.value;
+});
+document.getElementById('pg-density').addEventListener('input', function() {
+  document.getElementById('pg-density-val').textContent = this.value;
+});
+
+const pgObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { pgResize(); pgGenerate(); pgObs.disconnect(); } });
+}, { threshold: 0.2 });
+pgObs.observe(pgCanvas);
+
+window.addEventListener('resize', pgResize);
+setInterval(() => { if (!pgAnimFrame && pgCurrentLevel) { pgParticles = []; pgStartParticles(pgCurrentLevel); } }, 3000);
+
+// ── SCROLL REVEAL ────────────────────────────────────
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+// ── CARD PARALLAX TILT ───────────────────────────────
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `translateY(-4px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
+// ── LIVE CLOCK ───────────────────────────────────────
+const timeEl = document.getElementById('live-time');
+const tick = () => timeEl.textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
