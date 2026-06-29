@@ -289,6 +289,19 @@ body::before{content:'';position:fixed;inset:0;
 .tl-tag{font-size:7px;letter-spacing:1px;padding:1px 5px;border:1px solid var(--border);border-radius:2px;color:var(--text-dim);}
 .tl-item.live::after{content:'■ LIVE';position:absolute;right:8px;top:8px;font-size:7px;color:var(--acid);letter-spacing:2px;animation:dp 1.5s infinite;}
 .tl-item.dev::after{content:'IN DEV';position:absolute;right:8px;top:8px;font-size:7px;color:var(--orange);letter-spacing:2px;}
+
+/* ── SOLIDWORKS SUITE ── */
+.sw-intro{font-size:9px;color:var(--text-dim);line-height:1.8;letter-spacing:.3px;}
+.sw-intro b{color:var(--acid);}
+.sw-list{display:flex;flex-direction:column;gap:6px;}
+.sw-chip{font-size:9px;letter-spacing:.5px;color:var(--text);padding:7px 10px;background:rgba(0,255,156,.02);border:1px solid var(--border);border-radius:3px;border-left:2px solid var(--acid);transition:all .2s;}
+.sw-chip:active{border-color:var(--acid);background:rgba(0,255,156,.05);}
+.sw-group.g1 .sw-chip{border-left-color:var(--acid);}
+.sw-group.g2 .sw-chip{border-left-color:var(--blue);}
+.sw-group.g3 .sw-chip{border-left-color:var(--orange);}
+.sw-group.g4 .sw-chip{border-left-color:#27c93f;}
+.sw-meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.sw-meta-num{font-family:'Orbitron',monospace;font-size:18px;color:var(--acid);margin-top:4px;}
 </style>
 </head>
 <body>
@@ -305,6 +318,7 @@ body::before{content:'';position:fixed;inset:0;
     <button class="nav-tab active" onclick="showScreen('home',this)"><span class="nav-icon">⬡</span>HOME</button>
     <button class="nav-tab" onclick="showScreen('xenai',this)"><span class="nav-icon">◈</span>XENAI</button>
     <button class="nav-tab" onclick="showScreen('projects',this)"><span class="nav-icon">▲</span>PROJECTS</button>
+    <button class="nav-tab" onclick="showScreen('swapp',this)"><span class="nav-icon">⬢</span>SW APP</button>
     <button class="nav-tab" onclick="showScreen('resume',this)"><span class="nav-icon">◫</span>RESUME</button>
     <button class="nav-tab" onclick="showScreen('stats',this)"><span class="nav-icon">◉</span>STATS</button>
   </nav>
@@ -463,6 +477,66 @@ body::before{content:'';position:fixed;inset:0;
       </div>
     </div>
 
+    <!-- SW APP -->
+    <div class="screen" id="screen-swapp">
+      <div class="panel">
+        <div class="pl">// SOLIDWORKS AUTOMATION SUITE <span>ENG TOOLS</span></div>
+        <div class="sw-intro">A suite of <b>custom SolidWorks add-ins</b> built on the SolidWorks API to automate repetitive CAD work — generating parametric pipe, fitting, and tank geometry on demand, plus the drawings, BOMs, and metadata that go with it. Same systems-thinking that drives the game tools, applied to production engineering. Every tool below is built and working.</div>
+      </div>
+
+      <div class="panel sw-group g1">
+        <div class="pl">// PIPE &amp; FITTING BUILDERS <span>7 TOOLS</span></div>
+        <div class="sw-list">
+          <div class="sw-chip">Flange Filament-Wound Socket</div>
+          <div class="sw-chip">Concentric Reducer Builder</div>
+          <div class="sw-chip">Bell &amp; Spigot Builder</div>
+          <div class="sw-chip">Elbow (Plain End)</div>
+          <div class="sw-chip">Flange Builder</div>
+          <div class="sw-chip">Single Flange</div>
+          <div class="sw-chip">Single Pipe</div>
+        </div>
+      </div>
+
+      <div class="panel sw-group g2">
+        <div class="pl">// ASSEMBLIES <span>4 TOOLS</span></div>
+        <div class="sw-list">
+          <div class="sw-chip">Full Pipe Assembly</div>
+          <div class="sw-chip">Full Pipe Pro Assembly</div>
+          <div class="sw-chip">Full Pipe Weldment Assembly</div>
+          <div class="sw-chip">Pipe Assembly</div>
+        </div>
+      </div>
+
+      <div class="panel sw-group g3">
+        <div class="pl">// DRAWINGS, BOM &amp; DATA <span>5 TOOLS</span></div>
+        <div class="sw-list">
+          <div class="sw-chip">Drawing &amp; BOM Generator</div>
+          <div class="sw-chip">BOM Creator</div>
+          <div class="sw-chip">Table Creator</div>
+          <div class="sw-chip">Properties Creator</div>
+          <div class="sw-chip">Data / Extract &amp; Get Information</div>
+        </div>
+      </div>
+
+      <div class="panel sw-group g4">
+        <div class="pl">// TANK TOOLS <span>2 TOOLS</span></div>
+        <div class="sw-list">
+          <div class="sw-chip">Tank App</div>
+          <div class="sw-chip">Tank Tester</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="pl">// SUITE METRICS <span>TOTALS</span></div>
+        <div class="sw-meta">
+          <div class="brow" style="text-align:center;"><div class="bk">ADD-INS</div><div class="sw-meta-num">18</div></div>
+          <div class="brow" style="text-align:center;"><div class="bk">CATEGORIES</div><div class="sw-meta-num" style="color:var(--orange);">4</div></div>
+          <div class="brow" style="text-align:center;"><div class="bk">PLATFORM</div><div class="sw-meta-num" style="color:var(--blue);font-size:12px;">SW API · C#</div></div>
+        </div>
+      </div>
+      <div class="ftr">XENCLIPSE STUDIOS · ENGINEERING DIVISION · ALL TOOLS OPERATIONAL</div>
+    </div>
+
     <!-- RESUME -->
     <div class="screen" id="screen-resume">
       <div class="panel">
@@ -471,7 +545,6 @@ body::before{content:'';position:fixed;inset:0;
           <div class="res-title">GAME DEVELOPER · GAMEPLAY PROGRAMMER · AI &amp; UI/UX SYSTEMS</div>
           <div style="font-size:8px;color:var(--text-dim);letter-spacing:2px;margin-bottom:6px;">16 YEARS ENGINEERING EXPERIENCE · MARLOW, OK</div>
           <div class="res-contact">
-            <a href="mailto:gtcarter@student.fullsail.edu">✉ FSU EMAIL</a>
             <a href="mailto:xenclipsestudios@gmail.com">✉ STUDIO EMAIL</a>
             <a href="https://www.linkedin.com/in/george-carter-ba996b315" target="_blank">💼 LINKEDIN</a>
             <a href="https://george-carter.itch.io/" target="_blank">🎮 ITCH.IO</a>
