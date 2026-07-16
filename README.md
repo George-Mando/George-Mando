@@ -1,10 +1,10 @@
 <div align="center">
 
 <!-- ANIMATED WAVE HEADER -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0d0d,50:00ff9c,100:0d0d0d&height=200&section=header&text=GEORGE%20CARTER&fontSize=60&fontColor=00ff9c&fontAlignY=38&desc=Game%20Developer%20%7C%20Systems%20Architect%20%7C%20World%20Builder&descAlignY=58&descSize=16&animation=fadeIn" />
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0d0d,50:00ff9c,100:0d0d0d&height=200&section=header&text=GEORGE%20CARTER&fontSize=60&fontColor=00ff9c&fontAlignY=38&desc=Game%20Developer%20%7C%20Systems%20Architect%20%7C%20Full%20Sail%20Valedictorian%20%2726&descAlignY=58&descSize=16&animation=fadeIn" />
 
 <!-- ANIMATED TYPING SVG -->
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=3000&pause=800&color=00FF9C&center=true&vCenter=true&width=700&lines=%F0%9F%9A%80+Unreal+Engine+%7C+Unity+%7C+C%2B%2B;%F0%9F%8E%AE+Building+Systems+That+Feel+Alive;%F0%9F%94%A7+Tools+%7C+Plugins+%7C+Gameplay+Loops;%F0%9F%A7%A0+Clean+Code.+Fun+Games.+Real+Results.)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=22&duration=3000&pause=800&color=00FF9C&center=true&vCenter=true&width=700&lines=%F0%9F%9A%80+Unreal+Engine+%7C+Unity+%7C+C%2B%2B;%F0%9F%8E%AE+Building+Systems+That+Feel+Alive;%F0%9F%94%A7+Tools+%7C+Plugins+%7C+Gameplay+Loops;%F0%9F%8E%93+B.S.+Game+Development+%C2%B7+Valedictorian;%F0%9F%A7%A0+Clean+Code.+Fun+Games.+Real+Results.)](https://git.io/typing-svg)
 
 <br/>
 
@@ -38,6 +38,21 @@
 
 ---
 
+## 🎓 `CREDENTIALS`
+
+<div align="center">
+
+![Full Sail Alumni](https://img.shields.io/badge/Full_Sail_University-B.S._Game_Development-00ff9c?style=for-the-badge&labelColor=000000)
+![Valedictorian](https://img.shields.io/badge/🏆_VALEDICTORIAN-Class_of_2026-FF6B35?style=for-the-badge&labelColor=000000)
+
+![Advanced Achievement](https://img.shields.io/badge/Advanced_Achievement-00ff9c?style=flat-square&labelColor=0d1117)
+![Course Director Award](https://img.shields.io/badge/Course_Director_Award-Game_Integration-00ff9c?style=flat-square&labelColor=0d1117)
+![Conferred](https://img.shields.io/badge/Degree_Conferred-Jul_3,_2026-8b949e?style=flat-square&labelColor=0d1117)
+
+</div>
+
+---
+
 ## ⚡ `WHOAMI`
 
 ```cpp
@@ -47,12 +62,18 @@ class GeorgeCarter : public GameDeveloper {
 public:
     const std::string name     = "George Carter";
     const std::string studio   = "XenClipse Studios";
+    const std::string degree   = "B.S. Game Development — Full Sail University";
+    const std::string honors   = "Valedictorian · Advanced Achievement · "
+                                 "Course Director Award: Game Integration";
     std::vector<std::string> engines = {"Unreal Engine 5", "Unity"};
     std::vector<std::string> langs   = {"C++", "C#", "Python"};
 
-    std::string currently_building = "Feather Fall";
-    std::string passion            = "Systems that feel alive";
-    bool        open_to_work       = true;  // <-- hire me!
+    std::vector<std::string> currently_building = {
+        "Eclipse: Quest for the Lost Relic",
+        "Feather Fall"
+    };
+    std::string passion      = "Systems that feel alive";
+    bool        open_to_work = true;  // <-- hire me!
 
     std::string mission() {
         return "Build clean systems. Engineer fun. Ship worlds.";
@@ -64,9 +85,9 @@ public:
 
 <div align="center">
 
-| 🎯 Focus | 🛠️ Currently | 🌱 Learning | ⚡ Fun Fact |
+| 🎯 Focus | 🛠️ Currently | 🎓 Credential | ⚡ Fun Fact |
 |:---:|:---:|:---:|:---:|
-| Gameplay Systems & Tools | Feather Fall | Engine Internals | I debug with printf and I'm not ashamed |
+| Gameplay Systems & Tools | Eclipse · Feather Fall | Valedictorian, Full Sail '26 | I debug with printf and I'm not ashamed |
 
 </div>
 
@@ -75,6 +96,33 @@ public:
 ## 🛠️ `FEATURED PROJECTS`
 
 <table>
+<tr>
+<td colspan="2" valign="top">
+
+### 🌒 Eclipse: Quest for the Lost Relic
+> *Dark Fantasy Action RPG · Single-Player · In Development · XenClipse Studios*
+
+<img src="https://raw.githubusercontent.com/George-Mando/Eclipse_QuestLostRelic/main/MainImage.png" width="100%" alt="Eclipse: Quest for the Lost Relic key art" />
+
+⚔️ Single-player Action RPG built in **Unity (PC/Windows)**. Play as the **Revenant** — a soul dragged back from death — walking the corrupted realm of **Caelmoor** to reclaim the **Solheart relic**. Stamina-gated combat, oath-rank progression, and a **Rekindling system** that physically pushes back the dark. Signature system: **Forms of the Eclipse** — shapeshifting into lost sky-creatures for mobility, stealth, and Metroidvania-style traversal.
+
+![Unity](https://img.shields.io/badge/Unity-000000?style=flat-square&logo=unity&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=csharp&logoColor=white)
+![Action RPG](https://img.shields.io/badge/Action_RPG-FF6B35?style=flat-square)
+![Metroidvania](https://img.shields.io/badge/Metroidvania-7B2FBE?style=flat-square)
+![Combat Systems](https://img.shields.io/badge/Combat_Systems-00ff9c?style=flat-square)
+
+<table>
+<tr>
+<td width="50%"><img src="https://raw.githubusercontent.com/George-Mando/Eclipse_QuestLostRelic/main/IN.png" width="100%" alt="Eclipse in-game screenshot" /></td>
+<td width="50%"><img src="https://raw.githubusercontent.com/George-Mando/Eclipse_QuestLostRelic/main/HUD.png" width="100%" alt="Eclipse HUD screenshot" /></td>
+</tr>
+</table>
+
+🔗 [**View the repo →**](https://github.com/George-Mando/Eclipse_QuestLostRelic) · *Coming soon*
+
+</td>
+</tr>
 <tr>
 <td width="50%" valign="top">
 
@@ -213,7 +261,9 @@ public:
 ╔══════════════════════════════════════════════════════════════════╗
 ║                      GITHUB  MILESTONES                          ║
 ╠══════════════════════════════════════════════════════════════════╣
-║  🎮  Game Developer          Full Sail University  · 2024–2026   ║
+║  🎓  VALEDICTORIAN           Full Sail University · Class of 2026 ║
+║  🏅  Advanced Achievement    + Course Director Award: Game Integ. ║
+║  🎮  B.S. Game Development   Degree Conferred July 3, 2026        ║
 ║  🔩  16 Years Engineering    Mechanical → Game Dev Pipeline       ║
 ║  🤖  AI Systems              Behavior Trees · State Machines      ║
 ║  🖥️  Dual Engine              Unreal Engine 5  +  Unity (C#)      ║
@@ -227,7 +277,10 @@ public:
 | 🎮 First Game Shipped | ✅ |
 | 🤖 AI Systems Implemented | ✅ |
 | 🖥️ Dual Engine Proficiency (UE5 + Unity) | ✅ |
-| 🎓 B.S. Game Development | 🔄 Jun 2026 |
+| 🎓 B.S. Game Development — Conferred Jul 3, 2026 | ✅ |
+| 🏆 Valedictorian — Full Sail University, Class of 2026 | ✅ |
+| 🏅 Advanced Achievement | ✅ |
+| 🎯 Course Director Award — Game Integration | ✅ |
 | 🚀 Studio Founded — XenClipse Studios | ✅ |
 | 💼 16 Years Professional Engineering | ✅ |
 | 📐 SolidWorks Certified Professional (x3) | ✅ |
@@ -244,6 +297,7 @@ public:
 ╔══════════════════════════════════════════════════════╗
 ║                   ACTIVE  QUESTS                     ║
 ╠══════════════════════════════════════════════════════╣
+║  [■■■■░░░░░░]  35%  Eclipse: Quest for the Lost Relic║
 ║  [■■░░░░░░░░]  20%  Feather Fall                     ║
 ║  [■■■■■░░░░░]  50%  Portfolio polish & employer-ready║
 ║  [■■■░░░░░░░]  30%  Deeper UE5 engine internals      ║
@@ -286,6 +340,7 @@ public:
 ```
 GAME DEVELOPMENT
 ─────────────────────────────────────────────────────────
+🌒 Eclipse: Quest for the Lost Relic   IN DEV   Unity  XenClipse Studios
 🌑 Shadows of Beginnings   APR 2026–PRESENT   UE5   UI/UX & AI Lead
 ⚙️  Clockwork Horrors        JUN 2025           Unity  Gameplay & AI Systems
 💊 Dr. Malware              OCT 2025           C++/Vulkan  Core Systems
@@ -302,15 +357,19 @@ ENGINEERING  (16 Years)
 
 <div align="center">
 
-| Degree | School | Year |
-|:---|:---|:---:|
-| B.S. Game Development | Full Sail University | 2026 |
-| B.S. Mechanical Engineering | Cameron University | 2008 |
-| A.A.S. Applied Science | Cameron University | 2006 |
+| Degree | School | Year | Honors |
+|:---|:---|:---:|:---|
+| B.S. Game Development | Full Sail University | Conferred Jul 3, 2026 | 🏆 Valedictorian · Advanced Achievement · Course Director Award: Game Integration |
+| B.S. Mechanical Engineering | Cameron University | 2008 | — |
+| A.A.S. Applied Science | Cameron University | 2006 | — |
 
 </div>
 
 <div align="center">
+
+![Valedictorian](https://img.shields.io/badge/🏆_Valedictorian-Full_Sail_'26-FF6B35?style=flat-square&labelColor=0d1117)
+![Advanced Achievement](https://img.shields.io/badge/Advanced_Achievement-00ff9c?style=flat-square&labelColor=0d1117)
+![Course Director Award](https://img.shields.io/badge/Course_Director_Award-Game_Integration-00ff9c?style=flat-square&labelColor=0d1117)
 
 ![CSWP Core](https://img.shields.io/badge/CSWP-Core-0078D7?style=flat-square&logo=dassaultsystemes&logoColor=white)
 ![CSWP Sheet Metal](https://img.shields.io/badge/CSWP-Advanced_Sheet_Metal-0078D7?style=flat-square&logo=dassaultsystemes&logoColor=white)
