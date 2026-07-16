@@ -83,6 +83,7 @@ body::before{content:'';position:fixed;inset:0;
 .hero-sub{font-size:9px;letter-spacing:3px;color:var(--acid-dim);opacity:.8;margin-bottom:8px;}
 .hero-badge{display:inline-block;padding:3px 12px;border:1px solid var(--acid);
   font-size:9px;letter-spacing:4px;color:var(--acid);opacity:.7;border-radius:2px;}
+.hero-badge.honor{border-color:var(--orange);color:var(--orange);letter-spacing:2px;margin-top:6px;}
 .status-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;
   border:1px solid var(--acid);border-radius:2px;font-size:9px;letter-spacing:3px;
   color:var(--acid);background:rgba(0,255,156,.04);animation:dp 2s ease-in-out infinite;margin-top:8px;}
@@ -234,6 +235,7 @@ body::before{content:'';position:fixed;inset:0;
 .res-edu{margin-bottom:10px;padding:10px;background:rgba(0,255,156,.02);border:1px solid var(--border);border-radius:3px;border-left:2px solid var(--blue);}
 .res-cert-list{display:flex;flex-direction:column;gap:5px;}
 .res-cert{font-size:9px;color:var(--text-dim);padding:5px 10px;border:1px solid var(--border);border-radius:2px;border-left:2px solid var(--orange);}
+.res-cert.honor{border-left-color:var(--acid);color:var(--text);}
 .res-open-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;
   background:transparent;border:1px solid var(--acid);color:var(--acid);text-decoration:none;
   font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;border-radius:3px;
@@ -337,6 +339,7 @@ body::before{content:'';position:fixed;inset:0;
         <div class="hero-name">GEORGE CARTER</div>
         <div class="hero-sub">GAME DEVELOPER · SYSTEMS ARCHITECT</div>
         <div class="hero-badge">XENCLIPSE STUDIOS</div><br/>
+        <div class="hero-badge honor">FULL SAIL ALUMNI · VALEDICTORIAN, CLASS OF 2026</div><br/>
         <div class="status-badge"><div class="status-dot"></div>OPEN TO HIRE</div>
       </div>
       <div class="panel">
@@ -344,6 +347,8 @@ body::before{content:'';position:fixed;inset:0;
         <div class="bio-grid">
           <div class="brow"><span class="bk">ENGINE_CORE</span><span class="bv">UE5 / Unity</span></div>
           <div class="brow"><span class="bk">LANG_MATRIX</span><span class="bv">C++ / C# / Python</span></div>
+          <div class="brow"><span class="bk">DEGREE</span><span class="bv hi">B.S. Game Dev · Full Sail</span></div>
+          <div class="brow"><span class="bk">HONORS</span><span class="bv hi">Valedictorian '26</span></div>
           <div class="brow"><span class="bk">ACTIVE_OP</span><span class="bv hi">Feather Fall</span></div>
           <div class="brow"><span class="bk">DIRECTIVE</span><span class="bv">Systems that feel alive</span></div>
         </div>
@@ -351,6 +356,7 @@ body::before{content:'';position:fixed;inset:0;
       <div class="panel">
         <div class="pl">// ACTIVE QUESTS <span>PRIORITY OBJ</span></div>
         <div class="obr"><div class="olbl">FEATHER_FALL<span>20%</span></div><div class="btrk"><div class="bfil" style="width:20%"></div></div></div>
+        <div class="obr"><div class="olbl">ECLIPSE_QUEST_LOST_RELIC<span>IN DEV</span></div><div class="btrk"><div class="bfil" style="width:35%"></div></div></div>
         <div class="obr"><div class="olbl">PORTFOLIO_POLISH<span>50%</span></div><div class="btrk"><div class="bfil" style="width:50%"></div></div></div>
         <div class="obr"><div class="olbl">UE5_ENGINE_DEPTH<span>30%</span></div><div class="btrk"><div class="bfil" style="width:30%"></div></div></div>
         <div class="obr" style="margin-bottom:0"><div class="olbl">OPEN_SOURCE<span>10%</span></div><div class="btrk"><div class="bfil" style="width:10%"></div></div></div>
@@ -416,7 +422,7 @@ body::before{content:'';position:fixed;inset:0;
         </div>
         <div class="suggs">
           <button class="sb" onclick="ask(this)">Who is George?</button>
-          <button class="sb" onclick="ask(this)">Feather Fall?</button>
+          <button class="sb" onclick="ask(this)">Eclipse?</button>
           <button class="sb" onclick="ask(this)">Available to hire?</button>
           <button class="sb" onclick="ask(this)">XenClipse Studios?</button>
         </div>
@@ -454,6 +460,13 @@ body::before{content:'';position:fixed;inset:0;
         <div class="proj-bar"><div class="proj-fill" style="width:100%"></div></div>
         <div class="proj-foot"><span>STATUS: SHIPPED ✓</span><span>DOWNLOAD ON ITCH.IO →</span></div>
       </a>
+      <a class="proj-card" href="https://github.com/George-Mando/Eclipse_QuestLostRelic" target="_blank">
+        <div class="proj-head"><div class="proj-title">ECLIPSE: QUEST FOR THE LOST RELIC</div><div class="proj-badge wip">IN DEV</div></div>
+        <div class="proj-desc">Single-player Action RPG built in Unity (PC/Windows). Players take on the Revenant, a soul dragged back from death, walking the corrupted realm of Caelmoor to reclaim the Solheart relic. Stamina-gated combat, oath-rank progression, and a Rekindling system that physically pushes back the dark. Signature system: Forms of the Eclipse — shapeshifting into lost sky-creatures for mobility, stealth, and Metroidvania-style traversal.</div>
+        <div class="proj-tags"><span class="tag">UNITY</span><span class="tag">C#</span><span class="tag">ACTION RPG</span><span class="tag">METROIDVANIA</span><span class="tag">COMBAT SYSTEMS</span><span class="tag">XENCLIPSE STUDIOS</span></div>
+        <div class="proj-bar"><div class="proj-fill" style="width:35%"></div></div>
+        <div class="proj-foot"><span>STATUS: IN DEVELOPMENT</span><span>COMING SOON →</span></div>
+      </a>
       <a class="proj-card" href="https://george-carter.itch.io/" target="_blank">
         <div class="proj-head"><div class="proj-title">FEATHER FALL</div><div class="proj-badge wip">IN DEV</div></div>
         <div class="proj-desc">A gravity-based puzzle game — drop rocks to brick eggs. Match 4 or more in a row to break them. A fresh spin on classic match-clearing mechanics with a bird-themed twist.</div>
@@ -467,6 +480,7 @@ body::before{content:'';position:fixed;inset:0;
 
 <span class="cm">// CURRENT MISSION STACK</span>
 
+  a7f31 · dev:  eclipse-quest-lost-relic
   f2a04 · dev:  feather-fall early build
   e9b12 · ship: clockwork-horrors LIVE
   d3c17 · ship: shadows-of-beginnings LIVE
@@ -543,7 +557,7 @@ body::before{content:'';position:fixed;inset:0;
         <div class="res-header">
           <div class="res-name">GEORGE CARTER</div>
           <div class="res-title">GAME DEVELOPER · GAMEPLAY PROGRAMMER · AI &amp; UI/UX SYSTEMS</div>
-          <div style="font-size:8px;color:var(--text-dim);letter-spacing:2px;margin-bottom:6px;">16 YEARS ENGINEERING EXPERIENCE · MARLOW, OK</div>
+          <div style="font-size:8px;color:var(--text-dim);letter-spacing:2px;margin-bottom:6px;">FULL SAIL ALUMNI · VALEDICTORIAN, CLASS OF 2026 · 16 YEARS ENGINEERING · MARLOW, OK</div>
           <div class="res-contact">
             <a href="mailto:xenclipsestudios@gmail.com">✉ STUDIO EMAIL</a>
             <a href="https://www.linkedin.com/in/george-carter-ba996b315" target="_blank">💼 LINKEDIN</a>
@@ -552,7 +566,7 @@ body::before{content:'';position:fixed;inset:0;
         </div>
         <div class="res-section">
           <div class="res-section-title">PROFESSIONAL SUMMARY</div>
-          <div style="font-size:9px;color:var(--text-dim);line-height:1.8;letter-spacing:.3px;padding:8px;background:rgba(0,255,156,.02);border:1px solid var(--border);border-radius:3px;">Game Developer specializing in gameplay programming, AI systems, and UI/UX architecture with experience across Unity (C#) and Unreal Engine (C++/Blueprints). Backed by 16 years of professional Mechanical Engineering experience. Adept at building core player systems, enemy behaviors, environmental mechanics, and resource/progression frameworks.</div>
+          <div style="font-size:9px;color:var(--text-dim);line-height:1.8;letter-spacing:.3px;padding:8px;background:rgba(0,255,156,.02);border:1px solid var(--border);border-radius:3px;">Game Developer and Full Sail University alumnus — Bachelor of Science in Game Development, conferred July 3, 2026, graduated Valedictorian — specializing in gameplay programming, AI systems, and UI/UX architecture with experience across Unity (C#) and Unreal Engine (C++/Blueprints). Backed by 16 years of professional Mechanical Engineering experience. Adept at building core player systems, enemy behaviors, environmental mechanics, and resource/progression frameworks.</div>
         </div>
         <div class="res-section">
           <div class="res-section-title">SKILLS MATRIX</div>
@@ -566,7 +580,18 @@ body::before{content:'';position:fixed;inset:0;
           </div>
         </div>
         <div class="res-section">
-          <div class="res-section-title">GAME DEVELOPMENT · ACADEMIC</div>
+          <div class="res-section-title">GAME DEVELOPMENT</div>
+          <div class="res-job">
+            <div class="res-job-head"><div class="res-job-title">🌒 ECLIPSE: QUEST FOR THE LOST RELIC</div><div class="res-job-date">IN DEVELOPMENT</div></div>
+            <div class="res-job-company">Xenclipse Studios</div>
+            <div class="res-job-sub">Dark Fantasy Action RPG · Single-Player · Unity (C#) · PC/Windows</div>
+            <ul class="res-bullets">
+              <li>Single-player Action RPG — play as the Revenant, a soul dragged back from death, reclaiming the Solheart relic across the corrupted realm of Caelmoor</li>
+              <li>Stamina-gated real-time combat with four archetypes and branching skill trees</li>
+              <li>Oath-rank progression and a Rekindling system that physically pushes back the dark</li>
+              <li>Signature system: Forms of the Eclipse — shapeshifting into lost sky-creatures for mobility, stealth, and Metroidvania-style traversal</li>
+            </ul>
+          </div>
           <div class="res-job">
             <div class="res-job-head"><div class="res-job-title">🌑 SHADOWS OF BEGINNINGS</div><div class="res-job-date">APR 2026 – PRESENT</div></div>
             <div class="res-job-company">Team Nebula Interactive · Full Sail University</div>
@@ -610,9 +635,21 @@ body::before{content:'';position:fixed;inset:0;
         </div>
         <div class="res-section">
           <div class="res-section-title">EDUCATION</div>
-          <div class="res-edu"><div class="res-job-head"><div class="res-job-title">B.S. GAME DEVELOPMENT</div><div class="res-job-date">JUN 2026</div></div><div class="res-job-company">Full Sail University · Winter Park, FL</div></div>
+          <div class="res-edu">
+            <div class="res-job-head"><div class="res-job-title">B.S. GAME DEVELOPMENT</div><div class="res-job-date">CONFERRED JUL 3, 2026</div></div>
+            <div class="res-job-company">Full Sail University · Winter Park, FL</div>
+            <div class="res-job-sub" style="margin-top:4px;margin-bottom:0;">Valedictorian · Advanced Achievement · Course Director Award: Game Integration</div>
+          </div>
           <div class="res-edu"><div class="res-job-head"><div class="res-job-title">B.S. MECHANICAL ENGINEERING</div><div class="res-job-date">MAY 2008</div></div><div class="res-job-company">Cameron University · Lawton, OK</div></div>
           <div class="res-edu" style="margin-bottom:0"><div class="res-job-head"><div class="res-job-title">A.A.S. APPLIED SCIENCE</div><div class="res-job-date">MAY 2006</div></div><div class="res-job-company">Cameron University · Lawton, OK</div></div>
+        </div>
+        <div class="res-section">
+          <div class="res-section-title">ACADEMIC HONORS</div>
+          <div class="res-cert-list">
+            <div class="res-cert honor">Valedictorian — Full Sail University, Class of 2026</div>
+            <div class="res-cert honor">Advanced Achievement</div>
+            <div class="res-cert honor">Course Director Award — Game Integration</div>
+          </div>
         </div>
         <div class="res-section">
           <div class="res-section-title">CERTIFICATIONS</div>
@@ -687,7 +724,9 @@ body::before{content:'';position:fixed;inset:0;
       <div class="panel">
         <div class="pl">// MISSION TIMELINE <span>DEPLOYMENT LOG</span></div>
         <div class="timeline">
+          <div class="tl-item dev"><div class="tl-date">XENCLIPSE STUDIOS · IN DEV</div><div class="tl-title">ECLIPSE: QUEST FOR THE LOST RELIC</div><div class="tl-detail">Dark Fantasy Action RPG in Unity (PC/Windows). Play as the Revenant reclaiming the Solheart relic — combat systems, oath-rank progression, the Rekindling system, and the Forms of the Eclipse shapeshifting mechanic.</div><div class="tl-tags"><span class="tl-tag">UNITY</span><span class="tl-tag">C#</span><span class="tl-tag">ARPG</span><span class="tl-tag">METROIDVANIA</span></div></div>
           <div class="tl-item dev"><div class="tl-date">2026 · IN PROGRESS</div><div class="tl-title">FEATHER FALL</div><div class="tl-detail">Gravity-based puzzle game. Drop rocks to brick eggs — match 4 or more in a row. Bird-themed twist on classic match-clearing mechanics.</div><div class="tl-tags"><span class="tl-tag">C++</span><span class="tl-tag">PUZZLE</span><span class="tl-tag">MATCH-4</span></div></div>
+          <div class="tl-item live"><div class="tl-date">JUL 3 2026 · CONFERRED</div><div class="tl-title">B.S. GAME DEVELOPMENT</div><div class="tl-detail">Full Sail University — graduated Valedictorian with Advanced Achievement and the Course Director Award for Game Integration. Full Sail Alumni, Class of 2026.</div><div class="tl-tags"><span class="tl-tag">VALEDICTORIAN</span><span class="tl-tag">FULL SAIL</span><span class="tl-tag">ALUMNI</span></div></div>
           <div class="tl-item live"><div class="tl-date">APR 2026 · SHIPPED</div><div class="tl-title">SHADOWS OF BEGINNINGS</div><div class="tl-detail">ARPG in Unreal Engine 5. Led UI/UX &amp; AI Design — HUD, quest log, enemy behavior trees, monster house ambush events.</div><div class="tl-tags"><span class="tl-tag">UE5</span><span class="tl-tag">ARPG</span><span class="tl-tag">AI DESIGN</span></div></div>
           <div class="tl-item live"><div class="tl-date">JUN 2025 · SHIPPED</div><div class="tl-title">CLOCKWORK HORRORS</div><div class="tl-detail">FPS in icy post-apocalyptic wasteland. Full enemy AI, player systems, XP progression, environmental hazards.</div><div class="tl-tags"><span class="tl-tag">UNITY</span><span class="tl-tag">FPS</span><span class="tl-tag">FULL SAIL</span></div></div>
           <div class="tl-item live"><div class="tl-date">OCT 2025 · SHIPPED</div><div class="tl-title">DR MALWARE</div><div class="tl-detail">Multi-theme puzzle game — Magic, Hacker &amp; Bird variants. Built in C++/Vulkan. Match-4 logic, cascade combos, full save/load.</div><div class="tl-tags"><span class="tl-tag">C++</span><span class="tl-tag">VULKAN</span><span class="tl-tag">PUZZLE</span></div></div>
@@ -808,7 +847,7 @@ function buildFace() {
 
 /* ── XENAI CHAT ── */
 const GROQ_URL='https://api.groq.com/openai/v1/chat/completions', GROQ_MDL='llama-3.3-70b-versatile';
-const SYS=`You are XENAI, the AI assistant embedded in George Carter's portfolio. Alien-human hybrid intelligence — voice of XenClipse Studios. Speak like a real confident woman: warm, precise, slightly mysterious. Concise unless asked for detail. Proud of George's work. George Carter: Game Developer, XenClipse Studios founder, Marlow OK. GitHub: George-Mando. Engines: UE5, Unity. Languages: C++, C#, Python. 16 years mechanical engineering background. BS Game Development from Full Sail (Jun 2026), BS Mechanical Engineering from Cameron University (2008). Shipped: Shadows of Beginnings (ARPG, UE5, Nebula Interactive — UI/UX & AI Design lead), Clockwork Horrors (FPS, Unity, Full Sail), Dr Malware (puzzle, C++/Vulkan). In dev: Feather Fall (match-4 puzzle). Open to hire: xenclipsestudios@gmail.com. Philosophy: "Good game feel isn't magic — it's engineered."`;
+const SYS=`You are XENAI, the AI assistant embedded in George Carter's portfolio. Alien-human hybrid intelligence — voice of XenClipse Studios. Speak like a real confident woman: warm, precise, slightly mysterious. Concise unless asked for detail. Proud of George's work. George Carter: Game Developer, XenClipse Studios founder, Marlow OK. GitHub: George-Mando. Engines: UE5, Unity. Languages: C++, C#, Python. 16 years mechanical engineering background. Full Sail University alumnus — BS Game Development conferred July 3, 2026, graduated VALEDICTORIAN with Advanced Achievement and the Course Director Award for Game Integration. BS Mechanical Engineering from Cameron University (2008). Shipped: Shadows of Beginnings (ARPG, UE5, Nebula Interactive — UI/UX & AI Design lead), Clockwork Horrors (FPS, Unity, Full Sail), Dr Malware (puzzle, C++/Vulkan). In dev: Eclipse: Quest for the Lost Relic (dark fantasy Action RPG in Unity — play as the Revenant reclaiming the Solheart relic in the corrupted realm of Caelmoor; stamina-gated combat, oath-rank progression, Rekindling system, Forms of the Eclipse shapeshifting), Feather Fall (match-4 puzzle). Open to hire: xenclipsestudios@gmail.com. Philosophy: "Good game feel isn't magic — it's engineered."`;
 
 let apiKey = localStorage.getItem('xai_gk') || '';
 let keyValidated = localStorage.getItem('xai_gk_valid') === '1';
